@@ -64,7 +64,37 @@ MonoBehaviour:
   damageVisual: {fileID: 9198114927676285675}
   dropList:
   - {fileID: 1625176726509343395, guid: b8c991079c615124bb71add0c67194f8, type: 3}
+  - {fileID: 1625176726509343395, guid: b8c991079c615124bb71add0c67194f8, type: 3}
   - {fileID: 4291358898147104052, guid: 8aa5100bf25eb13459438e9de7f6a7b0, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -191,7 +221,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.36
+  m_Radius: 0.4
 --- !u!95 &-5766259547027375216
 Animator:
   serializedVersion: 5

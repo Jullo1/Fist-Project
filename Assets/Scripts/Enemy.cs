@@ -11,14 +11,13 @@ public class Enemy : Unit
     public List<Item> dropList = new List<Item>();
     bool spawnCheck = true;
     float aliveTime;
-    //bool fury;
+    bool fury;
 
     public override void TakeHit(int damage, GameObject hitter, float pushForce = 0f)
     {
         base.TakeHit(damage, hitter, pushForce);
         if (hitpoints <= 0)
         {
-            game.GainExperience(experienceDrop);
             CalculateDrop();
             StartCoroutine(Death());
             damageVisual.SetActive(false);
@@ -46,7 +45,7 @@ public class Enemy : Unit
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (spawnCheck)
+        if (spawnCheck) //to prevent enemies overlapping on spawn
             if (collision.gameObject.tag == "Enemy")
                 transform.position += new Vector3(Random.Range(0f,0.5f), Random.Range(0f, 0.5f));
 
@@ -69,11 +68,19 @@ public class Enemy : Unit
 
     void CheckStats()
     {
-        aliveTime += Time.deltaTime;
+        if (aliveTime > 20) {
+            if (!fury) Fury();
+        } else aliveTime += Time.deltaTime;
+
+
         if (aliveTime > 0.1f)
             spawnCheck = false;
-        /*if (aliveTime > 30)
-            fury = true;*/
+    }
+
+    void Fury()
+    {
+        fury = true;
+        moveSpeed *= 1.25f;
     }
 
     void CalculateDrop()
@@ -102,4 +109,13 @@ public class Enemy : Unit
         CheckHitpoints();
     }
 
+    IEnumerator Death()
+    {
+        dead = true;
+        col.isTrigger = true;
+        anim.SetBool("dead", true);
+        yield return new WaitForSeconds(0.35f);
+        game.GainExperience(experienceDrop);
+        Destroy(gameObject);
+    }
 }

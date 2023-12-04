@@ -21,15 +21,6 @@ public class Unit : Entity
         UpdateHealth(-damage);
     }
 
-    protected IEnumerator Death()
-    {
-        dead = true;
-        col.isTrigger = true;
-        anim.SetBool("dead", true);
-        yield return new WaitForSeconds(1f);
-        Destroy(gameObject);
-    }
-
     protected void PlayAudio(AudioClip clip)
     {
         aud.clip = clip;

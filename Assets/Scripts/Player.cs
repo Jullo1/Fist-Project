@@ -242,7 +242,7 @@ public class Player : Unit
 
         hasPowerUp = true;
         for (int i = 0; i < activePowerUps.Length; i++)
-            if (activePowerUps[i] == PowerUpType.None)
+            if (activePowerUps[i] == PowerUpType.None || activePowerUps[i] == powerUp.powerUpType) //check for first empty powerup slot, or overwrite the same power up type to refresh the duration
             {
                 activePowerUps[i] = powerUp.powerUpType;
                 powerUpDuration[i] = powerUp.duration;

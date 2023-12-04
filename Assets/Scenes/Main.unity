@@ -1271,7 +1271,7 @@ MonoBehaviour:
   - {fileID: 9013288256728285134, guid: 63a85fdd95256e04a881f7f511329c65, type: 3}
   - {fileID: 9013288256728285134, guid: fb707248571282b47bc930472d0af654, type: 3}
   - {fileID: 5886114919672351050, guid: ed0e45a2b397d094680b1a1675075e30, type: 3}
-  nextSpawnGroup: []
+  spawnGroup: []
   currentWave: 0
   closestSpawnPos: 7
   experienceUI: {fileID: 2106381247}
@@ -2245,10 +2245,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 419912491387441329, guid: 4fff07e3287c91a4ea5f354d21d23e97, type: 3}
-      propertyPath: m_SortingOrder
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 2839589322773588041, guid: 4fff07e3287c91a4ea5f354d21d23e97, type: 3}
       propertyPath: comboUI
       value: 

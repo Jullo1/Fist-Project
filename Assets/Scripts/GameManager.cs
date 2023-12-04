@@ -12,9 +12,11 @@ public class GameManager : MonoBehaviour
     Player player;
     [SerializeField] List<Enemy> enemyList = new List<Enemy>();
 
-    public List<Entity> nextSpawnGroup = new List<Entity>();
+    public List<Entity> spawnGroup = new List<Entity>();
+    float waveIntensity;
     public int currentWave;
     [SerializeField] float closestSpawnPos;
+    float spawnTimer;
 
     int level;
     float experience;
@@ -30,76 +32,52 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         level = 1;
-        toNextLevel = 100;
+        toNextLevel = 50;
+        currentWave = 0;
+        waveIntensity = 0.5f;
+        NextWave(); //immediately spawn next wave at start
     }
 
     void Update()
     {
-        if (FindObjectsOfType<Enemy>().Length == 0)
+        if (spawnTimer > 5) {
             NextWave();
+            spawnTimer = 0;
+        } else spawnTimer += Time.deltaTime;
     }
 
     void NextWave()
     {
-        currentWave++;
-        foreach (Entity entity in nextSpawnGroup)
+        SetupWave();
+        foreach (Entity entity in spawnGroup)
         {
             Vector2 spawnPos = player.transform.position;
             while (Vector2.Distance(spawnPos, player.transform.position) < closestSpawnPos)
                 spawnPos += new Vector2(Random.Range(-7, 7), Random.Range(-5, 5));
 
             Spawn(entity, spawnPos);
-        } SetupNextSpawn();
+        }
     }
 
-    void SetupNextSpawn()
+    void SetupWave()
     {
-        nextSpawnGroup.Clear();
-        switch (currentWave)
-        {
-            case 1:
-                for (int i = 0; i < 3; i++)
-                    nextSpawnGroup.Add(enemyList[0]);
-                break;
-            case 2:
-                for (int i = 0; i < 3; i++)
-                    nextSpawnGroup.Add(enemyList[0]);
-                for (int i = 0; i < 1; i++)
-                    nextSpawnGroup.Add(enemyList[1]);
-                break;
-            case 3:
-                for (int i = 0; i < 2; i++)
-                    nextSpawnGroup.Add(enemyList[1]);
-                break;
-            case 4:
-                for (int i = 0; i < 5; i++)
-                    nextSpawnGroup.Add(enemyList[0]);
-                break;
-            case 5:
-                for (int i = 0; i < 4; i++)
-                    nextSpawnGroup.Add(enemyList[0]);
-                for (int i = 0; i < 1; i++)
-                    nextSpawnGroup.Add(enemyList[2]);
-                break;
-            case 6:
-                for (int i = 0; i < 4; i++)
-                    nextSpawnGroup.Add(enemyList[1]);
-                break;
-            case 7:
-                for (int i = 0; i < 2; i++)
-                    nextSpawnGroup.Add(enemyList[2]);
-                break;
-            case 8:
-                for (int i = 0; i < 5; i++)
-                    nextSpawnGroup.Add(enemyList[0]);
-                for (int i = 0; i < 3; i++)
-                    nextSpawnGroup.Add(enemyList[1]);
-                break;
-            case 9:
-                for (int i = 0; i < 10; i++)
-                    nextSpawnGroup.Add(enemyList[0]);
-                break;
-        }
+        spawnGroup.Clear(); //clear previous wave info
+        currentWave++;
+        waveIntensity *= 1.05f;
+        SetupNextWaveWithIntensity(waveIntensity);
+    }
+
+    void AddToNextWave(Enemy enemyType, int amount)
+    {
+        for (int i = 0; i < amount; i++)
+            spawnGroup.Add(enemyType);
+    }
+
+    void SetupNextWaveWithIntensity(float intensity) //algorithm to randomize next spawn group with a given intensity
+    {
+        AddToNextWave(enemyList[0], (int) (intensity * 5));
+        AddToNextWave(enemyList[1], (int) (intensity * 3));
+        AddToNextWave(enemyList[2], (int) (intensity * 1));
     }
 
     void Spawn(Entity entity, Vector2 position)
@@ -122,7 +100,7 @@ public class GameManager : MonoBehaviour
         level++;
         experience = 0;
         toNextLevel += toNextLevel;
-        experienceUI.fillAmount = 1;
+        experienceUI.fillAmount = 0;
         levelUpWindow.SetActive(true);
     }
 
