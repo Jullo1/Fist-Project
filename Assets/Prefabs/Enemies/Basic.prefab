@@ -64,7 +64,7 @@ MonoBehaviour:
   damageVisual: {fileID: 9198114927676285675}
   dropList:
   - {fileID: 1625176726509343395, guid: b8c991079c615124bb71add0c67194f8, type: 3}
-  - {fileID: 0}
+  - {fileID: 4291358898147104052, guid: 8aa5100bf25eb13459438e9de7f6a7b0, type: 3}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -118,7 +118,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 5ab8cf48018fc7d44a38b33e64e07e04, type: 3}
   m_Color: {r: 0.8113208, g: 0.5530571, b: 0, a: 1}
   m_FlipX: 0

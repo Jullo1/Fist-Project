@@ -203,7 +203,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 3
+  m_SortingOrder: 5
   m_TargetDisplay: 0
 --- !u!224 &152620298
 RectTransform:
@@ -263,7 +263,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 81.54499, y: 87.4}
+  m_AnchoredPosition: {x: 81.54499, y: 19.71}
   m_SizeDelta: {x: 163.09, y: 83.12}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &199953935
@@ -395,8 +395,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 18.46}
-  m_SizeDelta: {x: 442.78, y: 324.74}
+  m_AnchoredPosition: {x: 0, y: 74.89}
+  m_SizeDelta: {x: 768.01, y: 246.64}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &483910824
 GameObject:
@@ -780,14 +780,14 @@ RectTransform:
   m_GameObject: {fileID: 755365710}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.999908, y: 0.999908, z: 0.999908}
+  m_LocalScale: {x: 0.9999079, y: 0.9999079, z: 0.9999079}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 478745328}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 161.43999}
+  m_AnchoredPosition: {x: 0, y: 93.75}
   m_SizeDelta: {x: 325.8, y: 90.26}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &755365712
@@ -883,7 +883,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -81.545, y: 87.4}
+  m_AnchoredPosition: {x: -81.545, y: 19.71}
   m_SizeDelta: {x: 163.09, y: 83.12}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1006496088
@@ -1271,7 +1271,6 @@ MonoBehaviour:
   - {fileID: 9013288256728285134, guid: 63a85fdd95256e04a881f7f511329c65, type: 3}
   - {fileID: 9013288256728285134, guid: fb707248571282b47bc930472d0af654, type: 3}
   - {fileID: 5886114919672351050, guid: ed0e45a2b397d094680b1a1675075e30, type: 3}
-  powerUpList: []
   nextSpawnGroup: []
   currentWave: 0
   closestSpawnPos: 7
@@ -2246,6 +2245,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 419912491387441329, guid: 4fff07e3287c91a4ea5f354d21d23e97, type: 3}
+      propertyPath: m_SortingOrder
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 2839589322773588041, guid: 4fff07e3287c91a4ea5f354d21d23e97, type: 3}
       propertyPath: comboUI
       value: 
@@ -2254,10 +2257,6 @@ PrefabInstance:
       propertyPath: specialUI
       value: 
       objectReference: {fileID: 483910826}
-    - target: {fileID: 2839589322773588041, guid: 4fff07e3287c91a4ea5f354d21d23e97, type: 3}
-      propertyPath: attackRange
-      value: 1.8
-      objectReference: {fileID: 0}
     - target: {fileID: 2839589322773588041, guid: 4fff07e3287c91a4ea5f354d21d23e97, type: 3}
       propertyPath: specialTriggerUI1
       value: 

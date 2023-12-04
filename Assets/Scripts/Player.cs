@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
+public enum playerStats { hitpoints, strength, knockbackPower, movementSpeed, attackSpeed, attackCharges, attackRange, specialDamage, specialCooldown, specialRange, dodgeChance, criticalChance, criticalDamage}
 public class Player : Unit
 {
     //audio
@@ -18,6 +20,8 @@ public class Player : Unit
     [SerializeField] Image specialTriggerUI1;
     [SerializeField] Image specialTriggerUI2;
 
+    public List<float> baseAttackCD = new List<float>(); //inclues upgrades, excludes powerups
+
     public float specialCD;
     float specialTimer;
     float preparingSpecial;
@@ -30,15 +34,19 @@ public class Player : Unit
 
     float invincible;
     bool hasPowerUp;
-    /*remove serialize after testing*/[SerializeField] float[] powerUpDuration = new float[5] { 0, 0, 0, 0, 0 };
-    [SerializeField] PowerUp[] powerUpList = new PowerUp[5];
+    /*remove serialize after testing*/[SerializeField] float[] powerUpDuration = new float[7] { 0, 0, 0, 0, 0, 0, 0 };
+    [SerializeField] PowerUpType[] activePowerUps = new PowerUpType[7] { PowerUpType.None, PowerUpType.None, PowerUpType.None, PowerUpType.None, PowerUpType.None, PowerUpType.None, PowerUpType.None };
 
     void Start()
     {
         comboCDBoost = 1;
-        foreach (float attacks in attackCD)
+        for (int i = 0; i < attackCD.Count; i++) //prepare attack charges and timers
+        {
+            baseAttackCD.Add(attackCD[i]);
             attackTimer.Add(0);
+        }
     }
+
     void Update()
     {
         if (Input.GetKey(KeyCode.D)) Move(1, 0);//right
@@ -47,20 +55,7 @@ public class Player : Unit
         if (Input.GetKey(KeyCode.S)) Move(0, -1); //down
 
         if (Input.GetKey(KeyCode.Space) && specialTimer >= specialCD) preparingSpecial += Time.deltaTime; //special
-        if (Input.GetKeyUp(KeyCode.Space)) //attack
-        {
-            if (preparingSpecial >= 0.5f) SpecialAttack();
-            else
-                for (int i = attackTimer.Count - 1; i >= 0; i--)
-                {
-                    if (attackTimer[i] >= attackCD[i])
-                    {
-                        Attack(i);
-                        break;
-                    }
-                }
-            preparingSpecial = 0f;
-        }
+        if (Input.GetKeyUp(KeyCode.Space)) CheckAttack(); //attack
         ChargeCDs();
         UpdateUI();
         if (hasPowerUp) CheckPowerUp(); //checks for this bool so that it doesnt have to go through the array all the time
@@ -117,7 +112,6 @@ public class Player : Unit
         {
             if (attackTimer[i] < attackCD[i])
             {
-				//attackCDUI[i].transform.SetAsLastSibling();
                 attackTimer[i] += Time.deltaTime * comboCDBoost;
                 return; //end here so that the next slider is not unstuck
             }
@@ -139,6 +133,22 @@ public class Player : Unit
         if (transform.position.y > +150) transform.position -= Vector3.up * 0.01f;
 
         transform.position += new Vector3(x, y) * moveSpeed * Time.deltaTime;
+    }
+
+    void CheckAttack()
+    {
+        if (preparingSpecial >= 0.5f) SpecialAttack();
+        else
+            for (int i = attackTimer.Count - 1; i >= 0; i--)
+            {
+                if (attackTimer[i] >= attackCD[i])
+                {
+                    Attack(i);
+                    break;
+                }
+            }
+
+        preparingSpecial = 0f;
     }
 
     void Attack(int attackIndex)
@@ -210,7 +220,7 @@ public class Player : Unit
         if (hitpoints <= 0) game.GameOver();
     }
 
-    void UpdateComboStats()
+    void UpdateComboStats() //comboAmount makes attackTimer floats increase faster (does not affect the cooldown number)
     {
         if (comboAmount == 0)
         {
@@ -231,11 +241,12 @@ public class Player : Unit
         }
 
         hasPowerUp = true;
-        for (int i = 0; i < powerUpList.Length; i++)
-            if (!powerUpList[i])
+        for (int i = 0; i < activePowerUps.Length; i++)
+            if (activePowerUps[i] == PowerUpType.None)
             {
-                powerUpList[i] = powerUp;
-                powerUpDuration[i] = powerUp.value;
+                activePowerUps[i] = powerUp.powerUpType;
+                powerUpDuration[i] = powerUp.duration;
+                UpdatePowerUpEffect(activePowerUps[i], true);
                 break;
             }
     }
@@ -251,10 +262,50 @@ public class Player : Unit
             }
             else
             {
+                UpdatePowerUpEffect(activePowerUps[i], false);
                 powerUpDuration[i] = 0;
-                powerUpList[i] = null;
+                activePowerUps[i] = PowerUpType.None;
             }
         }
         hasPowerUp = false; //all powerUpDuration floats are 0
+    }
+
+    bool HasPowerUp(PowerUpType powerUpType) //checks a certain if powerUp is active
+    {
+        for (int i = 0; i < activePowerUps.Length; i++)
+        {
+            if (activePowerUps[i] == powerUpType)
+                return true;
+        }
+        return false;
+    }
+
+    void UpdatePowerUpEffect(PowerUpType powerUpType, bool status) //adds powerUp effect when status = true, removes when false
+    {
+        switch (powerUpType)
+        {
+            case PowerUpType.Frenzy:
+                for (int i = 0; i < attackCD.Count; i++)
+                {
+                    if (status) attackCD[i] = 0.25f;
+                    else attackCD[i] = baseAttackCD[i];
+                }
+                break;
+        }
+    }
+
+    public void UpgradeStat(playerStats stat)
+    {
+        switch (stat)
+        {
+            case playerStats.attackSpeed:
+                for (int i = 0; i < baseAttackCD.Count; i++)
+                {
+                    baseAttackCD[i] /= 1.1f;
+                    if (!HasPowerUp(PowerUpType.Frenzy)) //if frenzy is active, attackCD will become baseAttackCD when frenzy expires with CheckPowerUp()
+                        attackCD[i] = baseAttackCD[i];
+                }
+                break;
+        }
     }
 }

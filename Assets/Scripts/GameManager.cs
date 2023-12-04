@@ -11,7 +11,6 @@ public class GameManager : MonoBehaviour
     public bool paused;
     Player player;
     [SerializeField] List<Enemy> enemyList = new List<Enemy>();
-    [SerializeField] List<PowerUp> powerUpList = new List<PowerUp>();
 
     public List<Entity> nextSpawnGroup = new List<Entity>();
     public int currentWave;
@@ -132,8 +131,7 @@ public class GameManager : MonoBehaviour
         switch (upgradeIndex)
         {
             case 1: //punch faster
-                for (int i = 0; i < player.attackCD.Count; i++)
-                    player.attackCD[i] /= 1.1f;
+                player.UpgradeStat(playerStats.attackSpeed);
                 break;
             case 2: //punch harder
                 player.strength++;

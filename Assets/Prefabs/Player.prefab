@@ -78,7 +78,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: e1b5321322fdfec40990bf51022b725c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -127,6 +127,7 @@ MonoBehaviour:
   specialUI: {fileID: 0}
   specialTriggerUI1: {fileID: 0}
   specialTriggerUI2: {fileID: 0}
+  baseAttackCD: []
   specialCD: 30
   specialRange: 1.5
   comboAmount: 0
@@ -139,12 +140,7 @@ MonoBehaviour:
   - 0
   - 0
   - 0
-  powerUpList:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  activePowerUps: 0000000000000000000000000000000000000000
 --- !u!50 &2342049614312213838
 Rigidbody2D:
   serializedVersion: 4
