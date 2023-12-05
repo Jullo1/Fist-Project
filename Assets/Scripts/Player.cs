@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-public enum playerStats { hitpoints, strength, knockbackPower, movementSpeed, attackSpeed, attackCharges, attackRange, specialDamage, specialCooldown, specialRange, dodgeChance, criticalChance, criticalDamage}
+public enum playerStats { hitpoints, strength, pushForce, moveSpeed, attackSpeed, attackCharges, attackRange, specialDamage, specialCooldown, specialRange, dodgeChance, criticalChance, criticalDamage}
 public class Player : Unit
 {
     //audio
@@ -68,10 +68,10 @@ public class Player : Unit
 
         specialUI.fillAmount = specialTimer / specialCD;
         
-        if (preparingSpecial > 0.2f) //small delay before feedback, in case player intended to tap
+        if (preparingSpecial > 0.15f) //small delay before feedback, in case player intended to tap
         {
-            specialTriggerUI1.fillAmount = (preparingSpecial - 0.2f) / 0.3f;
-            specialTriggerUI2.fillAmount = (preparingSpecial - 0.2f) / 0.3f;
+            specialTriggerUI1.fillAmount = (preparingSpecial - 0.15f) / 0.15f;
+            specialTriggerUI2.fillAmount = (preparingSpecial - 0.15f) / 0.15f;
         }
         else
         {
@@ -79,18 +79,31 @@ public class Player : Unit
             specialTriggerUI2.fillAmount = 0;
         }
 
-        if (comboAmount > 0)
+        if (comboAmount > 1)
         {
-            comboUI.color = Color.white;
             comboUI.text = "x" + comboAmount.ToString();
-            if (comboAmount >= maxComboCDBoost)
-                comboUI.color = Color.red;
+            if (comboAmount >= maxComboCDBoost) //max combo boost achieved
+            {
+                comboUI.color = new Color32(250, 120, 0, 255);
+                comboUI.fontSize = 14;
+            }
             else if (comboAmount >= maxComboCDBoost / 2)
-                comboUI.color = Color.yellow;
+            {
+                comboUI.color = new Color32(240, 180, 0, 255);
+            }
             else if (comboAmount >= maxComboCDBoost / 4)
-                comboUI.color = Color.grey;
+            {
+                comboUI.color = new Color32(240, 200, 140, 255);
+                comboUI.fontSize = 13;
+            }
+            else
+                comboUI.color = new Color32(255, 255, 255, 255);
         }
-        else comboUI.text = "";
+        else
+        {
+            comboUI.text = "";
+            comboUI.fontSize = 11;
+        }
         UpdateComboStats();
     }
 
@@ -137,7 +150,7 @@ public class Player : Unit
 
     void CheckAttack()
     {
-        if (preparingSpecial >= 0.5f) SpecialAttack();
+        if (preparingSpecial >= 0.3f) SpecialAttack();
         else
             for (int i = attackTimer.Count - 1; i >= 0; i--)
             {
@@ -294,17 +307,29 @@ public class Player : Unit
         }
     }
 
-    public void UpgradeStat(playerStats stat)
+    public void UpgradeStat(playerStats stat, float value)
     {
         switch (stat)
         {
             case playerStats.attackSpeed:
                 for (int i = 0; i < baseAttackCD.Count; i++)
                 {
-                    baseAttackCD[i] /= 1.1f;
+                    baseAttackCD[i] /= value;
                     if (!HasPowerUp(PowerUpType.Frenzy)) //if frenzy is active, attackCD will become baseAttackCD when frenzy expires with CheckPowerUp()
                         attackCD[i] = baseAttackCD[i];
                 }
+                break;
+            case playerStats.strength:
+                strength += (int) value;
+                break;
+            case playerStats.pushForce:
+                pushForce += value;
+                break;
+            case playerStats.moveSpeed:
+                moveSpeed += value;
+                break;
+            case playerStats.specialCooldown:
+                specialCD /= value;
                 break;
         }
     }

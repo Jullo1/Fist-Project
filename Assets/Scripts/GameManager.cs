@@ -20,9 +20,13 @@ public class GameManager : MonoBehaviour
 
     int level;
     float experience;
-    float toNextLevel;
+    public float toNextLevel;
     [SerializeField] Image experienceUI;
+
     [SerializeField] GameObject levelUpWindow;
+    [SerializeField] Text option1Text; int option1Value;
+    [SerializeField] Text option2Text; int option2Value;
+    List<string> optionsList = new List<string>() { "Punch harder" , "Punch faster" , "Move faster" , "Faster special"};
 
     void Awake()
     {
@@ -63,7 +67,7 @@ public class GameManager : MonoBehaviour
     {
         spawnGroup.Clear(); //clear previous wave info
         currentWave++;
-        waveIntensity *= 1.05f;
+        waveIntensity *= 1.04f;
         SetupNextWaveWithIntensity(waveIntensity);
     }
 
@@ -101,22 +105,48 @@ public class GameManager : MonoBehaviour
         experience = 0;
         toNextLevel += toNextLevel;
         experienceUI.fillAmount = 0;
+
+        SetupLevelUpOptions();
         levelUpWindow.SetActive(true);
     }
 
-    public void SelectUpgrade(int upgradeIndex)
+    void SetupLevelUpOptions()
+    {
+        option1Value = Random.Range(1, 5);
+        do { option2Value = Random.Range(1, 5); } while (option2Value == option1Value); //make sure we get 2 different options
+        option1Text.text = optionsList[option1Value-1];
+        option2Text.text = optionsList[option2Value-1];
+    }
+
+    public void LevelUpButton(int buttonIndex)
+    {
+        switch (buttonIndex)
+        {
+            case 1:
+                SelectUpgrade(option1Value);
+                break;
+            case 2:
+                SelectUpgrade(option2Value);
+                break;
+        }
+    }
+
+    void SelectUpgrade(int upgradeIndex)
     {
         switch (upgradeIndex)
         {
-            case 1: //punch faster
-                player.UpgradeStat(playerStats.attackSpeed);
+            case 1: //punch harder
+                player.UpgradeStat(playerStats.strength, 2);
+                player.UpgradeStat(playerStats.pushForce, 25);
                 break;
-            case 2: //punch harder
-                player.strength++;
-                player.pushForce += 0.02f;
+            case 2: //punch faster
+                player.UpgradeStat(playerStats.attackSpeed, 1.1f);
                 break;
             case 3: //move faster
-                player.moveSpeed += 0.2f;
+                player.UpgradeStat(playerStats.moveSpeed, 0.25f);
+                break;
+            case 4: //faster special
+                player.UpgradeStat(playerStats.specialCooldown, 1.2f);
                 break;
         }
         ContinueGame();

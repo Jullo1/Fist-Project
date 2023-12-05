@@ -51,7 +51,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weight: 17
   size: 1.2
-  moveSpeed: 1.2
+  moveSpeed: 1.25
   attackRange: 1
   strength: 1
   pushForce: 1400
@@ -60,7 +60,7 @@ MonoBehaviour:
   hitpoints: 22
   maxHitpoints: 22
   dead: 0
-  experienceDrop: 30
+  experienceDrop: 25
   damageVisual: {fileID: 6254002788351508280}
   dropList:
   - {fileID: 1625176726509343395, guid: b8c991079c615124bb71add0c67194f8, type: 3}
@@ -287,7 +287,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 5ab8cf48018fc7d44a38b33e64e07e04, type: 3}
-  m_Color: {r: 1, g: 0.2481203, b: 0, a: 0.78431374}
+  m_Color: {r: 0.39215687, g: 0.39215687, b: 0.39215687, a: 0.39215687}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

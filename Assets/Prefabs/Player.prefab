@@ -105,9 +105,9 @@ MonoBehaviour:
   weight: 10
   size: 1
   moveSpeed: 3
-  attackRange: 1.8
-  strength: 5
-  pushForce: 180
+  attackRange: 2.25
+  strength: 6
+  pushForce: 200
   attackCD:
   - 1
   - 1
@@ -132,7 +132,7 @@ MonoBehaviour:
   specialRange: 1.5
   comboAmount: 0
   comboUI: {fileID: 0}
-  maxComboCDBoost: 10
+  maxComboCDBoost: 20
   comboCDBoost: 1
   powerUpDuration:
   - 0

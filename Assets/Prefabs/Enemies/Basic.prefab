@@ -51,16 +51,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weight: 9
   size: 1
-  moveSpeed: 2
+  moveSpeed: 1.75
   attackRange: 1
   strength: 1
   pushForce: 700
   attackCD:
   - 0.3
-  hitpoints: 8
-  maxHitpoints: 8
+  hitpoints: 6
+  maxHitpoints: 6
   dead: 0
-  experienceDrop: 5
+  experienceDrop: 10
   damageVisual: {fileID: 9198114927676285675}
   dropList:
   - {fileID: 1625176726509343395, guid: b8c991079c615124bb71add0c67194f8, type: 3}
@@ -150,7 +150,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 5ab8cf48018fc7d44a38b33e64e07e04, type: 3}
-  m_Color: {r: 0.8113208, g: 0.5530571, b: 0, a: 1}
+  m_Color: {r: 0.8117648, g: 0.5529412, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -317,7 +317,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 5ab8cf48018fc7d44a38b33e64e07e04, type: 3}
-  m_Color: {r: 1, g: 0.2481203, b: 0, a: 0.78431374}
+  m_Color: {r: 0.39215687, g: 0.39215687, b: 0.39215687, a: 0.5882353}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

@@ -80,7 +80,7 @@ public class Enemy : Unit
     void Fury()
     {
         fury = true;
-        moveSpeed *= 1.25f;
+        moveSpeed *= 1.2f;
     }
 
     void CalculateDrop()

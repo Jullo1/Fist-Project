@@ -24,7 +24,7 @@ public class PowerUp : Item
 
     void Update()
     {
-        if (enemyGrabTimer >= 5f)
+        if (enemyGrabTimer >= 10f)
             enemyCanGrab = true;
         else enemyGrabTimer += Time.deltaTime;
     }
