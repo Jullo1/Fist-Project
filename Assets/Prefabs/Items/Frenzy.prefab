@@ -31,8 +31,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -3.36, y: 0.08, z: 0}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -77,8 +77,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 1325155599, guid: b7cc52fc230d3444283d3bf6bc7b7071, type: 3}
-  m_Color: {r: 0.11261845, g: 0, b: 1, a: 1}
+  m_Sprite: {fileID: 1684517843, guid: 443403efb48ec4b468700f269587aa6f, type: 3}
+  m_Color: {r: 0, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -98,7 +98,7 @@ Animator:
   m_GameObject: {fileID: 3110370413052923250}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 36cc16592ed0dc645a81368105e5efd8, type: 2}
+  m_Controller: {fileID: 9100000, guid: 500ca64d8f553174a9f5c9ffcdf076d9, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -124,7 +124,7 @@ MonoBehaviour:
   weight: 1
   size: 1
   audioClip: {fileID: 8300000, guid: e461ebfd29dd84142aad82dfeb2389d2, type: 3}
-  powerUpType: 2
+  powerUpType: 3
   duration: 10
   value: 0
 --- !u!58 &7221206816741651877
@@ -159,9 +159,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.1, y: -0.1}
   serializedVersion: 2
-  m_Radius: 1.3843629
+  m_Radius: 0.5
 --- !u!50 &5592118556980994561
 Rigidbody2D:
   serializedVersion: 4

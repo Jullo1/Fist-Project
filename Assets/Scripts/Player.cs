@@ -31,9 +31,11 @@ public class Player : Unit
     [SerializeField] Text comboUI;
     [SerializeField] float maxComboCDBoost;
     public float comboCDBoost;
+    [SerializeField] Image comboProgressBar;
 
     float invincible;
     bool hasPowerUp;
+    float currentFrenzyTimer;//for feedback
     /*remove serialize after testing*/[SerializeField] float[] powerUpDuration = new float[7] { 0, 0, 0, 0, 0, 0, 0 };
     [SerializeField] PowerUpType[] activePowerUps = new PowerUpType[7] { PowerUpType.None, PowerUpType.None, PowerUpType.None, PowerUpType.None, PowerUpType.None, PowerUpType.None, PowerUpType.None };
 
@@ -79,8 +81,14 @@ public class Player : Unit
             specialTriggerUI2.fillAmount = 0;
         }
 
-        if (comboAmount > 1)
+        if (comboAmount == 1) //when combo is x1, it will show only the bar
         {
+            comboProgressBar.transform.parent.parent.gameObject.SetActive(true);
+            comboProgressBar.fillAmount = comboAmount / maxComboCDBoost;
+        }
+        else if (comboAmount > 1)
+        {
+            comboProgressBar.fillAmount = comboAmount / maxComboCDBoost;
             comboUI.text = "x" + comboAmount.ToString();
             if (comboAmount >= maxComboCDBoost) //max combo boost achieved
             {
@@ -99,10 +107,11 @@ public class Player : Unit
             else
                 comboUI.color = new Color32(255, 255, 255, 255);
         }
-        else
+        else //if it's 0, hide combo count and bar
         {
             comboUI.text = "";
             comboUI.fontSize = 11;
+            comboProgressBar.transform.parent.parent.gameObject.SetActive(false);
         }
         UpdateComboStats();
     }
@@ -249,7 +258,13 @@ public class Player : Unit
         if (powerUp.powerUpType == PowerUpType.FullRecovery)
         {
             UpdateHealth(maxHitpoints);
-            specialTimer = specialCD;
+            specialTimer += specialCD;
+            return;
+        }
+        else if (powerUp.powerUpType == PowerUpType.Health)
+        {
+            UpdateHealth(1);
+            specialTimer += specialCD / 4;
             return;
         }
 
@@ -271,6 +286,13 @@ public class Player : Unit
             if (powerUpDuration[i] > 0)
             {
                 powerUpDuration[i] -= Time.deltaTime;
+                switch (activePowerUps[i]) //calculate feedback elements
+                {   
+                    case PowerUpType.Frenzy:
+                        attackCDUI[0].color = new Color32((byte)(Mathf.Lerp(255, 0, powerUpDuration[i]/10)), 255, 255, 255);
+                        attackCDUI[1].color = new Color32((byte)(Mathf.Lerp(255, 0, powerUpDuration[i]/10)), 255, 255, 255);
+                        break;
+                }
                 return;
             }
             else
@@ -302,6 +324,7 @@ public class Player : Unit
                 {
                     if (status) attackCD[i] = 0.25f;
                     else attackCD[i] = baseAttackCD[i];
+                    attackTimer[i] = attackCD[i]; //fully charge next attack when frenzy activates or expires
                 }
                 break;
         }

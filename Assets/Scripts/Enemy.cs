@@ -8,7 +8,9 @@ public class Enemy : Unit
     Player player;
     [SerializeField] int experienceDrop;
     [SerializeField] GameObject damageVisual;
+    [SerializeField] GameObject furyVisual;
     public List<Item> dropList = new List<Item>();
+
     bool spawnCheck = true;
     float aliveTime;
     bool fury;
@@ -68,7 +70,7 @@ public class Enemy : Unit
 
     void CheckStats()
     {
-        if (aliveTime > 20) {
+        if (aliveTime > 12) {
             if (!fury) Fury();
         } else aliveTime += Time.deltaTime;
 
@@ -80,7 +82,8 @@ public class Enemy : Unit
     void Fury()
     {
         fury = true;
-        moveSpeed *= 1.2f;
+        furyVisual.gameObject.SetActive(true);
+        moveSpeed *= 1.5f;
     }
 
     void CalculateDrop()

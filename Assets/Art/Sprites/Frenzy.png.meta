@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: b7cc52fc230d3444283d3bf6bc7b7071
+guid: 443403efb48ec4b468700f269587aa6f
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -136,13 +136,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Health_0
+      name: Power Up_0
       rect:
         serializedVersion: 2
-        x: 55
-        y: 30
-        width: 254
-        height: 254
+        x: 0
+        y: 0
+        width: 100
+        height: 100
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -150,20 +150,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bc928199c1e71dd40b640ab3eb035c12
-      internalID: -1720230939
+      spriteID: d74fbb4c59eda454b9be92278c278d45
+      internalID: 1684517843
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Health_1
+      name: Power Up_1
       rect:
         serializedVersion: 2
-        x: 354
-        y: 30
-        width: 254
-        height: 254
+        x: 100
+        y: 0
+        width: 100
+        height: 100
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -171,20 +171,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6027c0c4106e5994bac6d34f70c9ae06
-      internalID: 1325155599
+      spriteID: 79c23dc7ae523c24ebaff02731a67479
+      internalID: 936241860
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Health_2
+      name: Power Up_2
       rect:
         serializedVersion: 2
-        x: 653
-        y: 30
-        width: 254
-        height: 254
+        x: 200
+        y: 0
+        width: 100
+        height: 100
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -192,8 +192,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2297e2f5dd68213458437aed95dd6c40
-      internalID: 1063957375
+      spriteID: bdccf673f4661944995f2cd5c7373dd6
+      internalID: -979544951
       vertices: []
       indices: 
       edges: []
@@ -209,9 +209,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Health_0: -1720230939
-      Health_1: 1325155599
-      Health_2: 1063957375
+      Power Up_0: 1684517843
+      Power Up_1: 936241860
+      Power Up_2: -979544951
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

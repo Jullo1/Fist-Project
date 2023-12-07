@@ -13,10 +13,14 @@ public class GameManager : MonoBehaviour
     [SerializeField] List<Enemy> enemyList = new List<Enemy>();
 
     public List<Entity> spawnGroup = new List<Entity>();
-    float waveIntensity;
+    [SerializeField] float waveIntensity;
     public int currentWave;
     [SerializeField] float closestSpawnPos;
     float spawnTimer;
+
+    ScoreKeeper scoreKeeper;
+    [SerializeField] Text scoreOutput;
+    int currentScore;
 
     int level;
     float experience;
@@ -26,28 +30,35 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject levelUpWindow;
     [SerializeField] Text option1Text; int option1Value;
     [SerializeField] Text option2Text; int option2Value;
-    List<string> optionsList = new List<string>() { "Punch harder" , "Punch faster" , "Move faster" , "Faster special"};
+    List<string> optionsList = new List<string>() { "Attack Power" , "Attack Speed" , "Move Speed" , "Special Cooldown"};
 
     void Awake()
     {
         player = FindAnyObjectByType<Player>();
+        scoreKeeper = FindObjectOfType<ScoreKeeper>();
     }
 
     void Start()
     {
         level = 1;
-        toNextLevel = 50;
+        toNextLevel = 25;
         currentWave = 0;
-        waveIntensity = 0.5f;
+        waveIntensity = 0.9f;
         NextWave(); //immediately spawn next wave at start
     }
 
     void Update()
     {
-        if (spawnTimer > 5) {
+        if (spawnTimer > 8) {
             NextWave();
             spawnTimer = 0;
         } else spawnTimer += Time.deltaTime;
+    }
+
+    public void UpdateScore(int score)
+    {
+        currentScore += score;
+        scoreOutput.text = currentScore.ToString();
     }
 
     void NextWave()
@@ -67,7 +78,7 @@ public class GameManager : MonoBehaviour
     {
         spawnGroup.Clear(); //clear previous wave info
         currentWave++;
-        waveIntensity *= 1.04f;
+        waveIntensity *= 1.075f;
         SetupNextWaveWithIntensity(waveIntensity);
     }
 
@@ -92,6 +103,7 @@ public class GameManager : MonoBehaviour
 
     public void GainExperience(int amount)
     {
+        UpdateScore(amount);
         experience += amount;
         if (experience >= toNextLevel) LevelUp();
         else experienceUI.fillAmount = experience / toNextLevel;
@@ -161,6 +173,7 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
-        SceneManager.LoadScene("Main");
+        ScoreKeeper.score = currentScore;
+        SceneManager.LoadScene("Menu");
     }
 }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum PowerUpType { None, FullRecovery, Frenzy, OneHitKO, TimeStop, Perfection, Infinity, Phoenix };
+public enum PowerUpType { None, Health, FullRecovery, Frenzy, OneHitKO, TimeStop, Perfection, Infinity, Phoenix };
 public class PowerUp : Item
 {
     Player player;
@@ -32,7 +32,11 @@ public class PowerUp : Item
     void OnTriggerEnter2D(Collider2D collider)
     {
         if (collider.tag == "Player")
+        {
             player.ActivatePowerUp(GetComponent<PowerUp>());
+            audioSource.clip = audioClip;
+            audioSource.Play();
+        }
 
         else if (collider.tag == "Enemy")
         {
@@ -40,9 +44,6 @@ public class PowerUp : Item
                 collider.GetComponent<Enemy>().ActivatePowerUp(GetComponent<PowerUp>());
             else return;
         }
-
-        audioSource.clip = audioClip;
-        audioSource.Play();
 
         Destroy(gameObject);
     }
