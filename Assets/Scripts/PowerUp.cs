@@ -13,7 +13,7 @@ public class PowerUp : Item
     public float duration;
     public float value; //determines the effectiveness of the power up, if applicable
 
-    float enemyGrabTimer; //after a few seconds, enemies will be able to grab the powerUp
+    float timer; //after a few seconds, enemies will be able to destroy the power up. After some more the power up will disappear
     bool enemyCanGrab;
 
     void Awake()
@@ -24,9 +24,11 @@ public class PowerUp : Item
 
     void Update()
     {
-        if (enemyGrabTimer >= 10f)
+        if (timer > 10)
+        {
             enemyCanGrab = true;
-        else enemyGrabTimer += Time.deltaTime;
+            if (timer > 60) Destroy(gameObject);
+        } timer += Time.deltaTime;
     }
 
     void OnTriggerEnter2D(Collider2D collider)

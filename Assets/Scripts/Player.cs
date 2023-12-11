@@ -51,16 +51,20 @@ public class Player : Unit
 
     void Update()
     {
-        if (Input.GetKey(KeyCode.D)) Move(1, 0);//right
-        if (Input.GetKey(KeyCode.A)) Move(-1, 0); //left
-        if (Input.GetKey(KeyCode.W)) Move(0, 1);//up
-        if (Input.GetKey(KeyCode.S)) Move(0, -1); //down
+        if (!game.paused)
+        {
+            if (Input.GetKey(KeyCode.D)) Move(1, 0);//right
+            if (Input.GetKey(KeyCode.A)) Move(-1, 0); //left
+            if (Input.GetKey(KeyCode.W)) Move(0, 1);//up
+            if (Input.GetKey(KeyCode.S)) Move(0, -1); //down
 
-        if (Input.GetKey(KeyCode.Space) && specialTimer >= specialCD) preparingSpecial += Time.deltaTime; //special
-        if (Input.GetKeyUp(KeyCode.Space)) CheckAttack(); //attack
-        ChargeCDs();
+            if (Input.GetKey(KeyCode.Space) && specialTimer >= specialCD) preparingSpecial += Time.deltaTime; //special
+            if (Input.GetKeyUp(KeyCode.Space) && !cantAttack) CheckAttack(); //attack
+
+            ChargeCDs();
+            if (hasPowerUp) CheckPowerUp(); //checks for this bool so that it doesnt have to go through the array all the time
+        }
         UpdateUI();
-        if (hasPowerUp) CheckPowerUp(); //checks for this bool so that it doesnt have to go through the array all the time
     }
 
     void UpdateUI()
@@ -114,6 +118,8 @@ public class Player : Unit
             comboProgressBar.transform.parent.parent.gameObject.SetActive(false);
         }
         UpdateComboStats();
+
+        CheckAttackTargets(); //enable hit indicator for closest enemy (if within attack range)
     }
 
     protected override void CheckHitpoints()
@@ -173,25 +179,32 @@ public class Player : Unit
         preparingSpecial = 0f;
     }
 
-    void Attack(int attackIndex)
+    Enemy CheckAttackTargets()
     {
-        if (game.paused) return;
-        attackTimer[attackIndex] = 0;
         Enemy target = null;
         float targetProximity = 200f;
         foreach (Enemy enemy in FindObjectsOfType<Enemy>())
         {
+            enemy.HitIndicator(false);
             if (!enemy.dead)
             {
-                float proximity = Vector2.Distance(enemy.transform.position, transform.position)/enemy.size; //the bigger the enemy, the lower range is required
+                float proximity = Vector2.Distance(enemy.transform.position, transform.position) / enemy.size; //the bigger the enemy, the lower range is required
                 if (proximity < attackRange && proximity < targetProximity) //if within player range and is closer than the previous iteration
                 {
                     target = enemy;
                     targetProximity = proximity;
                 }
             }
-                
         }
+        if (target) target.HitIndicator(true);
+        return target;
+    }
+
+    void Attack(int attackIndex)
+    {
+        attackTimer[attackIndex] = 0; //consume 1 attack, regardless of hit or miss
+        Enemy target = CheckAttackTargets();
+
         if (target != null)
         {
             target.TakeHit(strength, gameObject, pushForce);

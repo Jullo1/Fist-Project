@@ -13,6 +13,7 @@ public class Entity : MonoBehaviour
 
     public float weight;
     public float size;
+    protected bool cantAttack;
 
     void Awake()
     {
@@ -26,7 +27,15 @@ public class Entity : MonoBehaviour
 
     protected void KnockBack(GameObject pusher, float pushForce = 0f)
     {
+        StartCoroutine(CantAttack(0.75f));
         Vector3 direction = (transform.position - pusher.transform.position).normalized;
         rb.AddForce((direction * pushForce)/weight, ForceMode2D.Impulse);
+    }
+
+    protected IEnumerator CantAttack(float seconds)
+    {
+        cantAttack = true;
+        yield return new WaitForSeconds(seconds);
+        cantAttack = false;
     }
 }
