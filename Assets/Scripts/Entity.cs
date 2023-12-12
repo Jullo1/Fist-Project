@@ -14,6 +14,8 @@ public class Entity : MonoBehaviour
     public float weight;
     public float size;
     protected bool cantAttack;
+    protected bool freeze;
+    protected bool freezeRotation;
 
     void Awake()
     {
@@ -37,5 +39,19 @@ public class Entity : MonoBehaviour
         cantAttack = true;
         yield return new WaitForSeconds(seconds);
         cantAttack = false;
+    }
+
+    protected IEnumerator Freeze(float time)
+    {
+        freeze = true;
+        yield return new WaitForSeconds(time);
+        freeze = false;
+    }
+
+    protected IEnumerator FreezeRotation(float time)
+    {
+        freezeRotation = true;
+        yield return new WaitForSeconds(time);
+        freezeRotation = false;
     }
 }

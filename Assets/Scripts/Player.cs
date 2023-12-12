@@ -27,6 +27,9 @@ public class Player : Unit
     float preparingSpecial;
     [SerializeField] float specialRange;
 
+    float inputX;
+    float inputY;
+
     [SerializeField] int comboAmount;
     [SerializeField] Text comboUI;
     [SerializeField] float maxComboCDBoost;
@@ -53,18 +56,27 @@ public class Player : Unit
     {
         if (!game.paused)
         {
-            if (Input.GetKey(KeyCode.D)) Move(1, 0);//right
-            if (Input.GetKey(KeyCode.A)) Move(-1, 0); //left
-            if (Input.GetKey(KeyCode.W)) Move(0, 1);//up
-            if (Input.GetKey(KeyCode.S)) Move(0, -1); //down
+            if (!freeze)
+            {
+                //movement
+                if (Input.GetKey(KeyCode.D)) inputX = 1;//right
+                else if (Input.GetKey(KeyCode.A)) inputX = -1; //left
+                if (Input.GetKey(KeyCode.W)) inputY = 1;//up
+                else if (Input.GetKey(KeyCode.S)) inputY = -1; //down
 
+                Move(inputX, inputY);
+                inputX = 0; inputY = 0;
+
+                if (Input.GetKeyUp(KeyCode.Space)) CheckAttack(); //attack
+            }
             if (Input.GetKey(KeyCode.Space) && specialTimer >= specialCD) preparingSpecial += Time.deltaTime; //special
-            if (Input.GetKeyUp(KeyCode.Space) && !cantAttack) CheckAttack(); //attack
+            else preparingSpecial = 0;
 
             ChargeCDs();
             if (hasPowerUp) CheckPowerUp(); //checks for this bool so that it doesnt have to go through the array all the time
+
+            UpdateUI();
         }
-        UpdateUI();
     }
 
     void UpdateUI()
@@ -74,10 +86,10 @@ public class Player : Unit
 
         specialUI.fillAmount = specialTimer / specialCD;
         
-        if (preparingSpecial > 0.15f) //small delay before feedback, in case player intended to tap
+        if (preparingSpecial > 0.10f) //small delay before feedback, in case player intended to tap
         {
-            specialTriggerUI1.fillAmount = (preparingSpecial - 0.15f) / 0.15f;
-            specialTriggerUI2.fillAmount = (preparingSpecial - 0.15f) / 0.15f;
+            specialTriggerUI1.fillAmount = (preparingSpecial - 0.10f) / 0.20f;
+            specialTriggerUI2.fillAmount = (preparingSpecial - 0.10f) / 0.20f;
         }
         else
         {
@@ -118,8 +130,7 @@ public class Player : Unit
             comboProgressBar.transform.parent.parent.gameObject.SetActive(false);
         }
         UpdateComboStats();
-
-        CheckAttackTargets(); //enable hit indicator for closest enemy (if within attack range)
+        if (!freeze && !dead) CheckAttackTargets(); //enable hit indicator and face for closest enemy (if within attack range)
     }
 
     protected override void CheckHitpoints()
@@ -155,12 +166,23 @@ public class Player : Unit
 
     void Move(float x, float y)
     {
+        transform.position += new Vector3(x, y) * moveSpeed * Time.deltaTime;
+
         if (transform.position.x < -150) transform.position += Vector3.right * 0.01f; //check for out of bounds
         if (transform.position.x > +150) transform.position -= Vector3.right * 0.01f;
         if (transform.position.y < -150) transform.position += Vector3.up * 0.01f;
         if (transform.position.y > +150) transform.position -= Vector3.up * 0.01f;
 
-        transform.position += new Vector3(x, y) * moveSpeed * Time.deltaTime;
+        if (!freezeRotation)
+        {
+            if (x > 0) sr.flipX = false;
+            else if (x < 0) sr.flipX = true;
+        }
+
+        if (x == 0 && y == 0)
+            anim.SetBool("move", false);
+        else
+            anim.SetBool("move", true);
     }
 
     void CheckAttack()
@@ -189,24 +211,57 @@ public class Player : Unit
             if (!enemy.dead)
             {
                 float proximity = Vector2.Distance(enemy.transform.position, transform.position) / enemy.size; //the bigger the enemy, the lower range is required
-                if (proximity < attackRange && proximity < targetProximity) //if within player range and is closer than the previous iteration
+                if (proximity < targetProximity && attackRange > proximity) //if is closer than the previous iteration and within player range
                 {
-                    target = enemy;
                     targetProximity = proximity;
+                    target = enemy;
                 }
             }
         }
-        if (target) target.HitIndicator(true);
+        if (target)
+        {
+            target.HitIndicator(true); //enable hit indicator for this enemy
+            if (anim.GetBool("move") == false) //if player is idle, face the closest enemy
+                FaceTarget(target.gameObject);
+        }
         return target;
+    }
+
+    Enemy GetClosestEnemy()
+    {
+        Enemy target = null;
+        float targetProximity = 200f;
+        foreach (Enemy enemy in FindObjectsOfType<Enemy>())
+        {
+            if (!enemy.dead)
+            {
+                float proximity = Vector2.Distance(enemy.transform.position, transform.position) / enemy.size;
+                if (proximity < targetProximity) //if is closer than the previous iteration
+                {
+                    targetProximity = proximity;
+                    target = enemy; //get the closest enemy
+                }
+            }
+        } return target;
+    }
+
+    void FaceTarget(GameObject target)
+    {
+        if (target.transform.position.x < transform.position.x) sr.flipX = true; //if left, then flip sprite
+        else if (target.transform.position.x > transform.position.x) sr.flipX = false;
     }
 
     void Attack(int attackIndex)
     {
+        StartCoroutine(Freeze(0.1f));
+        StartCoroutine(FreezeRotation(0.355f));
+        anim.SetTrigger("attack");
         attackTimer[attackIndex] = 0; //consume 1 attack, regardless of hit or miss
         Enemy target = CheckAttackTargets();
 
         if (target != null)
         {
+            FaceTarget(target.gameObject); //face the enemy on attack
             target.TakeHit(strength, gameObject, pushForce);
             PlayAudio(punchSFX);
             comboAmount++;
@@ -214,6 +269,7 @@ public class Player : Unit
         }
         else
         {
+            FaceTarget(GetClosestEnemy().gameObject); //if miss, player will face closest enemy that is not within range
             PlayAudio(missSFX); //target is still null means it failed to find a valid target, so it's a miss
             comboAmount = 0;
         }
@@ -239,6 +295,8 @@ public class Player : Unit
     {
         if (game.paused || invincible > 0) return;
 
+        StartCoroutine(Freeze(0.15f));
+
         comboAmount = 0;
         UpdateHealth(-damage);
         KnockBack(hitter, pushForce);
@@ -246,13 +304,16 @@ public class Player : Unit
 
         anim.SetTrigger("takeHit");
         PlayAudio(punchSFX);
-
     }
 
     protected override void UpdateHealth(int amount)
     {
         base.UpdateHealth(amount);
-        if (hitpoints <= 0) game.GameOver();
+        if (hitpoints <= 0)
+        {
+            dead = true;
+            game.GameOver();
+        }
     }
 
     void UpdateComboStats() //comboAmount makes attackTimer floats increase faster (does not affect the cooldown number)
