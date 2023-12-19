@@ -40,6 +40,7 @@ public class Player : Unit
     bool hasPowerUp;
     float currentFrenzyTimer;//for feedback
     Coroutine previousFreeze; //to stop previous freeze coroutine
+    Coroutine previousFreezeRotation;
     /*remove serialize after testing*/
     [SerializeField] float[] powerUpDuration = new float[7] { 0, 0, 0, 0, 0, 0, 0 };
     [SerializeField] PowerUpType[] activePowerUps = new PowerUpType[7] { PowerUpType.None, PowerUpType.None, PowerUpType.None, PowerUpType.None, PowerUpType.None, PowerUpType.None, PowerUpType.None };
@@ -257,10 +258,11 @@ public class Player : Unit
     }
     void Attack(int attackIndex)
     {
-        StartCoroutine(Freeze(0.1f)); //freeze player when attacking
+        if (previousFreeze != null) StopCoroutine(previousFreeze); //in case its overlapping with another instance of freeze
+        previousFreeze = StartCoroutine(Freeze(0.1f)); //freeze player when attacking
 
-        if (previousFreeze != null) StopCoroutine(previousFreeze); //if overlapping with another instance of freezeRotation
-        previousFreeze = StartCoroutine(FreezeRotation(0.28f));
+        if (previousFreezeRotation != null) StopCoroutine(previousFreezeRotation); //same but with sprite flipX freeze
+        previousFreezeRotation = StartCoroutine(FreezeRotation(0.28f));
 
         anim.SetTrigger("attack");
         attackTimer[attackIndex] = 0; //consume 1 attack, regardless of hit or miss
@@ -304,7 +306,8 @@ public class Player : Unit
     {
         if (game.paused || invincible > 0) return;
 
-        StartCoroutine(Freeze(0.15f));
+        if (previousFreeze != null) StopCoroutine(previousFreeze); //check for multiple freeze rotation instances and end the previous one
+        previousFreeze = StartCoroutine(Freeze(0.1f));
 
         comboAmount = 0;
         UpdateHealth(-damage);
@@ -323,6 +326,9 @@ public class Player : Unit
 
     IEnumerator PlayerDeath()
     {
+        if (previousFreeze != null) StopCoroutine(previousFreeze);
+        if (previousFreezeRotation != null) StopCoroutine(previousFreezeRotation);
+
         invincible = 10f;
         freeze = true;
         dead = true;
@@ -411,7 +417,7 @@ public class Player : Unit
             case PowerUpType.Frenzy:
                 for (int i = 0; i < attackCD.Count; i++)
                 {
-                    if (status) attackCD[i] = 0.25f;
+                    if (status) attackCD[i] = attackCD[i] / 2;
                     else attackCD[i] = baseAttackCD[i];
                     attackTimer[i] = attackCD[i]; //fully charge next attack when frenzy activates or expires
                 }

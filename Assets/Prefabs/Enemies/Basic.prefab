@@ -241,9 +241,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c1037cfb3cfe6b4682c299d9d162853, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weight: 9
+  weight: 8
   size: 1
-  moveSpeed: 1.75
+  moveSpeed: 1.5
   attackRange: 1
   strength: 1
   pushForce: 700

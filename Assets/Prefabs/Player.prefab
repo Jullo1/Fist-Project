@@ -105,12 +105,12 @@ MonoBehaviour:
   weight: 10
   size: 1
   moveSpeed: 3
-  attackRange: 1.8
+  attackRange: 2
   strength: 6
-  pushForce: 200
+  pushForce: 220
   attackCD:
-  - 1
-  - 1
+  - 1.5
+  - 1.5
   hitpoints: 3
   maxHitpoints: 3
   dead: 0
@@ -321,8 +321,8 @@ BoxCollider2D:
   m_Offset: {x: -0.014564745, y: -0.006101072}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.22, y: 0.46}
+    pivot: {x: 0.49205607, y: 0.48930016}
+    oldSize: {x: 0.22, y: 0.49}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -399,7 +399,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 4
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2

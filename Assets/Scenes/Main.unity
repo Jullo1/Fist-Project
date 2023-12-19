@@ -509,7 +509,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 45}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -16.990002, y: 31.869997}
+  m_AnchoredPosition: {x: -26.789999, y: 37.569992}
   m_SizeDelta: {x: 4, y: 16}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &490647179
@@ -697,7 +697,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 33.52999, y: 30.000004}
+  m_AnchoredPosition: {x: 41.529987, y: 35.87}
   m_SizeDelta: {x: 17.406, y: 1.282}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &535772724
@@ -773,7 +773,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 45}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -19.37857, y: 25.650719}
+  m_AnchoredPosition: {x: -29.178564, y: 31.35071}
   m_SizeDelta: {x: 4, y: 16}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &551178052
@@ -1776,7 +1776,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 45}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -11.2, y: 35.3}
+  m_AnchoredPosition: {x: -21, y: 41}
   m_SizeDelta: {x: 4, y: 16}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1580403852
@@ -1935,7 +1935,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 43.329998, y: 45}
+  m_AnchoredPosition: {x: 51.32999, y: 50.87}
   m_SizeDelta: {x: 36.172, y: 28.44}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1791868613
@@ -2109,7 +2109,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 2, y: -34.5}
+  m_AnchoredPosition: {x: 0, y: -44}
   m_SizeDelta: {x: 60, y: 8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1838322924
@@ -2560,7 +2560,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 16.8, y: 32.73}
+  m_AnchoredPosition: {x: 24.8, y: 38.6}
   m_SizeDelta: {x: 11.534, y: 11.534}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2055599689
@@ -2634,9 +2634,9 @@ RectTransform:
   - {fileID: 551178051}
   - {fileID: 2055599688}
   - {fileID: 2132901066}
-  - {fileID: 1838322923}
   - {fileID: 1791868612}
   - {fileID: 535772723}
+  - {fileID: 1838322923}
   m_Father: {fileID: 152620298}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -2753,7 +2753,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 23.088997, y: 21.195995}
+  m_AnchoredPosition: {x: 31.088997, y: 27.065994}
   m_SizeDelta: {x: 11.534, y: 11.534}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2132901067
@@ -2802,22 +2802,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 419912491387441329, guid: 4fff07e3287c91a4ea5f354d21d23e97, type: 3}
+      propertyPath: m_FlipX
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1124421398318466483, guid: 4fff07e3287c91a4ea5f354d21d23e97, type: 3}
+      propertyPath: orthographic size
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 2839589322773588041, guid: 4fff07e3287c91a4ea5f354d21d23e97, type: 3}
       propertyPath: comboUI
       value: 
       objectReference: {fileID: 1791868613}
     - target: {fileID: 2839589322773588041, guid: 4fff07e3287c91a4ea5f354d21d23e97, type: 3}
-      propertyPath: roation
-      value: 0.32
-      objectReference: {fileID: 0}
-    - target: {fileID: 2839589322773588041, guid: 4fff07e3287c91a4ea5f354d21d23e97, type: 3}
       propertyPath: specialUI
       value: 
       objectReference: {fileID: 483910826}
-    - target: {fileID: 2839589322773588041, guid: 4fff07e3287c91a4ea5f354d21d23e97, type: 3}
-      propertyPath: attackRange
-      value: 1.8
-      objectReference: {fileID: 0}
     - target: {fileID: 2839589322773588041, guid: 4fff07e3287c91a4ea5f354d21d23e97, type: 3}
       propertyPath: comboProgressBar
       value: 
@@ -2830,14 +2830,6 @@ PrefabInstance:
       propertyPath: specialTriggerUI2
       value: 
       objectReference: {fileID: 1086711995}
-    - target: {fileID: 2839589322773588041, guid: 4fff07e3287c91a4ea5f354d21d23e97, type: 3}
-      propertyPath: attackCD.Array.data[0]
-      value: 1.35
-      objectReference: {fileID: 0}
-    - target: {fileID: 2839589322773588041, guid: 4fff07e3287c91a4ea5f354d21d23e97, type: 3}
-      propertyPath: attackCD.Array.data[1]
-      value: 1.35
-      objectReference: {fileID: 0}
     - target: {fileID: 2839589322773588041, guid: 4fff07e3287c91a4ea5f354d21d23e97, type: 3}
       propertyPath: attackCDUI.Array.data[0]
       value: 

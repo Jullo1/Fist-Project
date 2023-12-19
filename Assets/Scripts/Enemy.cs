@@ -88,7 +88,7 @@ public class Enemy : Unit
     {
         fury = true;
         furyIcon.gameObject.SetActive(true);
-        moveSpeed *= 1.25f;
+        moveSpeed *= 1.5f;
     }
 
     void CalculateDrop()
