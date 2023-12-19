@@ -2807,12 +2807,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1791868613}
     - target: {fileID: 2839589322773588041, guid: 4fff07e3287c91a4ea5f354d21d23e97, type: 3}
+      propertyPath: roation
+      value: 0.32
+      objectReference: {fileID: 0}
+    - target: {fileID: 2839589322773588041, guid: 4fff07e3287c91a4ea5f354d21d23e97, type: 3}
       propertyPath: specialUI
       value: 
       objectReference: {fileID: 483910826}
     - target: {fileID: 2839589322773588041, guid: 4fff07e3287c91a4ea5f354d21d23e97, type: 3}
       propertyPath: attackRange
-      value: 2
+      value: 1.8
       objectReference: {fileID: 0}
     - target: {fileID: 2839589322773588041, guid: 4fff07e3287c91a4ea5f354d21d23e97, type: 3}
       propertyPath: comboProgressBar
@@ -2826,6 +2830,14 @@ PrefabInstance:
       propertyPath: specialTriggerUI2
       value: 
       objectReference: {fileID: 1086711995}
+    - target: {fileID: 2839589322773588041, guid: 4fff07e3287c91a4ea5f354d21d23e97, type: 3}
+      propertyPath: attackCD.Array.data[0]
+      value: 1.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 2839589322773588041, guid: 4fff07e3287c91a4ea5f354d21d23e97, type: 3}
+      propertyPath: attackCD.Array.data[1]
+      value: 1.35
+      objectReference: {fileID: 0}
     - target: {fileID: 2839589322773588041, guid: 4fff07e3287c91a4ea5f354d21d23e97, type: 3}
       propertyPath: attackCDUI.Array.data[0]
       value: 

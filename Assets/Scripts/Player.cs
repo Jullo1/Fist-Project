@@ -39,7 +39,9 @@ public class Player : Unit
     float invincible;
     bool hasPowerUp;
     float currentFrenzyTimer;//for feedback
-    /*remove serialize after testing*/[SerializeField] float[] powerUpDuration = new float[7] { 0, 0, 0, 0, 0, 0, 0 };
+    Coroutine previousFreeze; //to stop previous freeze coroutine
+    /*remove serialize after testing*/
+    [SerializeField] float[] powerUpDuration = new float[7] { 0, 0, 0, 0, 0, 0, 0 };
     [SerializeField] PowerUpType[] activePowerUps = new PowerUpType[7] { PowerUpType.None, PowerUpType.None, PowerUpType.None, PowerUpType.None, PowerUpType.None, PowerUpType.None, PowerUpType.None };
 
     void Start()
@@ -135,11 +137,14 @@ public class Player : Unit
 
     protected override void CheckHitpoints()
     {
-        foreach (Image bar in hitpointsUI)
-            bar.gameObject.SetActive(true);
+        if (!dead)
+        {
+            foreach (Image bar in hitpointsUI)
+                bar.gameObject.SetActive(true);
 
-        for (int i = hitpointsUI.Count; i > hitpoints; i--)
-            hitpointsUI[i-1].gameObject.SetActive(false);
+            for (int i = hitpointsUI.Count; i > hitpoints; i--)
+                hitpointsUI[i - 1].gameObject.SetActive(false);
+        }
     }
 
     void ChargeCDs()
@@ -149,11 +154,11 @@ public class Player : Unit
 
         for (int i = 0; i < attackTimer.Count; i++)
         {
-            if (attackTimer[i] < attackCD[i])
-            {
+            /*if (attackTimer[i] < attackCD[i])
+            {*/
                 attackTimer[i] += Time.deltaTime * comboCDBoost;
-                return; //end here so that the next slider is not unstuck
-            }
+                //return; //end here so that the next slider is not unstuck
+            //}
         }
 
         for (int i = 0; i < attackTimer.Count; i++) //unstuck timers if both are 0
@@ -250,11 +255,13 @@ public class Player : Unit
         if (target.transform.position.x < transform.position.x) sr.flipX = true; //if left, then flip sprite
         else if (target.transform.position.x > transform.position.x) sr.flipX = false;
     }
-
     void Attack(int attackIndex)
     {
-        StartCoroutine(Freeze(0.1f));
-        StartCoroutine(FreezeRotation(0.355f));
+        StartCoroutine(Freeze(0.1f)); //freeze player when attacking
+
+        if (previousFreeze != null) StopCoroutine(previousFreeze); //if overlapping with another instance of freezeRotation
+        previousFreeze = StartCoroutine(FreezeRotation(0.28f));
+
         anim.SetTrigger("attack");
         attackTimer[attackIndex] = 0; //consume 1 attack, regardless of hit or miss
         Enemy target = CheckAttackTargets();
@@ -278,6 +285,8 @@ public class Player : Unit
     void SpecialAttack()
     {
         if (game.paused) return;
+        anim.SetTrigger("special");
+        FaceTarget(GetClosestEnemy().gameObject);
         specialTimer = 0f;
         foreach (Enemy enemy in FindObjectsOfType<Enemy>())
         {
@@ -300,7 +309,7 @@ public class Player : Unit
         comboAmount = 0;
         UpdateHealth(-damage);
         KnockBack(hitter, pushForce);
-        invincible = 0.5f;
+        if (invincible <= 0.5) invincible = 0.5f; //only update if not already under this buff in case the player had more than 0.5sec of invincible left
 
         anim.SetTrigger("takeHit");
         PlayAudio(punchSFX);
@@ -309,11 +318,17 @@ public class Player : Unit
     protected override void UpdateHealth(int amount)
     {
         base.UpdateHealth(amount);
-        if (hitpoints <= 0)
-        {
-            dead = true;
-            game.GameOver();
-        }
+        if (hitpoints <= 0) StartCoroutine(PlayerDeath());
+    }
+
+    IEnumerator PlayerDeath()
+    {
+        invincible = 10f;
+        freeze = true;
+        dead = true;
+        anim.SetBool("death", true);
+        yield return new WaitForSeconds(2f);
+        game.GameOver();
     }
 
     void UpdateComboStats() //comboAmount makes attackTimer floats increase faster (does not affect the cooldown number)

@@ -105,7 +105,7 @@ MonoBehaviour:
   weight: 10
   size: 1
   moveSpeed: 3
-  attackRange: 2
+  attackRange: 1.8
   strength: 6
   pushForce: 200
   attackCD:
