@@ -1,12 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
-
+using UnityEngine.EventSystems;
+using UnityEngine.InputSystem.OnScreen;
 
 public enum playerStats { hitpoints, strength, pushForce, moveSpeed, attackSpeed, attackCharges, attackRange, specialDamage, specialCooldown, specialRange, dodgeChance, criticalChance, criticalDamage}
 public class Player : Unit
 {
+    //mobile inputs
+    [SerializeField] PlayerInput mobileControls;
+    [SerializeField] Image leftJoystick;
+    float touchTime;
+    float secondTouchTime;
+
     //audio
     [SerializeField] protected AudioClip punchSFX;
     [SerializeField] protected AudioClip missSFX;
@@ -53,6 +61,9 @@ public class Player : Unit
             baseAttackCD.Add(attackCD[i]);
             attackTimer.Add(0);
         }
+
+        /*if (!Application.isMobilePlatform)
+            ShowControls(false);*/
     }
 
     void Update()
@@ -62,23 +73,74 @@ public class Player : Unit
             if (!freeze)
             {
                 //movement
-                if (Input.GetKey(KeyCode.D)) inputX = 1;//right
-                else if (Input.GetKey(KeyCode.A)) inputX = -1; //left
-                if (Input.GetKey(KeyCode.W)) inputY = 1;//up
-                else if (Input.GetKey(KeyCode.S)) inputY = -1; //down
+                Vector2 mobileInput = mobileControls.actions["Move"].ReadValue<Vector2>();
+
+                if (Input.GetKey(KeyCode.D) || mobileInput.x > 0.45f) inputX = 1; //right
+                else if (Input.GetKey(KeyCode.A) || mobileInput.x < -0.45f) inputX = -1; //left
+                if (Input.GetKey(KeyCode.W) || mobileInput.y > 0.45f) inputY = 1; //up
+                else if (Input.GetKey(KeyCode.S) || mobileInput.y < -0.45f) inputY = -1; //down
 
                 Move(inputX, inputY);
                 inputX = 0; inputY = 0;
 
                 if (Input.GetKeyUp(KeyCode.Space)) CheckAttack(); //attack
+
+                else if (Input.touchCount > 0) //check for touchscreen inputs
+                {
+                    Touch touch = Input.GetTouch(0);
+                    touchTime += Time.deltaTime;
+                    /*if (touch.phase == UnityEngine.TouchPhase.Began)
+                        leftJoystick.transform.position = (Vector2)Camera.main.ScreenToWorldPoint(touch.position); */ //move joystick to tap position
+                    /*if (touch.phase == UnityEngine.TouchPhase.Moved)
+                        ShowControls(true);*/ //only show controls if moved
+                    if (touch.phase == UnityEngine.TouchPhase.Stationary)
+                        preparingSpecial += Time.deltaTime; //cast special if holding without moving
+                    else if (touch.phase == UnityEngine.TouchPhase.Ended)
+                    {
+                        if (touchTime < 0.25f) CheckAttack(); //attack instead, if it was a tap
+                        touchTime = 0;
+                        //ShowControls(false);
+                    }
+
+                    Touch secondTouch;
+                    if (Input.touchCount > 1)
+                    {
+                        secondTouch = Input.GetTouch(1);
+                        secondTouchTime += Time.deltaTime;
+
+                        if (secondTouch.phase == UnityEngine.TouchPhase.Stationary)
+                            preparingSpecial += Time.deltaTime;
+                        else if (secondTouch.phase == UnityEngine.TouchPhase.Ended)
+                        {
+                            if (secondTouchTime < 0.25) CheckAttack(); //also checkattack on two touches
+                            secondTouchTime = 0;
+                        }
+                    }
+                }
+                //else if (Input.touchCount == 0) ShowControls(false); //hide touch controls on 0 touches
+
+                if (Input.GetKey(KeyCode.Space) && specialTimer >= specialCD) preparingSpecial += Time.deltaTime; //special
+                else preparingSpecial = 0;
+
+                ChargeCDs();
+                if (hasPowerUp) CheckPowerUp(); //checks for this bool so that it doesnt have to go through the array all the time
+
+                UpdateUI();
             }
-            if (Input.GetKey(KeyCode.Space) && specialTimer >= specialCD) preparingSpecial += Time.deltaTime; //special
-            else preparingSpecial = 0;
+        }
+    }
 
-            ChargeCDs();
-            if (hasPowerUp) CheckPowerUp(); //checks for this bool so that it doesnt have to go through the array all the time
-
-            UpdateUI();
+    void ShowControls(bool show)
+    {
+        if (show)
+        {
+            leftJoystick.GetComponent<Image>().color = new Color32(0, 0, 0, 100);
+            leftJoystick.transform.GetChild(0).GetComponent<Image>().color = new Color32(255, 255, 255, 200);
+        }
+        else
+        {
+            leftJoystick.GetComponent<Image>().color = new Color32(0, 0, 0, 0);
+            leftJoystick.transform.GetChild(0).GetComponent<Image>().color = new Color32(255, 255, 255, 0);
         }
     }
 
@@ -100,19 +162,14 @@ public class Player : Unit
             specialTriggerUI2.fillAmount = 0;
         }
 
-        if (comboAmount == 1) //when combo is x1, it will show only the bar
-        {
-            comboProgressBar.transform.parent.parent.gameObject.SetActive(true);
-            comboProgressBar.fillAmount = comboAmount / maxComboCDBoost;
-        }
-        else if (comboAmount > 1)
+        if (comboAmount > 1)
         {
             comboProgressBar.fillAmount = comboAmount / maxComboCDBoost;
             comboUI.text = "x" + comboAmount.ToString();
             if (comboAmount >= maxComboCDBoost) //max combo boost achieved
             {
                 comboUI.color = new Color32(250, 120, 0, 255);
-                comboUI.fontSize = 14;
+                comboUI.fontSize = 40;
             }
             else if (comboAmount >= maxComboCDBoost / 2)
             {
@@ -121,7 +178,7 @@ public class Player : Unit
             else if (comboAmount >= maxComboCDBoost / 4)
             {
                 comboUI.color = new Color32(240, 200, 140, 255);
-                comboUI.fontSize = 13;
+                comboUI.fontSize = 36;
             }
             else
                 comboUI.color = new Color32(255, 255, 255, 255);
@@ -129,7 +186,7 @@ public class Player : Unit
         else //if it's 0, hide combo count and bar
         {
             comboUI.text = "";
-            comboUI.fontSize = 11;
+            comboUI.fontSize = 34;
             comboProgressBar.transform.parent.parent.gameObject.SetActive(false);
         }
         UpdateComboStats();

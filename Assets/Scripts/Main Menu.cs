@@ -8,11 +8,18 @@ public class MainMenu : MonoBehaviour
 {
     public Text scoreOutput;
     [SerializeField] GameObject scoreKeeper;
+    [SerializeField] AdInitializer ads;
+    [SerializeField] InterstitalAds interstitalAd;
 
     void Awake()
     {
         if (!FindObjectOfType<ScoreKeeper>()) //instantiate scoreKeeper if there isn't one yet
             Instantiate(scoreKeeper);
+        else
+        {
+            interstitalAd.LoadAd();
+            interstitalAd.ShowAd();
+        }
     }
     void Start()
     {

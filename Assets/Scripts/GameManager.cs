@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     public int currentWave;
     [SerializeField] float closestSpawnPos;
     float spawnTimer;
+    public bool pauseWaves;
 
     ScoreKeeper scoreKeeper;
     [SerializeField] Text scoreOutput;
@@ -44,7 +45,7 @@ public class GameManager : MonoBehaviour
         toNextLevel = 25;
         currentWave = 0;
         waveIntensity = 0.9f;
-        NextWave(); //immediately spawn next wave at start
+        if (!pauseWaves) NextWave(); //immediately spawn next wave at start
     }
 
     void Update()
@@ -52,7 +53,7 @@ public class GameManager : MonoBehaviour
         if (spawnTimer > 8) {
             NextWave();
             spawnTimer = 0;
-        } else spawnTimer += Time.deltaTime;
+        } else if (!pauseWaves) spawnTimer += Time.deltaTime;
     }
 
     public void UpdateScore(int score)
