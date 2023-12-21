@@ -10,10 +10,17 @@ public enum playerStats { hitpoints, strength, pushForce, moveSpeed, attackSpeed
 public class Player : Unit
 {
     //mobile inputs
+    bool usingMobileControls;
+    [SerializeField] OnScreenStick leftStick;
+    List<Touch> touches = new List<Touch>();
+    List<float> touchTimer = new List<float>();
+    List<bool> touchMove = new List<bool>();
+    List<bool> touchHold = new List<bool>();
+    List<Vector2> initialTouchPos = new List<Vector2>();
+
     [SerializeField] PlayerInput mobileControls;
-    [SerializeField] Image leftJoystick;
-    float touchTime;
-    float secondTouchTime;
+    [SerializeField] Image leftStickImage;
+    [SerializeField] Image leftStickBackground;
 
     //audio
     [SerializeField] protected AudioClip punchSFX;
@@ -62,7 +69,7 @@ public class Player : Unit
             attackTimer.Add(0);
         }
 
-        /*if (!Application.isMobilePlatform)
+        /*if (!Application.isMobilePlatform || !Application.isEditor)
             ShowControls(false);*/
     }
 
@@ -72,9 +79,7 @@ public class Player : Unit
         {
             if (!freeze)
             {
-                //movement
-                Vector2 mobileInput = mobileControls.actions["Move"].ReadValue<Vector2>();
-
+                Vector2 mobileInput = mobileControls.actions["Move"].ReadValue<Vector2>(); //movement
                 if (Input.GetKey(KeyCode.D) || mobileInput.x > 0.45f) inputX = 1; //right
                 else if (Input.GetKey(KeyCode.A) || mobileInput.x < -0.45f) inputX = -1; //left
                 if (Input.GetKey(KeyCode.W) || mobileInput.y > 0.45f) inputY = 1; //up
@@ -83,48 +88,60 @@ public class Player : Unit
                 Move(inputX, inputY);
                 inputX = 0; inputY = 0;
 
-                if (Input.GetKeyUp(KeyCode.Space)) CheckAttack(); //attack
-
-                else if (Input.touchCount > 0) //check for touchscreen inputs
+                if (Input.touchCount > 0) //touchscreen
                 {
-                    Touch touch = Input.GetTouch(0);
-                    touchTime += Time.deltaTime;
-                    /*if (touch.phase == UnityEngine.TouchPhase.Began)
-                        leftJoystick.transform.position = (Vector2)Camera.main.ScreenToWorldPoint(touch.position); */ //move joystick to tap position
-                    /*if (touch.phase == UnityEngine.TouchPhase.Moved)
-                        ShowControls(true);*/ //only show controls if moved
-                    if (touch.phase == UnityEngine.TouchPhase.Stationary)
-                        preparingSpecial += Time.deltaTime; //cast special if holding without moving
-                    else if (touch.phase == UnityEngine.TouchPhase.Ended)
+                    usingMobileControls = true;
+                    for (int i = 0; i < Input.touchCount; i++)
                     {
-                        if (touchTime < 0.25f) CheckAttack(); //attack instead, if it was a tap
-                        touchTime = 0;
-                        //ShowControls(false);
-                    }
-
-                    Touch secondTouch;
-                    if (Input.touchCount > 1)
-                    {
-                        secondTouch = Input.GetTouch(1);
-                        secondTouchTime += Time.deltaTime;
-
-                        if (secondTouch.phase == UnityEngine.TouchPhase.Stationary)
-                            preparingSpecial += Time.deltaTime;
-                        else if (secondTouch.phase == UnityEngine.TouchPhase.Ended)
+                        if (touches.Count < Input.touchCount) //first fill the arrays
                         {
-                            if (secondTouchTime < 0.25) CheckAttack(); //also checkattack on two touches
-                            secondTouchTime = 0;
+                            touches.Add(new Touch());
+                            touchTimer.Add(0);
+                            touchMove.Add(false);
+                            touchHold.Add(false);
+                            initialTouchPos.Add(new Vector2());
+                        }
+
+                        touches[i] = Input.GetTouch(i);
+                        touchTimer[i] += Time.deltaTime;
+
+                        if (touches[i].phase == UnityEngine.TouchPhase.Began)
+                            initialTouchPos[i] = touches[i].position; //save initial position
+
+                        if ((initialTouchPos[i] - touches[i].position).magnitude > 30)
+                            touchMove[i] = true; //swipe
+                        else if (touchTimer[i] > 0.2f)
+                            touchHold[i] = true; //hold
+
+                        if (touchHold[i] && !touchMove[i] && specialTimer >= specialCD)
+                            preparingSpecial += Time.deltaTime; //channel special if hold
+                        else
+                        {
+                            for (int j = 0; j < Input.touchCount; j++) //check for all touches, make sure none is hold before resetting special
+                            {
+                                if (touchHold[j]) break;
+                                else if (j == Input.touchCount-1) //last iteration, found no hold key
+                                    preparingSpecial = 0.2f; //preparing special begins at 0.20 for mobile, due to the 0.20sec check for hold tap
+                            }
+                        }
+
+                        if (touches[i].phase == UnityEngine.TouchPhase.Ended)
+                        {
+                            if (!touchMove[i]) CheckAttack(); //if  didn't move, then it was a tap or hold, so send attack
+                            touchTimer[i] = 0; //reset defaults for next touch
+                            touchMove[i] = false;
+                            touchHold[i] = false;
                         }
                     }
                 }
-                //else if (Input.touchCount == 0) ShowControls(false); //hide touch controls on 0 touches
-
-                if (Input.GetKey(KeyCode.Space) && specialTimer >= specialCD) preparingSpecial += Time.deltaTime; //special
-                else preparingSpecial = 0;
-
+                else if (!usingMobileControls) //keyboard
+                {
+                    if (Input.GetKeyUp(KeyCode.Space)) CheckAttack(); //attack
+                    if (Input.GetKey(KeyCode.Space) && specialTimer >= specialCD) preparingSpecial += Time.deltaTime; //special
+                    else preparingSpecial = 0;
+                }
                 ChargeCDs();
                 if (hasPowerUp) CheckPowerUp(); //checks for this bool so that it doesnt have to go through the array all the time
-
                 UpdateUI();
             }
         }
@@ -134,13 +151,13 @@ public class Player : Unit
     {
         if (show)
         {
-            leftJoystick.GetComponent<Image>().color = new Color32(0, 0, 0, 100);
-            leftJoystick.transform.GetChild(0).GetComponent<Image>().color = new Color32(255, 255, 255, 200);
+            leftStickImage.color = new Color32(255, 255, 255, 200);
+            leftStickBackground.color = new Color32(0, 0, 0, 100);
         }
         else
         {
-            leftJoystick.GetComponent<Image>().color = new Color32(0, 0, 0, 0);
-            leftJoystick.transform.GetChild(0).GetComponent<Image>().color = new Color32(255, 255, 255, 0);
+            leftStickImage.color = new Color32(255, 255, 255, 0);
+            leftStickBackground.color = new Color32(0, 0, 0, 0);
         }
     }
 
@@ -151,10 +168,10 @@ public class Player : Unit
 
         specialUI.fillAmount = specialTimer / specialCD;
         
-        if (preparingSpecial > 0.10f) //small delay before feedback, in case player intended to tap
+        if (preparingSpecial > 0.20f) //small delay before feedback, in case player intended to tap
         {
-            specialTriggerUI1.fillAmount = (preparingSpecial - 0.10f) / 0.20f;
-            specialTriggerUI2.fillAmount = (preparingSpecial - 0.10f) / 0.20f;
+            specialTriggerUI1.fillAmount = (preparingSpecial - 0.20f) / 0.10f;
+            specialTriggerUI2.fillAmount = (preparingSpecial - 0.20f) / 0.10f;
         }
         else
         {
