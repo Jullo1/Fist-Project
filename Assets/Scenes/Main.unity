@@ -2965,7 +2965,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.00024414062, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 180.87}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &2055599687
@@ -3361,6 +3361,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1670117373}
     - target: {fileID: 2839589322773588041, guid: 4fff07e3287c91a4ea5f354d21d23e97, type: 3}
+      propertyPath: leftStickImage
+      value: 
+      objectReference: {fileID: 1670117373}
+    - target: {fileID: 2839589322773588041, guid: 4fff07e3287c91a4ea5f354d21d23e97, type: 3}
       propertyPath: mobileControls
       value: 
       objectReference: {fileID: 1727313744}
@@ -3369,6 +3373,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1955660638}
     - target: {fileID: 2839589322773588041, guid: 4fff07e3287c91a4ea5f354d21d23e97, type: 3}
+      propertyPath: mobileControlsUI
+      value: 
+      objectReference: {fileID: 137113748}
+    - target: {fileID: 2839589322773588041, guid: 4fff07e3287c91a4ea5f354d21d23e97, type: 3}
       propertyPath: specialTriggerUI1
       value: 
       objectReference: {fileID: 1448423113}
@@ -3376,6 +3384,10 @@ PrefabInstance:
       propertyPath: specialTriggerUI2
       value: 
       objectReference: {fileID: 1086711995}
+    - target: {fileID: 2839589322773588041, guid: 4fff07e3287c91a4ea5f354d21d23e97, type: 3}
+      propertyPath: leftStickBackground
+      value: 
+      objectReference: {fileID: 50802302}
     - target: {fileID: 2839589322773588041, guid: 4fff07e3287c91a4ea5f354d21d23e97, type: 3}
       propertyPath: leftJoystickBackground
       value: 

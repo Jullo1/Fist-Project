@@ -11,7 +11,6 @@ public class Player : Unit
 {
     //mobile inputs
     bool usingMobileControls;
-    [SerializeField] OnScreenStick leftStick;
     List<Touch> touches = new List<Touch>();
     List<float> touchTimer = new List<float>();
     List<bool> touchMove = new List<bool>();
@@ -19,6 +18,7 @@ public class Player : Unit
     List<Vector2> initialTouchPos = new List<Vector2>();
 
     [SerializeField] PlayerInput mobileControls;
+    [SerializeField] Canvas mobileControlsUI;
     [SerializeField] Image leftStickImage;
     [SerializeField] Image leftStickBackground;
 
@@ -69,8 +69,8 @@ public class Player : Unit
             attackTimer.Add(0);
         }
 
-        /*if (!Application.isMobilePlatform || !Application.isEditor)
-            ShowControls(false);*/
+        if (!Application.isMobilePlatform && !Application.isEditor)
+            mobileControlsUI.gameObject.SetActive(false); //completely disable onscreen controls
     }
 
     void Update()
@@ -119,7 +119,7 @@ public class Player : Unit
                         {
                             for (int j = 0; j < Input.touchCount; j++) //check for all touches, make sure none is hold before resetting special
                             {
-                                if (touchHold[j]) break;
+                                if (touchHold[j] || !touchMove[j]) break;
                                 else if (j == Input.touchCount-1) //last iteration, found no hold key
                                     preparingSpecial = 0.2f; //preparing special begins at 0.20 for mobile, due to the 0.20sec check for hold tap
                             }
@@ -147,7 +147,7 @@ public class Player : Unit
         }
     }
 
-    void ShowControls(bool show)
+    void ShowOnscreenControls(bool show)
     {
         if (show)
         {
@@ -382,6 +382,9 @@ public class Player : Unit
 
         if (previousFreeze != null) StopCoroutine(previousFreeze); //check for multiple freeze rotation instances and end the previous one
         previousFreeze = StartCoroutine(Freeze(0.1f));
+
+        if (usingMobileControls) preparingSpecial = 0.2f; //reset special channeling if hit
+        else preparingSpecial = 0;
 
         comboAmount = 0;
         UpdateHealth(-damage);
