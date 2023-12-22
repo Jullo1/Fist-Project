@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem.OnScreen;
+using System;
 
 public enum playerStats { hitpoints, strength, pushForce, moveSpeed, attackSpeed, attackCharges, attackRange, specialDamage, specialCooldown, specialRange, dodgeChance, criticalChance, criticalDamage}
 public class Player : Unit
@@ -93,25 +94,22 @@ public class Player : Unit
                     usingMobileControls = true;
                     for (int i = 0; i < Input.touchCount; i++)
                     {
-                        if (touches.Count < Input.touchCount) //first fill the arrays
+                        if (Input.touchCount > touches.Count) //first fill the arrays
                         {
-                            touches.Add(new Touch());
+                            touches.Add(Input.GetTouch(i));
                             touchTimer.Add(0);
                             touchMove.Add(false);
                             touchHold.Add(false);
-                            initialTouchPos.Add(new Vector2());
-                        }
+                            initialTouchPos.Add(Vector2.zero);
+                        } touches[i] = Input.GetTouch(i);
 
-                        touches[i] = Input.GetTouch(i);
-                        touchTimer[i] += Time.deltaTime;
-
+                        touchTimer[i] += Time.deltaTime; //timer for each individual touch
                         if (touches[i].phase == UnityEngine.TouchPhase.Began)
                             initialTouchPos[i] = touches[i].position; //save initial position
-
-                        if ((initialTouchPos[i] - touches[i].position).magnitude > 30)
-                            touchMove[i] = true; //swipe
+                        if ((initialTouchPos[i] - touches[i].position).magnitude > 50)
+                            touchMove[i] = true; //check for swipe
                         else if (touchTimer[i] > 0.2f)
-                            touchHold[i] = true; //hold
+                            touchHold[i] = true; //check for hold
 
                         if (touchHold[i] && !touchMove[i] && specialTimer >= specialCD)
                             preparingSpecial += Time.deltaTime; //channel special if hold
@@ -120,17 +118,21 @@ public class Player : Unit
                             for (int j = 0; j < Input.touchCount; j++) //check for all touches, make sure none is hold before resetting special
                             {
                                 if (touchHold[j] || !touchMove[j]) break;
-                                else if (j == Input.touchCount-1) //last iteration, found no hold key
+                                else if (j == Input.touchCount - 1) //last iteration, found no hold key
                                     preparingSpecial = 0.2f; //preparing special begins at 0.20 for mobile, due to the 0.20sec check for hold tap
                             }
                         }
 
-                        if (touches[i].phase == UnityEngine.TouchPhase.Ended)
+                        if (touches[i].phase == UnityEngine.TouchPhase.Ended || touches[i].phase == UnityEngine.TouchPhase.Canceled)
                         {
-                            if (!touchMove[i]) CheckAttack(); //if  didn't move, then it was a tap or hold, so send attack
-                            touchTimer[i] = 0; //reset defaults for next touch
-                            touchMove[i] = false;
-                            touchHold[i] = false;
+                            if (!touchMove[i]) CheckAttack(); //if it's not a swipe, then it was a tap or hold, so send attack
+                            else if (touches.Count > 1 && (!touchMove[0] || !touchHold[1])) CheckAttack(); //hardfix, if player held with one touch character, then held to move character with a second touch before releasing the first touch, script would not take any further touches until releasing the second touch
+
+                            touchTimer.RemoveAt(i); //reset touch input values
+                            touchMove.RemoveAt(i);
+                            touchHold.RemoveAt(i);
+                            initialTouchPos.RemoveAt(i);
+                            touches.RemoveAt(i);
                         }
                     }
                 }
@@ -147,12 +149,12 @@ public class Player : Unit
         }
     }
 
-    void ShowOnscreenControls(bool show)
+    void ShowOnscreenControls(bool show, int opacity = 100)
     {
         if (show)
         {
-            leftStickImage.color = new Color32(255, 255, 255, 200);
-            leftStickBackground.color = new Color32(0, 0, 0, 100);
+            leftStickImage.color = new Color32(255, 255, 255, (byte)(opacity*2));
+            leftStickBackground.color = new Color32(0, 0, 0, (byte)opacity);
         }
         else
         {
