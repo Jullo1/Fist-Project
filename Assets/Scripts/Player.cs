@@ -1,226 +1,68 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.UI;
-using UnityEngine.EventSystems;
-using UnityEngine.InputSystem.OnScreen;
-using System;
 
 public enum playerStats { hitpoints, strength, pushForce, moveSpeed, attackSpeed, attackCharges, attackRange, specialDamage, specialCooldown, specialRange, dodgeChance, criticalChance, criticalDamage}
 public class Player : Unit
 {
-    //mobile inputs
-    bool usingMobileControls;
-    List<Touch> touches = new List<Touch>();
-    List<float> touchTimer = new List<float>();
-    List<bool> touchMove = new List<bool>();
-    List<bool> touchHold = new List<bool>();
-    List<Vector2> initialTouchPos = new List<Vector2>();
-
-    [SerializeField] PlayerInput mobileControls;
-    [SerializeField] Canvas mobileControlsUI;
-    [SerializeField] Image leftStickImage;
-    [SerializeField] Image leftStickBackground;
+    InputManager playerInput;
+    PlayerUIHandler ui;
 
     //audio
     [SerializeField] protected AudioClip punchSFX;
     [SerializeField] protected AudioClip missSFX;
     [SerializeField] protected AudioClip specialFX;
 
-    //UI Elements
-    [SerializeField] List<Image> hitpointsUI = new List<Image>();
-    [SerializeField] List<Image> attackCDUI = new List<Image>();
-
-    [SerializeField] Image specialUI;
-    [SerializeField] Image specialTriggerUI1;
-    [SerializeField] Image specialTriggerUI2;
-
     public List<float> baseAttackCD = new List<float>(); //inclues upgrades, excludes powerups
 
     public float specialCD;
-    float specialTimer;
-    float preparingSpecial;
-    [SerializeField] float specialRange;
+    public float specialTimer;
+    public float specialChannel;
+    public bool channelingSpecial;
+    public float specialRange;
 
-    float inputX;
-    float inputY;
-
-    [SerializeField] int comboAmount;
-    [SerializeField] Text comboUI;
-    [SerializeField] float maxComboCDBoost;
+    public int comboAmount;
+    public float maxComboCDBoost;
     public float comboCDBoost;
-    [SerializeField] Image comboProgressBar;
 
-    float invincible;
-    bool hasPowerUp;
-    float currentFrenzyTimer;//for feedback
+    public float invincible;
+    public bool hasPowerUp;
+    [SerializeField] float currentFrenzyTimer;//for feedback
+
     Coroutine previousFreeze; //to stop previous freeze coroutine
     Coroutine previousFreezeRotation;
-    /*remove serialize after testing*/
-    [SerializeField] float[] powerUpDuration = new float[7] { 0, 0, 0, 0, 0, 0, 0 };
-    [SerializeField] PowerUpType[] activePowerUps = new PowerUpType[7] { PowerUpType.None, PowerUpType.None, PowerUpType.None, PowerUpType.None, PowerUpType.None, PowerUpType.None, PowerUpType.None };
+
+    float[] powerUpDuration = new float[7] { 0, 0, 0, 0, 0, 0, 0 };
+    PowerUpType[] activePowerUps = new PowerUpType[7] { PowerUpType.None, PowerUpType.None, PowerUpType.None, PowerUpType.None, PowerUpType.None, PowerUpType.None, PowerUpType.None };
 
     void Start()
     {
+        playerInput = GetComponent<InputManager>();
+        ui = GetComponent<PlayerUIHandler>();
         comboCDBoost = 1;
         for (int i = 0; i < attackCD.Count; i++) //prepare attack charges and timers
         {
             baseAttackCD.Add(attackCD[i]);
             attackTimer.Add(0);
         }
-
-        if (!Application.isMobilePlatform && !Application.isEditor)
-            mobileControlsUI.gameObject.SetActive(false); //completely disable onscreen controls
     }
 
     void Update()
     {
         if (!game.paused)
         {
-            if (!freeze)
-            {
-                Vector2 mobileInput = mobileControls.actions["Move"].ReadValue<Vector2>(); //movement
-                if (Input.GetKey(KeyCode.D) || mobileInput.x > 0.45f) inputX = 1; //right
-                else if (Input.GetKey(KeyCode.A) || mobileInput.x < -0.45f) inputX = -1; //left
-                if (Input.GetKey(KeyCode.W) || mobileInput.y > 0.45f) inputY = 1; //up
-                else if (Input.GetKey(KeyCode.S) || mobileInput.y < -0.45f) inputY = -1; //down
-
-                Move(inputX, inputY);
-                inputX = 0; inputY = 0;
-
-                if (Input.touchCount > 0) //touchscreen
-                {
-                    usingMobileControls = true;
-                    for (int i = 0; i < Input.touchCount; i++)
-                    {
-                        if (Input.touchCount > touches.Count) //first fill the arrays
-                        {
-                            touches.Add(Input.GetTouch(i));
-                            touchTimer.Add(0);
-                            touchMove.Add(false);
-                            touchHold.Add(false);
-                            initialTouchPos.Add(Vector2.zero);
-                        } touches[i] = Input.GetTouch(i);
-
-                        touchTimer[i] += Time.deltaTime; //timer for each individual touch
-                        if (touches[i].phase == UnityEngine.TouchPhase.Began)
-                            initialTouchPos[i] = touches[i].position; //save initial position
-                        if ((initialTouchPos[i] - touches[i].position).magnitude > 50)
-                            touchMove[i] = true; //check for swipe
-                        else if (touchTimer[i] > 0.2f)
-                            touchHold[i] = true; //check for hold
-
-                        if (touchHold[i] && !touchMove[i] && specialTimer >= specialCD)
-                            preparingSpecial += Time.deltaTime; //channel special if hold
-                        else
-                        {
-                            for (int j = 0; j < Input.touchCount; j++) //check for all touches, make sure none is hold before resetting special
-                            {
-                                if (touchHold[j] || !touchMove[j]) break;
-                                else if (j == Input.touchCount - 1) //last iteration, found no hold key
-                                    preparingSpecial = 0.2f; //preparing special begins at 0.20 for mobile, due to the 0.20sec check for hold tap
-                            }
-                        }
-
-                        if (touches[i].phase == UnityEngine.TouchPhase.Ended || touches[i].phase == UnityEngine.TouchPhase.Canceled)
-                        {
-                            if (!touchMove[i]) CheckAttack(); //if it's not a swipe, then it was a tap or hold, so send attack
-                            else if (touches.Count > 1 && (!touchMove[0] || !touchHold[1])) CheckAttack(); //hardfix, if player held with one touch character, then held to move character with a second touch before releasing the first touch, script would not take any further touches until releasing the second touch
-
-                            touchTimer.RemoveAt(i); //reset touch input values
-                            touchMove.RemoveAt(i);
-                            touchHold.RemoveAt(i);
-                            initialTouchPos.RemoveAt(i);
-                            touches.RemoveAt(i);
-                        }
-                    }
-                }
-                else if (!usingMobileControls) //keyboard
-                {
-                    if (Input.GetKeyUp(KeyCode.Space)) CheckAttack(); //attack
-                    if (Input.GetKey(KeyCode.Space) && specialTimer >= specialCD) preparingSpecial += Time.deltaTime; //special
-                    else preparingSpecial = 0;
-                }
-                ChargeCDs();
-                if (hasPowerUp) CheckPowerUp(); //checks for this bool so that it doesnt have to go through the array all the time
-                UpdateUI();
-            }
+            ChargeCDs();
+            if (hasPowerUp) CheckPowerUp(); //checks for this bool so that it doesnt have to go through the array all the time
+            if (!freeze && !dead) CheckAttackTargets(); //enable hit indicator and face for closest enemy (if within attack range)
         }
     }
 
-    void ShowOnscreenControls(bool show, int opacity = 100)
+    public void ChannelSpecial()
     {
-        if (show)
+        if (specialTimer >= specialCD)
         {
-            leftStickImage.color = new Color32(255, 255, 255, (byte)(opacity*2));
-            leftStickBackground.color = new Color32(0, 0, 0, (byte)opacity);
-        }
-        else
-        {
-            leftStickImage.color = new Color32(255, 255, 255, 0);
-            leftStickBackground.color = new Color32(0, 0, 0, 0);
-        }
-    }
-
-    void UpdateUI()
-    {
-        for (int i = 0; i < attackCDUI.Count; i++)
-            attackCDUI[i].fillAmount = attackTimer[i] / attackCD[i];
-
-        specialUI.fillAmount = specialTimer / specialCD;
-        
-        if (preparingSpecial > 0.20f) //small delay before feedback, in case player intended to tap
-        {
-            specialTriggerUI1.fillAmount = (preparingSpecial - 0.20f) / 0.10f;
-            specialTriggerUI2.fillAmount = (preparingSpecial - 0.20f) / 0.10f;
-        }
-        else
-        {
-            specialTriggerUI1.fillAmount = 0;
-            specialTriggerUI2.fillAmount = 0;
-        }
-
-        if (comboAmount > 1)
-        {
-            comboProgressBar.fillAmount = comboAmount / maxComboCDBoost;
-            comboUI.text = "x" + comboAmount.ToString();
-            if (comboAmount >= maxComboCDBoost) //max combo boost achieved
-            {
-                comboUI.color = new Color32(250, 120, 0, 255);
-                comboUI.fontSize = 40;
-            }
-            else if (comboAmount >= maxComboCDBoost / 2)
-            {
-                comboUI.color = new Color32(240, 180, 0, 255);
-            }
-            else if (comboAmount >= maxComboCDBoost / 4)
-            {
-                comboUI.color = new Color32(240, 200, 140, 255);
-                comboUI.fontSize = 36;
-            }
-            else
-                comboUI.color = new Color32(255, 255, 255, 255);
-        }
-        else //if it's 0, hide combo count and bar
-        {
-            comboUI.text = "";
-            comboUI.fontSize = 34;
-            comboProgressBar.transform.parent.parent.gameObject.SetActive(false);
-        }
-        UpdateComboStats();
-        if (!freeze && !dead) CheckAttackTargets(); //enable hit indicator and face for closest enemy (if within attack range)
-    }
-
-    protected override void CheckHitpoints()
-    {
-        if (!dead)
-        {
-            foreach (Image bar in hitpointsUI)
-                bar.gameObject.SetActive(true);
-
-            for (int i = hitpointsUI.Count; i > hitpoints; i--)
-                hitpointsUI[i - 1].gameObject.SetActive(false);
+            channelingSpecial = true;
+            specialChannel += Time.deltaTime;
         }
     }
 
@@ -230,23 +72,14 @@ public class Player : Unit
             specialTimer += Time.deltaTime;
 
         for (int i = 0; i < attackTimer.Count; i++)
-        {
-            /*if (attackTimer[i] < attackCD[i])
-            {*/
-                attackTimer[i] += Time.deltaTime * comboCDBoost;
-                //return; //end here so that the next slider is not unstuck
-            //}
-        }
-
-        for (int i = 0; i < attackTimer.Count; i++) //unstuck timers if both are 0
-            attackTimer[i] += 0.0001f;
+            attackTimer[i] += Time.deltaTime * comboCDBoost;
 
         if (invincible > 0)
             invincible -= Time.deltaTime;
         else invincible = 0;
     }
 
-    void Move(float x, float y)
+    public void Move(float x, float y)
     {
         transform.position += new Vector3(x, y) * moveSpeed * Time.deltaTime;
 
@@ -267,20 +100,20 @@ public class Player : Unit
             anim.SetBool("move", true);
     }
 
-    void CheckAttack()
+    public void CheckAttack()
     {
-        if (preparingSpecial >= 0.3f) SpecialAttack();
-        else
+        if (specialChannel > 0.3f)
+            SpecialAttack();
+        else if (!channelingSpecial)
+        {
+            specialChannel = 0;
             for (int i = attackTimer.Count - 1; i >= 0; i--)
-            {
                 if (attackTimer[i] >= attackCD[i])
                 {
                     Attack(i);
                     break;
                 }
-            }
-
-        preparingSpecial = 0f;
+        }
     }
 
     Enemy CheckAttackTargets()
@@ -366,6 +199,7 @@ public class Player : Unit
         anim.SetTrigger("special");
         FaceTarget(GetClosestEnemy().gameObject);
         specialTimer = 0f;
+        specialChannel = 0;
         foreach (Enemy enemy in FindObjectsOfType<Enemy>())
         {
             if (!enemy.dead)
@@ -385,8 +219,8 @@ public class Player : Unit
         if (previousFreeze != null) StopCoroutine(previousFreeze); //check for multiple freeze rotation instances and end the previous one
         previousFreeze = StartCoroutine(Freeze(0.1f));
 
-        if (usingMobileControls) preparingSpecial = 0.2f; //reset special channeling if hit
-        else preparingSpecial = 0;
+        if (playerInput.usingMobileControls) specialChannel = 0.2f; //reset special channeling if hit
+        else specialChannel = 0;
 
         comboAmount = 0;
         UpdateHealth(-damage);
@@ -401,6 +235,7 @@ public class Player : Unit
     {
         base.UpdateHealth(amount);
         if (hitpoints <= 0) StartCoroutine(PlayerDeath());
+        ui.CheckHitpoints();
     }
 
     IEnumerator PlayerDeath()
@@ -414,17 +249,6 @@ public class Player : Unit
         anim.SetBool("death", true);
         yield return new WaitForSeconds(2f);
         game.GameOver();
-    }
-
-    void UpdateComboStats() //comboAmount makes attackTimer floats increase faster (does not affect the cooldown number)
-    {
-        if (comboAmount == 0)
-        {
-            comboCDBoost = 1f;
-            return;
-        }
-        if (comboAmount < maxComboCDBoost) comboCDBoost = 1 + (comboAmount / maxComboCDBoost);
-        else comboCDBoost = 2;
     }
 
     public override void ActivatePowerUp(PowerUp powerUp)
@@ -463,8 +287,8 @@ public class Player : Unit
                 switch (activePowerUps[i]) //calculate feedback elements
                 {   
                     case PowerUpType.Frenzy:
-                        attackCDUI[0].color = new Color32((byte)(Mathf.Lerp(255, 0, powerUpDuration[i]/10)), 255, 255, 255);
-                        attackCDUI[1].color = new Color32((byte)(Mathf.Lerp(255, 0, powerUpDuration[i]/10)), 255, 255, 255);
+                        ui.attackCDUI[0].color = new Color32((byte)(Mathf.Lerp(255, 0, powerUpDuration[i]/10)), 255, 255, 255);
+                        ui.attackCDUI[1].color = new Color32((byte)(Mathf.Lerp(255, 0, powerUpDuration[i]/10)), 255, 255, 255);
                         break;
                 }
                 return;

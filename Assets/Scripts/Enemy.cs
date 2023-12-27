@@ -103,7 +103,7 @@ public class Enemy : Unit
         newDrop.transform.position = transform.position;
     }
 
-    protected override void CheckHitpoints()
+    protected void CheckHitpoints()
     {
         if (hitpoints <= (maxHitpoints / 2)) //feedback for enemies below half hp
             damageVisual.SetActive(true);

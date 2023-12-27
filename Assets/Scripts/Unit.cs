@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,7 +8,7 @@ public class Unit : Entity
     public int strength;
     public float pushForce;
     public List<float> attackCD = new List<float>();
-    protected List<float> attackTimer = new List<float>();
+    public List<float> attackTimer = new List<float>();
 
     public int hitpoints;
     public int maxHitpoints;
@@ -32,12 +31,6 @@ public class Unit : Entity
         hitpoints += amount;
         if (hitpoints > maxHitpoints)
             hitpoints = maxHitpoints;
-        CheckHitpoints();
-    }
-
-    protected virtual void CheckHitpoints()
-    {
-
     }
 
     public virtual void ActivatePowerUp(PowerUp powerUp)

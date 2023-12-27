@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public enum PowerUpType { None, Health, FullRecovery, Frenzy, OneHitKO, TimeStop, Perfection, Infinity, Phoenix };

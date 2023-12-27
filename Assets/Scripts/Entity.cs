@@ -14,7 +14,7 @@ public class Entity : MonoBehaviour
     public float weight;
     public float size;
     protected bool cantAttack;
-    protected bool freeze;
+    public bool freeze;
     protected bool freezeRotation;
 
     void Awake()
