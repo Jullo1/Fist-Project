@@ -1,7 +1,4 @@
-using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting.Antlr3.Runtime;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -27,6 +24,7 @@ public class GameManager : MonoBehaviour
     float experience;
     public float toNextLevel;
     [SerializeField] Image experienceUI;
+    [SerializeField] Selectable invisibleButton;
 
     [SerializeField] GameObject levelUpWindow;
     [SerializeField] Text option1Text; int option1Value;
@@ -121,6 +119,7 @@ public class GameManager : MonoBehaviour
 
         SetupLevelUpOptions();
         levelUpWindow.SetActive(true);
+        invisibleButton.Select();
     }
 
     void SetupLevelUpOptions()
