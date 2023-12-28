@@ -60,10 +60,10 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Entity.cs" />
     <Compile Include="Assets\Scripts\Enemy.cs" />
-    <Compile Include="Assets\Scripts\Main Menu.cs" />
     <Compile Include="Assets\Scripts\AdInitializer.cs" />
     <Compile Include="Assets\Scripts\TouchStickVisual.cs" />
     <Compile Include="Assets\Scripts\InputManager.cs" />
+    <Compile Include="Assets\Scripts\MainMenu.cs" />
     <Compile Include="Assets\Scripts\Player.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\PowerUp.cs" />

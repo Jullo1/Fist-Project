@@ -101,7 +101,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weight: 1
   size: 1
-  audioClip: {fileID: 8300000, guid: e461ebfd29dd84142aad82dfeb2389d2, type: 3}
+  freeze: 0
+  audioClip: {fileID: 8300000, guid: fd01e5991ead187489712e7927aa1f12, type: 3}
   powerUpType: 3
   duration: 10
   value: 0

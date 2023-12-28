@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem.OnScreen;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -7,6 +8,9 @@ public class GameManager : MonoBehaviour
 {
     public bool paused;
     Player player;
+    [SerializeField] OnScreenStick leftStick;
+    AudioSource menuAudio;
+
     [SerializeField] List<Enemy> enemyList = new List<Enemy>();
 
     public List<Entity> spawnGroup = new List<Entity>();
@@ -35,6 +39,7 @@ public class GameManager : MonoBehaviour
     {
         player = FindAnyObjectByType<Player>();
         scoreKeeper = FindObjectOfType<ScoreKeeper>();
+        menuAudio = GetComponent<AudioSource>();
     }
 
     void Start()
@@ -111,6 +116,8 @@ public class GameManager : MonoBehaviour
     void LevelUp()
     {
         paused = true;
+        leftStick.enabled = false;
+
         Time.timeScale = 0;
         level++;
         experience = 0;
@@ -141,6 +148,8 @@ public class GameManager : MonoBehaviour
                 SelectUpgrade(option2Value);
                 break;
         }
+        menuAudio.Play();
+        player.sendAnimTrigger("cancel");
     }
 
     void SelectUpgrade(int upgradeIndex)
@@ -168,6 +177,7 @@ public class GameManager : MonoBehaviour
     {
         paused = false;
         levelUpWindow.SetActive(false);
+        leftStick.enabled = true;
         Time.timeScale = 1;
     }
 

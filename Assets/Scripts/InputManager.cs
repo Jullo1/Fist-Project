@@ -14,6 +14,7 @@ public class InputManager : MonoBehaviour
 
     [SerializeField] PlayerInput mobileControls;
     [SerializeField] Canvas mobileControlsUI;
+    public TouchStickVisual leftStick;
     [SerializeField] Image leftStickImage;
     [SerializeField] Image leftStickBackground;
 
@@ -69,8 +70,8 @@ public class InputManager : MonoBehaviour
             }
             else if (!usingMobileControls) //keyboard or controller
             {
-                if (Input.GetKey(KeyCode.Space) || Input.GetButton("Fire1")) player.ChannelSpecial();
-                if (Input.GetKeyUp(KeyCode.Space) || Input.GetButtonUp("Fire1")) player.CheckAttack();
+                if (Input.GetKey(KeyCode.Space) || Input.GetButton("Attack")) player.ChannelSpecial();
+                if (Input.GetKeyUp(KeyCode.Space) || Input.GetButtonUp("Attack")) player.CheckAttack();
             }
         }
         if (Input.GetKey(KeyCode.Escape) || Input.GetButton("Exit Game")) game.GameOver();

@@ -11,7 +11,8 @@ public class Player : Unit
     //audio
     [SerializeField] protected AudioClip punchSFX;
     [SerializeField] protected AudioClip missSFX;
-    [SerializeField] protected AudioClip specialFX;
+    [SerializeField] protected AudioClip specialSFX;
+    [SerializeField] protected AudioClip deathSFX;
 
     public List<float> baseAttackCD = new List<float>(); //inclues upgrades, excludes powerups
 
@@ -106,7 +107,9 @@ public class Player : Unit
             SpecialAttack();
         else if (!channelingSpecial)
         {
-            specialChannel = 0;
+            if (!playerInput.usingMobileControls) specialChannel = 0;
+            else specialChannel = 0.2f;
+
             for (int i = attackTimer.Count - 1; i >= 0; i--)
                 if (attackTimer[i] >= attackCD[i])
                 {
@@ -209,7 +212,7 @@ public class Player : Unit
                     enemy.TakeHit(strength, gameObject, pushForce);
                 }
         }
-        PlayAudio(specialFX);
+        PlayAudio(specialSFX);
     }
 
     public override void TakeHit(int damage, GameObject hitter, float pushForce = 0f)
@@ -228,7 +231,9 @@ public class Player : Unit
         if (invincible <= 0.5) invincible = 0.5f; //only update if not already under this buff in case the player had more than 0.5sec of invincible left
 
         anim.SetTrigger("takeHit");
-        PlayAudio(punchSFX);
+
+        if (hitpoints <= 0) PlayAudio(deathSFX);
+        else PlayAudio(punchSFX);
     }
 
     protected override void UpdateHealth(int amount)
@@ -247,6 +252,7 @@ public class Player : Unit
         freeze = true;
         dead = true;
         anim.SetBool("death", true);
+        PlayAudio(deathSFX);
         yield return new WaitForSeconds(2f);
         game.GameOver();
     }

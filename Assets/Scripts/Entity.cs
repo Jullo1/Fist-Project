@@ -53,4 +53,9 @@ public class Entity : MonoBehaviour
         yield return new WaitForSeconds(time);
         freezeRotation = false;
     }
+
+    public void sendAnimTrigger(string triggerName)
+    {
+        anim.SetTrigger(triggerName);
+    }
 }
