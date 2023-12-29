@@ -19,6 +19,7 @@ public class Player : Unit
     public float specialCD;
     public float specialTimer;
     public float specialChannel;
+    bool appliedSpecialOffset;
     public bool channelingSpecial;
     public float specialRange;
 
@@ -56,12 +57,19 @@ public class Player : Unit
             if (hasPowerUp) CheckPowerUp(); //checks for this bool so that it doesnt have to go through the array all the time
             if (!freeze && !dead) CheckAttackTargets(); //enable hit indicator and face for closest enemy (if within attack range)
         }
+
+        if (!channelingSpecial) specialChannel = 0;
     }
 
-    public void ChannelSpecial()
+    public void ChannelSpecial(float inputHoldOffset = 0f)
     {
         if (specialTimer >= specialCD)
         {
+            if (!appliedSpecialOffset)
+            {
+                appliedSpecialOffset = true;
+                specialChannel = inputHoldOffset;
+            }
             channelingSpecial = true;
             specialChannel += Time.deltaTime;
         }
@@ -103,12 +111,12 @@ public class Player : Unit
 
     public void CheckAttack()
     {
-        if (specialChannel > 0.3f)
+        if (specialChannel > 0.4f)
             SpecialAttack();
         else if (!channelingSpecial)
         {
-            if (!playerInput.usingMobileControls) specialChannel = 0;
-            else specialChannel = 0.2f;
+            specialChannel = 0;
+            appliedSpecialOffset = false;
 
             for (int i = attackTimer.Count - 1; i >= 0; i--)
                 if (attackTimer[i] >= attackCD[i])
@@ -194,6 +202,7 @@ public class Player : Unit
             PlayAudio(missSFX); //target is still null means it failed to find a valid target, so it's a miss
             comboAmount = 0;
         }
+        StartCoroutine(FreezeAttack(0.1f));
     }
 
     void SpecialAttack()
@@ -203,6 +212,7 @@ public class Player : Unit
         FaceTarget(GetClosestEnemy().gameObject);
         specialTimer = 0f;
         specialChannel = 0;
+        appliedSpecialOffset = false;
         foreach (Enemy enemy in FindObjectsOfType<Enemy>())
         {
             if (!enemy.dead)
@@ -222,9 +232,7 @@ public class Player : Unit
         if (previousFreeze != null) StopCoroutine(previousFreeze); //check for multiple freeze rotation instances and end the previous one
         previousFreeze = StartCoroutine(Freeze(0.1f));
 
-        if (playerInput.usingMobileControls) specialChannel = 0.2f; //reset special channeling if hit
-        else specialChannel = 0;
-
+        specialChannel = 0; //reset special channeling if hit
         comboAmount = 0;
         UpdateHealth(-damage);
         KnockBack(hitter, pushForce);

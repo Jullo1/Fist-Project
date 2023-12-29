@@ -276,6 +276,7 @@ MonoBehaviour:
   weight: 10
   size: 1
   freeze: 0
+  freezeAttack: 0
   moveSpeed: 3
   attackRange: 2
   strength: 6
@@ -315,12 +316,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0347c656a63af424d802a8f06c7b94f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  usingMobileControls: 0
   mobileControls: {fileID: 0}
   mobileControlsUI: {fileID: 0}
   leftStick: {fileID: 0}
   leftStickImage: {fileID: 0}
   leftStickBackground: {fileID: 0}
+  invisibleButton: {fileID: 0}
 --- !u!114 &7782558725146120637
 MonoBehaviour:
   m_ObjectHideFlags: 0

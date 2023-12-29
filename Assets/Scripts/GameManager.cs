@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     Player player;
     [SerializeField] OnScreenStick leftStick;
     AudioSource menuAudio;
+    [SerializeField] AudioClip selectSFX;
 
     [SerializeField] List<Enemy> enemyList = new List<Enemy>();
 
@@ -148,8 +149,10 @@ public class GameManager : MonoBehaviour
                 SelectUpgrade(option2Value);
                 break;
         }
+        menuAudio.clip = selectSFX;
         menuAudio.Play();
         player.sendAnimTrigger("cancel");
+        StartCoroutine(player.FreezeAttack(0.05f));
     }
 
     void SelectUpgrade(int upgradeIndex)

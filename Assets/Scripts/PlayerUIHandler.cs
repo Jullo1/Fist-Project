@@ -31,8 +31,8 @@ public class PlayerUIHandler : MonoBehaviour
 
         if (player.specialChannel > 0.20f) //small delay before feedback, in case player intended to tap
         {
-            specialTriggerUI1.fillAmount = (player.specialChannel - 0.20f) / 0.10f;
-            specialTriggerUI2.fillAmount = (player.specialChannel - 0.20f) / 0.10f;
+            specialTriggerUI1.fillAmount = (player.specialChannel - 0.20f) / 0.20f;
+            specialTriggerUI2.fillAmount = (player.specialChannel - 0.20f) / 0.20f;
         }
         else
         {

@@ -7,6 +7,8 @@ public class MainMenu : MonoBehaviour
 {
     AudioSource menuAudio;
 
+    [SerializeField] Text startButton;
+
     public Text scoreOutput;
     [SerializeField] GameObject scoreKeeper;
 
@@ -29,7 +31,10 @@ public class MainMenu : MonoBehaviour
     {
         Time.timeScale = 1;
         if (ScoreKeeper.score > 0)
+        {
             scoreOutput.text = "Score: " + ScoreKeeper.score.ToString();
+            startButton.text = "AGAIN";
+        }
     }
 
     public void LoadScene(string sceneName)

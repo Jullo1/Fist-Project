@@ -17,7 +17,7 @@ public class PowerUp : Item
     void Awake()
     {
         player = FindObjectOfType<Player>();
-        audioSource = FindObjectOfType<Player>().transform.GetComponentInChildren<AudioSource>();
+        audioSource = FindObjectOfType<GameManager>().transform.GetComponentInChildren<AudioSource>();
     }
 
     void Update()

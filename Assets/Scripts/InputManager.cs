@@ -2,13 +2,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
+using UnityEngine.EventSystems;
 
 public class InputManager : MonoBehaviour
 {
     Player player;
     GameManager game;
+    EventSystem eventSystem;
+    int inputMode;
 
-    public bool usingMobileControls;
     List<Vector2> initialTouchPos = new List<Vector2>() { Vector2.zero, Vector2.zero, Vector2.zero, Vector2.zero };
     List<float> touchTimer = new List<float>() { 0, 0, 0, 0 };
 
@@ -17,6 +19,7 @@ public class InputManager : MonoBehaviour
     public TouchStickVisual leftStick;
     [SerializeField] Image leftStickImage;
     [SerializeField] Image leftStickBackground;
+    [SerializeField] Selectable invisibleButton;
 
     float inputX;
     float inputY;
@@ -25,6 +28,7 @@ public class InputManager : MonoBehaviour
     {
         player = GetComponent<Player>();
         game = FindObjectOfType<GameManager>();
+        eventSystem = FindObjectOfType<EventSystem>();
     }
     void Start()
     {
@@ -34,6 +38,8 @@ public class InputManager : MonoBehaviour
 
     void Update()
     {
+        inputMode = CheckInputMode();
+
         if (!player.freeze && !game.paused)
         {
             Vector2 mobileInput = mobileControls.actions["Move"].ReadValue<Vector2>(); //movement
@@ -49,7 +55,6 @@ public class InputManager : MonoBehaviour
 
             if (Input.touchCount > 0) //touchscreen
             {
-                usingMobileControls = true;
                 for (int i = 0; i < Input.touchCount; i++)
                 {
                     if (Input.touches[i].phase == UnityEngine.TouchPhase.Began)
@@ -59,22 +64,46 @@ public class InputManager : MonoBehaviour
                     }
                     touchTimer[i] += Time.deltaTime;
 
-                    if (touchTimer[i] > 0.2f && (initialTouchPos[i] - Input.touches[i].position).magnitude < 50) //hold but not a swipe
-                        player.ChannelSpecial();
+                    if (!player.freezeAttack)
+                    {
+                        if (touchTimer[i] > 0.2f && (initialTouchPos[i] - Input.touches[i].position).magnitude < 50) //hold but not a swipe
+                            player.ChannelSpecial(touchTimer[i]);
 
-                    if (Input.touches[i].phase == UnityEngine.TouchPhase.Ended)
-                        if (Input.touches[i].position.x > 1500 || Input.touchCount > 1) player.CheckAttack(); //this will only be called if not using the onscreen stick with this finger
+                        if (Input.touches[i].phase == UnityEngine.TouchPhase.Ended)
+                            if (Input.touches[i].position.x > 1500 || Input.touchCount > 1) player.CheckAttack(); //this will only be called if not using the onscreen stick with this finger
+                    }
                 }
-                if (!player.channelingSpecial) //check if special was not used after going through the for loop
-                    player.specialChannel = 0.2f; //specialChannel begins at 0.2 for mobile, due to the 0.2 hold check
             }
-            else if (!usingMobileControls) //keyboard or controller
+            else if (!player.freezeAttack) //keyboard or controller
             {
                 if (Input.GetKey(KeyCode.Space) || Input.GetButton("Attack")) player.ChannelSpecial();
                 if (Input.GetKeyUp(KeyCode.Space) || Input.GetButtonUp("Attack")) player.CheckAttack();
             }
         }
         if (Input.GetKey(KeyCode.Escape) || Input.GetButton("Exit Game")) game.GameOver();
+    }
+
+    int CheckInputMode() // 0 touch screen ; 1 keyboard ; 2 controller
+    {
+        CheckNavigation();
+        if (Input.touchCount > 0) 
+            return 0;
+        else if (Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.W))
+            return 1;
+        else if (Input.GetButton("Attack"))
+            return 2;
+        else return inputMode;
+    }
+
+    void CheckNavigation()
+    {
+        if (inputMode == 2) //enable UI navigation with controller
+            eventSystem.sendNavigationEvents = true;
+        else
+        {
+            invisibleButton.Select();
+            eventSystem.sendNavigationEvents = false;
+        }
     }
 
     void ShowOnscreenControls(bool show, int opacity = 100)

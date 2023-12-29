@@ -15,6 +15,7 @@ public class Entity : MonoBehaviour
     protected bool cantAttack;
     public bool freeze;
     protected bool freezeRotation;
+    public bool freezeAttack;
 
     void Awake()
     {
@@ -52,6 +53,13 @@ public class Entity : MonoBehaviour
         freezeRotation = true;
         yield return new WaitForSeconds(time);
         freezeRotation = false;
+    }
+
+    public IEnumerator FreezeAttack(float time)
+    {
+        freezeAttack = true;
+        yield return new WaitForSeconds(time);
+        freezeAttack = false;
     }
 
     public void sendAnimTrigger(string triggerName)
