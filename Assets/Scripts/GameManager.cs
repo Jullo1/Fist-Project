@@ -96,8 +96,8 @@ public class GameManager : MonoBehaviour
     void SetupNextWaveWithIntensity(float intensity) //algorithm to randomize next spawn group with a given intensity
     {
         AddToNextWave(enemyList[0], (int) (intensity * 5));
-        AddToNextWave(enemyList[1], (int) (intensity * 3));
-        AddToNextWave(enemyList[2], (int) (intensity * 1));
+        AddToNextWave(enemyList[1], (int) (intensity * 1.5f));
+        AddToNextWave(enemyList[2], (int) (intensity * 0.5f));
     }
 
     void Spawn(Entity entity, Vector2 position)

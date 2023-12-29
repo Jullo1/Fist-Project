@@ -43,10 +43,10 @@ public class InputManager : MonoBehaviour
         if (!player.freeze && !game.paused)
         {
             Vector2 mobileInput = mobileControls.actions["Move"].ReadValue<Vector2>(); //movement
-            if ((Input.GetAxis("Horizontal") > 0.1f) || mobileInput.x > 0.45f) inputX = 1; //right
-            else if ((Input.GetAxis("Horizontal") < -0.1f) || mobileInput.x < -0.45f) inputX = -1; //left
-            if ((Input.GetAxis("Vertical") > 0.1f) || mobileInput.y > 0.45f) inputY = 1; //up
-            else if ((Input.GetAxis("Vertical") < -0.1f) || mobileInput.y < -0.45f) inputY = -1; //down
+            if ((Input.GetAxis("Horizontal") > 0.1f) || mobileInput.x > 0.40f) inputX = 1; //right
+            else if ((Input.GetAxis("Horizontal") < -0.1f) || mobileInput.x < -0.50f) inputX = -1; //left
+            if ((Input.GetAxis("Vertical") > 0.1f) || mobileInput.y > 0.40f) inputY = 1; //up
+            else if ((Input.GetAxis("Vertical") < -0.1f) || mobileInput.y < -0.50f) inputY = -1; //down
 
             player.Move(inputX, inputY);
             inputX = 0; inputY = 0;
@@ -66,8 +66,8 @@ public class InputManager : MonoBehaviour
 
                     if (!player.freezeAttack)
                     {
-                        if (touchTimer[i] > 0.2f && (initialTouchPos[i] - Input.touches[i].position).magnitude < 50) //hold but not a swipe
-                            player.ChannelSpecial(touchTimer[i]);
+                        if (touchTimer[i] > 0.2f && (initialTouchPos[i] - Input.touches[i].position).magnitude < 50 && Input.touches[i].position.x > 1500) //hold but not a swipe
+                                player.ChannelSpecial(touchTimer[i]);
 
                         if (Input.touches[i].phase == UnityEngine.TouchPhase.Ended)
                             if (Input.touches[i].position.x > 1500 || Input.touchCount > 1) player.CheckAttack(); //this will only be called if not using the onscreen stick with this finger
