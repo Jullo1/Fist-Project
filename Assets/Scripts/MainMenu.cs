@@ -15,6 +15,9 @@ public class MainMenu : MonoBehaviour
     [SerializeField] AdInitializer ads;
     [SerializeField] InterstitalAds interstitalAd;
 
+    Coroutine loadScene;
+    bool loadSceneSent;
+
     void Awake()
     {
         menuAudio = GetComponent<AudioSource>();
@@ -32,14 +35,20 @@ public class MainMenu : MonoBehaviour
         Time.timeScale = 1;
         if (ScoreKeeper.score > 0)
         {
-            scoreOutput.text = "Score: " + ScoreKeeper.score.ToString();
+            if (ScoreKeeper.score > 1000)
+                scoreOutput.text = ScoreKeeper.score.ToString() + "!";
+            else
+                scoreOutput.text = ScoreKeeper.score.ToString();
+
             startButton.text = "AGAIN";
         }
     }
 
     public void LoadScene(string sceneName)
     {
-        StartCoroutine(DelayBeforeLoad(sceneName));
+        if (loadSceneSent) StopCoroutine(loadScene);
+        loadScene = StartCoroutine(DelayBeforeLoad(sceneName));
+        loadSceneSent = true;
     }
 
     IEnumerator DelayBeforeLoad(string sceneName)

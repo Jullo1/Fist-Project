@@ -279,8 +279,8 @@ MonoBehaviour:
   freezeAttack: 0
   moveSpeed: 3
   attackRange: 2
-  strength: 6
-  pushForce: 220
+  strength: 7
+  pushForce: 200
   attackCD:
   - 1.5
   - 1.5
@@ -346,6 +346,9 @@ MonoBehaviour:
   specialUI: {fileID: 0}
   specialTriggerUI1: {fileID: 0}
   specialTriggerUI2: {fileID: 0}
+  attackCDOutlines:
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!212 &5952566212567687106
 SpriteRenderer:
   m_ObjectHideFlags: 0

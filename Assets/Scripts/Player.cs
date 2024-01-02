@@ -301,8 +301,8 @@ public class Player : Unit
                 switch (activePowerUps[i]) //calculate feedback elements
                 {   
                     case PowerUpType.Frenzy:
-                        ui.attackCDUI[0].color = new Color32((byte)(Mathf.Lerp(255, 0, powerUpDuration[i]/10)), 255, 255, 255);
-                        ui.attackCDUI[1].color = new Color32((byte)(Mathf.Lerp(255, 0, powerUpDuration[i]/10)), 255, 255, 255);
+                        ui.attackCDUI[0].color = new Color32((byte)(Mathf.Lerp(255, 240, powerUpDuration[i]/5)), (byte)(Mathf.Lerp(255, 160, powerUpDuration[i]/5)), (byte)(Mathf.Lerp(255, 0, powerUpDuration[i]/5)), 255);
+                        ui.attackCDUI[1].color = new Color32((byte)(Mathf.Lerp(255, 240, powerUpDuration[i]/5)), (byte)(Mathf.Lerp(255, 160, powerUpDuration[i]/5)), (byte)(Mathf.Lerp(255, 0, powerUpDuration[i]/5)), 255);
                         break;
                 }
                 return;

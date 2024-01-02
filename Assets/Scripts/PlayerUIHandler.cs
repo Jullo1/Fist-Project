@@ -17,6 +17,8 @@ public class PlayerUIHandler : MonoBehaviour
     [SerializeField] Image specialTriggerUI1;
     [SerializeField] Image specialTriggerUI2;
 
+    [SerializeField] List<Outline> attackCDOutlines = new List<Outline>();
+
     void Awake()
     {
         player = GetComponent<Player>();
@@ -42,31 +44,42 @@ public class PlayerUIHandler : MonoBehaviour
 
         if (player.comboAmount > 1)
         {
+
+            comboProgressBar.transform.parent.gameObject.SetActive(true);
             comboProgressBar.fillAmount = player.comboAmount / player.maxComboCDBoost;
             comboUI.text = "x" + player.comboAmount.ToString();
             if (player.comboAmount >= player.maxComboCDBoost) //max combo boost achieved
             {
-                comboUI.color = new Color32(250, 120, 0, 255);
+                comboUI.color = new Color32(250, 100, 0, 255);
                 comboUI.fontSize = 40;
             }
             else if (player.comboAmount >= player.maxComboCDBoost / 2)
             {
-                comboUI.color = new Color32(240, 180, 0, 255);
+                comboUI.color = new Color32(240, 160, 0, 255);
             }
             else if (player.comboAmount >= player.maxComboCDBoost / 4)
             {
-                comboUI.color = new Color32(240, 200, 140, 255);
+                comboUI.color = new Color32(255, 255, 100, 255);
                 comboUI.fontSize = 36;
             }
             else
+            {
+                comboProgressBar.transform.parent.gameObject.SetActive(false);
                 comboUI.color = new Color32(255, 255, 255, 255);
+            }
         }
         else //if it's 0, hide combo count and bar
         {
             comboUI.text = "";
             comboUI.fontSize = 34;
-            comboProgressBar.transform.parent.parent.gameObject.SetActive(false);
+            comboUI.color = new Color32(255, 255, 255, 255);
+            comboProgressBar.transform.parent.gameObject.SetActive(false);
         }
+        comboProgressBar.color = comboUI.color;
+
+        foreach (Outline outline in attackCDOutlines)
+            outline.effectColor = comboUI.color;
+
         UpdateComboStats();
     }
 

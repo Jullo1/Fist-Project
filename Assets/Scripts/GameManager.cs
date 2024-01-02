@@ -34,7 +34,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject levelUpWindow;
     [SerializeField] Text option1Text; int option1Value;
     [SerializeField] Text option2Text; int option2Value;
-    List<string> optionsList = new List<string>() { "Attack Power" , "Attack Speed" , "Move Speed" , "Special Cooldown"};
+    List<string> optionsList = new List<string>() { "Power" , "Speed" , "Movement" , "Special"};
 
     void Awake()
     {
@@ -46,7 +46,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         level = 1;
-        toNextLevel = 25;
+        toNextLevel = 100;
         currentWave = 0;
         waveIntensity = 0.9f;
         if (!pauseWaves) NextWave(); //immediately spawn next wave at start
@@ -54,7 +54,7 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        if (spawnTimer > 8) {
+        if (spawnTimer > 6) {
             NextWave();
             spawnTimer = 0;
         } else if (!pauseWaves) spawnTimer += Time.deltaTime;
@@ -122,7 +122,7 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0;
         level++;
         experience = 0;
-        toNextLevel += toNextLevel;
+        toNextLevel += toNextLevel/2;
         experienceUI.fillAmount = 0;
 
         SetupLevelUpOptions();
@@ -135,7 +135,9 @@ public class GameManager : MonoBehaviour
         option1Value = Random.Range(1, 5);
         do { option2Value = Random.Range(1, 5); } while (option2Value == option1Value); //make sure we get 2 different options
         option1Text.text = optionsList[option1Value-1];
+        option1Text.transform.GetChild(0).GetComponent<Text>().text = optionsList[option1Value - 1];
         option2Text.text = optionsList[option2Value-1];
+        option2Text.transform.GetChild(0).GetComponent<Text>().text = optionsList[option2Value - 1];
     }
 
     public void LevelUpButton(int buttonIndex)
@@ -160,17 +162,17 @@ public class GameManager : MonoBehaviour
         switch (upgradeIndex)
         {
             case 1: //punch harder
-                player.UpgradeStat(playerStats.strength, 2);
-                player.UpgradeStat(playerStats.pushForce, 25);
+                player.UpgradeStat(playerStats.strength, 3);
+                player.UpgradeStat(playerStats.pushForce, 100);
                 break;
             case 2: //punch faster
-                player.UpgradeStat(playerStats.attackSpeed, 1.1f);
+                player.UpgradeStat(playerStats.attackSpeed, 1.2f);
                 break;
             case 3: //move faster
                 player.UpgradeStat(playerStats.moveSpeed, 0.25f);
                 break;
             case 4: //faster special
-                player.UpgradeStat(playerStats.specialCooldown, 1.2f);
+                player.UpgradeStat(playerStats.specialCooldown, 1.3f);
                 break;
         }
         ContinueGame();

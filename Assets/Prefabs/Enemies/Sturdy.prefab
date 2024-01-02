@@ -221,14 +221,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weight: 10
   size: 1
+  freeze: 0
+  freezeAttack: 0
   moveSpeed: 1.25
   attackRange: 1
   strength: 1
   pushForce: 1000
   attackCD:
   - 0.3
-  hitpoints: 14
-  maxHitpoints: 14
+  attackTimer: []
+  hitpoints: 15
+  maxHitpoints: 15
   dead: 0
   experienceDrop: 15
   damageVisual: {fileID: 3263705262906549707}
@@ -238,12 +241,6 @@ MonoBehaviour:
   - {fileID: 6065188817617177452, guid: fc09455010c819344915b8bb928234ef, type: 3}
   - {fileID: 1625176726509343395, guid: b8c991079c615124bb71add0c67194f8, type: 3}
   - {fileID: 4291358898147104052, guid: 8aa5100bf25eb13459438e9de7f6a7b0, type: 3}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
