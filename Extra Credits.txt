@@ -1,2 +1,3 @@
-Player sprite sheet: https://opengameart.org/content/hero-spritesheets-ars-notoria
+Player Sprite: https://opengameart.org/content/hero-spritesheets-ars-notoria
 Music: https://opengameart.org/content/5-chiptunes-action
+Enemy Sprite: https://opengameart.org/content/cat-fighter-sprite-sheet

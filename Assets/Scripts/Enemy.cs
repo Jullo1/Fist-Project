@@ -1,14 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Tilemaps;
 using UnityEngine;
 
 public class Enemy : Unit
 {
     Player player;
     [SerializeField] int experienceDrop;
-    [SerializeField] GameObject damageVisual;
+    //[SerializeField] GameObject damageVisual;
     [SerializeField] GameObject furyIcon;
     [SerializeField] GameObject hitIndicator;
+    [SerializeField] SpriteMask hitIndicatorMask;
 
     public List<Item> dropList = new List<Item>();
     bool spawnCheck = true;
@@ -18,11 +20,12 @@ public class Enemy : Unit
     public override void TakeHit(int damage, GameObject hitter, float pushForce = 0f)
     {
         base.TakeHit(damage, hitter, pushForce);
+        hitIndicator.SetActive(false);
         if (hitpoints <= 0)
         {
             CalculateDrop();
             StartCoroutine(Death());
-            damageVisual.SetActive(false);
+            //damageVisual.SetActive(false);
         }
         KnockBack(hitter, player.pushForce);//knockback
     }
@@ -41,6 +44,7 @@ public class Enemy : Unit
     {
         Move();
         CheckStats();
+        UpdateHitIndicator();
         if (attackTimer[0] <= attackCD[0]) attackTimer[0] += Time.deltaTime;
     }
 
@@ -58,6 +62,13 @@ public class Enemy : Unit
         spawnCheck = false;
     }
 
+    void UpdateHitIndicator()
+    {
+        hitIndicatorMask.sprite = sr.sprite;
+        if (sr.flipX) hitIndicatorMask.gameObject.transform.localScale = new Vector3(-1f, 1f, 1f);
+        else hitIndicatorMask.gameObject.transform.localScale = Vector3.one;
+    }
+
     void Attack()
     {
         if (attackTimer[0] >= attackCD[0])
@@ -69,7 +80,12 @@ public class Enemy : Unit
 
     void Move()
     {
-        if (player && !dead) transform.position = Vector2.MoveTowards(transform.position, player.transform.position, moveSpeed * Time.deltaTime);
+        if (player && !dead)
+        {
+            transform.position = Vector2.MoveTowards(transform.position, player.transform.position, moveSpeed * Time.deltaTime);
+            if (player.transform.position.x < transform.position.x) sr.flipX = true;
+            else sr.flipX = false;
+        }
     }
 
     void CheckStats()
@@ -104,10 +120,10 @@ public class Enemy : Unit
 
     protected void CheckHitpoints()
     {
-        if (hitpoints <= (maxHitpoints / 2)) //feedback for enemies below half hp
+        /*if (hitpoints <= (maxHitpoints / 2)) //feedback for enemies below half hp
             damageVisual.SetActive(true);
         else
-            damageVisual.SetActive(false);
+            damageVisual.SetActive(false);*/
     }
 
     protected override void UpdateHealth(int amount)

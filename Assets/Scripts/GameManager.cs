@@ -34,7 +34,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject levelUpWindow;
     [SerializeField] Text option1Text; int option1Value;
     [SerializeField] Text option2Text; int option2Value;
-    List<string> optionsList = new List<string>() { "Power" , "Speed" , "Movement" , "Special"};
+    List<string> optionsList = new List<string>() { "Power" , "Attack Speed" , "Movement" , "Special"};
 
     void Awake()
     {

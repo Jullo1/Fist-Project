@@ -55,7 +55,7 @@ public class Player : Unit
         {
             ChargeCDs();
             if (hasPowerUp) CheckPowerUp(); //checks for this bool so that it doesnt have to go through the array all the time
-            if (!freeze && !dead) CheckAttackTargets(); //enable hit indicator and face for closest enemy (if within attack range)
+            if (!freeze && !dead && !freezeAttack) CheckAttackTargets(); //enable hit indicator and face for closest enemy (if within attack range)
         }
 
         if (!channelingSpecial) specialChannel = 0;
