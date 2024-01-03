@@ -5,7 +5,7 @@ public class Entity : MonoBehaviour
 {
     protected SpriteRenderer sr;
     protected Rigidbody2D rb;
-    protected CircleCollider2D col;
+    protected BoxCollider2D col;
     protected AudioSource aud;
     protected Animator anim;
     protected GameManager game;
@@ -21,7 +21,7 @@ public class Entity : MonoBehaviour
     {
         sr = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
-        col = GetComponent<CircleCollider2D>();
+        col = GetComponent<BoxCollider2D>();
         aud = GetComponent<AudioSource>();
         anim = GetComponent<Animator>();
         game = FindObjectOfType<GameManager>();

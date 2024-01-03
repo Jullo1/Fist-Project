@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Tilemaps;
 using UnityEngine;
 
 public class Enemy : Unit
@@ -9,8 +8,7 @@ public class Enemy : Unit
     [SerializeField] int experienceDrop;
     //[SerializeField] GameObject damageVisual;
     [SerializeField] GameObject furyIcon;
-    [SerializeField] GameObject hitIndicator;
-    [SerializeField] SpriteMask hitIndicatorMask;
+    [SerializeField] SpriteRenderer hitIndicator;
 
     public List<Item> dropList = new List<Item>();
     bool spawnCheck = true;
@@ -20,7 +18,7 @@ public class Enemy : Unit
     public override void TakeHit(int damage, GameObject hitter, float pushForce = 0f)
     {
         base.TakeHit(damage, hitter, pushForce);
-        hitIndicator.SetActive(false);
+        hitIndicator.gameObject.SetActive(false);
         if (hitpoints <= 0)
         {
             CalculateDrop();
@@ -32,7 +30,7 @@ public class Enemy : Unit
 
     public void HitIndicator(bool isCurrentTarget)
     {
-        hitIndicator.SetActive(isCurrentTarget);
+        hitIndicator.gameObject.SetActive(isCurrentTarget);
     }
 
     void Start()
@@ -44,7 +42,6 @@ public class Enemy : Unit
     {
         Move();
         CheckStats();
-        UpdateHitIndicator();
         if (attackTimer[0] <= attackCD[0]) attackTimer[0] += Time.deltaTime;
     }
 
@@ -62,17 +59,11 @@ public class Enemy : Unit
         spawnCheck = false;
     }
 
-    void UpdateHitIndicator()
-    {
-        hitIndicatorMask.sprite = sr.sprite;
-        if (sr.flipX) hitIndicatorMask.gameObject.transform.localScale = new Vector3(-1f, 1f, 1f);
-        else hitIndicatorMask.gameObject.transform.localScale = Vector3.one;
-    }
-
     void Attack()
     {
         if (attackTimer[0] >= attackCD[0])
         {
+            anim.SetTrigger("attack");
             player.TakeHit(strength, gameObject, pushForce);
             attackTimer[0] = 0;
         }
@@ -83,8 +74,8 @@ public class Enemy : Unit
         if (player && !dead)
         {
             transform.position = Vector2.MoveTowards(transform.position, player.transform.position, moveSpeed * Time.deltaTime);
-            if (player.transform.position.x < transform.position.x) sr.flipX = true;
-            else sr.flipX = false;
+            if (player.transform.position.x < transform.position.x) { sr.flipX = true; hitIndicator.flipX = true; }
+            else { sr.flipX = false; hitIndicator.flipX = false; }
         }
     }
 

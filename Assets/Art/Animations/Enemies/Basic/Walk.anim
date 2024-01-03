@@ -41,6 +41,29 @@ AnimationClip:
     classID: 212
     script: {fileID: 0}
     flags: 2
+  - serializedVersion: 2
+    curve:
+    - time: 0
+      value: {fileID: 1636609919, guid: eea17c9a8f5665645badaeb35e6b0fe8, type: 3}
+    - time: 0.18333334
+      value: {fileID: -1439219088, guid: eea17c9a8f5665645badaeb35e6b0fe8, type: 3}
+    - time: 0.25
+      value: {fileID: 1230313054, guid: eea17c9a8f5665645badaeb35e6b0fe8, type: 3}
+    - time: 0.43333334
+      value: {fileID: 1358557366, guid: eea17c9a8f5665645badaeb35e6b0fe8, type: 3}
+    - time: 0.55
+      value: {fileID: -414961742, guid: eea17c9a8f5665645badaeb35e6b0fe8, type: 3}
+    - time: 0.73333335
+      value: {fileID: 1813321365, guid: eea17c9a8f5665645badaeb35e6b0fe8, type: 3}
+    - time: 0.8
+      value: {fileID: 1933070959, guid: eea17c9a8f5665645badaeb35e6b0fe8, type: 3}
+    - time: 0.98333335
+      value: {fileID: -266232904, guid: eea17c9a8f5665645badaeb35e6b0fe8, type: 3}
+    attribute: m_Sprite
+    path: Hit Indicator
+    classID: 212
+    script: {fileID: 0}
+    flags: 2
   m_SampleRate: 60
   m_WrapMode: 0
   m_Bounds:
@@ -57,7 +80,24 @@ AnimationClip:
       isPPtrCurve: 1
       isIntCurve: 0
       isSerializeReferenceCurve: 0
+    - serializedVersion: 2
+      path: 3916135362
+      attribute: 0
+      script: {fileID: 0}
+      typeID: 212
+      customType: 23
+      isPPtrCurve: 1
+      isIntCurve: 0
+      isSerializeReferenceCurve: 0
     pptrCurveMapping:
+    - {fileID: 1636609919, guid: eea17c9a8f5665645badaeb35e6b0fe8, type: 3}
+    - {fileID: -1439219088, guid: eea17c9a8f5665645badaeb35e6b0fe8, type: 3}
+    - {fileID: 1230313054, guid: eea17c9a8f5665645badaeb35e6b0fe8, type: 3}
+    - {fileID: 1358557366, guid: eea17c9a8f5665645badaeb35e6b0fe8, type: 3}
+    - {fileID: -414961742, guid: eea17c9a8f5665645badaeb35e6b0fe8, type: 3}
+    - {fileID: 1813321365, guid: eea17c9a8f5665645badaeb35e6b0fe8, type: 3}
+    - {fileID: 1933070959, guid: eea17c9a8f5665645badaeb35e6b0fe8, type: 3}
+    - {fileID: -266232904, guid: eea17c9a8f5665645badaeb35e6b0fe8, type: 3}
     - {fileID: 1636609919, guid: eea17c9a8f5665645badaeb35e6b0fe8, type: 3}
     - {fileID: -1439219088, guid: eea17c9a8f5665645badaeb35e6b0fe8, type: 3}
     - {fileID: 1230313054, guid: eea17c9a8f5665645badaeb35e6b0fe8, type: 3}

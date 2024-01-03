@@ -1108,7 +1108,7 @@ TextureImporter:
         x: 21
         y: 586
         width: 18
-        height: 29
+        height: 30
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1123,13 +1123,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cat Fighter_163
+      name: attack 1
       rect:
         serializedVersion: 2
         x: 85
         y: 586
         width: 15
-        height: 29
+        height: 30
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1144,13 +1144,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cat Fighter_164
+      name: attack 2
       rect:
         serializedVersion: 2
         x: 149
         y: 586
         width: 15
-        height: 29
+        height: 30
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1165,13 +1165,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cat Fighter_165
+      name: attack 3
       rect:
         serializedVersion: 2
         x: 213
         y: 586
         width: 15
-        height: 29
+        height: 30
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1186,15 +1186,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cat Fighter_166
+      name: attack 4
       rect:
         serializedVersion: 2
         x: 275
         y: 586
         width: 25
-        height: 28
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        height: 30
+      alignment: 9
+      pivot: {x: 0.45, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1207,15 +1207,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cat Fighter_167
+      name: attack 5
       rect:
         serializedVersion: 2
         x: 340
         y: 586
         width: 24
-        height: 28
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        height: 30
+      alignment: 9
+      pivot: {x: 0.4, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -2955,11 +2955,6 @@ TextureImporter:
       Cat Fighter_160: -829958223
       Cat Fighter_161: -1970296323
       Cat Fighter_162: 1197179596
-      Cat Fighter_163: 277749125
-      Cat Fighter_164: 485780049
-      Cat Fighter_165: -1875365611
-      Cat Fighter_166: 2122855138
-      Cat Fighter_167: -1770280007
       Cat Fighter_168: 2135249644
       Cat Fighter_169: -1173986267
       Cat Fighter_170: 1489999746
@@ -3261,6 +3256,11 @@ TextureImporter:
       Cat Fighter_93: -1464067143
       Cat Fighter_94: 763925868
       Cat Fighter_95: 1206574658
+      attack 1: 277749125
+      attack 2: 485780049
+      attack 3: -1875365611
+      attack 4: 2122855138
+      attack 5: -1770280007
       dead 1: -1994154824
       dead 2: 714210701
       dead 3: 760597451
