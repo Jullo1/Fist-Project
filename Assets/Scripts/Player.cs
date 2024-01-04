@@ -7,6 +7,7 @@ public class Player : Unit
 {
     InputManager playerInput;
     PlayerUIHandler ui;
+    [SerializeField] Tutorial tutorial;
 
     //audio
     [SerializeField] protected AudioClip punchSFX;
@@ -55,7 +56,7 @@ public class Player : Unit
         {
             ChargeCDs();
             if (hasPowerUp) CheckPowerUp(); //checks for this bool so that it doesnt have to go through the array all the time
-            if (!freeze && !dead && !freezeAttack) CheckAttackTargets(); //enable hit indicator and face for closest enemy (if within attack range)
+            if (!freeze && !dead) CheckAttackTargets(); //enable hit indicator and face for closest enemy (if within attack range)
         }
 
         if (!channelingSpecial) specialChannel = 0;
@@ -79,6 +80,11 @@ public class Player : Unit
     {
         if (specialTimer <= specialCD)
             specialTimer += Time.deltaTime;
+        else if (ScoreKeeper.currentTutorialNumber == 1)
+        {
+            tutorial.gameObject.SetActive(true);
+            tutorial.SendTutorial();
+        }
 
         for (int i = 0; i < attackTimer.Count; i++)
             attackTimer[i] += Time.deltaTime * comboCDBoost;

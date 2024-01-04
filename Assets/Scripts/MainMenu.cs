@@ -21,14 +21,12 @@ public class MainMenu : MonoBehaviour
     void Awake()
     {
         menuAudio = GetComponent<AudioSource>();
+        interstitalAd.LoadAd();
 
         if (!FindObjectOfType<ScoreKeeper>()) //instantiate scoreKeeper if there isn't one yet
             Instantiate(scoreKeeper);
         else
-        {
-            interstitalAd.LoadAd();
             interstitalAd.ShowAd();
-        }
     }
     void Start()
     {

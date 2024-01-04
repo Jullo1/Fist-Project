@@ -18,7 +18,6 @@ public class Enemy : Unit
     public override void TakeHit(int damage, GameObject hitter, float pushForce = 0f)
     {
         base.TakeHit(damage, hitter, pushForce);
-        hitIndicator.gameObject.SetActive(false);
         if (hitpoints <= 0)
         {
             CalculateDrop();

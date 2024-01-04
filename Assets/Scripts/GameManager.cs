@@ -36,15 +36,21 @@ public class GameManager : MonoBehaviour
     [SerializeField] Text option2Text; int option2Value;
     List<string> optionsList = new List<string>() { "Power" , "Attack Speed" , "Movement" , "Special"};
 
+    [SerializeField] Tutorial tutorial;
+
     void Awake()
     {
         player = FindAnyObjectByType<Player>();
         scoreKeeper = FindObjectOfType<ScoreKeeper>();
         menuAudio = GetComponent<AudioSource>();
+        tutorial = FindAnyObjectByType<Tutorial>();
     }
 
     void Start()
     {
+        if (ScoreKeeper.currentTutorialNumber == 0) tutorial.SendTutorial();
+        else tutorial.gameObject.SetActive(false);
+
         level = 1;
         toNextLevel = 100;
         currentWave = 0;
