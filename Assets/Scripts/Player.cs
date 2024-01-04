@@ -273,6 +273,8 @@ public class Player : Unit
 
     public override void ActivatePowerUp(PowerUp powerUp)
     {
+        if (dead) return; //in case player grabs a power up after dying
+
         if (powerUp.powerUpType == PowerUpType.FullRecovery)
         {
             UpdateHealth(maxHitpoints);

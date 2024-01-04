@@ -8,6 +8,7 @@ public class InputManager : MonoBehaviour
 {
     Player player;
     GameManager game;
+    Tutorial tutorial;
     EventSystem eventSystem;
     int inputMode;
 
@@ -29,6 +30,7 @@ public class InputManager : MonoBehaviour
         player = GetComponent<Player>();
         game = FindObjectOfType<GameManager>();
         eventSystem = FindObjectOfType<EventSystem>();
+        tutorial = FindObjectOfType<Tutorial>();
     }
     void Start()
     {
@@ -39,8 +41,11 @@ public class InputManager : MonoBehaviour
     void Update()
     {
         inputMode = CheckInputMode();
-
-        if (!player.freeze && !game.paused)
+        if (tutorial.tutorialActive)
+        {
+            if (Input.GetKeyDown(KeyCode.Space) || Input.GetButtonDown("Fire2")) tutorial.NextStep();
+        }
+        else if (!player.freeze && !game.paused)
         {
             Vector2 mobileInput = mobileControls.actions["Move"].ReadValue<Vector2>(); //movement
             if ((Input.GetAxis("Horizontal") > 0.1f) || mobileInput.x > 0.40f) inputX = 1; //right

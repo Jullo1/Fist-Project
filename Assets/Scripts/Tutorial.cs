@@ -1,27 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Tutorial : MonoBehaviour
 {
+    Player player;
+    public bool tutorialActive;
     [SerializeField] Text header;
-    [SerializeField] Text footer;
     List<string> headerMessages = new List<string>();
     int currentStep;
+    Coroutine exitTutorial;
 
-    void Start()
+    void Awake()
     {
-        if (Application.isMobilePlatform)
-            footer.text = "Tap to continue";
-        else if (Application.isConsolePlatform)
-            footer.text = "Press any button";
-        else
-            footer.text = "Press any key";
+        player = FindObjectOfType<Player>();
     }
 
     public void SendTutorial(int tutorialNumber = 0)
     {
+        if (player.dead) return;
+        tutorialActive = true;
+
         int num;
         if (tutorialNumber == 0)
         {
@@ -33,7 +34,11 @@ public class Tutorial : MonoBehaviour
         switch (num)
         {
             default:
-                ExitTutorial();
+                tutorialActive = false;
+                Time.timeScale = 1;
+                headerMessages.Clear();
+                currentStep = 0;
+                gameObject.SetActive(false);
                 break;
             case 1: //attack
                 headerMessages.Add("Welcome to Fist Project");
@@ -42,8 +47,7 @@ public class Tutorial : MonoBehaviour
                 break;
             case 2: //combo
                 headerMessages.Add("Your special attack is ready!");
-                if (Application.isMobilePlatform) headerMessages.Add("Hold tap for special");
-                else headerMessages.Add("Hold space for special");
+                headerMessages.Add("Hold attack to send enemies flying");
                 break;
         }
         header.text = headerMessages[0];
@@ -53,11 +57,13 @@ public class Tutorial : MonoBehaviour
     {
         currentStep++;
         if (currentStep < headerMessages.Count) header.text = headerMessages[currentStep];
-        else ExitTutorial();
+        else { if (exitTutorial != null) StopCoroutine(exitTutorial); exitTutorial = StartCoroutine(ExitTutorial()); }
     }
 
-    void ExitTutorial()
+    IEnumerator ExitTutorial()
     {
+        yield return new WaitForSecondsRealtime(0.2f);
+        tutorialActive = false;
         Time.timeScale = 1;
         headerMessages.Clear();
         currentStep = 0;
