@@ -75,7 +75,7 @@ public class InputManager : MonoBehaviour
                                 player.ChannelSpecial(touchTimer[i]);
 
                         if (Input.touches[i].phase == UnityEngine.TouchPhase.Ended)
-                            if (Input.touches[i].position.x > 1500 || Input.touchCount > 1) player.CheckAttack(); //this will only be called if not using the onscreen stick with this finger
+                            if (Input.touches[i].position.x > 1500) player.CheckAttack(); //this will only be called if not using the onscreen stick with this finger
                     }
                 }
             }

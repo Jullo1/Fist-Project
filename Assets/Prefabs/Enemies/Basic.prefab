@@ -253,7 +253,7 @@ MonoBehaviour:
   size: 1
   freeze: 0
   freezeAttack: 0
-  moveSpeed: 1.5
+  moveSpeed: 1.25
   attackRange: 1
   strength: 1
   pushForce: 700
@@ -266,31 +266,10 @@ MonoBehaviour:
   experienceDrop: 10
   furyIcon: {fileID: 2324673451195581003}
   hitIndicator: {fileID: 5539904913919036692}
-  dropList:
-  - {fileID: 1625176726509343395, guid: b8c991079c615124bb71add0c67194f8, type: 3}
-  - {fileID: 1625176726509343395, guid: b8c991079c615124bb71add0c67194f8, type: 3}
-  - {fileID: 4291358898147104052, guid: 8aa5100bf25eb13459438e9de7f6a7b0, type: 3}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  healthDrop: {fileID: 8693265718791990718, guid: b8c991079c615124bb71add0c67194f8, type: 3}
+  fullRecoveryDrop: {fileID: 3340932629335109683, guid: fc09455010c819344915b8bb928234ef, type: 3}
+  frenzyDrop: {fileID: 3110370413052923250, guid: 8aa5100bf25eb13459438e9de7f6a7b0, type: 3}
+  dropList: 010000000100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
 --- !u!61 &8107155182417811445
 BoxCollider2D:
   m_ObjectHideFlags: 0

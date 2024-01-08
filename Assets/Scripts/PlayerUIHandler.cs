@@ -59,7 +59,7 @@ public class PlayerUIHandler : MonoBehaviour
             }
             else if (player.comboAmount >= player.maxComboCDBoost / 4)
             {
-                comboUI.color = new Color32(255, 255, 100, 255);
+                comboUI.color = new Color32(255, 255, 50, 255);
                 comboUI.fontSize = 36;
             }
             else

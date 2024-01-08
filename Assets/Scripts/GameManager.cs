@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem.OnScreen;
@@ -24,6 +25,7 @@ public class GameManager : MonoBehaviour
     ScoreKeeper scoreKeeper;
     [SerializeField] Text scoreOutput;
     int currentScore;
+    bool freezeUI;
 
     int level;
     float experience;
@@ -122,8 +124,8 @@ public class GameManager : MonoBehaviour
 
     void LevelUp()
     {
+        StartCoroutine(FreezeUI());
         paused = true;
-        leftStick.enabled = false;
 
         Time.timeScale = 0;
         level++;
@@ -134,6 +136,13 @@ public class GameManager : MonoBehaviour
         SetupLevelUpOptions();
         levelUpWindow.SetActive(true);
         invisibleButton.Select();
+    }
+
+    IEnumerator FreezeUI()
+    {
+        freezeUI = true;
+        yield return new WaitForSecondsRealtime(0.5f);
+        freezeUI = false;
     }
 
     void SetupLevelUpOptions()
@@ -148,19 +157,22 @@ public class GameManager : MonoBehaviour
 
     public void LevelUpButton(int buttonIndex)
     {
-        switch (buttonIndex)
+        if (!freezeUI)
         {
-            case 1:
-                SelectUpgrade(option1Value);
-                break;
-            case 2:
-                SelectUpgrade(option2Value);
-                break;
+            switch (buttonIndex)
+            {
+                case 1:
+                    SelectUpgrade(option1Value);
+                    break;
+                case 2:
+                    SelectUpgrade(option2Value);
+                    break;
+            }
+            menuAudio.clip = selectSFX;
+            menuAudio.Play();
+            player.sendAnimTrigger("cancel");
+            StartCoroutine(player.FreezeAttack(0.05f)); //freeze attack so that the game doesnt send an input when you release the key for selecting an option
         }
-        menuAudio.clip = selectSFX;
-        menuAudio.Play();
-        player.sendAnimTrigger("cancel");
-        StartCoroutine(player.FreezeAttack(0.05f));
     }
 
     void SelectUpgrade(int upgradeIndex)
@@ -188,7 +200,6 @@ public class GameManager : MonoBehaviour
     {
         paused = false;
         levelUpWindow.SetActive(false);
-        leftStick.enabled = true;
         Time.timeScale = 1;
     }
 

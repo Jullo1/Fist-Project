@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem.OnScreen;
 using UnityEngine.UI;
 
 public class Tutorial : MonoBehaviour
@@ -9,9 +9,12 @@ public class Tutorial : MonoBehaviour
     Player player;
     public bool tutorialActive;
     [SerializeField] Text header;
+    [SerializeField] OnScreenStick leftStick;
     List<string> headerMessages = new List<string>();
     int currentStep;
     Coroutine exitTutorial;
+
+    bool freeze;
 
     void Awake()
     {
@@ -21,7 +24,10 @@ public class Tutorial : MonoBehaviour
     public void SendTutorial(int tutorialNumber = 0)
     {
         if (player.dead) return;
+
+        leftStick.enabled = false;
         tutorialActive = true;
+        StartCoroutine(Freeze(0.5f));
 
         int num;
         if (tutorialNumber == 0)
@@ -55,9 +61,13 @@ public class Tutorial : MonoBehaviour
 
     public void NextStep()
     {
-        currentStep++;
-        if (currentStep < headerMessages.Count) header.text = headerMessages[currentStep];
-        else { if (exitTutorial != null) StopCoroutine(exitTutorial); exitTutorial = StartCoroutine(ExitTutorial()); }
+        if (!freeze)
+        {
+            currentStep++;
+            if (currentStep < headerMessages.Count) header.text = headerMessages[currentStep];
+            else { if (exitTutorial != null) StopCoroutine(exitTutorial); exitTutorial = StartCoroutine(ExitTutorial()); }
+        }
+        StartCoroutine(Freeze(0.2f));
     }
 
     IEnumerator ExitTutorial()
@@ -67,6 +77,14 @@ public class Tutorial : MonoBehaviour
         Time.timeScale = 1;
         headerMessages.Clear();
         currentStep = 0;
+        leftStick.enabled = true;
         gameObject.SetActive(false);
+    }
+
+    IEnumerator Freeze(float time)
+    {
+        freeze = true;
+        yield return new WaitForSecondsRealtime(time);
+        freeze = false;
     }
 }

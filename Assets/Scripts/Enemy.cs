@@ -10,7 +10,11 @@ public class Enemy : Unit
     [SerializeField] GameObject furyIcon;
     [SerializeField] SpriteRenderer hitIndicator;
 
-    public List<Item> dropList = new List<Item>();
+    [SerializeField] GameObject healthDrop;
+    [SerializeField] GameObject fullRecoveryDrop;
+    [SerializeField] GameObject frenzyDrop;
+
+    public List<PowerUpType> dropList = new List<PowerUpType>();
     bool spawnCheck = true;
     float aliveTime;
     bool fury;
@@ -80,7 +84,7 @@ public class Enemy : Unit
 
     void CheckStats()
     {
-        if (aliveTime > 12) {
+        if (aliveTime > 15) {
             if (!fury) Fury();
         } else aliveTime += Time.deltaTime;
 
@@ -99,12 +103,24 @@ public class Enemy : Unit
     void CalculateDrop()
     {
         int num = Random.Range(0, dropList.Count);
-        if (dropList[num]) Drop(dropList[num]);
+        if (dropList[num] != PowerUpType.None) Drop(dropList[num]);
     }
 
-    void Drop(Item drop)
+    void Drop(PowerUpType drop)
     {
-        GameObject newDrop = Instantiate(drop.gameObject);
+        GameObject newDrop = new GameObject();
+        switch (drop)
+        {
+            case PowerUpType.Health:
+                newDrop = Instantiate(healthDrop);
+                break;
+            case PowerUpType.FullRecovery:
+                newDrop = Instantiate(fullRecoveryDrop);
+                break;
+            case PowerUpType.Frenzy:
+                newDrop = Instantiate(frenzyDrop);
+                break;
+        }
         newDrop.transform.position = transform.position;
     }
 
