@@ -105,7 +105,7 @@ MonoBehaviour:
   freeze: 0
   freezeAttack: 0
   audioClip: {fileID: 8300000, guid: fafed3679c0aa07439fe71756fd702b8, type: 3}
-  powerUpType: 3
+  powerUpType: 4
   duration: 5
   value: 0
 --- !u!58 &7221206816741651877
@@ -140,9 +140,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.01, y: -0.07}
   serializedVersion: 2
-  m_Radius: 0.08
+  m_Radius: 0.09
 --- !u!50 &5592118556980994561
 Rigidbody2D:
   serializedVersion: 4

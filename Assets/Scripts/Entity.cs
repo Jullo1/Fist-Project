@@ -34,6 +34,12 @@ public class Entity : MonoBehaviour
         rb.AddForce((direction * pushForce)/weight, ForceMode2D.Impulse);
     }
 
+    protected IEnumerator DelayedKnockBack(float  time, GameObject pusher, float pushForce = 0f)
+    {
+        yield return new WaitForSeconds(time);
+        KnockBack(pusher, pushForce);
+    }
+
     protected IEnumerator CantAttack(float seconds)
     {
         cantAttack = true;

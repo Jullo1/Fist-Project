@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,6 +14,7 @@ public class Unit : Entity
     public int hitpoints;
     public int maxHitpoints;
     public bool dead;
+    protected float frozenTime;
 
     public virtual void TakeHit(int damage, GameObject hitter, float pushForce = 0f)
     {
@@ -39,5 +41,11 @@ public class Unit : Entity
         {
             UpdateHealth(maxHitpoints);
         }
+    }
+
+    public void FreezeUnit(float time)
+    {
+        frozenTime = time;
+        anim.speed = 0f;
     }
 }

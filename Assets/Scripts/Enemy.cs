@@ -13,6 +13,8 @@ public class Enemy : Unit
     [SerializeField] GameObject healthDrop;
     [SerializeField] GameObject fullRecoveryDrop;
     [SerializeField] GameObject frenzyDrop;
+    [SerializeField] GameObject experiencePotionDrop;
+    [SerializeField] GameObject timeStopDrop;
 
     public List<PowerUpType> dropList = new List<PowerUpType>();
     bool spawnCheck = true;
@@ -22,13 +24,9 @@ public class Enemy : Unit
     public override void TakeHit(int damage, GameObject hitter, float pushForce = 0f)
     {
         base.TakeHit(damage, hitter, pushForce);
-        if (hitpoints <= 0)
-        {
-            CalculateDrop();
-            StartCoroutine(Death());
-            //damageVisual.SetActive(false);
-        }
-        KnockBack(hitter, player.pushForce);//knockback
+        if (frozenTime <= 0)
+            KnockBack(hitter, player.pushForce);//knockback
+        else StartCoroutine(DelayedKnockBack(frozenTime, hitter, player.pushForce));
     }
 
     public void HitIndicator(bool isCurrentTarget)
@@ -46,6 +44,9 @@ public class Enemy : Unit
         Move();
         CheckStats();
         if (attackTimer[0] <= attackCD[0]) attackTimer[0] += Time.deltaTime;
+
+        if (hitpoints <= 0 && frozenTime <= 0 && !dead)
+            StartCoroutine(Death());
     }
 
     void OnCollisionStay2D(Collision2D collision)
@@ -64,6 +65,8 @@ public class Enemy : Unit
 
     void Attack()
     {
+        if (frozenTime > 0) return;
+
         if (attackTimer[0] >= attackCD[0])
         {
             anim.SetTrigger("attack");
@@ -74,7 +77,7 @@ public class Enemy : Unit
 
     void Move()
     {
-        if (player && !dead)
+        if (player && !dead && frozenTime <= 0)
         {
             transform.position = Vector2.MoveTowards(transform.position, player.transform.position, moveSpeed * Time.deltaTime);
             if (player.transform.position.x < transform.position.x) { sr.flipX = true; hitIndicator.flipX = true; }
@@ -86,11 +89,12 @@ public class Enemy : Unit
     {
         if (aliveTime > 15) {
             if (!fury) Fury();
-        } else aliveTime += Time.deltaTime;
-
-
+        } else if (frozenTime <= 0) aliveTime += Time.deltaTime;
         if (aliveTime > 0.1f)
             spawnCheck = false;
+
+        if (frozenTime <= 0) anim.speed = 1;
+        else frozenTime -= Time.deltaTime;
     }
 
     void Fury()
@@ -120,6 +124,12 @@ public class Enemy : Unit
             case PowerUpType.Frenzy:
                 newDrop = Instantiate(frenzyDrop);
                 break;
+            case PowerUpType.Experience:
+                newDrop = Instantiate(experiencePotionDrop);
+                break;
+            case PowerUpType.TimeStop:
+                newDrop = Instantiate(timeStopDrop);
+                break;
         }
         newDrop.transform.position = transform.position;
     }
@@ -141,6 +151,8 @@ public class Enemy : Unit
     IEnumerator Death()
     {
         dead = true;
+        //damageVisual.SetActive(false);
+        CalculateDrop();
         col.isTrigger = true;
         anim.SetBool("dead", true);
         yield return new WaitForSeconds(0.35f);

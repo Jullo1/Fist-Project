@@ -1,7 +1,7 @@
 using UnityEngine;
 
-public enum PowerUpType { None, Health, FullRecovery, Frenzy, OneHitKO, TimeStop, Perfection, Infinity, Phoenix };
-public class PowerUp : Item
+public enum PowerUpType { None, Health, FullRecovery, Experience, Frenzy, OneHitKO, TimeStop, Perfection, Infinity, Phoenix };
+public class PowerUp : Entity
 {
     Player player;
     AudioSource audioSource;
@@ -40,9 +40,9 @@ public class PowerUp : Item
 
         else if (collider.tag == "Enemy")
         {
-            if (enemyCanGrab)
+            /*if (enemyCanGrab)
                 collider.GetComponent<Enemy>().ActivatePowerUp(GetComponent<PowerUp>());
-            else return;
+            else */return;
         }
 
         Destroy(gameObject);

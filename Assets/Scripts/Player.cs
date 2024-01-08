@@ -275,17 +275,23 @@ public class Player : Unit
     {
         if (dead) return; //in case player grabs a power up after dying
 
-        if (powerUp.powerUpType == PowerUpType.FullRecovery)
+        //consumable power ups here, check UpdatePowerUpEffect() for temporary boost power ups
+        switch (powerUp.powerUpType)
         {
-            UpdateHealth(maxHitpoints);
-            specialTimer += specialCD;
-            return;
-        }
-        else if (powerUp.powerUpType == PowerUpType.Health)
-        {
-            UpdateHealth(1);
-            specialTimer += specialCD / 4;
-            return;
+            case PowerUpType.Health:
+                UpdateHealth(1);
+                specialTimer += specialCD / 4;
+                return;
+            case PowerUpType.FullRecovery:
+                UpdateHealth(maxHitpoints);
+                specialTimer += specialCD;
+                return;
+            case PowerUpType.Experience:
+                game.GainExperience(50);
+                return;
+            case PowerUpType.TimeStop:
+                StartCoroutine(game.StopTime(powerUp.duration));
+                return;
         }
 
         hasPowerUp = true;
@@ -338,7 +344,7 @@ public class Player : Unit
     void UpdatePowerUpEffect(PowerUpType powerUpType, bool status) //adds powerUp effect when status = true, removes when false
     {
         switch (powerUpType)
-        {
+        { //temporary power ups here
             case PowerUpType.Frenzy:
                 for (int i = 0; i < attackCD.Count; i++)
                 {

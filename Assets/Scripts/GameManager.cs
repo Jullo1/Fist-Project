@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     Player player;
     [SerializeField] OnScreenStick leftStick;
     AudioSource menuAudio;
+    [SerializeField] AudioSource backgroundMusic;
     [SerializeField] AudioClip selectSFX;
 
     [SerializeField] List<Enemy> enemyList = new List<Enemy>();
@@ -66,6 +67,19 @@ public class GameManager : MonoBehaviour
             NextWave();
             spawnTimer = 0;
         } else if (!pauseWaves) spawnTimer += Time.deltaTime;
+    }
+
+    public IEnumerator StopTime(float seconds)
+    {
+        pauseWaves = true;
+        backgroundMusic.pitch = 0.8f;
+        foreach (Enemy enemy in FindObjectsOfType<Enemy>())
+            enemy.FreezeUnit(seconds);
+
+        yield return new WaitForSeconds(seconds);
+        pauseWaves = false;
+        backgroundMusic.pitch = 1f;
+        menuAudio.Stop();
     }
 
     public void UpdateScore(int score)

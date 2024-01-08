@@ -72,7 +72,6 @@
     <Compile Include="Assets\Scripts\BannerAds.cs" />
     <Compile Include="Assets\Scripts\InterstitalAds.cs" />
     <Compile Include="Assets\Scripts\PlayerUIHandler.cs" />
-    <Compile Include="Assets\Scripts\Item.cs" />
     <Compile Include="Assets\Scripts\ScoreKeeper.cs" />
   </ItemGroup>
   <ItemGroup>
