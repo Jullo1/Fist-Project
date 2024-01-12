@@ -236,7 +236,7 @@ public class Player : Unit
         if (game.paused || invincible > 0) return;
 
         if (previousFreeze != null) StopCoroutine(previousFreeze); //check for multiple freeze rotation instances and end the previous one
-        previousFreeze = StartCoroutine(Freeze(0.1f));
+        previousFreeze = StartCoroutine(Freeze(0.2f));
 
         specialChannel = 0; //reset special channeling if hit
         comboAmount = 0;
@@ -244,16 +244,17 @@ public class Player : Unit
         KnockBack(hitter, pushForce);
         if (invincible <= 0.5) invincible = 0.5f; //only update if not already under this buff in case the player had more than 0.5sec of invincible left
 
-        anim.SetTrigger("takeHit");
+        if (damage > 1) anim.SetTrigger("glowHit");
+        else anim.SetTrigger("takeHit");
 
-        if (hitpoints <= 0) PlayAudio(deathSFX);
+        if (hitpoints <= 0) { hitpoints = 0; PlayAudio(deathSFX); }
         else PlayAudio(punchSFX);
     }
 
     protected override void UpdateHealth(int amount)
     {
         base.UpdateHealth(amount);
-        if (hitpoints <= 0) StartCoroutine(PlayerDeath());
+        if (hitpoints <= 0) { hitpoints = 0; StartCoroutine(PlayerDeath()); }
         ui.CheckHitpoints();
     }
 
@@ -363,7 +364,7 @@ public class Player : Unit
             case playerStats.attackSpeed:
                 for (int i = 0; i < baseAttackCD.Count; i++)
                 {
-                    baseAttackCD[i] /= value;
+                    baseAttackCD[i] -= value;
                     if (!HasPowerUp(PowerUpType.Frenzy)) //if frenzy is active, attackCD will become baseAttackCD when frenzy expires with CheckPowerUp()
                         attackCD[i] = baseAttackCD[i];
                 }
@@ -378,7 +379,7 @@ public class Player : Unit
                 moveSpeed += value;
                 break;
             case playerStats.specialCooldown:
-                specialCD /= value;
+                specialCD -= value;
                 break;
         }
     }

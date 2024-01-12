@@ -68,10 +68,12 @@
     <Compile Include="Assets\Scripts\Player.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\PowerUp.cs" />
+    <Compile Include="Assets\Scripts\SkinSelector.cs" />
     <Compile Include="Assets\Scripts\Unit.cs" />
     <Compile Include="Assets\Scripts\BannerAds.cs" />
     <Compile Include="Assets\Scripts\InterstitalAds.cs" />
     <Compile Include="Assets\Scripts\PlayerUIHandler.cs" />
+    <Compile Include="Assets\Scripts\SpriteChanger.cs" />
     <Compile Include="Assets\Scripts\ScoreKeeper.cs" />
   </ItemGroup>
   <ItemGroup>

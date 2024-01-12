@@ -53,6 +53,9 @@ public class InputManager : MonoBehaviour
             if ((Input.GetAxis("Vertical") > 0.1f) || mobileInput.y > 0.40f) inputY = 1; //up
             else if ((Input.GetAxis("Vertical") < -0.1f) || mobileInput.y < -0.50f) inputY = -1; //down
 
+            if ((Input.GetAxis("Horizontal") > 0.1f || Input.GetAxis("Horizontal") < -0.1f) && (Input.GetAxis("Vertical") > 0.1f || Input.GetAxis("Vertical") < -0.1f))
+            { inputX /= 1.33f; inputY /= 1.33f; } //speed reduced when moving both vertical and horizontal at the same time
+
             player.Move(inputX, inputY);
             inputX = 0; inputY = 0;
 

@@ -91,8 +91,8 @@ public class PlayerUIHandler : MonoBehaviour
             player.comboCDBoost = 1f;
             return;
         }
-        if (player.comboAmount < player.maxComboCDBoost) player.comboCDBoost = 1 + (player.comboAmount / player.maxComboCDBoost);
-        else player.comboCDBoost = 2;
+        if (player.comboAmount < player.maxComboCDBoost) player.comboCDBoost = 1 + ((float)player.comboAmount / 100); //every x1 makes attack charge 1% faster, up to maxComboCDBoost (starts at 20 on new game)
+        else player.comboCDBoost = 1 + ((float)player.maxComboCDBoost / 100);
     }
 
     public void CheckHitpoints()

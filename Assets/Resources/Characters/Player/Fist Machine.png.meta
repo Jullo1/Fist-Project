@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: fcabaccdc69efbc4095cf9ffe2705a28
+guid: 5bbf7a53603c2034ca30b9d45d167e83
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -136,15 +136,15 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Player_0
+      name: idle
       rect:
         serializedVersion: 2
-        x: 12
+        x: 9
         y: 151
-        width: 22
+        width: 27
         height: 49
-      alignment: 9
-      pivot: {x: 0.49205607, y: 0.48930016}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -157,15 +157,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_1
+      name: death4
       rect:
         serializedVersion: 2
-        x: 52
+        x: 51
         y: 151
-        width: 28
+        width: 31
         height: 49
       alignment: 9
-      pivot: {x: 0.5954685, y: 0.5266967}
+      pivot: {x: 0.6774693, y: 0.5506405}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -178,15 +178,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_2
+      name: attack1
       rect:
         serializedVersion: 2
-        x: 100
+        x: 99
         y: 151
-        width: 29
+        width: 31
         height: 49
       alignment: 9
-      pivot: {x: 0.5243154, y: 0.46461642}
+      pivot: {x: 0.46981564, y: 0.4999997}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -199,15 +199,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_3
+      name: attack2
       rect:
         serializedVersion: 2
-        x: 146
+        x: 145
         y: 151
-        width: 33
+        width: 35
         height: 49
       alignment: 9
-      pivot: {x: 0.45455053, y: 0.46541828}
+      pivot: {x: 0.4411839, y: 0.4999997}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -220,15 +220,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_4
+      name: attack3
       rect:
         serializedVersion: 2
-        x: 193
+        x: 192
         y: 151
-        width: 29
+        width: 31
         height: 49
       alignment: 9
-      pivot: {x: 0.52585787, y: 0.47026405}
+      pivot: {x: 0.4637786, y: 0.4999997}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -241,15 +241,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_5
+      name: attack4
       rect:
         serializedVersion: 2
-        x: 239
+        x: 238
         y: 151
-        width: 29
+        width: 31
         height: 49
       alignment: 9
-      pivot: {x: 0.51205236, y: 0.47860032}
+      pivot: {x: 0.45774153, y: 0.50381875}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -262,15 +262,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_6
+      name: special9
       rect:
         serializedVersion: 2
-        x: 287
-        y: 151
-        width: 22
-        height: 49
+        x: 277
+        y: 150
+        width: 33
+        height: 50
       alignment: 9
-      pivot: {x: 0.57465017, y: 0.5}
+      pivot: {x: 0.58488417, y: 0.47635895}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -283,12 +283,12 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_7
+      name: special10
       rect:
         serializedVersion: 2
-        x: 334
+        x: 321
         y: 151
-        width: 21
+        width: 36
         height: 49
       alignment: 9
       pivot: {x: 0.57820493, y: 0.48928085}
@@ -304,15 +304,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_8
+      name: death2
       rect:
         serializedVersion: 2
-        x: 8
-        y: 101
-        width: 30
-        height: 49
+        x: 5
+        y: 94
+        width: 33
+        height: 54
       alignment: 9
-      pivot: {x: 0.5863321, y: 0.51469517}
+      pivot: {x: 0.5934519, y: 0.47553563}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -325,15 +325,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_9
+      name: death3
       rect:
         serializedVersion: 2
-        x: 54
-        y: 102
-        width: 29
-        height: 49
+        x: 52
+        y: 94
+        width: 32
+        height: 56
       alignment: 9
-      pivot: {x: 0.5738594, y: 0.5072853}
+      pivot: {x: 0.5738592, y: 0.5150885}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -346,15 +346,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_10
+      name: special1
       rect:
         serializedVersion: 2
-        x: 100
-        y: 101
-        width: 24
-        height: 49
+        x: 92
+        y: 94
+        width: 33
+        height: 56
       alignment: 9
-      pivot: {x: 0.5446739, y: 0.45949525}
+      pivot: {x: 0.62119526, y: 0.45153728}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -367,15 +367,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_11
+      name: special2
       rect:
         serializedVersion: 2
-        x: 147
-        y: 101
-        width: 31
-        height: 49
+        x: 138
+        y: 94
+        width: 41
+        height: 56
       alignment: 9
-      pivot: {x: 0.37472928, y: 0.46213827}
+      pivot: {x: 0.51612854, y: 0.43366936}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -388,13 +388,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_12
+      name: special3
       rect:
         serializedVersion: 2
-        x: 194
-        y: 101
-        width: 26
-        height: 49
+        x: 185
+        y: 94
+        width: 36
+        height: 56
       alignment: 9
       pivot: {x: 0.45540443, y: 0.46195298}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -409,15 +409,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_13
+      name: special4
       rect:
         serializedVersion: 2
-        x: 240
-        y: 101
-        width: 23
-        height: 49
+        x: 231
+        y: 94
+        width: 33
+        height: 56
       alignment: 9
-      pivot: {x: 0.5620416, y: 0.45829493}
+      pivot: {x: 0.6318822, y: 0.44183213}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -430,15 +430,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_14
+      name: death1
       rect:
         serializedVersion: 2
-        x: 5
+        x: 0
         y: 51
-        width: 39
-        height: 49
+        width: 45
+        height: 40
       alignment: 9
-      pivot: {x: 0.49182206, y: 0.42864117}
+      pivot: {x: 0.5566498, y: 0.60255414}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -451,15 +451,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_15
+      name: death0
       rect:
         serializedVersion: 2
-        x: 52
-        y: 52
-        width: 39
-        height: 49
+        x: 48
+        y: 51
+        width: 44
+        height: 40
       alignment: 9
-      pivot: {x: 0.53355366, y: 0.47539255}
+      pivot: {x: 0.61515516, y: 0.6661358}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -472,15 +472,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_16
+      name: special5
       rect:
         serializedVersion: 2
-        x: 99
-        y: 52
-        width: 28
-        height: 49
+        x: 97
+        y: 51
+        width: 31
+        height: 40
       alignment: 9
-      pivot: {x: 0.58786446, y: 0.46524096}
+      pivot: {x: 0.6699531, y: 0.64607143}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -493,15 +493,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_17
+      name: special6
       rect:
         serializedVersion: 2
-        x: 143
-        y: 52
-        width: 37
-        height: 49
+        x: 142
+        y: 51
+        width: 39
+        height: 40
       alignment: 9
-      pivot: {x: 0.59718114, y: 0.46910328}
+      pivot: {x: 0.53389484, y: 0.64650285}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -514,15 +514,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_18
+      name: special7
       rect:
         serializedVersion: 2
-        x: 190
-        y: 52
-        width: 32
-        height: 49
+        x: 189
+        y: 51
+        width: 34
+        height: 40
       alignment: 9
-      pivot: {x: 0.61236525, y: 0.45365438}
+      pivot: {x: 0.6082634, y: 0.64396685}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -535,15 +535,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_19
+      name: special8
       rect:
         serializedVersion: 2
-        x: 236
-        y: 52
-        width: 28
-        height: 49
+        x: 235
+        y: 51
+        width: 31
+        height: 40
       alignment: 9
-      pivot: {x: 0.65545326, y: 0.4382061}
+      pivot: {x: 0.67379415, y: 0.6486319}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -556,15 +556,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_20
+      name: move1
       rect:
         serializedVersion: 2
-        x: 5
-        y: 2
-        width: 34
+        x: 3
+        y: 1
+        width: 38
         height: 49
-      alignment: 9
-      pivot: {x: 0.48570278, y: 0.500848}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -577,15 +577,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_21
+      name: move2
       rect:
         serializedVersion: 2
-        x: 48
-        y: 2
-        width: 36
+        x: 47
+        y: 1
+        width: 38
         height: 49
       alignment: 9
-      pivot: {x: 0.5120528, y: 0.5100058}
+      pivot: {x: 0.53552145, y: 0.48898137}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -598,15 +598,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_22
+      name: move3
       rect:
         serializedVersion: 2
-        x: 100
-        y: 2
-        width: 32
+        x: 98
+        y: 1
+        width: 38
         height: 49
       alignment: 9
-      pivot: {x: 0.42703462, y: 0.5201085}
+      pivot: {x: 0.41474774, y: 0.5137742}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -619,15 +619,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_23
+      name: move4
       rect:
         serializedVersion: 2
-        x: 150
-        y: 2
-        width: 23
+        x: 140
+        y: 1
+        width: 38
         height: 49
-      alignment: 9
-      pivot: {x: 0.3277727, y: 0.50715566}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -640,15 +640,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_24
+      name: move5
       rect:
         serializedVersion: 2
-        x: 189
-        y: 2
-        width: 33
+        x: 186
+        y: 1
+        width: 38
         height: 49
-      alignment: 9
-      pivot: {x: 0.4938165, y: 0.52880335}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -661,15 +661,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_25
+      name: move6
       rect:
         serializedVersion: 2
-        x: 232
-        y: 2
-        width: 37
+        x: 231
+        y: 1
+        width: 39
         height: 49
       alignment: 9
-      pivot: {x: 0.49970224, y: 0.49035287}
+      pivot: {x: 0.53615475, y: 0.47520792}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -682,15 +682,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_26
+      name: move7
       rect:
         serializedVersion: 2
-        x: 285
-        y: 2
-        width: 27
+        x: 278
+        y: 1
+        width: 38
         height: 49
       alignment: 9
-      pivot: {x: 0.41197488, y: 0.47228292}
+      pivot: {x: 0.52841586, y: 0.5027548}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -703,15 +703,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_27
+      name: move8
       rect:
         serializedVersion: 2
-        x: 333
-        y: 2
-        width: 24
+        x: 324
+        y: 1
+        width: 38
         height: 49
-      alignment: 9
-      pivot: {x: 0.3638471, y: 0.47571483}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -734,34 +734,34 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Player_0: -682599961
-      Player_1: -168467185
-      Player_10: -384102329
-      Player_11: 1707108231
-      Player_12: 485855107
-      Player_13: 1499345408
-      Player_14: 511532543
-      Player_15: -1782308419
-      Player_16: 31493857
-      Player_17: 1356421597
-      Player_18: -1706394537
-      Player_19: -981297912
-      Player_2: 543603224
-      Player_20: -1192420157
-      Player_21: 415979948
-      Player_22: -440904213
-      Player_23: -1864750818
-      Player_24: 1313543579
-      Player_25: 1299510074
-      Player_26: -563269273
-      Player_27: 668650484
-      Player_3: 532580911
-      Player_4: 914204888
-      Player_5: -2136258148
-      Player_6: 1415512598
-      Player_7: 2058592739
-      Player_8: 1395776439
-      Player_9: 917007594
+      attack1: 543603224
+      attack2: 532580911
+      attack3: 914204888
+      attack4: -2136258148
+      death0: -1782308419
+      death1: 511532543
+      death2: 1395776439
+      death3: 917007594
+      death4: -168467185
+      idle: -682599961
+      move1: -1192420157
+      move2: 415979948
+      move3: -440904213
+      move4: -1864750818
+      move5: 1313543579
+      move6: 1299510074
+      move7: -563269273
+      move8: 668650484
+      special1: -384102329
+      special10: 2058592739
+      special2: 1707108231
+      special3: 485855107
+      special4: 1499345408
+      special5: 31493857
+      special6: 1356421597
+      special7: -1706394537
+      special8: -981297912
+      special9: 1415512598
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

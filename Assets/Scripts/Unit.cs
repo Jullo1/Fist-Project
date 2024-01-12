@@ -46,6 +46,6 @@ public class Unit : Entity
     public void FreezeUnit(float time)
     {
         frozenTime = time;
-        anim.speed = 0f;
+        anim.enabled = false;
     }
 }

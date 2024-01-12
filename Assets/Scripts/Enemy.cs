@@ -93,7 +93,7 @@ public class Enemy : Unit
         if (aliveTime > 0.1f)
             spawnCheck = false;
 
-        if (frozenTime <= 0) anim.speed = 1;
+        if (frozenTime <= 0) anim.enabled = true;
         else frozenTime -= Time.deltaTime;
     }
 
@@ -101,7 +101,7 @@ public class Enemy : Unit
     {
         fury = true;
         furyIcon.gameObject.SetActive(true);
-        moveSpeed *= 1.5f;
+        moveSpeed *= 1.25f;
     }
 
     void CalculateDrop()

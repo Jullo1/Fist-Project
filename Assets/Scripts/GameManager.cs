@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem.OnScreen;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System;
 
 public class GameManager : MonoBehaviour
 {
@@ -19,7 +20,8 @@ public class GameManager : MonoBehaviour
     public List<Entity> spawnGroup = new List<Entity>();
     [SerializeField] float waveIntensity;
     public int currentWave;
-    [SerializeField] float closestSpawnPos;
+    [SerializeField] float closestSpawnPosX;
+    [SerializeField] float closestSpawnPosY;
     float spawnTimer;
     public bool pauseWaves;
 
@@ -63,7 +65,7 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        if (spawnTimer > 6) {
+        if (spawnTimer > 6 && !pauseWaves) {
             NextWave();
             spawnTimer = 0;
         } else if (!pauseWaves) spawnTimer += Time.deltaTime;
@@ -71,10 +73,11 @@ public class GameManager : MonoBehaviour
 
     public IEnumerator StopTime(float seconds)
     {
-        pauseWaves = true;
-        backgroundMusic.pitch = 0.8f;
         foreach (Enemy enemy in FindObjectsOfType<Enemy>())
             enemy.FreezeUnit(seconds);
+
+        backgroundMusic.pitch = 0.8f;
+        pauseWaves = true;
 
         yield return new WaitForSeconds(seconds);
         pauseWaves = false;
@@ -94,8 +97,8 @@ public class GameManager : MonoBehaviour
         foreach (Entity entity in spawnGroup)
         {
             Vector2 spawnPos = player.transform.position;
-            while (Vector2.Distance(spawnPos, player.transform.position) < closestSpawnPos)
-                spawnPos += new Vector2(Random.Range(-7, 7), Random.Range(-5, 5));
+            while (Math.Abs(spawnPos.x - player.transform.position.x) < closestSpawnPosX && Math.Abs(spawnPos.y - player.transform.position.y) < closestSpawnPosY)
+                spawnPos += new Vector2(UnityEngine.Random.Range(-2f, 2f), UnityEngine.Random.Range(-1f, 1f));
 
             Spawn(entity, spawnPos);
         }
@@ -117,9 +120,11 @@ public class GameManager : MonoBehaviour
 
     void SetupNextWaveWithIntensity(float intensity) //algorithm to randomize next spawn group with a given intensity
     {
-        AddToNextWave(enemyList[0], (int) (intensity * 5));
-        AddToNextWave(enemyList[1], (int) (intensity * 1.5f));
-        AddToNextWave(enemyList[2], (int) (intensity * 0.5f));
+        AddToNextWave(enemyList[0], (int) (intensity * 3.5f));
+        AddToNextWave(enemyList[1], (int) (intensity * 1.0f));
+        AddToNextWave(enemyList[2], (int) (intensity * 1.0f));
+        AddToNextWave(enemyList[3], (int) (intensity * 1.25f));
+        AddToNextWave(enemyList[4], (int) (intensity * 0.75f));
     }
 
     void Spawn(Entity entity, Vector2 position)
@@ -161,8 +166,8 @@ public class GameManager : MonoBehaviour
 
     void SetupLevelUpOptions()
     {
-        option1Value = Random.Range(1, 5);
-        do { option2Value = Random.Range(1, 5); } while (option2Value == option1Value); //make sure we get 2 different options
+        option1Value = UnityEngine.Random.Range(1, 5);
+        do { option2Value = UnityEngine.Random.Range(1, 5); } while (option2Value == option1Value); //make sure we get 2 different options
         option1Text.text = optionsList[option1Value-1];
         option1Text.transform.GetChild(0).GetComponent<Text>().text = optionsList[option1Value - 1];
         option2Text.text = optionsList[option2Value-1];
@@ -195,16 +200,16 @@ public class GameManager : MonoBehaviour
         {
             case 1: //punch harder
                 player.UpgradeStat(playerStats.strength, 3);
-                player.UpgradeStat(playerStats.pushForce, 100);
+                player.UpgradeStat(playerStats.pushForce, 80);
                 break;
             case 2: //punch faster
-                player.UpgradeStat(playerStats.attackSpeed, 1.2f);
+                player.UpgradeStat(playerStats.attackSpeed, 0.25f);
                 break;
             case 3: //move faster
                 player.UpgradeStat(playerStats.moveSpeed, 0.25f);
                 break;
             case 4: //faster special
-                player.UpgradeStat(playerStats.specialCooldown, 1.3f);
+                player.UpgradeStat(playerStats.specialCooldown, 2.5f);
                 break;
         }
         ContinueGame();

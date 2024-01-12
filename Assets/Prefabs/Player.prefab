@@ -232,6 +232,7 @@ GameObject:
   - component: {fileID: 5739528050632289870}
   - component: {fileID: 8953781668786574092}
   - component: {fileID: 7782558725146120637}
+  - component: {fileID: 421931920960794525}
   - component: {fileID: 5952566212567687106}
   - component: {fileID: 5723247430031376671}
   - component: {fileID: 6934469568308450398}
@@ -277,13 +278,13 @@ MonoBehaviour:
   size: 1
   freeze: 0
   freezeAttack: 0
-  moveSpeed: 2
+  moveSpeed: 2.25
   attackRange: 2
   strength: 7
   pushForce: 200
   attackCD:
-  - 1.5
-  - 1.5
+  - 1.75
+  - 1.75
   attackTimer: []
   hitpoints: 3
   maxHitpoints: 3
@@ -350,6 +351,18 @@ MonoBehaviour:
   attackCDOutlines:
   - {fileID: 0}
   - {fileID: 0}
+--- !u!114 &421931920960794525
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7450985731919077255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1949a5b58417bf44d8718e1ebdd6474e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &5952566212567687106
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -391,12 +404,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 3
-  m_Sprite: {fileID: -682599961, guid: fcabaccdc69efbc4095cf9ffe2705a28, type: 3}
+  m_Sprite: {fileID: -682599961, guid: b88419c12f311844c87b3b18e2a0284f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.33, y: 0.54}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -485,9 +498,9 @@ BoxCollider2D:
   m_Offset: {x: -0.014564745, y: -0.039605916}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.49205607, y: 0.48930016}
-    oldSize: {x: 0.22, y: 0.49}
-    newSize: {x: 1, y: 1}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.27, y: 0.49}
+    newSize: {x: 0.33, y: 0.54}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0

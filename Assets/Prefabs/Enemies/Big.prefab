@@ -50,8 +50,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c1037cfb3cfe6b4682c299d9d162853, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weight: 18
-  size: 1.2
+  weight: 28
+  size: 1.25
   freeze: 0
   freezeAttack: 0
   moveSpeed: 0.75
@@ -64,7 +64,7 @@ MonoBehaviour:
   hitpoints: 22
   maxHitpoints: 22
   dead: 0
-  experienceDrop: 25
+  experienceDrop: 30
   furyIcon: {fileID: 2620331443380816464}
   hitIndicator: {fileID: 6540423717661384439}
   healthDrop: {fileID: 8693265718791990718, guid: b8c991079c615124bb71add0c67194f8, type: 3}
@@ -72,7 +72,7 @@ MonoBehaviour:
   frenzyDrop: {fileID: 3110370413052923250, guid: 8aa5100bf25eb13459438e9de7f6a7b0, type: 3}
   experiencePotionDrop: {fileID: 8693265718791990718, guid: f5048e41639443e4c986cbafffdc518a, type: 3}
   timeStopDrop: {fileID: 8693265718791990718, guid: 93ba720f715c6cf45a2a6393a16fd146, type: 3}
-  dropList: 030000000200000002000000060000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  dropList: 010000000200000002000000060000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
 --- !u!61 &9129567367666997401
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -207,7 +207,7 @@ Animator:
   m_GameObject: {fileID: 2396716612295989141}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: ab52fc29e8454f14ebfd5c93308e0b23, type: 2}
+  m_Controller: {fileID: 9100000, guid: ae7109193521b8a4d9b76ade6e3a781a, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -398,7 +398,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 2
   m_Sprite: {fileID: -757021965, guid: eea17c9a8f5665645badaeb35e6b0fe8, type: 3}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.78431374}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.5882353}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

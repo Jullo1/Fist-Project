@@ -28,11 +28,13 @@ public class MainMenu : MonoBehaviour
         else
             interstitalAd.ShowAd();
     }
+
     void Start()
     {
         Time.timeScale = 1;
         if (ScoreKeeper.score > 0)
         {
+			StartCoroutine(SendScore(ScoreKeeper.score));
             if (ScoreKeeper.score > 1000)
                 scoreOutput.text = ScoreKeeper.score.ToString() + "!";
             else
@@ -40,6 +42,17 @@ public class MainMenu : MonoBehaviour
 
             startButton.text = "AGAIN";
         }
+    }
+	
+	IEnumerator SendScore(int value)
+    {
+        Debug.Log(value);
+        WWWForm form = new WWWForm();
+        form.AddField("game", "Fist");
+        form.AddField("score", value);
+
+        WWW www = new WWW("https://julianlerej.com/app/views/sendScore.php", form);
+        yield return www;
     }
 
     public void LoadScene(string sceneName)
