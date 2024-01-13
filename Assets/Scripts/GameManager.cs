@@ -53,6 +53,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+
         if (ScoreKeeper.currentTutorialNumber == 0) tutorial.SendTutorial();
         else tutorial.gameObject.SetActive(false);
 

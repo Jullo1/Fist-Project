@@ -6,8 +6,8 @@ using System.Collections;
 public class MainMenu : MonoBehaviour
 {
     AudioSource menuAudio;
-
     [SerializeField] Text startButton;
+    StageSelector stageSelector;
 
     public Text scoreOutput;
     [SerializeField] GameObject scoreKeeper;
@@ -20,8 +20,10 @@ public class MainMenu : MonoBehaviour
 
     void Awake()
     {
-        menuAudio = GetComponent<AudioSource>();
         interstitalAd.LoadAd();
+
+        menuAudio = GetComponent<AudioSource>();
+        stageSelector = FindObjectOfType<StageSelector>();
 
         if (!FindObjectOfType<ScoreKeeper>()) //instantiate scoreKeeper if there isn't one yet
             Instantiate(scoreKeeper);
@@ -55,11 +57,16 @@ public class MainMenu : MonoBehaviour
         yield return www;
     }
 
-    public void LoadScene(string sceneName)
+    void LoadScene(string sceneName)
     {
         if (loadSceneSent) StopCoroutine(loadScene);
         loadScene = StartCoroutine(DelayBeforeLoad(sceneName));
         loadSceneSent = true;
+    }
+
+    public void StartGame()
+    {
+        LoadScene(StageSelector.currentStage.ToString());
     }
 
     IEnumerator DelayBeforeLoad(string sceneName)

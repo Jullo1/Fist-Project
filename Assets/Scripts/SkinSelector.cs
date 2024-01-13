@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,7 +15,7 @@ public class SkinSelector : MonoBehaviour
 
     void Start()
     {
-        ApplySkin();
+        ApplyPlayerSkin();
     }
     void Awake()
     {
@@ -31,7 +30,7 @@ public class SkinSelector : MonoBehaviour
         skinDescriptions.Add("The other fist guy");
         skinDescriptions.Add("AI-powered punching bot");
         skinDescriptions.Add("When you throw so many punches that you unlock the golden skin");
-        skinDescriptions.Add("Sleep-inducing spells");
+        skinDescriptions.Add("Sleep-inducing magic");
         skinDescriptions.Add("Fist Hero that has transcended the limits of a regular Fist Hero");
     }
 
@@ -43,10 +42,10 @@ public class SkinSelector : MonoBehaviour
         if (currentSkin >= skinNames.Count) currentSkin = 0;
         else if (currentSkin < 0) currentSkin = skinNames.Count - 1;
 
-        ApplySkin();
+        ApplyPlayerSkin();
     }
 
-    void ApplySkin()
+    void ApplyPlayerSkin()
     {
         title.text = skinNames[currentSkin];
         description.text = skinDescriptions[currentSkin];
