@@ -864,11 +864,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skinSprites:
   - {fileID: -682599961, guid: b88419c12f311844c87b3b18e2a0284f, type: 3}
-  - {fileID: -682599961, guid: e7dce43d0cd1f9e4c94719cea2685ad2, type: 3}
-  - {fileID: -682599961, guid: 5bbf7a53603c2034ca30b9d45d167e83, type: 3}
-  - {fileID: -682599961, guid: 8906edfba95199b489778e2e65b65d83, type: 3}
-  - {fileID: -682599961, guid: c0c9e4e4d93dfad43a7ee7a384987a07, type: 3}
-  - {fileID: -682599961, guid: 36330a04b413d7c43b2244066516fa02, type: 3}
+  - {fileID: -682599961, guid: 3f46353425c3e4b459783ee9e9d1fca4, type: 3}
+  - {fileID: -682599961, guid: 7256d14f683784843990129dfa3b526b, type: 3}
+  - {fileID: -682599961, guid: 176285fef294a484b9073327647b47cb, type: 3}
+  - {fileID: -682599961, guid: 8ac9974ed254af446bb554acfb2df326, type: 3}
+  - {fileID: -682599961, guid: 978f3ab4f6aedc447975d2446ad62a1b, type: 3}
   selectedSkin: {fileID: 2036095730}
   title: {fileID: 897434296}
   description: {fileID: 892037069}
