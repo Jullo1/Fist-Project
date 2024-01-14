@@ -15,6 +15,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] AudioSource backgroundMusic;
     [SerializeField] AudioClip selectSFX;
 
+    public static float audioProgress;
+
     [SerializeField] List<Enemy> enemyList = new List<Enemy>();
 
     public List<Entity> spawnGroup = new List<Entity>();
@@ -45,22 +47,24 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
+        backgroundMusic.time = audioProgress;
+
+        menuAudio = GetComponent<AudioSource>();
         player = FindAnyObjectByType<Player>();
         scoreKeeper = FindObjectOfType<ScoreKeeper>();
-        menuAudio = GetComponent<AudioSource>();
         tutorial = FindAnyObjectByType<Tutorial>();
-    }
-
-    void Start()
-    {
-
-        if (ScoreKeeper.currentTutorialNumber == 0) tutorial.SendTutorial();
-        else tutorial.gameObject.SetActive(false);
 
         level = 1;
         toNextLevel = 100;
         currentWave = 0;
         waveIntensity = 0.9f;
+    }
+
+    void Start()
+    {
+        if (ScoreKeeper.currentTutorialNumber == 0) tutorial.SendTutorial();
+        else tutorial.gameObject.SetActive(false);
+
         if (!pauseWaves) NextWave(); //immediately spawn next wave at start
     }
 

@@ -38,10 +38,17 @@ public class Player : Unit
     float[] powerUpDuration = new float[7] { 0, 0, 0, 0, 0, 0, 0 };
     PowerUpType[] activePowerUps = new PowerUpType[7] { PowerUpType.None, PowerUpType.None, PowerUpType.None, PowerUpType.None, PowerUpType.None, PowerUpType.None, PowerUpType.None };
 
-    void Start()
+    void Awake()
     {
+        sr = GetComponent<SpriteRenderer>();
+        rb = GetComponent<Rigidbody2D>();
+        col = GetComponent<BoxCollider2D>();
+        aud = GetComponent<AudioSource>();
+        anim = GetComponent<Animator>();
+        game = FindObjectOfType<GameManager>();
         playerInput = GetComponent<InputManager>();
         ui = GetComponent<PlayerUIHandler>();
+
         comboCDBoost = 1;
         for (int i = 0; i < attackCD.Count; i++) //prepare attack charges and timers
         {

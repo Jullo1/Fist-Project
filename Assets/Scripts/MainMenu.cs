@@ -2,12 +2,13 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Collections;
+using System.Threading;
 
 public class MainMenu : MonoBehaviour
 {
     AudioSource menuAudio;
+    [SerializeField] AudioSource menuMusic;
     [SerializeField] Text startButton;
-    StageSelector stageSelector;
 
     public Text scoreOutput;
     [SerializeField] GameObject scoreKeeper;
@@ -21,22 +22,11 @@ public class MainMenu : MonoBehaviour
     void Awake()
     {
         interstitalAd.LoadAd();
-
-        menuAudio = GetComponent<AudioSource>();
-        stageSelector = FindObjectOfType<StageSelector>();
-
-        if (!FindObjectOfType<ScoreKeeper>()) //instantiate scoreKeeper if there isn't one yet
-            Instantiate(scoreKeeper);
-        else
-            interstitalAd.ShowAd();
-    }
-
-    void Start()
-    {
         Time.timeScale = 1;
+        menuAudio = GetComponent<AudioSource>();
         if (ScoreKeeper.score > 0)
         {
-			StartCoroutine(SendScore(ScoreKeeper.score));
+            StartCoroutine(SendScore(ScoreKeeper.score));
             if (ScoreKeeper.score > 1000)
                 scoreOutput.text = ScoreKeeper.score.ToString() + "!";
             else
@@ -45,10 +35,17 @@ public class MainMenu : MonoBehaviour
             startButton.text = "AGAIN";
         }
     }
-	
-	IEnumerator SendScore(int value)
+
+    void Start()
     {
-        Debug.Log(value);
+        if (!FindObjectOfType<ScoreKeeper>()) //instantiate scoreKeeper if there isn't one yet
+            Instantiate(scoreKeeper);
+        else
+            interstitalAd.ShowAd();
+    }
+
+    IEnumerator SendScore(int value)
+    {
         WWWForm form = new WWWForm();
         form.AddField("game", "Fist");
         form.AddField("score", value);
@@ -71,9 +68,12 @@ public class MainMenu : MonoBehaviour
 
     IEnumerator DelayBeforeLoad(string sceneName)
     {
+        AsyncOperation asyncOp = SceneManager.LoadSceneAsync(sceneName);
+        asyncOp.allowSceneActivation = false;
         menuAudio.Play();
-        yield return new WaitForSeconds(0.5f);
-        SceneManager.LoadScene(sceneName);
+        yield return new WaitForSeconds(1f);
+        GameManager.audioProgress = menuMusic.time;
+        asyncOp.allowSceneActivation = true;
     }
 
     public void ExitGame()

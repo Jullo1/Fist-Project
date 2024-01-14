@@ -28,12 +28,9 @@ public class InputManager : MonoBehaviour
     void Awake()
     {
         player = GetComponent<Player>();
+        tutorial = FindObjectOfType<Tutorial>();
         game = FindObjectOfType<GameManager>();
         eventSystem = FindObjectOfType<EventSystem>();
-        tutorial = FindObjectOfType<Tutorial>();
-    }
-    void Start()
-    {
         if (!Application.isMobilePlatform && !Application.isEditor)
             mobileControlsUI.gameObject.SetActive(false); //hide onscreen controls
     }

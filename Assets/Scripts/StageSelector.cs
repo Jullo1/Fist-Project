@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class StageSelector : MonoBehaviour
 {
     public static int currentStage;
+    MainMenu menuManager;
     
     List<string> stageNames = new List<string>();
     [SerializeField] Text title;
@@ -15,8 +18,12 @@ public class StageSelector : MonoBehaviour
     Outline[] UIOutlines;
     [SerializeField] Outline StartButtonOutline;
 
+    [SerializeField] List<AudioClip> musicList = new List<AudioClip>();
+    [SerializeField] AudioSource backgroundMusic;
+
     void Awake()
     {
+        menuManager = FindObjectOfType<MainMenu>();
         UITexts = FindObjectsOfType<Text>();
         UIOutlines = FindObjectsOfType<Outline>();
 
@@ -29,10 +36,9 @@ public class StageSelector : MonoBehaviour
         stageNames.Add("Volcano");
         stageNames.Add("Castle");
         stageNames.Add("Dungeon");
-    }
-    void Start()
-    {
+
         ApplyStageSkin();
+        ApplyStageMusic();
     }
 
     public void ChangeLevel(bool next)
@@ -44,6 +50,7 @@ public class StageSelector : MonoBehaviour
         else if (currentStage < 0) currentStage = stageNames.Count - 1;
 
         ApplyStageSkin();
+        ApplyStageMusic();
     }
 
     void ApplyStageSkin()
@@ -62,6 +69,7 @@ public class StageSelector : MonoBehaviour
                 StartButtonOutline.effectColor = new Color32(0, 0, 0, 128);
                 break;
             case 1:
+            case 2:
             case 3:
             case 4:
             case 5:
@@ -73,6 +81,38 @@ public class StageSelector : MonoBehaviour
                 foreach (Outline outline in UIOutlines)
                     outline.enabled = true;
                 StartButtonOutline.effectColor = new Color32(255, 255, 255, 64);
+                break;
+        }
+    }
+
+    void ApplyStageMusic()
+    {
+        switch (currentStage)
+        {
+            default:
+                if (backgroundMusic.clip != musicList[0])
+                {
+                    backgroundMusic.clip = musicList[0];
+                    backgroundMusic.Play();
+                }
+                break;
+            case 3:
+            case 4:
+            case 5:
+                if (backgroundMusic.clip != musicList[1])
+                {
+                    backgroundMusic.clip = musicList[1];
+                    backgroundMusic.Play();
+                }
+                break;
+            case 6:
+            case 7:
+            case 8:
+                if (backgroundMusic.clip != musicList[2])
+                {
+                    backgroundMusic.clip = musicList[2];
+                    backgroundMusic.Play();
+                }
                 break;
         }
     }

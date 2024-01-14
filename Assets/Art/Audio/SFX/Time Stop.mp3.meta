@@ -14,8 +14,8 @@ AudioImporter:
     preloadAudioData: 0
   platformSettingOverrides: {}
   forceToMono: 1
-  normalize: 1
-  loadInBackground: 0
+  normalize: 0
+  loadInBackground: 1
   ambisonic: 0
   3D: 1
   userData: 

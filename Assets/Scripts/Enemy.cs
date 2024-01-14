@@ -34,11 +34,20 @@ public class Enemy : Unit
         hitIndicator.gameObject.SetActive(isCurrentTarget);
     }
 
-    void Start()
+    void Awake()
     {
+        sr = GetComponent<SpriteRenderer>();
+        rb = GetComponent<Rigidbody2D>();
+        col = GetComponent<BoxCollider2D>();
+        aud = GetComponent<AudioSource>();
+        anim = GetComponent<Animator>();
+
         player = FindAnyObjectByType<Player>();
+        game = FindObjectOfType<GameManager>();
+
         attackTimer.Add(0);
     }
+
     void Update()
     {
         Move();

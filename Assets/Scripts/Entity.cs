@@ -17,16 +17,6 @@ public class Entity : MonoBehaviour
     protected bool freezeRotation;
     public bool freezeAttack;
 
-    void Awake()
-    {
-        sr = GetComponent<SpriteRenderer>();
-        rb = GetComponent<Rigidbody2D>();
-        col = GetComponent<BoxCollider2D>();
-        aud = GetComponent<AudioSource>();
-        anim = GetComponent<Animator>();
-        game = FindObjectOfType<GameManager>();
-    }
-
     protected void KnockBack(GameObject pusher, float pushForce = 0f)
     {
         StartCoroutine(CantAttack(0.75f));

@@ -13,10 +13,6 @@ public class SkinSelector : MonoBehaviour
     [SerializeField] Text description;
 
 
-    void Start()
-    {
-        ApplyPlayerSkin();
-    }
     void Awake()
     {
         skinNames.Add("Fist Hero");
@@ -32,6 +28,8 @@ public class SkinSelector : MonoBehaviour
         skinDescriptions.Add("When you throw so many punches that you unlock the golden skin");
         skinDescriptions.Add("Sleep-inducing magic");
         skinDescriptions.Add("Fist Hero that has transcended the limits of a regular Fist Hero");
+
+        ApplyPlayerSkin();
     }
 
     public void ChangeSkin(bool next)
