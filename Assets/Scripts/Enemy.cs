@@ -6,7 +6,6 @@ public class Enemy : Unit
 {
     Player player;
     [SerializeField] int experienceDrop;
-    //[SerializeField] GameObject damageVisual;
     [SerializeField] GameObject furyIcon;
     [SerializeField] SpriteRenderer hitIndicator;
 
@@ -21,26 +20,14 @@ public class Enemy : Unit
     float aliveTime;
     bool fury;
 
-    public override void TakeHit(int damage, GameObject hitter, float pushForce = 0f)
-    {
-        base.TakeHit(damage, hitter, pushForce);
-        if (frozenTime <= 0)
-            KnockBack(hitter, player.pushForce);//knockback
-        else StartCoroutine(DelayedKnockBack(frozenTime, hitter, player.pushForce));
-    }
-
     public void HitIndicator(bool isCurrentTarget)
     {
         hitIndicator.gameObject.SetActive(isCurrentTarget);
     }
 
-    void Awake()
+    protected override void Awake()
     {
-        sr = GetComponent<SpriteRenderer>();
-        rb = GetComponent<Rigidbody2D>();
-        col = GetComponent<BoxCollider2D>();
-        aud = GetComponent<AudioSource>();
-        anim = GetComponent<Animator>();
+        base.Awake();
 
         player = FindAnyObjectByType<Player>();
         game = FindObjectOfType<GameManager>();
@@ -54,13 +41,13 @@ public class Enemy : Unit
         CheckStats();
         if (attackTimer[0] <= attackCD[0]) attackTimer[0] += Time.deltaTime;
 
-        if (hitpoints <= 0 && frozenTime <= 0 && !dead)
+        if (hitpoints <= 0 && frozenTime <= 0 && !dead && hitQueue <= 0)
             StartCoroutine(Death());
     }
 
     void OnCollisionStay2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Player" && !cantAttack) Attack();
+        if (collision.gameObject.tag == "Player" && !freezeAttack) Attack();
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -143,28 +130,18 @@ public class Enemy : Unit
         newDrop.transform.position = transform.position;
     }
 
-    protected void CheckHitpoints()
-    {
-        /*if (hitpoints <= (maxHitpoints / 2)) //feedback for enemies below half hp
-            damageVisual.SetActive(true);
-        else
-            damageVisual.SetActive(false);*/
-    }
-
     protected override void UpdateHealth(int amount)
     {
         base.UpdateHealth(amount);
-        CheckHitpoints();
     }
 
     IEnumerator Death()
     {
         dead = true;
-        //damageVisual.SetActive(false);
         CalculateDrop();
         col.isTrigger = true;
         anim.SetBool("dead", true);
-        yield return new WaitForSeconds(0.35f);
+        yield return new WaitForSeconds(0.5f);
         game.GainExperience(experienceDrop);
         Destroy(gameObject);
     }

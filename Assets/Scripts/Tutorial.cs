@@ -9,7 +9,7 @@ public class Tutorial : MonoBehaviour
     Player player;
     public bool tutorialActive;
     [SerializeField] Text header;
-    [SerializeField] OnScreenStick leftStick;
+    OnScreenStick leftStick;
     List<string> headerMessages = new List<string>();
     int currentStep;
     Coroutine exitTutorial;
@@ -19,25 +19,24 @@ public class Tutorial : MonoBehaviour
     void Awake()
     {
         player = FindObjectOfType<Player>();
+        leftStick = FindObjectOfType<OnScreenStick>();
+
+        if (!PlayerPrefs.HasKey("tutorialStage"))
+        {
+            PlayerPrefs.SetInt("tutorialStage", 1);
+            PlayerPrefs.Save();
+        }
     }
 
-    public void SendTutorial(int tutorialNumber = 0)
+    public void SendTutorial()
     {
         if (player.dead) return;
 
         leftStick.enabled = false;
         tutorialActive = true;
-        StartCoroutine(Freeze(0.5f));
-
-        int num;
-        if (tutorialNumber == 0)
-        {
-            ScoreKeeper.currentTutorialNumber++;
-            num = ScoreKeeper.currentTutorialNumber;
-        } else num = tutorialNumber; //send tutorial number in parameters if specified when calling this function, for example SendTutorial(3) will send tutorial 3
-            
         Time.timeScale = 0;
-        switch (num)
+
+        switch (PlayerPrefs.GetInt("tutorialStage"))
         {
             default:
                 tutorialActive = false;
@@ -45,7 +44,7 @@ public class Tutorial : MonoBehaviour
                 headerMessages.Clear();
                 currentStep = 0;
                 gameObject.SetActive(false);
-                break;
+                return;
             case 1: //attack
                 headerMessages.Add("Welcome to Fist Project");
                 if (Application.isMobilePlatform) { headerMessages.Add("Move with the left stick"); headerMessages.Add("Tap anywhere else to attack"); }
@@ -57,6 +56,11 @@ public class Tutorial : MonoBehaviour
                 break;
         }
         header.text = headerMessages[0];
+
+        StartCoroutine(Freeze(0.5f));
+
+        PlayerPrefs.SetInt("tutorialStage", PlayerPrefs.GetInt("tutorialStage") + 1);
+        PlayerPrefs.Save();
     }
 
     public void NextStep()

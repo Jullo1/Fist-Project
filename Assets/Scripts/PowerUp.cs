@@ -14,7 +14,7 @@ public class PowerUp : Entity
     float timer; //after a few seconds, enemies will be able to destroy the power up. After some more the power up will disappear
     bool enemyCanGrab;
 
-    void Awake()
+    protected override void Awake()
     {
         player = FindObjectOfType<Player>();
         audioSource = FindObjectOfType<GameManager>().transform.GetComponentInChildren<AudioSource>();

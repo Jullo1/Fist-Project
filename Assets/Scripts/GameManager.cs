@@ -18,9 +18,12 @@ public class GameManager : MonoBehaviour
     public static float audioProgress;
 
     [SerializeField] List<Enemy> enemyList = new List<Enemy>();
+    [SerializeField] List<float> enemyUnitSpawnIntensity = new List<float>();
+    [SerializeField] float spawnRate;
 
     public List<Entity> spawnGroup = new List<Entity>();
     [SerializeField] float waveIntensity;
+    [SerializeField] float waveIntensityMultiplier;
     public int currentWave;
     [SerializeField] float closestSpawnPosX;
     [SerializeField] float closestSpawnPosY;
@@ -45,6 +48,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] Tutorial tutorial;
 
+
     void Awake()
     {
         backgroundMusic.time = audioProgress;
@@ -57,20 +61,17 @@ public class GameManager : MonoBehaviour
         level = 1;
         toNextLevel = 100;
         currentWave = 0;
-        waveIntensity = 0.9f;
     }
 
     void Start()
     {
-        if (ScoreKeeper.currentTutorialNumber == 0) tutorial.SendTutorial();
-        else tutorial.gameObject.SetActive(false);
-
+        tutorial.SendTutorial();
         if (!pauseWaves) NextWave(); //immediately spawn next wave at start
     }
 
     void Update()
     {
-        if (spawnTimer > 6 && !pauseWaves) {
+        if (spawnTimer > spawnRate && !pauseWaves) {
             NextWave();
             spawnTimer = 0;
         } else if (!pauseWaves) spawnTimer += Time.deltaTime;
@@ -113,7 +114,7 @@ public class GameManager : MonoBehaviour
     {
         spawnGroup.Clear(); //clear previous wave info
         currentWave++;
-        waveIntensity *= 1.075f;
+        waveIntensity *= waveIntensityMultiplier;
         SetupNextWaveWithIntensity(waveIntensity);
     }
 
@@ -123,13 +124,10 @@ public class GameManager : MonoBehaviour
             spawnGroup.Add(enemyType);
     }
 
-    void SetupNextWaveWithIntensity(float intensity) //algorithm to randomize next spawn group with a given intensity
+    void SetupNextWaveWithIntensity(float intensity) //algorithm to randomize next spawn group with a given intensity. goes through the enemy unit list for that level, and each enemy had their own intensity multiplier as well (stronger enemies usually have lower intensity)
     {
-        AddToNextWave(enemyList[0], (int) (intensity * 3.5f));
-        AddToNextWave(enemyList[1], (int) (intensity * 1.0f));
-        AddToNextWave(enemyList[2], (int) (intensity * 1.0f));
-        AddToNextWave(enemyList[3], (int) (intensity * 1.25f));
-        AddToNextWave(enemyList[4], (int) (intensity * 0.75f));
+        for(int i = 0; i < enemyList.Count; i++)
+            AddToNextWave(enemyList[i], (int)(intensity * enemyUnitSpawnIntensity[i]));
     }
 
     void Spawn(Entity entity, Vector2 position)
@@ -203,18 +201,19 @@ public class GameManager : MonoBehaviour
     {
         switch (upgradeIndex)
         {
-            case 1: //punch harder
+            case 1: //power
                 player.UpgradeStat(playerStats.strength, 3);
-                player.UpgradeStat(playerStats.pushForce, 80);
+                player.UpgradeStat(playerStats.pushForce, 40);
                 break;
-            case 2: //punch faster
+            case 2: //attack speed
                 player.UpgradeStat(playerStats.attackSpeed, 0.25f);
                 break;
-            case 3: //move faster
+            case 3: //movement
                 player.UpgradeStat(playerStats.moveSpeed, 0.25f);
                 break;
-            case 4: //faster special
+            case 4: //special
                 player.UpgradeStat(playerStats.specialCooldown, 2.5f);
+                player.UpgradeStat(playerStats.specialAttackCount, 1);
                 break;
         }
         ContinueGame();

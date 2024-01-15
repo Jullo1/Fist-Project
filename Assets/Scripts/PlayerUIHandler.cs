@@ -19,13 +19,17 @@ public class PlayerUIHandler : MonoBehaviour
 
     [SerializeField] List<Outline> attackCDOutlines = new List<Outline>();
 
+    [SerializeField] Tutorial tutorial;
+
     void Awake()
     {
         player = GetComponent<Player>();
+        tutorial = FindObjectOfType<Tutorial>();
     }
 
     void Update()
     {
+
         for (int i = 0; i < attackCDUI.Count; i++)
             attackCDUI[i].fillAmount = player.attackTimer[i] / player.attackCD[i];
 
@@ -81,6 +85,12 @@ public class PlayerUIHandler : MonoBehaviour
             outline.effectColor = comboUI.color;
 
         UpdateComboStats();
+    }
+
+    public void SendTutorial()
+    {
+        tutorial.gameObject.SetActive(true);
+        tutorial.SendTutorial();
     }
 
 

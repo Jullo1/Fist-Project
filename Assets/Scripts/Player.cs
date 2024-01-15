@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum playerStats { hitpoints, strength, pushForce, moveSpeed, attackSpeed, attackCharges, attackRange, specialDamage, specialCooldown, specialRange, dodgeChance, criticalChance, criticalDamage}
+public enum playerStats { hitpoints, strength, pushForce, moveSpeed, attackSpeed, attackCharges, attackRange, specialDamage, specialAttackCount, specialCooldown, specialRange, dodgeChance, criticalChance, criticalDamage}
 public class Player : Unit
 {
     InputManager playerInput;
     PlayerUIHandler ui;
-    [SerializeField] Tutorial tutorial;
 
     //audio
+    AudioSource levelMusic;
     [SerializeField] protected AudioClip punchSFX;
     [SerializeField] protected AudioClip missSFX;
     [SerializeField] protected AudioClip specialSFX;
@@ -23,6 +23,7 @@ public class Player : Unit
     bool appliedSpecialOffset;
     public bool channelingSpecial;
     public float specialRange;
+    public int specialCharges;
 
     public int comboAmount;
     public float maxComboCDBoost;
@@ -34,17 +35,16 @@ public class Player : Unit
 
     Coroutine previousFreeze; //to stop previous freeze coroutine
     Coroutine previousFreezeRotation;
+    bool facingRight;
 
     float[] powerUpDuration = new float[7] { 0, 0, 0, 0, 0, 0, 0 };
     PowerUpType[] activePowerUps = new PowerUpType[7] { PowerUpType.None, PowerUpType.None, PowerUpType.None, PowerUpType.None, PowerUpType.None, PowerUpType.None, PowerUpType.None };
 
-    void Awake()
+    protected override void Awake()
     {
-        sr = GetComponent<SpriteRenderer>();
-        rb = GetComponent<Rigidbody2D>();
-        col = GetComponent<BoxCollider2D>();
-        aud = GetComponent<AudioSource>();
-        anim = GetComponent<Animator>();
+        base.Awake();
+
+        levelMusic = GameObject.FindGameObjectWithTag("Floor").GetComponent<AudioSource>();
         game = FindObjectOfType<GameManager>();
         playerInput = GetComponent<InputManager>();
         ui = GetComponent<PlayerUIHandler>();
@@ -87,11 +87,8 @@ public class Player : Unit
     {
         if (specialTimer <= specialCD)
             specialTimer += Time.deltaTime;
-        else if (ScoreKeeper.currentTutorialNumber == 1)
-        {
-            tutorial.gameObject.SetActive(true);
-            tutorial.SendTutorial();
-        }
+        else if (PlayerPrefs.GetInt("tutorialStage") == 2)
+            ui.SendTutorial();
 
         for (int i = 0; i < attackTimer.Count; i++)
             attackTimer[i] += Time.deltaTime * comboCDBoost;
@@ -112,8 +109,8 @@ public class Player : Unit
 
         if (!freezeRotation)
         {
-            if (x > 0) sr.flipX = false;
-            else if (x < 0) sr.flipX = true;
+            if (x > 0) ChangeFaceDirection(true);
+            else if (x < 0) ChangeFaceDirection(false);
         }
 
         if (x == 0 && y == 0)
@@ -125,7 +122,7 @@ public class Player : Unit
     public void CheckAttack()
     {
         if (specialChannel > 0.4f)
-            SpecialAttack();
+            StartCoroutine(SpecialAttack());
         else if (!channelingSpecial)
         {
             specialChannel = 0;
@@ -186,8 +183,14 @@ public class Player : Unit
 
     void FaceTarget(GameObject target)
     {
-        if (target.transform.position.x < transform.position.x) sr.flipX = true; //if left, then flip sprite
-        else if (target.transform.position.x > transform.position.x) sr.flipX = false;
+        if (target.transform.position.x < transform.position.x) ChangeFaceDirection(false); //if left, then flip sprite
+        else if (target.transform.position.x > transform.position.x) ChangeFaceDirection(true);
+    }
+
+    void ChangeFaceDirection(bool right) //true for left; false for right
+    {
+        if (right) { sr.flipX = false; facingRight = true; }
+        else { sr.flipX = true; facingRight = false; }
     }
     void Attack(int attackIndex)
     {
@@ -218,24 +221,34 @@ public class Player : Unit
         StartCoroutine(FreezeAttack(0.1f));
     }
 
-    void SpecialAttack()
+    IEnumerator SpecialAttack()
     {
-        if (game.paused) return;
+        if (game.paused) yield return null;
         anim.SetTrigger("special");
         FaceTarget(GetClosestEnemy().gameObject);
         specialTimer = 0f;
         specialChannel = 0;
         appliedSpecialOffset = false;
-        foreach (Enemy enemy in FindObjectsOfType<Enemy>())
-        {
-            if (!enemy.dead)
-                if (Vector2.Distance(transform.position, enemy.transform.position) <= attackRange * specialRange)
-                {
-                    comboAmount++;
-                    enemy.TakeHit(strength, gameObject, pushForce);
-                }
-        }
+        freezeRotation = true;
         PlayAudio(specialSFX);
+        for (int i = 0; i < specialCharges; i++)
+        {
+            if (specialCharges > 1) PlayAudio(punchSFX);
+            foreach (Enemy enemy in FindObjectsOfType<Enemy>())
+            {
+                if (!enemy.dead)
+                    if (Vector2.Distance(transform.position, enemy.transform.position) <= attackRange * specialRange)
+                    {
+                        if ((facingRight && enemy.transform.position.x > transform.position.x) || (!facingRight && enemy.transform.position.x < transform.position.x)) //only attack enemies to the right or to the left
+                        {
+                            comboAmount++;
+                            enemy.TakeHit(strength, gameObject, pushForce);
+                        }
+                    }
+            }
+            yield return new WaitForSeconds(0.2f);
+        }
+        freezeRotation = false;
     }
 
     public override void TakeHit(int damage, GameObject hitter, float pushForce = 0f)
@@ -267,6 +280,7 @@ public class Player : Unit
 
     IEnumerator PlayerDeath()
     {
+        levelMusic.volume /= 2;
         if (previousFreeze != null) StopCoroutine(previousFreeze);
         if (previousFreezeRotation != null) StopCoroutine(previousFreezeRotation);
 
@@ -387,6 +401,9 @@ public class Player : Unit
                 break;
             case playerStats.specialCooldown:
                 specialCD -= value;
+                break;
+            case playerStats.specialAttackCount:
+                specialCharges += (int) value;
                 break;
         }
     }

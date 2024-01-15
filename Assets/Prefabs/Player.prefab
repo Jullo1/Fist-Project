@@ -277,7 +277,6 @@ MonoBehaviour:
   weight: 10
   size: 1
   freeze: 0
-  freezeAttack: 0
   moveSpeed: 2.25
   attackRange: 2
   strength: 7
@@ -289,6 +288,8 @@ MonoBehaviour:
   hitpoints: 3
   maxHitpoints: 3
   dead: 0
+  freezeAttack: 0
+  hitSound: {fileID: 8300000, guid: e9e87a3377ca8214e9e7193f038750a2, type: 3}
   tutorial: {fileID: 0}
   punchSFX: {fileID: 8300000, guid: e9e87a3377ca8214e9e7193f038750a2, type: 3}
   missSFX: {fileID: 8300000, guid: c7d8731b7a0cac04b96a511a9ced3399, type: 3}
@@ -300,6 +301,7 @@ MonoBehaviour:
   specialChannel: 0
   channelingSpecial: 0
   specialRange: 1.5
+  specialCharges: 1
   comboAmount: 0
   maxComboCDBoost: 20
   comboCDBoost: 1

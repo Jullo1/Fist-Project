@@ -15,11 +15,59 @@ public class Unit : Entity
     public int maxHitpoints;
     public bool dead;
     protected float frozenTime;
+    public bool freezeAttack;
+
+    protected int hitQueue; //useful for stop time, after the buff ends, the unit will take multiple hits one after the other
+    Coroutine hitQueueRoutine;
+    List<int> damageQueue = new List<int>();
+    [SerializeField] AudioClip hitSound;
+
+    IEnumerator ProcessHitQueue(GameObject pusher, float pushForce = 0f)
+    {
+        float tempSpeed = moveSpeed;
+        moveSpeed = 0f;
+        while (hitQueue > 0)
+        {
+            hitQueue--;
+            PlayAudio(hitSound);
+            UpdateHealth(-damageQueue[hitQueue]);
+            if (hitQueue > 1) KnockBack(pusher, 0);
+            else { KnockBack(pusher, pushForce); moveSpeed = tempSpeed; } //only the last knockback will push the enemy
+            yield return new WaitForSeconds(0.2f);
+        }
+        damageQueue.Clear();
+    }
+
+    protected void KnockBack(GameObject pusher, float pushForce = 0f)
+    {
+        anim.SetTrigger("takeHit");
+        StartCoroutine(FreezeAttack(0.75f));
+        Vector3 direction = (transform.position - pusher.transform.position).normalized;
+        rb.AddForce((direction * pushForce) / weight, ForceMode2D.Impulse);
+    }
+
+    IEnumerator HitQueue(GameObject pusher, float pushForce = 0f)
+    {
+        while (frozenTime >= 0) yield return null;
+        StartCoroutine(ProcessHitQueue(pusher, pushForce)); //execute after time stop ends
+    }
+
+    protected void AddToHitQueue(int damage, GameObject pusher, float pushForce = 0f)
+    {
+        hitQueue++;
+        damageQueue.Add(damage);
+        if (hitQueueRoutine != null) StopCoroutine(hitQueueRoutine);
+        hitQueueRoutine = StartCoroutine(HitQueue(pusher, pushForce));
+    }
 
     public virtual void TakeHit(int damage, GameObject hitter, float pushForce = 0f)
     {
-        anim.SetTrigger("takeHit");
-        UpdateHealth(-damage);
+        if (frozenTime <= 0)
+        {
+            UpdateHealth(-damage);
+            KnockBack(hitter, pushForce);
+        }
+        else AddToHitQueue(damage, hitter, pushForce);
     }
 
     protected void PlayAudio(AudioClip clip)
@@ -33,6 +81,13 @@ public class Unit : Entity
         hitpoints += amount;
         if (hitpoints > maxHitpoints)
             hitpoints = maxHitpoints;
+    }
+
+    public IEnumerator FreezeAttack(float time)
+    {
+        freezeAttack = true;
+        yield return new WaitForSeconds(time);
+        freezeAttack = false;
     }
 
     public virtual void ActivatePowerUp(PowerUp powerUp)

@@ -16,7 +16,6 @@ public class MainMenu : MonoBehaviour
     [SerializeField] AdInitializer ads;
     [SerializeField] InterstitalAds interstitalAd;
 
-    Coroutine loadScene;
     bool loadSceneSent;
 
     void Awake()
@@ -27,7 +26,7 @@ public class MainMenu : MonoBehaviour
         if (ScoreKeeper.score > 0)
         {
             StartCoroutine(SendScore(ScoreKeeper.score));
-            if (ScoreKeeper.score > 1000)
+            if (ScoreKeeper.score > 2000)
                 scoreOutput.text = ScoreKeeper.score.ToString() + "!";
             else
                 scoreOutput.text = ScoreKeeper.score.ToString();
@@ -40,8 +39,14 @@ public class MainMenu : MonoBehaviour
     {
         if (!FindObjectOfType<ScoreKeeper>()) //instantiate scoreKeeper if there isn't one yet
             Instantiate(scoreKeeper);
-        else
-            interstitalAd.ShowAd();
+        /*else
+            interstitalAd.ShowAd();*/ //enable this for ads
+    }
+
+    public void ResetTutorial()
+    {
+        PlayerPrefs.SetInt("tutorialStage", 1);
+        PlayerPrefs.Save();
     }
 
     IEnumerator SendScore(int value)
@@ -56,8 +61,8 @@ public class MainMenu : MonoBehaviour
 
     void LoadScene(string sceneName)
     {
-        if (loadSceneSent) StopCoroutine(loadScene);
-        loadScene = StartCoroutine(DelayBeforeLoad(sceneName));
+        menuAudio.Play();
+        if (!loadSceneSent) StartCoroutine(DelayBeforeLoad(sceneName));
         loadSceneSent = true;
     }
 
@@ -70,7 +75,6 @@ public class MainMenu : MonoBehaviour
     {
         AsyncOperation asyncOp = SceneManager.LoadSceneAsync(sceneName);
         asyncOp.allowSceneActivation = false;
-        menuAudio.Play();
         yield return new WaitForSeconds(1f);
         GameManager.audioProgress = menuMusic.time;
         asyncOp.allowSceneActivation = true;
