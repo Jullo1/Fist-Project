@@ -12,7 +12,6 @@ public class PowerUp : Entity
     public float value; //determines the effectiveness of the power up, if applicable
 
     float timer; //after a few seconds, enemies will be able to destroy the power up. After some more the power up will disappear
-    bool enemyCanGrab;
 
     protected override void Awake()
     {
@@ -24,7 +23,6 @@ public class PowerUp : Entity
     {
         if (timer > 10)
         {
-            enemyCanGrab = true;
             if (timer > 60) Destroy(gameObject);
         } timer += Time.deltaTime;
     }

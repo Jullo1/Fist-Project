@@ -10,7 +10,6 @@ public class GameManager : MonoBehaviour
 {
     public bool paused;
     Player player;
-    [SerializeField] OnScreenStick leftStick;
     AudioSource menuAudio;
     [SerializeField] AudioSource backgroundMusic;
     [SerializeField] AudioClip selectSFX;
@@ -40,6 +39,7 @@ public class GameManager : MonoBehaviour
     public float toNextLevel;
     [SerializeField] Image experienceUI;
     [SerializeField] Selectable invisibleButton;
+    OnScreenButton mobileButton;
 
     [SerializeField] GameObject levelUpWindow;
     [SerializeField] Text option1Text; int option1Value;
@@ -57,6 +57,7 @@ public class GameManager : MonoBehaviour
         player = FindAnyObjectByType<Player>();
         scoreKeeper = FindObjectOfType<ScoreKeeper>();
         tutorial = FindAnyObjectByType<Tutorial>();
+        mobileButton = FindObjectOfType<OnScreenButton>();
 
         level = 1;
         toNextLevel = 100;
@@ -147,6 +148,7 @@ public class GameManager : MonoBehaviour
     void LevelUp()
     {
         StartCoroutine(FreezeUI());
+        mobileButton.gameObject.SetActive(false);
         paused = true;
 
         Time.timeScale = 0;
@@ -221,6 +223,7 @@ public class GameManager : MonoBehaviour
 
     public void ContinueGame()
     {
+        mobileButton.gameObject.SetActive(false);
         paused = false;
         levelUpWindow.SetActive(false);
         Time.timeScale = 1;

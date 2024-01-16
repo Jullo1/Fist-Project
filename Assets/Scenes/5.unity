@@ -203,7 +203,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 5
+  m_SortingOrder: 13
   m_TargetDisplay: 0
 --- !u!224 &152620298
 RectTransform:
@@ -667,7 +667,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 13
+  m_SortingOrder: 14
   m_TargetDisplay: 0
 --- !u!224 &429819716
 RectTransform:
@@ -2485,7 +2485,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   paused: 0
-  leftStick: {fileID: 0}
   backgroundMusic: {fileID: 1038644111}
   selectSFX: {fileID: 8300000, guid: 2467b8789dd308f45b94ca1d94db2ba0, type: 3}
   enemyList:
@@ -2501,7 +2500,7 @@ MonoBehaviour:
   spawnRate: 6
   spawnGroup: []
   waveIntensity: 1
-  waveIntensityMultiplier: 1.075
+  waveIntensityMultiplier: 1.1
   currentWave: 0
   closestSpawnPosX: 8
   closestSpawnPosY: 5
@@ -4755,9 +4754,9 @@ SceneRoots:
   m_Roots:
   - {fileID: 1727313742}
   - {fileID: 2948275628518889224}
-  - {fileID: 152620298}
   - {fileID: 2131536278}
   - {fileID: 785414444}
+  - {fileID: 152620298}
   - {fileID: 429819716}
   - {fileID: 1171314567}
   - {fileID: 1038644110}

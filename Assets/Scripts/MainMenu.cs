@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Collections;
 using System.Threading;
+using System;
 
 public class MainMenu : MonoBehaviour
 {
@@ -18,14 +19,15 @@ public class MainMenu : MonoBehaviour
 
     bool loadSceneSent;
 
+    [Obsolete]
     void Awake()
     {
-        interstitalAd.LoadAd();
+        //if (Application.isMobilePlatform) interstitalAd.LoadAd(); //enable these 2 lines, and the one in adinitializer for ads
         Time.timeScale = 1;
         menuAudio = GetComponent<AudioSource>();
         if (ScoreKeeper.score > 0)
         {
-            StartCoroutine(SendScore(ScoreKeeper.score));
+            if (!Application.isMobilePlatform) StartCoroutine(SendScore(ScoreKeeper.score));
             if (ScoreKeeper.score > 2000)
                 scoreOutput.text = ScoreKeeper.score.ToString() + "!";
             else
@@ -40,7 +42,7 @@ public class MainMenu : MonoBehaviour
         if (!FindObjectOfType<ScoreKeeper>()) //instantiate scoreKeeper if there isn't one yet
             Instantiate(scoreKeeper);
         /*else
-            interstitalAd.ShowAd();*/ //enable this for ads
+            if (Application.isMobilePlatform) interstitalAd.ShowAd();*/ //enable these 2 lines, and the one in adinitializer for ads
     }
 
     public void ResetTutorial()
@@ -49,6 +51,7 @@ public class MainMenu : MonoBehaviour
         PlayerPrefs.Save();
     }
 
+    [Obsolete]
     IEnumerator SendScore(int value)
     {
         WWWForm form = new WWWForm();

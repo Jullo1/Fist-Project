@@ -9,7 +9,6 @@ public class Tutorial : MonoBehaviour
     Player player;
     public bool tutorialActive;
     [SerializeField] Text header;
-    OnScreenStick leftStick;
     List<string> headerMessages = new List<string>();
     int currentStep;
     Coroutine exitTutorial;
@@ -19,7 +18,6 @@ public class Tutorial : MonoBehaviour
     void Awake()
     {
         player = FindObjectOfType<Player>();
-        leftStick = FindObjectOfType<OnScreenStick>();
 
         if (!PlayerPrefs.HasKey("tutorialStage"))
         {
@@ -31,8 +29,6 @@ public class Tutorial : MonoBehaviour
     public void SendTutorial()
     {
         if (player.dead) return;
-
-        leftStick.enabled = false;
         tutorialActive = true;
         Time.timeScale = 0;
 
@@ -81,7 +77,6 @@ public class Tutorial : MonoBehaviour
         Time.timeScale = 1;
         headerMessages.Clear();
         currentStep = 0;
-        leftStick.enabled = true;
         gameObject.SetActive(false);
     }
 

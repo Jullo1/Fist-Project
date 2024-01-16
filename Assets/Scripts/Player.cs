@@ -214,7 +214,7 @@ public class Player : Unit
         }
         else
         {
-            FaceTarget(GetClosestEnemy().gameObject); //if miss, player will face closest enemy that is not within range
+            if (GetClosestEnemy()) FaceTarget(GetClosestEnemy().gameObject); //if miss, player will face closest enemy that is not within range
             PlayAudio(missSFX); //target is still null means it failed to find a valid target, so it's a miss
             comboAmount = 0;
         }

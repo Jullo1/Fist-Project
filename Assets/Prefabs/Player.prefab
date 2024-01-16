@@ -290,7 +290,6 @@ MonoBehaviour:
   dead: 0
   freezeAttack: 0
   hitSound: {fileID: 8300000, guid: e9e87a3377ca8214e9e7193f038750a2, type: 3}
-  tutorial: {fileID: 0}
   punchSFX: {fileID: 8300000, guid: e9e87a3377ca8214e9e7193f038750a2, type: 3}
   missSFX: {fileID: 8300000, guid: c7d8731b7a0cac04b96a511a9ced3399, type: 3}
   specialSFX: {fileID: 8300000, guid: 998418768663e904db9691aa554833a7, type: 3}
@@ -301,7 +300,7 @@ MonoBehaviour:
   specialChannel: 0
   channelingSpecial: 0
   specialRange: 1.5
-  specialCharges: 1
+  specialCharges: 2
   comboAmount: 0
   maxComboCDBoost: 20
   comboCDBoost: 1
@@ -353,6 +352,7 @@ MonoBehaviour:
   attackCDOutlines:
   - {fileID: 0}
   - {fileID: 0}
+  tutorial: {fileID: 0}
 --- !u!114 &421931920960794525
 MonoBehaviour:
   m_ObjectHideFlags: 0

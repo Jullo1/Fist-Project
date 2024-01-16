@@ -10,7 +10,7 @@ public class AdInitializer : MonoBehaviour, IUnityAdsInitializationListener
 
     void Awake()
     {
-        InitializeAds();
+        //if (Application.isMobilePlatform) InitializeAds(); //enable this line and the 2 in MainMenu.cs for ads
     }
 
     public void InitializeAds()

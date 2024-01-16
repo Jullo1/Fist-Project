@@ -203,7 +203,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 5
+  m_SortingOrder: 13
   m_TargetDisplay: 0
 --- !u!224 &152620298
 RectTransform:
@@ -667,7 +667,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 13
+  m_SortingOrder: 14
   m_TargetDisplay: 0
 --- !u!224 &429819716
 RectTransform:
@@ -2384,7 +2384,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   paused: 0
-  leftStick: {fileID: 0}
   backgroundMusic: {fileID: 1038644111}
   selectSFX: {fileID: 8300000, guid: 2467b8789dd308f45b94ca1d94db2ba0, type: 3}
   enemyList:
@@ -2392,12 +2391,14 @@ MonoBehaviour:
   - {fileID: 9013288256728285134, guid: 1df0b43f71bde6448bd6af8ab1cb830b, type: 3}
   - {fileID: 9013288256728285134, guid: fb707248571282b47bc930472d0af654, type: 3}
   - {fileID: 5886114919672351050, guid: ed0e45a2b397d094680b1a1675075e30, type: 3}
+  - {fileID: 9013288256728285134, guid: 63a85fdd95256e04a881f7f511329c65, type: 3}
   enemyUnitSpawnIntensity:
   - 1.25
+  - 0.75
   - 1
-  - 0.95
-  - 0.8
-  spawnRate: 5
+  - 0.85
+  - 1.25
+  spawnRate: 5.5
   spawnGroup: []
   waveIntensity: 1
   waveIntensityMultiplier: 1.1
@@ -4755,9 +4756,9 @@ SceneRoots:
   m_Roots:
   - {fileID: 1727313742}
   - {fileID: 2948275628518889224}
-  - {fileID: 152620298}
   - {fileID: 2131536278}
   - {fileID: 1853187750}
+  - {fileID: 152620298}
   - {fileID: 429819716}
   - {fileID: 1171314567}
   - {fileID: 1038644110}
