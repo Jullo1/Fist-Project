@@ -31,12 +31,18 @@ public class GameManager : MonoBehaviour
 
     ScoreKeeper scoreKeeper;
     [SerializeField] Text scoreOutput;
-    int currentScore;
+    [SerializeField] int currentScore;
     bool freezeUI;
 
     int level;
     float experience;
     public float toNextLevel;
+
+    public int killCount;
+    public int punchCount;
+    public int specialAttackCount;
+    public int itemGrabCount;
+
     [SerializeField] Image experienceUI;
     [SerializeField] Selectable invisibleButton;
     OnScreenButton mobileButton;
@@ -66,7 +72,8 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        tutorial.SendTutorial();
+        if (PlayerPrefs.GetInt("tutorialStage") == 1) tutorial.SendTutorial();
+        else tutorial.InstantExitTutorial();
         if (!pauseWaves) NextWave(); //immediately spawn next wave at start
     }
 
@@ -92,8 +99,9 @@ public class GameManager : MonoBehaviour
         menuAudio.Stop();
     }
 
-    public void UpdateScore(int score)
+    public void UpdateScore(int score, bool kill = true)
     {
+        if (kill) killCount++;
         currentScore += score;
         scoreOutput.text = currentScore.ToString();
     }
@@ -211,7 +219,7 @@ public class GameManager : MonoBehaviour
                 player.UpgradeStat(playerStats.attackSpeed, 0.25f);
                 break;
             case 3: //movement
-                player.UpgradeStat(playerStats.moveSpeed, 0.25f);
+                player.UpgradeStat(playerStats.moveSpeed, 0.20f);
                 break;
             case 4: //special
                 player.UpgradeStat(playerStats.specialCooldown, 2.5f);
@@ -231,7 +239,19 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
+        SaveProgress();
         ScoreKeeper.score = currentScore;
         SceneManager.LoadScene("Menu");
+    }
+
+    void SaveProgress()
+    {
+        PlayerPrefs.SetInt("totalKills", PlayerPrefs.GetInt("totalKills") + killCount);
+        PlayerPrefs.SetInt("totalPunches", PlayerPrefs.GetInt("totalPunches") + punchCount);
+        PlayerPrefs.SetInt("totalSpecialAttacks", PlayerPrefs.GetInt("totalSpecialAttacks") + specialAttackCount);
+        PlayerPrefs.SetInt("totalItemsGrabbed", PlayerPrefs.GetInt("totalItemsGrabbed") + itemGrabCount);
+        if (killCount > PlayerPrefs.GetInt("maxKillsInOneRun")) PlayerPrefs.SetInt("maxKillsInOneRun", killCount);
+        if (currentScore > PlayerPrefs.GetInt("highestScore")) PlayerPrefs.SetInt("highestScore", currentScore);
+        PlayerPrefs.Save();
     }
 }

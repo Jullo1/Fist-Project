@@ -116,4 +116,10 @@ public class StageSelector : MonoBehaviour
                 break;
         }
     }
+
+    public void CheckIfUnlocked()
+    {
+        if (PlayerPrefs.GetInt("totalKills") >= menuManager.StageRequirements(currentStage)) menuManager.LockedStage(false);
+        else menuManager.LockedStage(true);
+    }
 }

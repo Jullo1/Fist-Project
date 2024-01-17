@@ -22,6 +22,7 @@ public class Entity : MonoBehaviour
         col = GetComponent<BoxCollider2D>();
         aud = GetComponent<AudioSource>();
         anim = GetComponent<Animator>();
+        game = FindObjectOfType<GameManager>();
     }
     protected IEnumerator Freeze(float time)
     {

@@ -30,7 +30,6 @@ public class Enemy : Unit
         base.Awake();
 
         player = FindAnyObjectByType<Player>();
-        game = FindObjectOfType<GameManager>();
 
         attackTimer.Add(0);
     }

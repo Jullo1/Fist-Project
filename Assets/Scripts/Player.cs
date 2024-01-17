@@ -45,7 +45,6 @@ public class Player : Unit
         base.Awake();
 
         levelMusic = GameObject.FindGameObjectWithTag("Floor").GetComponent<AudioSource>();
-        game = FindObjectOfType<GameManager>();
         playerInput = GetComponent<InputManager>();
         ui = GetComponent<PlayerUIHandler>();
 
@@ -218,6 +217,7 @@ public class Player : Unit
             PlayAudio(missSFX); //target is still null means it failed to find a valid target, so it's a miss
             comboAmount = 0;
         }
+        game.punchCount++;
         StartCoroutine(FreezeAttack(0.1f));
     }
 
@@ -249,6 +249,8 @@ public class Player : Unit
             yield return new WaitForSeconds(0.2f);
         }
         freezeRotation = false;
+
+        game.specialAttackCount++;
     }
 
     public override void TakeHit(int damage, GameObject hitter, float pushForce = 0f)

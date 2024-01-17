@@ -15,6 +15,7 @@ public class PowerUp : Entity
 
     protected override void Awake()
     {
+        base.Awake();
         player = FindObjectOfType<Player>();
         audioSource = FindObjectOfType<GameManager>().transform.GetComponentInChildren<AudioSource>();
     }
@@ -34,6 +35,7 @@ public class PowerUp : Entity
             player.ActivatePowerUp(GetComponent<PowerUp>());
             audioSource.clip = audioClip;
             audioSource.Play();
+            game.itemGrabCount++;
         }
 
         else if (collider.tag == "Enemy")

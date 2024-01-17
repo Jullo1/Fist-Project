@@ -18,7 +18,10 @@ public class Tutorial : MonoBehaviour
     void Awake()
     {
         player = FindObjectOfType<Player>();
+    }
 
+    void Start()
+    {
         if (!PlayerPrefs.HasKey("tutorialStage"))
         {
             PlayerPrefs.SetInt("tutorialStage", 1);
@@ -35,11 +38,7 @@ public class Tutorial : MonoBehaviour
         switch (PlayerPrefs.GetInt("tutorialStage"))
         {
             default:
-                tutorialActive = false;
-                Time.timeScale = 1;
-                headerMessages.Clear();
-                currentStep = 0;
-                gameObject.SetActive(false);
+                InstantExitTutorial();
                 return;
             case 1: //attack
                 headerMessages.Add("Welcome to Fist Project");
@@ -57,6 +56,15 @@ public class Tutorial : MonoBehaviour
 
         PlayerPrefs.SetInt("tutorialStage", PlayerPrefs.GetInt("tutorialStage") + 1);
         PlayerPrefs.Save();
+    }
+
+    public void InstantExitTutorial()
+    {
+        tutorialActive = false;
+        Time.timeScale = 1;
+        headerMessages.Clear();
+        currentStep = 0;
+        gameObject.SetActive(false);
     }
 
     public void NextStep()
