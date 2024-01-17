@@ -213,10 +213,10 @@ public class GameManager : MonoBehaviour
         {
             case 1: //power
                 player.UpgradeStat(playerStats.strength, 3);
-                player.UpgradeStat(playerStats.pushForce, 40);
+                player.UpgradeStat(playerStats.pushForce, 75);
                 break;
             case 2: //attack speed
-                player.UpgradeStat(playerStats.attackSpeed, 0.25f);
+                player.UpgradeStat(playerStats.attackSpeed, 0.20f);
                 break;
             case 3: //movement
                 player.UpgradeStat(playerStats.moveSpeed, 0.20f);

@@ -56,6 +56,38 @@ public class Player : Unit
         }
     }
 
+    void Start()
+    {
+        switch(SkinSelector.currentSkin)
+        {
+            default: break;
+            case 1: //warrior
+                UpgradeStat(playerStats.attackSpeed, 0.20f);
+                break;
+            case 2: //machine
+                UpgradeStat(playerStats.attackSpeed, 0.40f);
+                UpgradeStat(playerStats.moveSpeed, -0.20f);
+                break;
+            case 3: //golden
+                UpgradeStat(playerStats.strength, 3);
+                UpgradeStat(playerStats.pushForce, 50);
+                UpgradeStat(playerStats.attackSpeed, 0.20f);
+                UpgradeStat(playerStats.specialCooldown, -2.5f);
+                UpgradeStat(playerStats.specialAttackCount, -1);
+                break;
+            case 4: //wizard
+                UpgradeStat(playerStats.specialCooldown, 5.0f);
+                UpgradeStat(playerStats.specialAttackCount, 2);
+                UpgradeStat(playerStats.attackSpeed, -0.20f);
+                break;
+            case 5: //super
+                UpgradeStat(playerStats.strength, 6);
+                UpgradeStat(playerStats.pushForce, 150);
+                break;
+
+        }
+    }
+
     void Update()
     {
         if (!game.paused)

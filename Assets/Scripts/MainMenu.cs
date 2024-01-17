@@ -9,14 +9,14 @@ public class MainMenu : MonoBehaviour
 {
     AudioSource menuAudio;
     [SerializeField] AudioSource menuMusic;
-    [SerializeField] Text startButton;
-    [SerializeField] Image lockedStageOrCharacterBackground;
+    [SerializeField] Button startButton;
+    [SerializeField] Text startButtonText;
+    public Image lockedStageBackground;
+    public Image lockedCharacterMask;
+    public Image lockedCharacterBackground;
     [SerializeField] Image characterPreview;
-    [SerializeField] public Text lockedStageText;
-    [SerializeField] public Text lockedCharacterText;
-    int currentKills;
-    bool lockedStage;
-    bool lockedCharacter;
+    [SerializeField] Text lockedStageText;
+    [SerializeField] Text lockedCharacterText;
 
     public Text scoreOutput;
     [SerializeField] GameObject scoreKeeper;
@@ -29,10 +29,8 @@ public class MainMenu : MonoBehaviour
     [Obsolete]
     void Awake()
     {
-        PlayerPrefs.DeleteAll(); //for testing, resets all save data
-
+        //InitiateSaveData(); //for testing, resets all save data
         if (!PlayerPrefs.HasKey("totalKills")) InitiateSaveData();
-        currentKills = PlayerPrefs.GetInt("totalKills");
 
         //if (Application.isMobilePlatform) interstitalAd.LoadAd(); //enable these 2 lines, and the one in adinitializer for ads
         Time.timeScale = 1;
@@ -43,7 +41,7 @@ public class MainMenu : MonoBehaviour
             if (ScoreKeeper.score > 2000) scoreOutput.text = ScoreKeeper.score.ToString() + "!";
             else scoreOutput.text = ScoreKeeper.score.ToString();
 
-            startButton.text = "AGAIN";
+            startButtonText.text = "AGAIN";
         }
     }
 
@@ -86,6 +84,7 @@ public class MainMenu : MonoBehaviour
 
     void LoadScene(string sceneName)
     {
+        startButton.GetComponentInChildren<Outline>().enabled = true;
         menuAudio.Play();
         if (!loadSceneSent) StartCoroutine(DelayBeforeLoad(sceneName));
         loadSceneSent = true;
@@ -107,34 +106,26 @@ public class MainMenu : MonoBehaviour
 
     public void LockedStage(bool locked)
     {
-        lockedStage = locked;
-        if (StageSelector.currentStage == 0) lockedStageOrCharacterBackground.color = new Color32(255, 255, 255, 20);
-        else lockedStageOrCharacterBackground.color = new Color32(0, 0, 0, 200);
+        if (StageSelector.currentStage == 0) lockedStageBackground.color = new Color32(255, 255, 255, 20);
+        else lockedStageBackground.color = new Color32(0, 0, 0, 200);
 
-        if (locked) { lockedStageOrCharacterBackground.gameObject.SetActive(true); lockedStageText.text = "Defeat " + StageRequirements((StageSelector.currentStage)).ToString() + " more enemies"; }
-        else if (!lockedCharacter) { lockedStageOrCharacterBackground.gameObject.SetActive(false); lockedStageText.text = ""; }
-        else lockedStageText.text = "";
+        if (locked) { lockedStageBackground.gameObject.SetActive(true); lockedStageText.text = "Defeat " + StageRequirements((StageSelector.currentStage)).ToString() + " more enemies"; }
+        else { lockedStageBackground.gameObject.SetActive(false); lockedStageText.text = ""; }
     }
 
     public void LockedCharacter(bool locked, string unlockText)
     {
-        lockedCharacter = locked;
-        if (StageSelector.currentStage == 0) lockedStageOrCharacterBackground.color = new Color32(255, 255, 255, 20);
-        else lockedStageOrCharacterBackground.color = new Color32(0, 0, 0, 200);
-
         if (locked) {
-            lockedStageOrCharacterBackground.gameObject.SetActive(true);
+            lockedCharacterMask.gameObject.SetActive(true);
+            lockedCharacterBackground.gameObject.SetActive(true);
             lockedCharacterText.text = unlockText;
             characterPreview.color = new Color32(50, 50, 50, 255);
         }
-        else if (!lockedStage) {
-            lockedStageOrCharacterBackground.gameObject.SetActive(false);
-            lockedCharacterText.text = unlockText;
-            characterPreview.color = new Color32(255, 255, 255, 255);
-        }
         else
         {
-            lockedCharacterText.text = "";
+            lockedCharacterMask.gameObject.SetActive(false);
+            lockedCharacterBackground.gameObject.SetActive(false);
+            lockedCharacterText.text = unlockText;
             characterPreview.color = new Color32(255, 255, 255, 255);
         }
     }
@@ -146,13 +137,13 @@ public class MainMenu : MonoBehaviour
         {
             default: return 0; //includes first stage
             case 1: return 50 - currentKills;
-            case 2: return 150 - currentKills;
-            case 3: return 300 - currentKills;
-            case 4: return 600 - currentKills;
-            case 5: return 1000 - currentKills;
-            case 6: return 1500 - currentKills;
-            case 7: return 2200 - currentKills;
-            case 8: return 3000 - currentKills;
+            case 2: return 250 - currentKills;
+            case 3: return 500 - currentKills;
+            case 4: return 1000 - currentKills;
+            case 5: return 1500 - currentKills;
+            case 6: return 2000 - currentKills;
+            case 7: return 3000 - currentKills;
+            case 8: return 4500 - currentKills;
         }
     }
 

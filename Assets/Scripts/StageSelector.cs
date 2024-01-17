@@ -1,14 +1,14 @@
-using System.Collections;
 using System.Collections.Generic;
-using System.Threading;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class StageSelector : MonoBehaviour
 {
-    public static int currentStage;
     MainMenu menuManager;
+
+    public static int currentStage;
+    int previousStage;
+    int maxAvailableStage = 6;
     
     List<string> stageNames = new List<string>();
     [SerializeField] Text title;
@@ -41,13 +41,36 @@ public class StageSelector : MonoBehaviour
         ApplyStageMusic();
     }
 
+    private void Start()
+    {
+        if (PlayerPrefs.GetInt("totalKills") >= 1500) maxAvailableStage = 9;
+        previousStage = currentStage;
+    }
+
     public void ChangeLevel(bool next)
     {
         if (next) currentStage++;
         else currentStage--;
 
-        if (currentStage >= stageNames.Count) currentStage = 0;
-        else if (currentStage < 0) currentStage = stageNames.Count - 1;
+        if (currentStage >= stageNames.Count || currentStage > maxAvailableStage - 1) currentStage = 0;
+        else if (currentStage < 0) currentStage = maxAvailableStage - 1;
+
+        if (currentStage == 0) //adjust locked background colors to the current stage text color
+        {
+            menuManager.lockedStageBackground.color = new Color32(255, 255, 255, 20);
+            menuManager.lockedCharacterMask.color = new Color32(255, 255, 255, 20);
+        }
+        else
+        {
+            menuManager.lockedStageBackground.color = new Color32(0, 0, 0, 200);
+            menuManager.lockedCharacterMask.color = new Color32(0, 0, 0, 200);
+        }
+
+        if (ScoreKeeper.score > 0) //hide score when changing stage, useful for sharing screenshots of highest score
+        {
+            if (previousStage != currentStage) menuManager.scoreOutput.gameObject.SetActive(false);
+            else menuManager.scoreOutput.gameObject.SetActive(true);
+        }
 
         ApplyStageSkin();
         ApplyStageMusic();
@@ -58,30 +81,29 @@ public class StageSelector : MonoBehaviour
         title.text = stageNames[currentStage];
         floor.sprite = stageSprites[currentStage];
 
-        //recolor texts so that they remain visible
+        //recolor texts and outlines per stage
         switch (currentStage)
         {
-            default:
-                foreach (Text text in UITexts)
-                    text.color = Color.black;
-                foreach (Outline outline in UIOutlines)
-                    outline.enabled = false;
-                StartButtonOutline.effectColor = new Color32(0, 0, 0, 128);
-                break;
-            case 1:
-            case 2:
-            case 3:
-            case 4:
-            case 5:
-            case 6:
-            case 7:
-            case 8:
-                foreach (Text text in UITexts)
-                    text.color = Color.white;
-                foreach (Outline outline in UIOutlines)
-                    outline.enabled = true;
-                StartButtonOutline.effectColor = new Color32(255, 255, 255, 64);
-                break;
+            default: ApplyStageColors(Color.black, new Color32(0, 0, 0, 64), false); break;
+            case 1: ApplyStageColors(Color.black, new Color32(255, 255, 255, 32), true); break;
+            case 2: ApplyStageColors(new Color32(255, 200, 140, 255), new Color32(0, 0, 0, 64), true); break;
+            case 3: ApplyStageColors(Color.white, new Color32(0, 0, 0, 64), true); break;
+            case 4: ApplyStageColors(new Color32(255, 255, 200, 255), new Color32(0, 0, 0, 128), true); break;
+            case 5: ApplyStageColors(new Color32(200, 100, 100, 255), new Color32(0, 0, 0, 128), true); break;
+            case 6: ApplyStageColors(new Color32(200, 100, 50, 255), new Color32(0, 0, 0, 64), true); break;
+            case 7: ApplyStageColors(new Color32(200, 50, 50, 255), new Color32(0, 0, 0, 128), true); break;
+            case 8: ApplyStageColors(new Color32(100, 100, 200, 255), new Color32(0, 0, 0, 128), true); break; 
+        }
+    }
+
+    void ApplyStageColors(Color32 textColor, Color32 outlineColor, bool outlineEnabled)
+    {
+        foreach (Text text in UITexts)
+            text.color = textColor;
+        foreach (Outline outline in UIOutlines)
+        {
+            outline.enabled = outlineEnabled;
+            outline.effectColor = outlineColor;
         }
     }
 
@@ -119,7 +141,7 @@ public class StageSelector : MonoBehaviour
 
     public void CheckIfUnlocked()
     {
-        if (PlayerPrefs.GetInt("totalKills") >= menuManager.StageRequirements(currentStage)) menuManager.LockedStage(false);
+        if (menuManager.StageRequirements(currentStage) <= 0) menuManager.LockedStage(false);
         else menuManager.LockedStage(true);
     }
 }

@@ -2403,11 +2403,16 @@ MonoBehaviour:
   waveIntensity: 1
   waveIntensityMultiplier: 1.1
   currentWave: 0
-  closestSpawnPosX: 8
-  closestSpawnPosY: 5
+  closestSpawnPosX: 9
+  closestSpawnPosY: 6
   pauseWaves: 0
   scoreOutput: {fileID: 996570988}
+  currentScore: 0
   toNextLevel: 50
+  killCount: 0
+  punchCount: 0
+  specialAttackCount: 0
+  itemGrabCount: 0
   experienceUI: {fileID: 2106381247}
   invisibleButton: {fileID: 1929198381}
   levelUpWindow: {fileID: 2131536277}

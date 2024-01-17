@@ -6,13 +6,15 @@ public class SkinSelector : MonoBehaviour
 {
     MainMenu menuManager;
 
-    static int currentSkin;
+    public static int currentSkin;
     List<string> skinNames = new List<string>();
     List<string> skinDescriptions = new List<string>();
+    List<string> skinStats = new List<string>();
     [SerializeField] List<Sprite> skinSprites = new List<Sprite>();
     [SerializeField] Image selectedSkin;
     [SerializeField] Text title;
     [SerializeField] Text description;
+    [SerializeField] Text statsField;
     string unlockText;
 
 
@@ -33,6 +35,13 @@ public class SkinSelector : MonoBehaviour
         skinDescriptions.Add("When you throw so many punches that you unlock the golden skin");
         skinDescriptions.Add("Sleep-inducing magic");
         skinDescriptions.Add("Fist Hero that has transcended the limits of a regular Fist Hero");
+
+        skinStats.Add("");
+        skinStats.Add("+1 attack speed");
+        skinStats.Add("+2 attack speed\n-1 movement");
+        skinStats.Add("+1 power\n+1 attack speed\n-1 special");
+        skinStats.Add("+2 special\n-1 attack speed");
+        skinStats.Add("+2 power");
 
         ApplyPlayerSkin();
     }
@@ -56,6 +65,7 @@ public class SkinSelector : MonoBehaviour
         title.text = skinNames[currentSkin];
         description.text = skinDescriptions[currentSkin];
         selectedSkin.sprite = skinSprites[currentSkin];
+        statsField.text = skinStats[currentSkin];
         SpriteChanger.spriteSheetName = skinNames[currentSkin];
     }
 
@@ -65,9 +75,9 @@ public class SkinSelector : MonoBehaviour
         {
             default: { unlockText = "";  return true; }
             case 1: if (PlayerPrefs.GetInt("maxKillsInOneRun") >= 100) { unlockText = "Defeated " + PlayerPrefs.GetInt("maxKillsInOneRun") + " enemies in one run!"; return true; } else { unlockText = "Unlock:\nDefeat 100 enemies in one run"; return false; }
-            case 2: if (PlayerPrefs.GetInt("totalItemsGrabbed") >= 100) { unlockText = "Grabbed " + PlayerPrefs.GetInt("totalItemsGrabbed") + " items!"; return true; } else { unlockText = "Unlock:\nGrab " + (100 - PlayerPrefs.GetInt("totalItemsGrabbed")) + " more items"; return false; }
-            case 3: if (PlayerPrefs.GetInt("highestScore") >= 2000) { unlockText = "Highest score: " + PlayerPrefs.GetInt("highestScore") + "!"; return true; } else { unlockText = "Unlock:\nReach over 2000 score"; return false; }
-            case 4: if (PlayerPrefs.GetInt("totalSpecialAttacks") >= 150) { unlockText = "Used special attack " + PlayerPrefs.GetInt("totalSpecialAttacks") + " times!"; return true; } else { unlockText = "Unlock:\nUse special attack " + (150 - PlayerPrefs.GetInt("totalSpecialAttacks")) + " times"; return false; }
+            case 2: if (PlayerPrefs.GetInt("totalItemsGrabbed") >= 150) { unlockText = "Grabbed " + PlayerPrefs.GetInt("totalItemsGrabbed") + " items!"; return true; } else { unlockText = "Unlock:\nGrab " + (150 - PlayerPrefs.GetInt("totalItemsGrabbed")) + " more items"; return false; }
+            case 3: if (PlayerPrefs.GetInt("highestScore") >= 3000) { unlockText = "Highest score: " + PlayerPrefs.GetInt("highestScore") + "!"; return true; } else { unlockText = "Unlock:\nReach over 3000 score"; return false; }
+            case 4: if (PlayerPrefs.GetInt("totalSpecialAttacks") >= 100) { unlockText = "Used special attack " + PlayerPrefs.GetInt("totalSpecialAttacks") + " times!"; return true; } else { unlockText = "Unlock:\nUse special attack " + (100 - PlayerPrefs.GetInt("totalSpecialAttacks")) + " times"; return false; }
             case 5: if (PlayerPrefs.GetInt("totalPunches") >= 9000) { unlockText = "Threw " + PlayerPrefs.GetInt("totalPunches") + " punches!"; return true; } else { unlockText = "Unlock:\nThrow " + (9000 - PlayerPrefs.GetInt("totalPunches")) + " more punches"; return false; }
         }
     }
