@@ -31,8 +31,8 @@ public class InputManager : MonoBehaviour
         tutorial = FindObjectOfType<Tutorial>();
         game = FindObjectOfType<GameManager>();
         eventSystem = FindObjectOfType<EventSystem>();
-        if (!Application.isMobilePlatform && !Application.isEditor)
-            mobileControlsUI.gameObject.SetActive(false); //hide onscreen controls
+        if (!Application.isMobilePlatform)
+            if (mobileControlsUI != null) mobileControlsUI.gameObject.SetActive(false); //hide onscreen controls
     }
 
     void Update()

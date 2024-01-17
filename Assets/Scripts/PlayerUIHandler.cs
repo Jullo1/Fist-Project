@@ -19,7 +19,7 @@ public class PlayerUIHandler : MonoBehaviour
 
     [SerializeField] List<Outline> attackCDOutlines = new List<Outline>();
 
-    [SerializeField] Tutorial tutorial;
+    Tutorial tutorial;
 
     void Awake()
     {
