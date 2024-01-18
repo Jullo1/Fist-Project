@@ -77,7 +77,7 @@ Camera:
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
   m_TargetEye: 0
-  m_HDR: 1
+  m_HDR: 0
   m_AllowMSAA: 0
   m_AllowDynamicResolution: 0
   m_ForceIntoRT: 0
@@ -136,7 +136,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -337,10 +337,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3735eb51a25b315469c41139515ac6a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitpointsUI:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  hitpointsUI: []
   attackCDUI:
   - {fileID: 0}
   - {fileID: 0}
@@ -352,7 +349,6 @@ MonoBehaviour:
   attackCDOutlines:
   - {fileID: 0}
   - {fileID: 0}
-  tutorial: {fileID: 0}
 --- !u!114 &421931920960794525
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -7,7 +7,7 @@ public class PlayerUIHandler : MonoBehaviour
     Player player;
 
     //UI Elements
-    public List<Image> hitpointsUI = new List<Image>();
+    public GameObject[] hitpointsUI = new GameObject[3];
     public List<Image> attackCDUI = new List<Image>();
 
     [SerializeField] Text comboUI;
@@ -25,6 +25,7 @@ public class PlayerUIHandler : MonoBehaviour
     {
         player = GetComponent<Player>();
         tutorial = FindObjectOfType<Tutorial>();
+        hitpointsUI = GameObject.FindGameObjectsWithTag("PlayerHealthBar");
     }
 
     void Update()
@@ -107,10 +108,10 @@ public class PlayerUIHandler : MonoBehaviour
 
     public void CheckHitpoints()
     {
-        foreach (Image bar in hitpointsUI)
-            bar.gameObject.SetActive(true);
+        foreach (GameObject bar in hitpointsUI)
+            bar.SetActive(true);
 
-        for (int i = hitpointsUI.Count; i > player.hitpoints; i--)
+        for (int i = hitpointsUI.Length; i > player.hitpoints; i--)
             hitpointsUI[i - 1].gameObject.SetActive(false);
     }
 }

@@ -7,22 +7,25 @@ public class StageSelector : MonoBehaviour
     MainMenu menuManager;
 
     public static int currentStage;
+    public static float scrollMultiplier = 1;
+
     int previousStage;
     int maxAvailableStage = 6;
     
     List<string> stageNames = new List<string>();
     [SerializeField] Text title;
     [SerializeField] List<Sprite> stageSprites = new List<Sprite>();
-    [SerializeField] SpriteRenderer floor;
+    RawImage floor;
     Text[] UITexts;
     Outline[] UIOutlines;
-    [SerializeField] Outline StartButtonOutline;
+    [SerializeField] Outline startButtonOutline;
 
     [SerializeField] List<AudioClip> musicList = new List<AudioClip>();
     [SerializeField] AudioSource backgroundMusic;
 
     void Awake()
     {
+        floor = GameObject.FindGameObjectWithTag("Floor").GetComponent<RawImage>();
         menuManager = FindObjectOfType<MainMenu>();
         UITexts = FindObjectsOfType<Text>();
         UIOutlines = FindObjectsOfType<Outline>();
@@ -79,31 +82,34 @@ public class StageSelector : MonoBehaviour
     void ApplyStageSkin()
     {
         title.text = stageNames[currentStage];
-        floor.sprite = stageSprites[currentStage];
+        floor.texture = stageSprites[currentStage].texture;
 
         //recolor texts and outlines per stage
         switch (currentStage)
         {
-            default: ApplyStageColors(Color.black, new Color32(0, 0, 0, 64), false); break;
-            case 1: ApplyStageColors(Color.black, new Color32(255, 255, 255, 32), true); break;
-            case 2: ApplyStageColors(new Color32(255, 200, 140, 255), new Color32(0, 0, 0, 64), true); break;
-            case 3: ApplyStageColors(Color.white, new Color32(0, 0, 0, 64), true); break;
-            case 4: ApplyStageColors(new Color32(255, 255, 200, 255), new Color32(0, 0, 0, 128), true); break;
-            case 5: ApplyStageColors(new Color32(200, 100, 100, 255), new Color32(0, 0, 0, 128), true); break;
-            case 6: ApplyStageColors(new Color32(200, 100, 50, 255), new Color32(0, 0, 0, 64), true); break;
-            case 7: ApplyStageColors(new Color32(200, 50, 50, 255), new Color32(0, 0, 0, 128), true); break;
-            case 8: ApplyStageColors(new Color32(100, 100, 200, 255), new Color32(0, 0, 0, 128), true); break; 
+            default: ApplyStageColors(Color.black, new Color32(0, 0, 0, 64), false); scrollMultiplier = 0.25f; floor.uvRect = new Rect(floor.uvRect.position, new Vector2(5.0f,2.5f)); break;
+            case 1: ApplyStageColors(Color.black, new Color32(255, 255, 255, 32), true); scrollMultiplier = 1; floor.uvRect = new Rect(floor.uvRect.position, new Vector2(20f, 10f)); break;
+            case 2: ApplyStageColors(new Color32(255, 200, 140, 255), new Color32(0, 0, 0, 64), true); scrollMultiplier = 1; floor.uvRect = new Rect(floor.uvRect.position, new Vector2(20f, 10f)); break;
+            case 3: ApplyStageColors(Color.white, new Color32(0, 0, 0, 64), true); scrollMultiplier = 0.5f; floor.uvRect = new Rect(floor.uvRect.position, new Vector2(10f, 5f)); break;
+            case 4: ApplyStageColors(new Color32(255, 255, 200, 255), new Color32(0, 0, 0, 128), true); scrollMultiplier = 1; floor.uvRect = new Rect(floor.uvRect.position, new Vector2(20f, 10f)); break;
+            case 5: ApplyStageColors(new Color32(200, 100, 100, 255), new Color32(0, 0, 0, 128), true); scrollMultiplier = 1; floor.uvRect = new Rect(floor.uvRect.position, new Vector2(20f, 10f)); break;
+            case 6: ApplyStageColors(new Color32(200, 100, 50, 255), new Color32(0, 0, 0, 64), true); scrollMultiplier = 1; floor.uvRect = new Rect(floor.uvRect.position, new Vector2(20f, 10f)); break;
+            case 7: ApplyStageColors(new Color32(200, 50, 50, 255), new Color32(0, 0, 0, 128), true); scrollMultiplier = 1.2f; floor.uvRect = new Rect(floor.uvRect.position, new Vector2(24f, 12f)); break;
+            case 8: ApplyStageColors(new Color32(100, 100, 200, 255), new Color32(0, 0, 0, 128), true); scrollMultiplier = 1.2f; floor.uvRect = new Rect(floor.uvRect.position, new Vector2(24f, 12f)); break; 
         }
     }
 
     void ApplyStageColors(Color32 textColor, Color32 outlineColor, bool outlineEnabled)
     {
-        foreach (Text text in UITexts)
-            text.color = textColor;
         foreach (Outline outline in UIOutlines)
         {
             outline.enabled = outlineEnabled;
             outline.effectColor = outlineColor;
+        }
+        foreach (Text text in UITexts)
+        {
+            startButtonOutline.effectColor = new Color32(textColor.r, textColor.g, textColor.b, 128);
+            text.color = textColor;
         }
     }
 

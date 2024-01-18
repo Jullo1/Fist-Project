@@ -5,7 +5,6 @@ using UnityEngine;
 public enum playerStats { hitpoints, strength, pushForce, moveSpeed, attackSpeed, attackCharges, attackRange, specialDamage, specialAttackCount, specialCooldown, specialRange, dodgeChance, criticalChance, criticalDamage}
 public class Player : Unit
 {
-    InputManager playerInput;
     PlayerUIHandler ui;
 
     //audio
@@ -37,6 +36,8 @@ public class Player : Unit
     Coroutine previousFreezeRotation;
     bool facingRight;
 
+    ScrollingBackground scrollingBackground;
+
     float[] powerUpDuration = new float[7] { 0, 0, 0, 0, 0, 0, 0 };
     PowerUpType[] activePowerUps = new PowerUpType[7] { PowerUpType.None, PowerUpType.None, PowerUpType.None, PowerUpType.None, PowerUpType.None, PowerUpType.None, PowerUpType.None };
 
@@ -45,8 +46,8 @@ public class Player : Unit
         base.Awake();
 
         levelMusic = GameObject.FindGameObjectWithTag("Floor").GetComponent<AudioSource>();
-        playerInput = GetComponent<InputManager>();
         ui = GetComponent<PlayerUIHandler>();
+        scrollingBackground = FindObjectOfType<ScrollingBackground>();
 
         comboCDBoost = 1;
         for (int i = 0; i < attackCD.Count; i++) //prepare attack charges and timers
@@ -132,6 +133,7 @@ public class Player : Unit
     public void Move(float x, float y)
     {
         transform.position += new Vector3(x, y) * moveSpeed * Time.deltaTime;
+        scrollingBackground.ScrollBackground(x, y, moveSpeed * StageSelector.scrollMultiplier); //scroll background
 
         if (transform.position.x < -150) transform.position += Vector3.right * 0.01f; //check for out of bounds
         if (transform.position.x > +150) transform.position -= Vector3.right * 0.01f;
@@ -296,6 +298,10 @@ public class Player : Unit
         comboAmount = 0;
         UpdateHealth(-damage);
         KnockBack(hitter, pushForce);
+
+        Vector2 direction = (transform.position - hitter.transform.position).normalized; //move background
+        StartCoroutine(scrollingBackground.ScrollBackgroundOverTime(direction.x, direction.y, (pushForce/100) *StageSelector.scrollMultiplier, 0.1f));
+
         if (invincible <= 0.5) invincible = 0.5f; //only update if not already under this buff in case the player had more than 0.5sec of invincible left
 
         if (damage > 1) anim.SetTrigger("glowHit");

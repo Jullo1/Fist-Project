@@ -11,8 +11,8 @@ public class TouchStickVisual : MonoBehaviour, IPointerDownHandler, IPointerUpHa
     {
         id = eventData.pointerId;
         background.transform.position = transform.position;
-        gameObject.GetComponent<Image>().color = new Color32(255, 255, 255, 150);
-        background.GetComponent<Image>().color = new Color32(0, 0, 0, 100);
+        gameObject.GetComponent<RawImage>().color = new Color32(255, 255, 255, 150);
+        background.GetComponent<RawImage>().color = new Color32(0, 0, 0, 100);
     }
 
     public void OnPointerUp(PointerEventData eventData)
@@ -20,7 +20,7 @@ public class TouchStickVisual : MonoBehaviour, IPointerDownHandler, IPointerUpHa
         if (eventData.pointerId == id)
             background.transform.position = transform.position;
 
-        gameObject.GetComponent<Image>().color = new Color32(255, 255, 255, 25);
-        background.GetComponent<Image>().color = new Color32(0, 0, 0, 50);
+        gameObject.GetComponent<RawImage>().color = new Color32(255, 255, 255, 25);
+        background.GetComponent<RawImage>().color = new Color32(0, 0, 0, 50);
     }
 }

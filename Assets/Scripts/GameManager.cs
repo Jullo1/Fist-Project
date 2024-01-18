@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
     public bool paused;
     Player player;
     AudioSource menuAudio;
-    [SerializeField] AudioSource backgroundMusic;
+    AudioSource backgroundMusic;
     [SerializeField] AudioClip selectSFX;
 
     public static float audioProgress;
@@ -57,13 +57,14 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
-        backgroundMusic.time = audioProgress;
-
-        menuAudio = GetComponent<AudioSource>();
         player = FindAnyObjectByType<Player>();
+        menuAudio = GetComponent<AudioSource>();
+        backgroundMusic = GameObject.FindGameObjectWithTag("Floor").GetComponent<AudioSource>();
         scoreKeeper = FindObjectOfType<ScoreKeeper>();
         tutorial = FindAnyObjectByType<Tutorial>();
         mobileButton = FindObjectOfType<OnScreenButton>();
+
+        backgroundMusic.time = audioProgress;
 
         level = 1;
         toNextLevel = 100;
