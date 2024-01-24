@@ -45,7 +45,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] Image experienceUI;
     [SerializeField] Selectable invisibleButton;
-    OnScreenButton mobileButton;
+    [SerializeField] OnScreenButton mobileButton;
 
     [SerializeField] GameObject levelUpWindow;
     [SerializeField] Text option1Text; int option1Value;
@@ -157,7 +157,7 @@ public class GameManager : MonoBehaviour
     void LevelUp()
     {
         StartCoroutine(FreezeUI());
-        mobileButton.gameObject.SetActive(false);
+        if (Application.isMobilePlatform || Application.isEditor) mobileButton.gameObject.SetActive(false);
         paused = true;
 
         Time.timeScale = 0;
@@ -232,7 +232,7 @@ public class GameManager : MonoBehaviour
 
     public void ContinueGame()
     {
-        mobileButton.gameObject.SetActive(false);
+        if (Application.isMobilePlatform || Application.isEditor) mobileButton.gameObject.SetActive(false);
         paused = false;
         levelUpWindow.SetActive(false);
         Time.timeScale = 1;

@@ -87,15 +87,15 @@ public class StageSelector : MonoBehaviour
         //recolor texts and outlines per stage
         switch (currentStage)
         {
-            default: ApplyStageColors(Color.black, new Color32(0, 0, 0, 64), false); scrollMultiplier = 0.25f; floor.uvRect = new Rect(floor.uvRect.position, new Vector2(5.0f,2.5f)); break;
-            case 1: ApplyStageColors(Color.black, new Color32(255, 255, 255, 32), true); scrollMultiplier = 1; floor.uvRect = new Rect(floor.uvRect.position, new Vector2(20f, 10f)); break;
-            case 2: ApplyStageColors(new Color32(255, 200, 140, 255), new Color32(0, 0, 0, 64), true); scrollMultiplier = 1; floor.uvRect = new Rect(floor.uvRect.position, new Vector2(20f, 10f)); break;
-            case 3: ApplyStageColors(Color.white, new Color32(0, 0, 0, 64), true); scrollMultiplier = 0.5f; floor.uvRect = new Rect(floor.uvRect.position, new Vector2(10f, 5f)); break;
-            case 4: ApplyStageColors(new Color32(255, 255, 200, 255), new Color32(0, 0, 0, 128), true); scrollMultiplier = 1; floor.uvRect = new Rect(floor.uvRect.position, new Vector2(20f, 10f)); break;
-            case 5: ApplyStageColors(new Color32(200, 100, 100, 255), new Color32(0, 0, 0, 128), true); scrollMultiplier = 1; floor.uvRect = new Rect(floor.uvRect.position, new Vector2(20f, 10f)); break;
-            case 6: ApplyStageColors(new Color32(200, 100, 50, 255), new Color32(0, 0, 0, 64), true); scrollMultiplier = 1; floor.uvRect = new Rect(floor.uvRect.position, new Vector2(20f, 10f)); break;
-            case 7: ApplyStageColors(new Color32(200, 50, 50, 255), new Color32(0, 0, 0, 128), true); scrollMultiplier = 1.2f; floor.uvRect = new Rect(floor.uvRect.position, new Vector2(24f, 12f)); break;
-            case 8: ApplyStageColors(new Color32(100, 100, 200, 255), new Color32(0, 0, 0, 128), true); scrollMultiplier = 1.2f; floor.uvRect = new Rect(floor.uvRect.position, new Vector2(24f, 12f)); break; 
+            default: ApplyStageColors(Color.black, new Color32(0, 0, 0, 64), false); scrollMultiplier = 0.242f; floor.uvRect = new Rect(floor.uvRect.position, new Vector2(5.0f,2.5f)); break;
+            case 1: ApplyStageColors(Color.black, new Color32(255, 255, 255, 32), true); scrollMultiplier = 0.968f; floor.uvRect = new Rect(floor.uvRect.position, new Vector2(20f, 10f)); break;
+            case 2: ApplyStageColors(new Color32(255, 200, 140, 255), new Color32(0, 0, 0, 64), true); scrollMultiplier = 0.968f; floor.uvRect = new Rect(floor.uvRect.position, new Vector2(20f, 10f)); break;
+            case 3: ApplyStageColors(Color.white, new Color32(0, 0, 0, 64), true); scrollMultiplier = 0.484f; floor.uvRect = new Rect(floor.uvRect.position, new Vector2(10f, 5f)); break;
+            case 4: ApplyStageColors(new Color32(255, 255, 200, 255), new Color32(0, 0, 0, 128), true); scrollMultiplier = 0.968f; floor.uvRect = new Rect(floor.uvRect.position, new Vector2(20f, 10f)); break;
+            case 5: ApplyStageColors(new Color32(200, 100, 100, 255), new Color32(0, 0, 0, 128), true); scrollMultiplier = 0.968f; floor.uvRect = new Rect(floor.uvRect.position, new Vector2(20f, 10f)); break;
+            case 6: ApplyStageColors(new Color32(200, 100, 50, 255), new Color32(0, 0, 0, 64), true); scrollMultiplier = 0.968f; floor.uvRect = new Rect(floor.uvRect.position, new Vector2(20f, 10f)); break;
+            case 7: ApplyStageColors(new Color32(200, 50, 50, 255), new Color32(0, 0, 0, 128), true); scrollMultiplier = 1.172f; floor.uvRect = new Rect(floor.uvRect.position, new Vector2(24f, 12f)); break;
+            case 8: ApplyStageColors(new Color32(100, 100, 200, 255), new Color32(0, 0, 0, 128), true); scrollMultiplier = 1.172f; floor.uvRect = new Rect(floor.uvRect.position, new Vector2(24f, 12f)); break; 
         }
     }
 

@@ -5,12 +5,13 @@ public class AdInitializer : MonoBehaviour, IUnityAdsInitializationListener
 {
     [SerializeField] string _androidGameId;
     [SerializeField] string _iOSGameId;
-    [SerializeField] bool _testMode = true;
+    [SerializeField] bool _testMode;
     private string _gameId;
 
     void Awake()
     {
-        //if (Application.isMobilePlatform) InitializeAds(); //enable this line and the 2 in MainMenu.cs for ads
+        if (Application.isMobilePlatform || Application.isEditor) InitializeAds();
+        if (Application.isEditor) _testMode = true;
     }
 
     public void InitializeAds()

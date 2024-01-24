@@ -21,20 +21,33 @@ public class MainMenu : MonoBehaviour
     public Text scoreOutput;
     [SerializeField] GameObject scoreKeeper;
 
-    [SerializeField] AdInitializer ads;
-    [SerializeField] InterstitalAds interstitalAd;
+    AdInitializer ads;
+    InterstitalAds interstitalAd;
 
     bool loadSceneSent;
 
     [Obsolete]
     void Awake()
     {
+        ads = FindObjectOfType<AdInitializer>();
+        interstitalAd = FindObjectOfType<InterstitalAds>();
+        menuAudio = GetComponent<AudioSource>();
+
         //InitiateSaveData(); //for testing, resets all save data
         if (!PlayerPrefs.HasKey("totalKills")) InitiateSaveData();
 
-        //if (Application.isMobilePlatform) interstitalAd.LoadAd(); //enable these 2 lines, and the one in adinitializer for ads
+        if (!FindObjectOfType<ScoreKeeper>()) //instantiate scoreKeeper if there isn't one yet
+        {
+            Instantiate(scoreKeeper);
+            if (Application.isMobilePlatform || Application.isEditor) interstitalAd.LoadAd(); //only load ad on first run
+        }
+        else if (Application.isMobilePlatform || Application.isEditor)
+        {
+            interstitalAd.ShowAd(); //send ad after death
+            interstitalAd.LoadAd(); //then get ad ready for next run
+        }
+
         Time.timeScale = 1;
-        menuAudio = GetComponent<AudioSource>();
         if (ScoreKeeper.score > 0)
         {
             if (!Application.isMobilePlatform) StartCoroutine(SendScore(ScoreKeeper.score));
@@ -59,10 +72,8 @@ public class MainMenu : MonoBehaviour
 
     void Start()
     {
-        if (!FindObjectOfType<ScoreKeeper>()) //instantiate scoreKeeper if there isn't one yet
-            Instantiate(scoreKeeper);
-        /*else
-            if (Application.isMobilePlatform) interstitalAd.ShowAd();*/ //enable these 2 lines, and the one in adinitializer for ads
+        
+        
     }
 
     public void ResetTutorial()

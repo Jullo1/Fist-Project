@@ -1721,7 +1721,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _androidGameId: 5504397
   _iOSGameId: 5504396
-  _testMode: 1
+  _testMode: 0
 --- !u!4 &591339538
 Transform:
   m_ObjectHideFlags: 0
@@ -2509,7 +2509,7 @@ GameObject:
   - component: {fileID: 1007404875}
   - component: {fileID: 1007404876}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: Main Menu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2628,8 +2628,6 @@ MonoBehaviour:
   lockedCharacterText: {fileID: 1467226616}
   scoreOutput: {fileID: 397604982}
   scoreKeeper: {fileID: 3507146556624152134, guid: 2799cd2d6b523f349baa95fdffd003f9, type: 3}
-  ads: {fileID: 591339537}
-  interstitalAd: {fileID: 591339536}
 --- !u!82 &1007404876
 AudioSource:
   m_ObjectHideFlags: 0

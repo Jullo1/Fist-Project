@@ -18,8 +18,8 @@ public class InputManager : MonoBehaviour
     [SerializeField] PlayerInput mobileControls;
     [SerializeField] Canvas mobileControlsUI;
     public TouchStickVisual leftStick;
-    [SerializeField] Image leftStickImage;
-    [SerializeField] Image leftStickBackground;
+    [SerializeField] RawImage leftStickImage;
+    [SerializeField] RawImage leftStickBackground;
     [SerializeField] Selectable invisibleButton;
 
     float inputX;
