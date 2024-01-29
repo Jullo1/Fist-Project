@@ -40,6 +40,7 @@ public class Unit : Entity
 
     protected void KnockBack(GameObject pusher, float pushForce = 0f)
     {
+        rb.mass = 5;
         anim.SetTrigger("takeHit");
         StartCoroutine(FreezeAttack(0.75f));
         Vector3 direction = (transform.position - pusher.transform.position).normalized;
@@ -93,13 +94,12 @@ public class Unit : Entity
     public virtual void ActivatePowerUp(PowerUp powerUp)
     {
         if (powerUp.powerUpType == PowerUpType.FullRecovery)
-        {
             UpdateHealth(maxHitpoints);
-        }
     }
 
     public void FreezeUnit(float time)
     {
+        rb.mass = 0;
         frozenTime = time;
         anim.enabled = false;
     }

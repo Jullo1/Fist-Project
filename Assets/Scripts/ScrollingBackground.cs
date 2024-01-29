@@ -1,4 +1,3 @@
-using JetBrains.Annotations;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,6 +5,8 @@ using UnityEngine.UI;
 public class ScrollingBackground : MonoBehaviour
 {
     RawImage image;
+    public bool scrollingHorizontal = true;
+    public bool scrollingVertical = true;
 
     void Awake()
     {
@@ -14,7 +15,7 @@ public class ScrollingBackground : MonoBehaviour
 
     public void ScrollBackground(float x, float y, float speed)
     {
-        image.uvRect = new Rect(image.uvRect.position + new Vector2(x*1.078f, y) * Time.deltaTime * speed, image.uvRect.size);
+        image.uvRect = new Rect(image.uvRect.position + new Vector2(x * 1.078f, y) * Time.deltaTime * speed, image.uvRect.size);
     }
 
     public IEnumerator ScrollBackgroundOverTime(float x, float y, float speed, float duration)

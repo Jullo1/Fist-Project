@@ -10,7 +10,7 @@ public class StageSelector : MonoBehaviour
     public static float scrollMultiplier = 1;
 
     int previousStage;
-    int maxAvailableStage = 6;
+    int maxAvailableStage = 9;
     
     List<string> stageNames = new List<string>();
     [SerializeField] Text title;

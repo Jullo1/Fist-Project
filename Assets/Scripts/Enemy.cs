@@ -74,6 +74,7 @@ public class Enemy : Unit
     {
         if (player && !dead && frozenTime <= 0)
         {
+            rb.mass = 5;
             transform.position = Vector2.MoveTowards(transform.position, player.transform.position, moveSpeed * Time.deltaTime);
             if (player.transform.position.x < transform.position.x) { sr.flipX = true; hitIndicator.flipX = true; }
             else { sr.flipX = false; hitIndicator.flipX = false; }
