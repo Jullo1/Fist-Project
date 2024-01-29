@@ -2956,6 +2956,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48d84fe5363f0f342bb7f7c5b592e0a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scrollingHorizontal: 1
+  scrollingVertical: 1
 --- !u!82 &1181139467
 AudioSource:
   m_ObjectHideFlags: 0
