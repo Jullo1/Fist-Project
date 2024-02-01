@@ -99,6 +99,7 @@ GameObject:
   - component: {fileID: 4067650236979749022}
   - component: {fileID: -5766259547027375216}
   - component: {fileID: -1376609401851585414}
+  - component: {fileID: 6113422757940488024}
   m_Layer: 0
   m_Name: Sturdy
   m_TagString: Enemy
@@ -116,7 +117,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3.5, y: 3.5, z: 3.5}
+  m_LocalScale: {x: 4, y: 4, z: 4}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 5918891046208577946}
@@ -135,8 +136,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c1037cfb3cfe6b4682c299d9d162853, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weight: 14
-  size: 1
+  weight: 18
+  size: 1.125
   freeze: 0
   moveSpeed: 1
   attackRange: 1
@@ -150,7 +151,7 @@ MonoBehaviour:
   dead: 0
   freezeAttack: 0
   hitSound: {fileID: 8300000, guid: e9e87a3377ca8214e9e7193f038750a2, type: 3}
-  experienceDrop: 20
+  experienceDrop: 24
   furyIcon: {fileID: 7765113519443583501}
   hitIndicator: {fileID: 4241554622327982346}
   healthDrop: {fileID: 8693265718791990718, guid: b8c991079c615124bb71add0c67194f8, type: 3}
@@ -158,7 +159,7 @@ MonoBehaviour:
   frenzyDrop: {fileID: 3110370413052923250, guid: 8aa5100bf25eb13459438e9de7f6a7b0, type: 3}
   experiencePotionDrop: {fileID: 8693265718791990718, guid: f5048e41639443e4c986cbafffdc518a, type: 3}
   timeStopDrop: {fileID: 8693265718791990718, guid: 93ba720f715c6cf45a2a6393a16fd146, type: 3}
-  dropList: 0100000001000000020000000300000004000000040000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  dropList: 010000000100000002000000030000000400000004000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
 --- !u!61 &1370204992882113338
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -245,8 +246,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: -757021965, guid: eea17c9a8f5665645badaeb35e6b0fe8, type: 3}
-  m_Color: {r: 1, g: 0.75686276, b: 0.27058825, a: 1}
+  m_Sprite: {fileID: -757021965, guid: 3a062fc56d3b48344b5a33a89f815cff, type: 3}
+  m_Color: {r: 0.7075472, g: 0.38847303, b: 0.11681202, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -293,7 +294,7 @@ Animator:
   m_GameObject: {fileID: 3894263153188491416}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 39e6df807d804b54e904d2f751d9492d, type: 2}
+  m_Controller: {fileID: 9100000, guid: 8b100cbae53829e499607faf3d45db28, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -400,6 +401,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &6113422757940488024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3894263153188491416}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1949a5b58417bf44d8718e1ebdd6474e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteSheetName: Zombie Fighter
+  location: Enemy
 --- !u!1 &7765113519443583501
 GameObject:
   m_ObjectHideFlags: 0

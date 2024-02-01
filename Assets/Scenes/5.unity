@@ -1702,13 +1702,21 @@ PrefabInstance:
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1048475923611409127, guid: f31643bcc55df71449011d1fac8f46df, type: 3}
+      propertyPath: enemyList.Array.data[0]
+      value: 
+      objectReference: {fileID: 9013288256728285134, guid: af14458344b8f1146b50cb424d519958, type: 3}
+    - target: {fileID: 1048475923611409127, guid: f31643bcc55df71449011d1fac8f46df, type: 3}
+      propertyPath: enemyList.Array.data[1]
+      value: 
+      objectReference: {fileID: 9013288256728285134, guid: 20520c35a89ccee4b8cdd4c8b6f8d8d0, type: 3}
+    - target: {fileID: 1048475923611409127, guid: f31643bcc55df71449011d1fac8f46df, type: 3}
       propertyPath: enemyList.Array.data[2]
       value: 
-      objectReference: {fileID: 5886114919672351050, guid: ed0e45a2b397d094680b1a1675075e30, type: 3}
+      objectReference: {fileID: 5886114919672351050, guid: bacb2f12ec5203d4287c6cec36868fcb, type: 3}
     - target: {fileID: 1048475923611409127, guid: f31643bcc55df71449011d1fac8f46df, type: 3}
       propertyPath: enemyList.Array.data[3]
       value: 
-      objectReference: {fileID: 9013288256728285134, guid: 1df0b43f71bde6448bd6af8ab1cb830b, type: 3}
+      objectReference: {fileID: 9013288256728285134, guid: be148f977e493ee47842dfeeadbe62b1, type: 3}
     - target: {fileID: 1048475923611409127, guid: f31643bcc55df71449011d1fac8f46df, type: 3}
       propertyPath: waveIntensityMultiplier
       value: 1.1
@@ -2629,6 +2637,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48d84fe5363f0f342bb7f7c5b592e0a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scrollingHorizontal: 1
+  scrollingVertical: 1
 --- !u!82 &2143187413
 AudioSource:
   m_ObjectHideFlags: 0

@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 6700255505913130222}
   - component: {fileID: 1511932686106722665}
   - component: {fileID: -4068188835407373281}
+  - component: {fileID: -7260664704816647974}
   m_Layer: 0
   m_Name: Big
   m_TagString: Enemy
@@ -66,7 +67,7 @@ MonoBehaviour:
   dead: 0
   freezeAttack: 0
   hitSound: {fileID: 8300000, guid: e9e87a3377ca8214e9e7193f038750a2, type: 3}
-  experienceDrop: 30
+  experienceDrop: 32
   furyIcon: {fileID: 2620331443380816464}
   hitIndicator: {fileID: 6540423717661384439}
   healthDrop: {fileID: 8693265718791990718, guid: b8c991079c615124bb71add0c67194f8, type: 3}
@@ -316,6 +317,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &-7260664704816647974
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2396716612295989141}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1949a5b58417bf44d8718e1ebdd6474e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteSheetName: Cat Fighter
+  location: Enemy
 --- !u!1 &2620331443380816464
 GameObject:
   m_ObjectHideFlags: 0

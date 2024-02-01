@@ -1704,23 +1704,23 @@ PrefabInstance:
     - target: {fileID: 1048475923611409127, guid: f31643bcc55df71449011d1fac8f46df, type: 3}
       propertyPath: enemyList.Array.data[0]
       value: 
-      objectReference: {fileID: 9013288256728285134, guid: c71597616f405304d9ea5363eab1bf02, type: 3}
+      objectReference: {fileID: 9013288256728285134, guid: eb43a65a86724634eaf274a6f040bfd0, type: 3}
     - target: {fileID: 1048475923611409127, guid: f31643bcc55df71449011d1fac8f46df, type: 3}
       propertyPath: enemyList.Array.data[1]
       value: 
-      objectReference: {fileID: 9013288256728285134, guid: 1df0b43f71bde6448bd6af8ab1cb830b, type: 3}
+      objectReference: {fileID: 9013288256728285134, guid: 6af02b07086ea13449e232595ee226bc, type: 3}
     - target: {fileID: 1048475923611409127, guid: f31643bcc55df71449011d1fac8f46df, type: 3}
       propertyPath: enemyList.Array.data[2]
       value: 
-      objectReference: {fileID: 9013288256728285134, guid: fb707248571282b47bc930472d0af654, type: 3}
+      objectReference: {fileID: 9013288256728285134, guid: 04972ff49e6660e4aac3c6db270bd29d, type: 3}
     - target: {fileID: 1048475923611409127, guid: f31643bcc55df71449011d1fac8f46df, type: 3}
       propertyPath: enemyList.Array.data[3]
       value: 
-      objectReference: {fileID: 5886114919672351050, guid: ed0e45a2b397d094680b1a1675075e30, type: 3}
+      objectReference: {fileID: 5886114919672351050, guid: fd582ae01d0d4bd4491e918efc1df557, type: 3}
     - target: {fileID: 1048475923611409127, guid: f31643bcc55df71449011d1fac8f46df, type: 3}
       propertyPath: enemyList.Array.data[4]
       value: 
-      objectReference: {fileID: 9013288256728285134, guid: 63a85fdd95256e04a881f7f511329c65, type: 3}
+      objectReference: {fileID: 9013288256728285134, guid: 02cbb9ecdcd6a1b4ca01ca3b94353d8b, type: 3}
     - target: {fileID: 1048475923611409127, guid: f31643bcc55df71449011d1fac8f46df, type: 3}
       propertyPath: waveIntensityMultiplier
       value: 1.1
@@ -1948,6 +1948,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48d84fe5363f0f342bb7f7c5b592e0a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scrollingHorizontal: 1
+  scrollingVertical: 1
 --- !u!82 &1722279338
 AudioSource:
   m_ObjectHideFlags: 0

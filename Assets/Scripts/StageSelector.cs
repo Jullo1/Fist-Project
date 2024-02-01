@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,6 +9,7 @@ public class StageSelector : MonoBehaviour
 
     public static int currentStage;
     public static float scrollMultiplier = 1;
+    public static float scoreMultiplier = 1;
 
     int previousStage;
     int maxAvailableStage = 9;
@@ -75,10 +77,29 @@ public class StageSelector : MonoBehaviour
             else menuManager.scoreOutput.gameObject.SetActive(true);
         }
 
+        ApplyStageBonus();
         ApplyStageSkin();
         ApplyStageMusic();
     }
 
+    void ApplyStageBonus()
+    {
+        switch (currentStage)
+        {
+            default:
+                scoreMultiplier = 1;
+                break;
+            case 1: case 2: case 3:
+                scoreMultiplier = 1;
+                break;
+            case 4: case 5: case 6:
+                scoreMultiplier = 1.25f;
+                break;
+            case 7: case 8: case 9:
+                scoreMultiplier = 1.5f;
+                break;
+        }
+    }
     void ApplyStageSkin()
     {
         title.text = stageNames[currentStage];

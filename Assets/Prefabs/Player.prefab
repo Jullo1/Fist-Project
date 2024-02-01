@@ -361,6 +361,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1949a5b58417bf44d8718e1ebdd6474e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spriteSheetName: Fist Hero
+  location: Player
 --- !u!212 &5952566212567687106
 SpriteRenderer:
   m_ObjectHideFlags: 0

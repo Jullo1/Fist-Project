@@ -3,11 +3,14 @@ using System;
 
 public class SpriteChanger : MonoBehaviour
 {
-    public static string spriteSheetName;
+    public static string playerSpriteSheetName;
+    [SerializeField] string spriteSheetName;
+    [SerializeField] string location;
 
     void LateUpdate()
     {
-        var subSprites = Resources.LoadAll<Sprite>("Characters/Player/" + spriteSheetName);
+        if (gameObject.tag == "Player") spriteSheetName = playerSpriteSheetName;
+        var subSprites = Resources.LoadAll<Sprite>("Characters/" + location + "/" + spriteSheetName);
 
         foreach (var renderer in GetComponentsInChildren<SpriteRenderer>())
         {

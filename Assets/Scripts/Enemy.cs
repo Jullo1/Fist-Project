@@ -142,7 +142,7 @@ public class Enemy : Unit
         col.isTrigger = true;
         anim.SetBool("dead", true);
         yield return new WaitForSeconds(0.5f);
-        game.GainExperience(experienceDrop);
+        game.GainExperience((int)(experienceDrop*StageSelector.scoreMultiplier));
         Destroy(gameObject);
     }
 }
