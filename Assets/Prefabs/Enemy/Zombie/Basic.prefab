@@ -261,8 +261,8 @@ MonoBehaviour:
   attackCD:
   - 0.3
   attackTimer: []
-  hitpoints: 6
-  maxHitpoints: 6
+  hitpoints: 8
+  maxHitpoints: 8
   dead: 0
   freezeAttack: 0
   hitSound: {fileID: 8300000, guid: e9e87a3377ca8214e9e7193f038750a2, type: 3}
@@ -360,7 +360,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 3
   m_Sprite: {fileID: -757021965, guid: 3a062fc56d3b48344b5a33a89f815cff, type: 3}
   m_Color: {r: 0.12820399, g: 0.4056604, b: 0.23089087, a: 1}
   m_FlipX: 0

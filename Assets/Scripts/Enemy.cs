@@ -58,6 +58,11 @@ public class Enemy : Unit
         spawnCheck = false;
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Player" && !freezeAttack) Attack();
+    }
+
     void Attack()
     {
         if (frozenTime > 0) return;
