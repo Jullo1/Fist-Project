@@ -22,8 +22,7 @@ public class PowerUp : Entity
 
     void Update()
     {
-        if (timer > 10)
-        {
+        if (timer > 10) {
             if (timer > 60) Destroy(gameObject);
         } timer += Time.deltaTime;
     }

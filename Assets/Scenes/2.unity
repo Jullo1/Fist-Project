@@ -2200,6 +2200,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48d84fe5363f0f342bb7f7c5b592e0a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scrollingHorizontal: 1
+  scrollingVertical: 1
 --- !u!82 &1944547045
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2532,8 +2534,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_EffectColor: {r: 1, g: 1, b: 1, a: 0.5}
-  m_EffectDistance: {x: 1, y: 1}
+  m_EffectColor: {r: 1, g: 1, b: 1, a: 0}
+  m_EffectDistance: {x: 3, y: 3}
   m_UseGraphicAlpha: 0
 --- !u!1 &2063695327
 GameObject:
@@ -2741,8 +2743,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_EffectColor: {r: 1, g: 1, b: 1, a: 0.5}
-  m_EffectDistance: {x: 1, y: 1}
+  m_EffectColor: {r: 1, g: 1, b: 1, a: 0}
+  m_EffectDistance: {x: 3, y: 3}
   m_UseGraphicAlpha: 0
 --- !u!1001 &693920076077517877
 PrefabInstance:

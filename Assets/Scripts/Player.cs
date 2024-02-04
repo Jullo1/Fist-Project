@@ -37,6 +37,7 @@ public class Player : Unit
     bool facingRight;
 
     ScrollingBackground scrollingBackground;
+    Coroutine timeStopRoutine;
 
     float[] powerUpDuration = new float[7] { 0, 0, 0, 0, 0, 0, 0 };
     PowerUpType[] activePowerUps = new PowerUpType[7] { PowerUpType.None, PowerUpType.None, PowerUpType.None, PowerUpType.None, PowerUpType.None, PowerUpType.None, PowerUpType.None };
@@ -352,7 +353,8 @@ public class Player : Unit
                 game.GainExperience(50);
                 return;
             case PowerUpType.TimeStop:
-                StartCoroutine(game.StopTime(powerUp.duration));
+                if (timeStopRoutine != null) StopCoroutine (timeStopRoutine);
+                timeStopRoutine = StartCoroutine(game.StopTime(powerUp.duration));
                 return;
         }
 
@@ -377,8 +379,8 @@ public class Player : Unit
                 switch (activePowerUps[i]) //calculate feedback elements
                 {   
                     case PowerUpType.Frenzy:
-                        ui.attackCDUI[0].color = new Color32((byte)(Mathf.Lerp(255, 240, powerUpDuration[i]/5)), (byte)(Mathf.Lerp(255, 160, powerUpDuration[i]/5)), (byte)(Mathf.Lerp(255, 0, powerUpDuration[i]/5)), 255);
-                        ui.attackCDUI[1].color = new Color32((byte)(Mathf.Lerp(255, 240, powerUpDuration[i]/5)), (byte)(Mathf.Lerp(255, 160, powerUpDuration[i]/5)), (byte)(Mathf.Lerp(255, 0, powerUpDuration[i]/5)), 255);
+                        ui.attackCDOutlines[0].effectColor = new Color32(240, 160, 0, (byte)(Mathf.Lerp(0, 255, powerUpDuration[i] / 5)));
+                        ui.attackCDOutlines[1].effectColor = new Color32(240, 160, 0, (byte)(Mathf.Lerp(0, 255, powerUpDuration[i] / 5)));
                         break;
                 }
                 return;

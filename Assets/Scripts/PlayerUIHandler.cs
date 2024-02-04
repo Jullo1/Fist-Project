@@ -9,6 +9,7 @@ public class PlayerUIHandler : MonoBehaviour
     //UI Elements
     public GameObject[] hitpointsUI = new GameObject[3];
     public List<Image> attackCDUI = new List<Image>();
+    public List<Outline> attackCDOutlines = new List<Outline>();
 
     [SerializeField] Text comboUI;
     [SerializeField] Image comboProgressBar;
@@ -17,7 +18,6 @@ public class PlayerUIHandler : MonoBehaviour
     [SerializeField] Image specialTriggerUI1;
     [SerializeField] Image specialTriggerUI2;
 
-    [SerializeField] List<Outline> attackCDOutlines = new List<Outline>();
 
     Tutorial tutorial;
 
@@ -82,8 +82,8 @@ public class PlayerUIHandler : MonoBehaviour
         }
         comboProgressBar.color = comboUI.color;
 
-        foreach (Outline outline in attackCDOutlines)
-            outline.effectColor = comboUI.color;
+        foreach (Image circle in attackCDUI)
+            circle.color = comboUI.color;
 
         UpdateComboStats();
     }
