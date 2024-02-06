@@ -7,6 +7,8 @@ using System;
 public class MainMenu : MonoBehaviour
 {
     AudioSource menuAudio;
+
+    ScrollingBackground background;
     [SerializeField] AudioSource menuMusic;
     [SerializeField] Button startButton;
     [SerializeField] Text startButtonText;
@@ -28,6 +30,7 @@ public class MainMenu : MonoBehaviour
     [Obsolete]
     void Awake()
     {
+        background = FindObjectOfType<ScrollingBackground>();
         ads = FindObjectOfType<AdInitializer>();
         interstitalAd = FindObjectOfType<InterstitalAds>();
         menuAudio = GetComponent<AudioSource>();
@@ -67,12 +70,6 @@ public class MainMenu : MonoBehaviour
         PlayerPrefs.SetInt("totalSpecialAttacks", 0);
         PlayerPrefs.SetInt("highestScore", 0);
         PlayerPrefs.Save();
-    }
-
-    void Start()
-    {
-        
-        
     }
 
     public void ResetTutorial()

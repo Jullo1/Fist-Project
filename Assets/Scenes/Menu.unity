@@ -397,7 +397,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -7}
+  m_AnchoredPosition: {x: 0, y: -23}
   m_SizeDelta: {x: 425.16, y: 146.97}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &118538018
@@ -689,15 +689,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   title: {fileID: 1461946540}
   stageSprites:
-  - {fileID: 21300000, guid: 0f197242213348f45afbf2537fb9641a, type: 3}
-  - {fileID: 21300000, guid: 0fda66a1c9ccbdd46b6e3694f0025ebf, type: 3}
-  - {fileID: 21300000, guid: a8cc1642dfe75704a973d61e6cf5d621, type: 3}
-  - {fileID: 21300000, guid: 46d46b93760982a4baeb0923640a06c8, type: 3}
-  - {fileID: 21300000, guid: 22431025cfd585940bea3a24f7a539b8, type: 3}
-  - {fileID: 21300000, guid: 295b72484d485ce4d8dbbfe7a1308e3b, type: 3}
-  - {fileID: 21300000, guid: 2dedbe0d1150a6d448b12b81767f14cf, type: 3}
-  - {fileID: 21300000, guid: c8ec78be588e0f3479de8b5908adb647, type: 3}
-  - {fileID: 21300000, guid: 3fd3f05aa48afaa47b9f97ca05b51d50, type: 3}
+  - {fileID: 21300000, guid: 2062fec9e6e35534f9e68e82b7c7f14c, type: 3}
+  - {fileID: 21300000, guid: 696a955a3fd94314eade2e6d12b18fad, type: 3}
+  - {fileID: 21300000, guid: 96cc94984ac9e0449bbc5da316d54ccd, type: 3}
+  - {fileID: 21300000, guid: ca5606a015da2624b9cefa41b3155fc7, type: 3}
+  - {fileID: 21300000, guid: f888ed6808ff2ea4d9d8214fec4fae51, type: 3}
+  - {fileID: 21300000, guid: da20b5527336f5d4a9d5b463e5bc200e, type: 3}
+  - {fileID: 21300000, guid: c8c3ad17b749e9a49b2465e74769ceb3, type: 3}
+  - {fileID: 21300000, guid: b51e67ce3277b65499a4ec35ec0b11c4, type: 3}
+  - {fileID: 21300000, guid: 2d698b0152b69bb47933470eb93e4f41, type: 3}
   startButtonOutline: {fileID: 443236732}
   musicList:
   - {fileID: 8300000, guid: e04ee77a3a583394584de9f97a7c2804, type: 3}
@@ -858,7 +858,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 196, y: 0}
+  m_AnchoredPosition: {x: 250, y: 0}
   m_SizeDelta: {x: 70, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &379124468
@@ -1773,7 +1773,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -200, y: 0}
+  m_AnchoredPosition: {x: -250, y: 0}
   m_SizeDelta: {x: 70, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &693981641
@@ -2958,6 +2958,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scrollingHorizontal: 1
   scrollingVertical: 1
+  mainMenuScrolling: 1
 --- !u!82 &1181139467
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3067,20 +3068,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.78431374, g: 0.7058824, b: 0.78431374, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: 0f197242213348f45afbf2537fb9641a, type: 3}
+  m_Texture: {fileID: 2800000, guid: 2062fec9e6e35534f9e68e82b7c7f14c, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 5
-    height: 2.5
+    width: 10
+    height: 5
 --- !u!222 &1181139469
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3873,6 +3874,7 @@ GameObject:
   - component: {fileID: 2036095729}
   - component: {fileID: 2036095731}
   - component: {fileID: 2036095730}
+  - component: {fileID: 2036095732}
   m_Layer: 5
   m_Name: Preview
   m_TagString: Untagged
@@ -3937,6 +3939,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2036095728}
   m_CullTransparentMesh: 1
+--- !u!95 &2036095732
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2036095728}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ec8ce1eb9a2a0d249a442036d098d517, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &2135068356
 GameObject:
   m_ObjectHideFlags: 0

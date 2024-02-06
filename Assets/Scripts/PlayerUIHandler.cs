@@ -17,7 +17,7 @@ public class PlayerUIHandler : MonoBehaviour
     [SerializeField] Image specialUI;
     [SerializeField] Image specialTriggerUI1;
     [SerializeField] Image specialTriggerUI2;
-
+    Outline specialOutline;
 
     Tutorial tutorial;
 
@@ -26,6 +26,7 @@ public class PlayerUIHandler : MonoBehaviour
         player = GetComponent<Player>();
         tutorial = FindObjectOfType<Tutorial>();
         hitpointsUI = GameObject.FindGameObjectsWithTag("PlayerHealthBar");
+        specialOutline = specialUI.gameObject.transform.parent.GetComponentInParent<Outline>();
     }
 
     void Update()
@@ -94,6 +95,11 @@ public class PlayerUIHandler : MonoBehaviour
         tutorial.SendTutorial();
     }
 
+    public void SpecialReady(bool status)
+    {
+        if (status) specialOutline.enabled = true;
+        else specialOutline.enabled = false;
+    }
 
     void UpdateComboStats() //comboAmount makes attackTimer floats increase faster (does not affect the cooldown number)
     {

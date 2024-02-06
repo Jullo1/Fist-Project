@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Enemy : Unit
@@ -14,6 +15,7 @@ public class Enemy : Unit
     [SerializeField] GameObject frenzyDrop;
     [SerializeField] GameObject experiencePotionDrop;
     [SerializeField] GameObject timeStopDrop;
+    TextMeshPro scoreBubble; 
 
     public List<PowerUpType> dropList = new List<PowerUpType>();
     bool spawnCheck = true;
@@ -30,7 +32,8 @@ public class Enemy : Unit
         base.Awake();
 
         player = FindAnyObjectByType<Player>();
-
+        scoreBubble = GetComponentInChildren<TextMeshPro>();
+        scoreBubble.text = (experienceDrop * StageSelector.scoreMultiplier).ToString();
         attackTimer.Add(0);
     }
 
@@ -65,7 +68,7 @@ public class Enemy : Unit
 
     void Attack()
     {
-        if (frozenTime > 0) return;
+        if (frozenTime > 0 || dead) return;
 
         if (attackTimer[0] >= attackCD[0])
         {
@@ -146,8 +149,8 @@ public class Enemy : Unit
         CalculateDrop();
         col.isTrigger = true;
         anim.SetBool("dead", true);
-        yield return new WaitForSeconds(0.5f);
         game.GainExperience((int)(experienceDrop*StageSelector.scoreMultiplier));
+        yield return new WaitForSeconds(1f);
         Destroy(gameObject);
     }
 }

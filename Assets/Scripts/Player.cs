@@ -122,6 +122,8 @@ public class Player : Unit
             specialTimer += Time.deltaTime;
         else if (PlayerPrefs.GetInt("tutorialStage") == 2)
             ui.SendTutorial();
+        else
+            ui.SpecialReady(true);
 
         for (int i = 0; i < attackTimer.Count; i++)
             attackTimer[i] += Time.deltaTime * comboCDBoost;
@@ -266,6 +268,7 @@ public class Player : Unit
         appliedSpecialOffset = false;
         freezeRotation = true;
         PlayAudio(specialSFX);
+        ui.SpecialReady(false);
         for (int i = 0; i < specialCharges; i++)
         {
             if (specialCharges > 1) PlayAudio(punchSFX);
