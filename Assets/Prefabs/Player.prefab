@@ -341,14 +341,14 @@ MonoBehaviour:
   attackCDUI:
   - {fileID: 0}
   - {fileID: 0}
+  attackCDOutlines:
+  - {fileID: 0}
+  - {fileID: 0}
   comboUI: {fileID: 0}
   comboProgressBar: {fileID: 0}
   specialUI: {fileID: 0}
   specialTriggerUI1: {fileID: 0}
   specialTriggerUI2: {fileID: 0}
-  attackCDOutlines:
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!114 &421931920960794525
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -401,8 +401,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 516471103
+  m_SortingLayer: 6
   m_SortingOrder: 5
   m_Sprite: {fileID: -682599961, guid: b88419c12f311844c87b3b18e2a0284f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

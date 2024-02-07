@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] List<Enemy> enemyList = new List<Enemy>();
     [SerializeField] List<float> enemyUnitSpawnIntensity = new List<float>();
     [SerializeField] float spawnRate;
+    public Color32 enemyTint;
 
     public List<Entity> spawnGroup = new List<Entity>();
     [SerializeField] float waveIntensity;
@@ -52,7 +53,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] Text option2Text; int option2Value;
     List<string> optionsList = new List<string>() { "Power" , "Attack Speed" , "Movement" , "Special"};
 
-    [SerializeField] Tutorial tutorial;
+    Tutorial tutorial;
 
 
     void Awake()
@@ -69,6 +70,8 @@ public class GameManager : MonoBehaviour
         level = 1;
         toNextLevel = 100;
         currentWave = 0;
+
+        ApplyEnemyTint();
     }
 
     void Start()
@@ -143,6 +146,7 @@ public class GameManager : MonoBehaviour
     void Spawn(Entity entity, Vector2 position)
     {
         GameObject newEnemy = Instantiate(entity.gameObject);
+        newEnemy.transform.GetChild(2).GetComponent<SpriteRenderer>().color = enemyTint;
         newEnemy.transform.position = position;
     }
 
@@ -228,6 +232,22 @@ public class GameManager : MonoBehaviour
                 break;
         }
         ContinueGame();
+    }
+
+    void ApplyEnemyTint()
+    {
+        switch(StageSelector.currentStage)
+        {
+            case 0: enemyTint = new Color32(0, 0, 0, 0); break;
+            case 1: enemyTint = new Color32(100, 125, 40, 175); break;
+            case 2: enemyTint = new Color32(180, 140, 85, 220); break;
+            case 3: enemyTint = new Color32(150, 130, 100, 150); break;
+            case 4: enemyTint = new Color32(170, 170, 170, 50); break;
+            case 5: enemyTint = new Color32(150, 200, 225, 150); break;
+            case 6: enemyTint = new Color32(125, 125, 125, 150); break;
+            case 7: enemyTint = new Color32(150, 75, 75, 175); break;
+            case 8: enemyTint = new Color32(30, 30, 30, 175); break;
+        }
     }
 
     public void ContinueGame()

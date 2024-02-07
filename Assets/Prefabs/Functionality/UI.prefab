@@ -396,7 +396,7 @@ Canvas:
   m_VertexColorAlwaysGammaSpace: 1
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
-  m_SortingLayerID: 0
+  m_SortingLayerID: -518052969
   m_SortingOrder: 13
   m_TargetDisplay: 0
 --- !u!114 &7108188714227755857
@@ -922,8 +922,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_EffectColor: {r: 0.3529412, g: 0, b: 1, a: 1}
-  m_EffectDistance: {x: 2, y: 5}
+  m_EffectColor: {r: 0.3529412, g: 0, b: 1, a: 0.78431374}
+  m_EffectDistance: {x: 2, y: 4}
   m_UseGraphicAlpha: 0
 --- !u!1 &5460824387930291858
 GameObject:

@@ -72,7 +72,7 @@ public class InputManager : MonoBehaviour
                     if (!player.freezeAttack)
                     {
                         if (touchTimer[i] > 0.2f && (initialTouchPos[i] - Input.touches[i].position).magnitude < 50 && Input.touches[i].position.x > 1500) //hold but not a swipe
-                                player.ChannelSpecial(touchTimer[i]);
+                            player.ChannelSpecial(touchTimer[i]);
 
                         if (Input.touches[i].phase == UnityEngine.TouchPhase.Ended)
                             if (Input.touches[i].position.x > 1500) player.CheckAttack(); //this will only be called if not using the onscreen stick with this finger

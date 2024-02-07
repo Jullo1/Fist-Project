@@ -9,6 +9,7 @@ public class StageSelector : MonoBehaviour
 
     public static int currentStage;
     public static float scoreMultiplier = 1;
+    public static float scrollMultiplier = 0.484f;
 
     int previousStage;
     int maxAvailableStage = 9;
@@ -23,8 +24,6 @@ public class StageSelector : MonoBehaviour
 
     [SerializeField] List<AudioClip> musicList = new List<AudioClip>();
     [SerializeField] AudioSource backgroundMusic;
-
-    public static float scrollMultiplier = 0.484f;
 
     void Awake()
     {

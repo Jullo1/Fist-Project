@@ -289,6 +289,9 @@ MonoBehaviour:
   - 0.7
   - 0.9
   spawnRate: 6.5
+  enemyTint:
+    serializedVersion: 2
+    rgba: 0
   spawnGroup: []
   waveIntensity: 1
   waveIntensityMultiplier: 1.085
@@ -305,10 +308,10 @@ MonoBehaviour:
   itemGrabCount: 0
   experienceUI: {fileID: 0}
   invisibleButton: {fileID: 7963122750129867818}
+  mobileButton: {fileID: 0}
   levelUpWindow: {fileID: 7009022213829225633}
   option1Text: {fileID: 5536125369332300580}
   option2Text: {fileID: 280782831184418364}
-  tutorial: {fileID: 0}
 --- !u!82 &7691625748703765989
 AudioSource:
   m_ObjectHideFlags: 0
@@ -805,7 +808,7 @@ Canvas:
   m_VertexColorAlwaysGammaSpace: 1
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
-  m_SortingLayerID: 0
+  m_SortingLayerID: -518052969
   m_SortingOrder: 11
   m_TargetDisplay: 0
 --- !u!114 &698939533205764379

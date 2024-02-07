@@ -9,13 +9,14 @@ public class Enemy : Unit
     [SerializeField] int experienceDrop;
     [SerializeField] GameObject furyIcon;
     [SerializeField] SpriteRenderer hitIndicator;
+    SpriteRenderer tint;
 
     [SerializeField] GameObject healthDrop;
     [SerializeField] GameObject fullRecoveryDrop;
     [SerializeField] GameObject frenzyDrop;
     [SerializeField] GameObject experiencePotionDrop;
     [SerializeField] GameObject timeStopDrop;
-    TextMeshPro scoreBubble; 
+    TextMeshPro scoreBubble;
 
     public List<PowerUpType> dropList = new List<PowerUpType>();
     bool spawnCheck = true;
@@ -35,6 +36,8 @@ public class Enemy : Unit
         scoreBubble = GetComponentInChildren<TextMeshPro>();
         scoreBubble.text = (experienceDrop * StageSelector.scoreMultiplier).ToString();
         attackTimer.Add(0);
+
+        tint = transform.GetChild(2).GetComponent<SpriteRenderer>();
     }
 
     void Update()
@@ -84,8 +87,8 @@ public class Enemy : Unit
         {
             rb.mass = 5;
             transform.position = Vector2.MoveTowards(transform.position, player.transform.position, moveSpeed * Time.deltaTime);
-            if (player.transform.position.x < transform.position.x) { sr.flipX = true; hitIndicator.flipX = true; }
-            else { sr.flipX = false; hitIndicator.flipX = false; }
+            if (player.transform.position.x < transform.position.x) { sr.flipX = true; hitIndicator.flipX = true; tint.flipX = true; }
+            else { sr.flipX = false; hitIndicator.flipX = false; tint.flipX = false ; }
         }
     }
 
