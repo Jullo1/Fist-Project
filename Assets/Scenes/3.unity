@@ -1739,6 +1739,42 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3285554516431066606, guid: 4fff07e3287c91a4ea5f354d21d23e97, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 10301, guid: 0000000000000000f000000000000000, type: 0}
+    - target: {fileID: 5919136027458972321, guid: 4fff07e3287c91a4ea5f354d21d23e97, type: 3}
+      propertyPath: simulationSpeed
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5919136027458972321, guid: 4fff07e3287c91a4ea5f354d21d23e97, type: 3}
+      propertyPath: InitialModule.maxNumParticles
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 5919136027458972321, guid: 4fff07e3287c91a4ea5f354d21d23e97, type: 3}
+      propertyPath: RotationBySpeedModule.enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5919136027458972321, guid: 4fff07e3287c91a4ea5f354d21d23e97, type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5919136027458972321, guid: 4fff07e3287c91a4ea5f354d21d23e97, type: 3}
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5919136027458972321, guid: 4fff07e3287c91a4ea5f354d21d23e97, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 0.254717
+      objectReference: {fileID: 0}
+    - target: {fileID: 5919136027458972321, guid: 4fff07e3287c91a4ea5f354d21d23e97, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0.254717
+      objectReference: {fileID: 0}
+    - target: {fileID: 5919136027458972321, guid: 4fff07e3287c91a4ea5f354d21d23e97, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 0.254717
+      objectReference: {fileID: 0}
     - target: {fileID: 7450985731919077255, guid: 4fff07e3287c91a4ea5f354d21d23e97, type: 3}
       propertyPath: m_Name
       value: Player

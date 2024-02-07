@@ -1579,9 +1579,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 31220417357495771, guid: 4fff07e3287c91a4ea5f354d21d23e97, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1994403186446238024, guid: 4fff07e3287c91a4ea5f354d21d23e97, type: 3}
       propertyPath: m_Volume
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2076747306534184840, guid: 4fff07e3287c91a4ea5f354d21d23e97, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3067873042225898250, guid: 4fff07e3287c91a4ea5f354d21d23e97, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1622,6 +1630,14 @@ PrefabInstance:
     - target: {fileID: 3067873042225898250, guid: 4fff07e3287c91a4ea5f354d21d23e97, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3414198018050830359, guid: 4fff07e3287c91a4ea5f354d21d23e97, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7112556019629497196, guid: 4fff07e3287c91a4ea5f354d21d23e97, type: 3}
+      propertyPath: m_SortingLayer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7450985731919077255, guid: 4fff07e3287c91a4ea5f354d21d23e97, type: 3}
       propertyPath: m_Name
