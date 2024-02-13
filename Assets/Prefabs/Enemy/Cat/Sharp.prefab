@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8539399523031822327}
   - component: {fileID: 1202807007267252454}
   - component: {fileID: 5539904913919036692}
+  - component: {fileID: 6417160252374020675}
   m_Layer: 0
   m_Name: Hit Indicator
   m_TagString: Untagged
@@ -80,8 +81,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1106122411
-  m_SortingLayer: 3
-  m_SortingOrder: 6
+  m_SortingLayer: 4
+  m_SortingOrder: 3
   m_Sprite: {fileID: -757021965, guid: eea17c9a8f5665645badaeb35e6b0fe8, type: 3}
   m_Color: {r: 0, g: 0, b: 0, a: 0.49019608}
   m_FlipX: 0
@@ -93,6 +94,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &6417160252374020675
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1193941350016896752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1949a5b58417bf44d8718e1ebdd6474e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteSheetName: Cat Fighter
+  location: Enemy
 --- !u!1 &2049913456815419078
 GameObject:
   m_ObjectHideFlags: 0
@@ -168,9 +183,9 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 6
+  m_SortingLayerID: 516471103
+  m_SortingLayer: 8
+  m_SortingOrder: 10
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &1044002886515445443
 MonoBehaviour:
@@ -336,8 +351,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1106122411
-  m_SortingLayer: 3
-  m_SortingOrder: 7
+  m_SortingLayer: 4
+  m_SortingOrder: 4
   m_Sprite: {fileID: 21300000, guid: 0c012d1ccbed1c9458456c8d9ec6d2a8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -406,9 +421,9 @@ Transform:
   m_LocalScale: {x: 2.75, y: 2.75, z: 2.75}
   m_ConstrainProportionsScale: 1
   m_Children:
+  - {fileID: 8543425974864387890}
   - {fileID: 8539399523031822327}
   - {fileID: 2145681293290716932}
-  - {fileID: 8543425974864387890}
   - {fileID: 3478629395235905556}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -429,8 +444,8 @@ MonoBehaviour:
   freeze: 0
   moveSpeed: 1
   attackRange: 0.75
-  strength: 2
-  pushForce: 400
+  strength: 1
+  pushForce: 2000
   attackCD:
   - 0.3
   attackTimer: []
@@ -532,8 +547,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1106122411
-  m_SortingLayer: 3
-  m_SortingOrder: 4
+  m_SortingLayer: 4
+  m_SortingOrder: 1
   m_Sprite: {fileID: -757021965, guid: eea17c9a8f5665645badaeb35e6b0fe8, type: 3}
   m_Color: {r: 1, g: 0.654902, b: 0.9254902, a: 1}
   m_FlipX: 0
@@ -714,13 +729,14 @@ GameObject:
   - component: {fileID: 8543425974864387890}
   - component: {fileID: 5453546212534700441}
   - component: {fileID: 2913722993686437648}
+  - component: {fileID: 6183554340516441331}
   m_Layer: 0
   m_Name: Tint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8543425974864387890
 Transform:
   m_ObjectHideFlags: 0
@@ -783,8 +799,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1106122411
-  m_SortingLayer: 3
-  m_SortingOrder: 5
+  m_SortingLayer: 4
+  m_SortingOrder: 2
   m_Sprite: {fileID: -757021965, guid: eea17c9a8f5665645badaeb35e6b0fe8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_FlipX: 0
@@ -796,3 +812,17 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &6183554340516441331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8552398732754523210}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1949a5b58417bf44d8718e1ebdd6474e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteSheetName: Cat Fighter
+  location: Enemy

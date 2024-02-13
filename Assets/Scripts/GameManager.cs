@@ -5,6 +5,7 @@ using UnityEngine.InputSystem.OnScreen;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class GameManager : MonoBehaviour
 {
@@ -106,8 +107,17 @@ public class GameManager : MonoBehaviour
     public void UpdateScore(int score, bool kill = true)
     {
         if (kill) killCount++;
-        currentScore += score;
-        scoreOutput.text = currentScore.ToString();
+        StartCoroutine(UpdateScoreText(score));
+    }
+
+    IEnumerator UpdateScoreText(int scoreAmount)
+    {
+        for (int i = 0; i < scoreAmount; i++)
+        {
+            currentScore++;
+            scoreOutput.text = currentScore.ToString();
+            yield return new WaitForSeconds(0.05f);
+        }
     }
 
     void NextWave()
@@ -127,7 +137,7 @@ public class GameManager : MonoBehaviour
     {
         spawnGroup.Clear(); //clear previous wave info
         currentWave++;
-        waveIntensity *= waveIntensityMultiplier;
+        if (waveIntensity < 3) waveIntensity *= waveIntensityMultiplier;
         SetupNextWaveWithIntensity(waveIntensity);
     }
 
@@ -146,6 +156,7 @@ public class GameManager : MonoBehaviour
     void Spawn(Entity entity, Vector2 position)
     {
         GameObject newEnemy = Instantiate(entity.gameObject);
+        newEnemy.transform.GetChild(2).gameObject.SetActive(true);
         newEnemy.transform.GetChild(2).GetComponent<SpriteRenderer>().color = enemyTint;
         newEnemy.transform.position = position;
     }
@@ -161,7 +172,7 @@ public class GameManager : MonoBehaviour
     void LevelUp()
     {
         StartCoroutine(FreezeUI());
-        if (Application.isMobilePlatform || Application.isEditor) mobileButton.gameObject.SetActive(false);
+        if (Application.isMobilePlatform) mobileButton.gameObject.SetActive(false);
         paused = true;
 
         Time.timeScale = 0;
@@ -252,7 +263,7 @@ public class GameManager : MonoBehaviour
 
     public void ContinueGame()
     {
-        if (Application.isMobilePlatform || Application.isEditor) mobileButton.gameObject.SetActive(false);
+        if (Application.isMobilePlatform) mobileButton.gameObject.SetActive(false);
         paused = false;
         levelUpWindow.SetActive(false);
         Time.timeScale = 1;

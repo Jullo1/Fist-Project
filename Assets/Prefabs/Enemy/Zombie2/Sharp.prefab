@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8539399523031822327}
   - component: {fileID: 1202807007267252454}
   - component: {fileID: 5539904913919036692}
+  - component: {fileID: 3560698445413661292}
   m_Layer: 0
   m_Name: Hit Indicator
   m_TagString: Untagged
@@ -80,8 +81,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1106122411
-  m_SortingLayer: 3
-  m_SortingOrder: 6
+  m_SortingLayer: 4
+  m_SortingOrder: 3
   m_Sprite: {fileID: -757021965, guid: eea17c9a8f5665645badaeb35e6b0fe8, type: 3}
   m_Color: {r: 0, g: 0, b: 0, a: 0.49019608}
   m_FlipX: 0
@@ -93,6 +94,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &3560698445413661292
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1193941350016896752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1949a5b58417bf44d8718e1ebdd6474e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteSheetName: Zombie Fighter
+  location: Enemy
 --- !u!1 &2324673451195581003
 GameObject:
   m_ObjectHideFlags: 0
@@ -165,8 +180,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1106122411
-  m_SortingLayer: 3
-  m_SortingOrder: 7
+  m_SortingLayer: 4
+  m_SortingOrder: 4
   m_Sprite: {fileID: 21300000, guid: 0c012d1ccbed1c9458456c8d9ec6d2a8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -235,9 +250,9 @@ Transform:
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 1
   m_Children:
+  - {fileID: 1049611359315598129}
   - {fileID: 8539399523031822327}
   - {fileID: 2145681293290716932}
-  - {fileID: 1049611359315598129}
   - {fileID: 5118678476432228258}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -258,8 +273,8 @@ MonoBehaviour:
   freeze: 0
   moveSpeed: 1
   attackRange: 0.75
-  strength: 3
-  pushForce: 400
+  strength: 1
+  pushForce: 2800
   attackCD:
   - 0.3
   attackTimer: []
@@ -361,8 +376,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1106122411
-  m_SortingLayer: 3
-  m_SortingOrder: 4
+  m_SortingLayer: 4
+  m_SortingOrder: 1
   m_Sprite: {fileID: -757021965, guid: 3a062fc56d3b48344b5a33a89f815cff, type: 3}
   m_Color: {r: 0.78431374, g: 0.30588236, b: 0.5058824, a: 1}
   m_FlipX: 0
@@ -543,13 +558,14 @@ GameObject:
   - component: {fileID: 1049611359315598129}
   - component: {fileID: 4985682566056340339}
   - component: {fileID: 6990552717752438954}
+  - component: {fileID: 8361939498841070530}
   m_Layer: 0
   m_Name: Tint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1049611359315598129
 Transform:
   m_ObjectHideFlags: 0
@@ -612,8 +628,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1106122411
-  m_SortingLayer: 3
-  m_SortingOrder: 5
+  m_SortingLayer: 4
+  m_SortingOrder: 2
   m_Sprite: {fileID: -757021965, guid: 3a062fc56d3b48344b5a33a89f815cff, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_FlipX: 0
@@ -625,6 +641,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &8361939498841070530
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4225486817048002781}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1949a5b58417bf44d8718e1ebdd6474e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteSheetName: Zombie Fighter
+  location: Enemy
 --- !u!1 &5695052424796929183
 GameObject:
   m_ObjectHideFlags: 0
@@ -700,9 +730,9 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 6
+  m_SortingLayerID: 516471103
+  m_SortingLayer: 8
+  m_SortingOrder: 10
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &1984868651617633401
 MonoBehaviour:

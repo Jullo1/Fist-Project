@@ -35,7 +35,7 @@ public class MainMenu : MonoBehaviour
         interstitalAd = FindObjectOfType<InterstitalAds>();
         menuAudio = GetComponent<AudioSource>();
 
-        //InitiateSaveData(); //for testing, resets all save data
+        //InitiateCheatSaveData(); //for testing, resets all save data
         if (!PlayerPrefs.HasKey("totalKills")) InitiateSaveData();
 
         if (!FindObjectOfType<ScoreKeeper>()) //instantiate scoreKeeper if there isn't one yet
@@ -69,6 +69,18 @@ public class MainMenu : MonoBehaviour
         PlayerPrefs.SetInt("totalPunches", 0);
         PlayerPrefs.SetInt("totalSpecialAttacks", 0);
         PlayerPrefs.SetInt("highestScore", 0);
+        PlayerPrefs.Save();
+    }
+
+    void InitiateCheatSaveData()
+    {
+        PlayerPrefs.DeleteAll();
+        PlayerPrefs.SetInt("totalKills", 4368);
+        PlayerPrefs.SetInt("maxKillsInOneRun", 152);
+        PlayerPrefs.SetInt("totalItemsGrabbed", 321);
+        PlayerPrefs.SetInt("totalPunches", 7843);
+        PlayerPrefs.SetInt("totalSpecialAttacks", 875);
+        PlayerPrefs.SetInt("highestScore", 2815);
         PlayerPrefs.Save();
     }
 

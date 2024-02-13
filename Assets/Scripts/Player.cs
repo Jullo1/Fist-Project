@@ -37,6 +37,7 @@ public class Player : Unit
     bool facingRight;
 
     ScrollingBackground scrollingBackground;
+    bool colliding;
     Coroutine timeStopRoutine;
 
     float[] powerUpDuration = new float[7] { 0, 0, 0, 0, 0, 0, 0 };
@@ -136,7 +137,7 @@ public class Player : Unit
     public void Move(float x, float y)
     {
         transform.position += new Vector3(x, y) * moveSpeed * Time.deltaTime;
-        scrollingBackground.ScrollBackground(x, y, moveSpeed * StageSelector.scrollMultiplier); //scroll background
+        if (!colliding) scrollingBackground.ScrollBackground(x, y, moveSpeed * StageSelector.scrollMultiplier); //scroll background
 
         if (transform.position.x < -150) transform.position += Vector3.right * 0.01f; //check for out of bounds
         if (transform.position.x > +150) transform.position -= Vector3.right * 0.01f;
@@ -304,7 +305,7 @@ public class Player : Unit
         KnockBack(hitter, pushForce);
 
         Vector2 direction = (transform.position - hitter.transform.position).normalized; //move background
-        StartCoroutine(scrollingBackground.ScrollBackgroundOverTime(direction.x, direction.y, (pushForce/100) *StageSelector.scrollMultiplier, 0.1f));
+        StartCoroutine(scrollingBackground.ScrollBackgroundOverTime(direction.x, direction.y, (pushForce/200), 0.1f));
 
         if (invincible <= 0.5) invincible = 0.5f; //only update if not already under this buff in case the player had more than 0.5sec of invincible left
 
@@ -382,8 +383,8 @@ public class Player : Unit
                 switch (activePowerUps[i]) //calculate feedback elements
                 {   
                     case PowerUpType.Frenzy:
-                        ui.attackCDOutlines[0].effectColor = new Color32(240, 160, 0, (byte)(Mathf.Lerp(0, 255, powerUpDuration[i] / 5)));
-                        ui.attackCDOutlines[1].effectColor = new Color32(240, 160, 0, (byte)(Mathf.Lerp(0, 255, powerUpDuration[i] / 5)));
+                        ui.attackCDOutlines[0].effectColor = new Color32(240, 0, 0, (byte)(Mathf.Lerp(0, 255, powerUpDuration[i] / 5)));
+                        ui.attackCDOutlines[1].effectColor = new Color32(240, 0, 0, (byte)(Mathf.Lerp(0, 255, powerUpDuration[i] / 5)));
                         break;
                 }
                 return;
@@ -451,5 +452,14 @@ public class Player : Unit
                 specialCharges += (int) value;
                 break;
         }
+    }
+
+    void OnCollisionStay2D(Collision2D collision)
+    {
+        colliding = true;
+    }
+    void OnCollisionExit2D(Collision2D collision)
+    {
+        colliding = false;
     }
 }

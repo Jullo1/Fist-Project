@@ -75,9 +75,9 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 6
+  m_SortingLayerID: 516471103
+  m_SortingLayer: 8
+  m_SortingOrder: 10
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &3481708953345249657
 MonoBehaviour:
@@ -207,9 +207,9 @@ Transform:
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_ConstrainProportionsScale: 1
   m_Children:
+  - {fileID: 1195359420071490506}
   - {fileID: 3986781488246050180}
   - {fileID: 7405560581689422361}
-  - {fileID: 1195359420071490506}
   - {fileID: 1096522477726421617}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -231,7 +231,7 @@ MonoBehaviour:
   moveSpeed: 0.75
   attackRange: 1
   strength: 1
-  pushForce: 1400
+  pushForce: 1200
   attackCD:
   - 0.3
   attackTimer: []
@@ -334,7 +334,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1580938519
   m_SortingLayer: 5
-  m_SortingOrder: 4
+  m_SortingOrder: 1
   m_Sprite: {fileID: -757021965, guid: 3a062fc56d3b48344b5a33a89f815cff, type: 3}
   m_Color: {r: 0.12941177, g: 0.40392157, b: 0.23137255, a: 1}
   m_FlipX: 0
@@ -577,7 +577,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1580938519
   m_SortingLayer: 5
-  m_SortingOrder: 7
+  m_SortingOrder: 4
   m_Sprite: {fileID: 21300000, guid: 0c012d1ccbed1c9458456c8d9ec6d2a8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -621,13 +621,14 @@ GameObject:
   - component: {fileID: 1195359420071490506}
   - component: {fileID: 1396882618210715983}
   - component: {fileID: 4451255822223848583}
+  - component: {fileID: 2104172918586229601}
   m_Layer: 0
   m_Name: Tint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1195359420071490506
 Transform:
   m_ObjectHideFlags: 0
@@ -691,7 +692,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1580938519
   m_SortingLayer: 5
-  m_SortingOrder: 5
+  m_SortingOrder: 2
   m_Sprite: {fileID: -757021965, guid: 3a062fc56d3b48344b5a33a89f815cff, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_FlipX: 0
@@ -703,6 +704,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &2104172918586229601
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3400803761323968098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1949a5b58417bf44d8718e1ebdd6474e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteSheetName: Zombie Fighter
+  location: Enemy
 --- !u!1 &8589813261223489295
 GameObject:
   m_ObjectHideFlags: 0
@@ -713,6 +728,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3986781488246050180}
   - component: {fileID: 6540423717661384439}
+  - component: {fileID: 5899452971531831881}
   m_Layer: 0
   m_Name: Hit Indicator
   m_TagString: Untagged
@@ -775,7 +791,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1580938519
   m_SortingLayer: 5
-  m_SortingOrder: 6
+  m_SortingOrder: 3
   m_Sprite: {fileID: -757021965, guid: eea17c9a8f5665645badaeb35e6b0fe8, type: 3}
   m_Color: {r: 0, g: 0, b: 0, a: 0.49019608}
   m_FlipX: 0
@@ -787,3 +803,17 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &5899452971531831881
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8589813261223489295}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1949a5b58417bf44d8718e1ebdd6474e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteSheetName: Zombie Fighter
+  location: Enemy

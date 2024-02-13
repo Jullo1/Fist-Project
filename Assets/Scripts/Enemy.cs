@@ -22,10 +22,21 @@ public class Enemy : Unit
     bool spawnCheck = true;
     float aliveTime;
     bool fury;
+    bool chasingPlayer = true;
+    string sortingLayerName;
 
     public void HitIndicator(bool isCurrentTarget)
     {
         hitIndicator.gameObject.SetActive(isCurrentTarget);
+        if (isCurrentTarget) ChangeSortingLayer("TargetEnemy");
+        else ChangeSortingLayer(sortingLayerName);
+    }
+
+    protected void ChangeSortingLayer(string layerName)
+    {
+        sr.sortingLayerName = layerName;
+        tint.sortingLayerName = layerName;
+        hitIndicator.sortingLayerName = layerName;
     }
 
     protected override void Awake()
@@ -36,6 +47,7 @@ public class Enemy : Unit
         scoreBubble = GetComponentInChildren<TextMeshPro>();
         scoreBubble.text = (experienceDrop * StageSelector.scoreMultiplier).ToString();
         attackTimer.Add(0);
+        sortingLayerName = sr.sortingLayerName;
 
         tint = transform.GetChild(2).GetComponent<SpriteRenderer>();
     }
@@ -46,7 +58,7 @@ public class Enemy : Unit
         CheckStats();
         if (attackTimer[0] <= attackCD[0]) attackTimer[0] += Time.deltaTime;
 
-        if (hitpoints <= 0 && frozenTime <= 0 && !dead && hitQueue <= 0)
+        if (hitpoints <= 0 && frozenTime <= 0 && !dead && chasingPlayer && hitQueue <= 0)
             StartCoroutine(Death());
     }
 
@@ -83,10 +95,20 @@ public class Enemy : Unit
 
     void Move()
     {
-        if (player && !dead && frozenTime <= 0)
+        if (dead)
         {
-            rb.mass = 5;
-            transform.position = Vector2.MoveTowards(transform.position, player.transform.position, moveSpeed * Time.deltaTime);
+            if (!chasingPlayer) //enemy expired
+            {
+                transform.position -= (player.transform.position - transform.position).normalized * moveSpeed * Time.deltaTime;
+                if (player.transform.position.x < transform.position.x) { sr.flipX = false; tint.flipX = false; }
+                else { sr.flipX = true; tint.flipX = true; }
+            }
+            return;
+        }
+        else if (player && frozenTime <= 0) //enemy alive and active
+        {
+            transform.position += (player.transform.position - transform.position).normalized * moveSpeed * Time.deltaTime;
+
             if (player.transform.position.x < transform.position.x) { sr.flipX = true; hitIndicator.flipX = true; tint.flipX = true; }
             else { sr.flipX = false; hitIndicator.flipX = false; tint.flipX = false ; }
         }
@@ -94,14 +116,20 @@ public class Enemy : Unit
 
     void CheckStats()
     {
-        if (aliveTime > 15) {
-            if (!fury) Fury();
-        } else if (frozenTime <= 0) aliveTime += Time.deltaTime;
-        if (aliveTime > 0.1f)
-            spawnCheck = false;
+        if (frozenTime <= 0)
+        {
+            aliveTime += Time.deltaTime;
 
-        if (frozenTime <= 0) anim.enabled = true;
-        else frozenTime -= Time.deltaTime;
+            rb.bodyType = RigidbodyType2D.Dynamic;
+            anim.enabled = true;
+
+            if (aliveTime > 15)
+                if (!fury) Fury();
+            if (aliveTime > 30)
+                StartCoroutine(Death(false));
+        } else frozenTime -= Time.deltaTime;
+
+        if (aliveTime > 0.1f) spawnCheck = false;
     }
 
     void Fury()
@@ -146,13 +174,24 @@ public class Enemy : Unit
         base.UpdateHealth(amount);
     }
 
-    IEnumerator Death()
+    IEnumerator Death(bool triggerRewards = true)
     {
-        dead = true;
-        CalculateDrop();
         col.isTrigger = true;
-        anim.SetBool("dead", true);
-        game.GainExperience((int)(experienceDrop*StageSelector.scoreMultiplier));
+        dead = true;
+        sr.sortingLayerName = "DeadEnemy";
+        tint.GetComponent<SpriteRenderer>().sortingLayerName = "DeadEnemy";
+        if (triggerRewards)
+        {
+            CalculateDrop();
+            game.GainExperience((int)(experienceDrop * StageSelector.scoreMultiplier));
+            anim.SetBool("dead", true);
+            furyIcon.SetActive(false);
+        }
+        else
+        {
+            chasingPlayer = false;
+            anim.SetTrigger("expired");
+        }
         yield return new WaitForSeconds(1f);
         Destroy(gameObject);
     }

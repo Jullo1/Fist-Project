@@ -40,7 +40,6 @@ public class Unit : Entity
 
     protected void KnockBack(GameObject pusher, float pushForce = 0f)
     {
-        rb.mass = 5;
         anim.SetTrigger("takeHit");
         StartCoroutine(FreezeAttack(0.75f));
         Vector3 direction = (transform.position - pusher.transform.position).normalized;
@@ -99,8 +98,8 @@ public class Unit : Entity
 
     public void FreezeUnit(float time)
     {
-        rb.mass = 0;
         frozenTime = time;
         anim.enabled = false;
+        rb.bodyType = RigidbodyType2D.Static;
     }
 }
