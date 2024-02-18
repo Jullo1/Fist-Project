@@ -61,6 +61,7 @@
     <Compile Include="Assets\Scripts\Entity.cs" />
     <Compile Include="Assets\Scripts\Enemy.cs" />
     <Compile Include="Assets\Scripts\AdInitializer.cs" />
+    <Compile Include="Assets\Scripts\Announcement.cs" />
     <Compile Include="Assets\Scripts\TouchStickVisual.cs" />
     <Compile Include="Assets\Scripts\InputManager.cs" />
     <Compile Include="Assets\Scripts\MainMenu.cs" />

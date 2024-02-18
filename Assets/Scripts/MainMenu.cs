@@ -20,7 +20,6 @@ public class MainMenu : MonoBehaviour
 
     public Text scoreOutput;
     [SerializeField] GameObject scoreKeeper;
-    [SerializeField] GameObject announcementText;
     [SerializeField] GameObject reviewWindow;
 
     InterstitalAds interstitalAd;
@@ -69,12 +68,6 @@ public class MainMenu : MonoBehaviour
             PlayerPrefs.SetInt("optOutReview", 1);
             PlayerPrefs.Save();
         }
-    }
-
-    void LateUpdate()
-    {
-        announcementText.transform.position += Vector3.left * (Time.deltaTime / 1.5f);
-        if (announcementText.transform.position.x < -12) announcementText.transform.position = new Vector3(12, announcementText.transform.position.y, 0);
     }
 
     IEnumerator ShowBannerAdsWithDelay()
