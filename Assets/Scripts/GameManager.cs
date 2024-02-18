@@ -31,12 +31,10 @@ public class GameManager : MonoBehaviour
     float spawnTimer;
     public bool pauseWaves;
 
-    ScoreKeeper scoreKeeper;
     [SerializeField] Text scoreOutput;
     [SerializeField] int currentScore;
     bool freezeUI;
 
-    int level;
     float experience;
     public float toNextLevel;
 
@@ -62,13 +60,11 @@ public class GameManager : MonoBehaviour
         player = FindAnyObjectByType<Player>();
         menuAudio = GetComponent<AudioSource>();
         backgroundMusic = GameObject.FindGameObjectWithTag("Floor").GetComponent<AudioSource>();
-        scoreKeeper = FindObjectOfType<ScoreKeeper>();
         tutorial = FindAnyObjectByType<Tutorial>();
         mobileButton = FindObjectOfType<OnScreenButton>();
 
         backgroundMusic.time = audioProgress;
 
-        level = 1;
         toNextLevel = 100;
         currentWave = 0;
 
@@ -156,8 +152,8 @@ public class GameManager : MonoBehaviour
     void Spawn(Entity entity, Vector2 position)
     {
         GameObject newEnemy = Instantiate(entity.gameObject);
-        newEnemy.transform.GetChild(2).gameObject.SetActive(true);
-        newEnemy.transform.GetChild(2).GetComponent<SpriteRenderer>().color = enemyTint;
+        newEnemy.transform.GetChild(0).gameObject.SetActive(true);
+        newEnemy.transform.GetChild(0).GetComponent<SpriteRenderer>().color = enemyTint;
         newEnemy.transform.position = position;
     }
 
@@ -176,7 +172,6 @@ public class GameManager : MonoBehaviour
         paused = true;
 
         Time.timeScale = 0;
-        level++;
         experience = 0;
         toNextLevel += toNextLevel/2;
         experienceUI.fillAmount = 0;
@@ -282,6 +277,11 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.SetInt("totalPunches", PlayerPrefs.GetInt("totalPunches") + punchCount);
         PlayerPrefs.SetInt("totalSpecialAttacks", PlayerPrefs.GetInt("totalSpecialAttacks") + specialAttackCount);
         PlayerPrefs.SetInt("totalItemsGrabbed", PlayerPrefs.GetInt("totalItemsGrabbed") + itemGrabCount);
+
+        string stageHiscoreKey = "hiscore" + StageSelector.currentStage.ToString();
+        if (currentScore > PlayerPrefs.GetInt(stageHiscoreKey))
+            PlayerPrefs.SetInt("hiscore" + StageSelector.currentStage.ToString(), currentScore);
+
         if (killCount > PlayerPrefs.GetInt("maxKillsInOneRun")) PlayerPrefs.SetInt("maxKillsInOneRun", killCount);
         if (currentScore > PlayerPrefs.GetInt("highestScore")) PlayerPrefs.SetInt("highestScore", currentScore);
         PlayerPrefs.Save();

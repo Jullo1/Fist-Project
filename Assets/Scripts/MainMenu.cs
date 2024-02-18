@@ -8,7 +8,6 @@ public class MainMenu : MonoBehaviour
 {
     AudioSource menuAudio;
 
-    ScrollingBackground background;
     [SerializeField] AudioSource menuMusic;
     [SerializeField] Button startButton;
     [SerializeField] Text startButtonText;
@@ -21,43 +20,86 @@ public class MainMenu : MonoBehaviour
 
     public Text scoreOutput;
     [SerializeField] GameObject scoreKeeper;
+    [SerializeField] GameObject announcementText;
+    [SerializeField] GameObject reviewWindow;
 
-    AdInitializer ads;
     InterstitalAds interstitalAd;
+    BannerAds bannerAds;
 
     bool loadSceneSent;
 
     [Obsolete]
     void Awake()
     {
-        background = FindObjectOfType<ScrollingBackground>();
-        ads = FindObjectOfType<AdInitializer>();
+        bannerAds = FindObjectOfType<BannerAds>();
         interstitalAd = FindObjectOfType<InterstitalAds>();
         menuAudio = GetComponent<AudioSource>();
 
-        //InitiateCheatSaveData(); //for testing, resets all save data
-        if (!PlayerPrefs.HasKey("totalKills")) InitiateSaveData();
+        //InitiateSaveData(); //for testing, resets all save data
+        //InitiateCheatSaveData(); //unlock everything
+        RebuildSaveData();
+        LockedStage(false);
 
         if (!FindObjectOfType<ScoreKeeper>()) //instantiate scoreKeeper if there isn't one yet
         {
             Instantiate(scoreKeeper);
-            if (Application.isMobilePlatform || Application.isEditor) interstitalAd.LoadAd(); //only load ad on first run
+            if (Application.isMobilePlatform || Application.isEditor) { interstitalAd.LoadAd(); }//only load ad on first run
         }
         else if (Application.isMobilePlatform || Application.isEditor)
         {
             interstitalAd.ShowAd(); //send ad after death
             interstitalAd.LoadAd(); //then get ad ready for next run
+            bannerAds.ShowBannerAd();
         }
 
         Time.timeScale = 1;
         if (ScoreKeeper.score > 0)
         {
             if (!Application.isMobilePlatform) StartCoroutine(SendScore(ScoreKeeper.score));
-            if (ScoreKeeper.score > 2000) scoreOutput.text = ScoreKeeper.score.ToString() + "!";
-            else scoreOutput.text = ScoreKeeper.score.ToString();
+            StartCoroutine(UpdateScoreText(ScoreKeeper.score));
 
             startButtonText.text = "AGAIN";
         }
+
+        StartCoroutine(ShowBannerAdsWithDelay());
+
+        if (PlayerPrefs.GetInt("totalKills") > 300 && !PlayerPrefs.HasKey("optOutReview"))
+        {
+            reviewWindow.SetActive(true);
+            PlayerPrefs.SetInt("optOutReview", 1);
+            PlayerPrefs.Save();
+        }
+    }
+
+    void LateUpdate()
+    {
+        announcementText.transform.position += Vector3.left * (Time.deltaTime / 1.5f);
+        if (announcementText.transform.position.x < -12) announcementText.transform.position = new Vector3(12, announcementText.transform.position.y, 0);
+    }
+
+    IEnumerator ShowBannerAdsWithDelay()
+    {
+        yield return new WaitForSeconds(1);
+        bannerAds.LoadBanner();
+        bannerAds.ShowBannerAd();
+    }
+
+    void RebuildSaveData()
+    {
+        if (!PlayerPrefs.HasKey("totalKills")) PlayerPrefs.SetInt("totalKills", 0);
+        if (!PlayerPrefs.HasKey("maxKillsInOneRun")) PlayerPrefs.SetInt("maxKillsInOneRun", 0);
+        if (!PlayerPrefs.HasKey("totalItemsGrabbed")) PlayerPrefs.SetInt("totalItemsGrabbed", 0);
+        if (!PlayerPrefs.HasKey("totalPunches")) PlayerPrefs.SetInt("totalPunches", 0);
+        if (!PlayerPrefs.HasKey("totalSpecialAttacks")) PlayerPrefs.SetInt("totalSpecialAttacks", 0);
+        if (!PlayerPrefs.HasKey("highestScore")) PlayerPrefs.SetInt("highestScore", 0);
+
+        string temp;
+        for (int i = 0; i < 9; i++)
+        {
+            temp = "hiscore" + i.ToString();
+            if (!PlayerPrefs.HasKey(temp)) PlayerPrefs.SetInt(temp, 0);
+        }
+        PlayerPrefs.Save();
     }
 
     void InitiateSaveData()
@@ -69,6 +111,10 @@ public class MainMenu : MonoBehaviour
         PlayerPrefs.SetInt("totalPunches", 0);
         PlayerPrefs.SetInt("totalSpecialAttacks", 0);
         PlayerPrefs.SetInt("highestScore", 0);
+
+        for (int i = 0; i < 9; i++)
+            PlayerPrefs.SetInt("hiscore" + i.ToString(), 0);
+
         PlayerPrefs.Save();
     }
 
@@ -111,6 +157,11 @@ public class MainMenu : MonoBehaviour
 
     public void StartGame()
     {
+        bannerAds.HideBannerAd();
+        PlayerPrefs.SetInt("selectedStage", StageSelector.currentStage);
+        PlayerPrefs.SetInt("selectedSkin", SkinSelector.currentSkin);
+        PlayerPrefs.Save();
+
         LoadScene(StageSelector.currentStage.ToString());
     }
 
@@ -123,18 +174,33 @@ public class MainMenu : MonoBehaviour
         asyncOp.allowSceneActivation = true;
     }
 
+    IEnumerator UpdateScoreText(int scoreAmount)
+    {
+        int currentScore = 0;
+        for (int i = 0; i < scoreAmount; i+=10)
+        {
+            currentScore += 10;
+            scoreOutput.text = currentScore.ToString();
+            yield return new WaitForSeconds(0.01f);
+        }
+        scoreOutput.text = ScoreKeeper.score.ToString();
+        if (ScoreKeeper.score > 2000) scoreOutput.text += "!";
+    }
+
     public void LockedStage(bool locked)
     {
         if (StageSelector.currentStage == 0) lockedStageBackground.color = new Color32(255, 255, 255, 20);
         else lockedStageBackground.color = new Color32(0, 0, 0, 200);
 
+        string temp = "hiscore" + StageSelector.currentStage.ToString();
         if (locked) { lockedStageBackground.gameObject.SetActive(true); lockedStageText.text = "Defeat " + StageRequirements((StageSelector.currentStage)).ToString() + " more enemies"; }
-        else { lockedStageBackground.gameObject.SetActive(false); lockedStageText.text = ""; }
+        else { lockedStageBackground.gameObject.SetActive(false); if (!PlayerPrefs.HasKey(temp)) { lockedStageText.text = ""; return; } else if (PlayerPrefs.GetInt(temp) == 0) lockedStageText.text = ""; else lockedStageText.text = "Best Score: " + (PlayerPrefs.GetInt(temp)).ToString(); }
     }
 
     public void LockedCharacter(bool locked, string unlockText)
     {
-        if (locked) {
+        if (locked)
+        {
             lockedCharacterMask.gameObject.SetActive(true);
             lockedCharacterBackground.gameObject.SetActive(true);
             lockedCharacterText.text = unlockText;
@@ -156,13 +222,13 @@ public class MainMenu : MonoBehaviour
         {
             default: return 0; //includes first stage
             case 1: return 50 - currentKills;
-            case 2: return 250 - currentKills;
-            case 3: return 500 - currentKills;
-            case 4: return 1000 - currentKills;
-            case 5: return 1500 - currentKills;
-            case 6: return 2000 - currentKills;
-            case 7: return 3000 - currentKills;
-            case 8: return 4500 - currentKills;
+            case 2: return 150 - currentKills;
+            case 3: return 300 - currentKills;
+            case 4: return 500 - currentKills;
+            case 5: return 750 - currentKills;
+            case 6: return 1250 - currentKills;
+            case 7: return 2000 - currentKills;
+            case 8: return 3000 - currentKills;
         }
     }
 
@@ -170,4 +236,22 @@ public class MainMenu : MonoBehaviour
     {
         Application.Quit();
     }
+
+    public void RateGame()
+    {
+        Application.OpenURL("market://details?id=com.Jullo.FistProject");
+        if (reviewWindow) reviewWindow.SetActive(false);
+    }
+
+    public void CloseReviewWindow()
+    {
+        reviewWindow.SetActive(false);
+    }
+
+    public void OpenWebsite()
+    {
+        Application.OpenURL("https://julianlerej.com/");
+    }
+
+
 }

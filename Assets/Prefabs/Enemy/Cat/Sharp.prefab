@@ -216,8 +216,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 15315960
-  m_fontColor: {r: 0.9716981, g: 0.70127267, b: 0.91233647, a: 0}
+    rgba: 16777215
+  m_fontColor: {r: 1, g: 1, b: 1, a: 0}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -234,8 +234,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 1
-  m_fontSizeBase: 1
+  m_fontSize: 0.75
+  m_fontSizeBase: 0.75
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -457,6 +457,7 @@ MonoBehaviour:
   experienceDrop: 16
   furyIcon: {fileID: 2324673451195581003}
   hitIndicator: {fileID: 5539904913919036692}
+  tint: {fileID: 2913722993686437648}
   healthDrop: {fileID: 8693265718791990718, guid: b8c991079c615124bb71add0c67194f8, type: 3}
   fullRecoveryDrop: {fileID: 3340932629335109683, guid: fc09455010c819344915b8bb928234ef, type: 3}
   frenzyDrop: {fileID: 3110370413052923250, guid: 8aa5100bf25eb13459438e9de7f6a7b0, type: 3}

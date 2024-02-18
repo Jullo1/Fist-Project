@@ -234,8 +234,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 1
-  m_fontSizeBase: 1
+  m_fontSize: 0.75
+  m_fontSizeBase: 0.75
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -351,6 +351,7 @@ MonoBehaviour:
   experienceDrop: 32
   furyIcon: {fileID: 2620331443380816464}
   hitIndicator: {fileID: 6540423717661384439}
+  tint: {fileID: 7730412554160927449}
   healthDrop: {fileID: 8693265718791990718, guid: b8c991079c615124bb71add0c67194f8, type: 3}
   fullRecoveryDrop: {fileID: 3340932629335109683, guid: fc09455010c819344915b8bb928234ef, type: 3}
   frenzyDrop: {fileID: 3110370413052923250, guid: 8aa5100bf25eb13459438e9de7f6a7b0, type: 3}

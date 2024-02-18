@@ -9,7 +9,7 @@ public class Enemy : Unit
     [SerializeField] int experienceDrop;
     [SerializeField] GameObject furyIcon;
     [SerializeField] SpriteRenderer hitIndicator;
-    SpriteRenderer tint;
+    [SerializeField] SpriteRenderer tint;
 
     [SerializeField] GameObject healthDrop;
     [SerializeField] GameObject fullRecoveryDrop;
@@ -48,8 +48,6 @@ public class Enemy : Unit
         scoreBubble.text = (experienceDrop * StageSelector.scoreMultiplier).ToString();
         attackTimer.Add(0);
         sortingLayerName = sr.sortingLayerName;
-
-        tint = transform.GetChild(2).GetComponent<SpriteRenderer>();
     }
 
     void Update()
@@ -123,10 +121,8 @@ public class Enemy : Unit
             rb.bodyType = RigidbodyType2D.Dynamic;
             anim.enabled = true;
 
-            if (aliveTime > 15)
-                if (!fury) Fury();
-            if (aliveTime > 30)
-                StartCoroutine(Death(false));
+            if (aliveTime > 15) if (!fury) Fury();
+            if (aliveTime > 30) StartCoroutine(Death(false));
         } else frozenTime -= Time.deltaTime;
 
         if (aliveTime > 0.1f) spawnCheck = false;

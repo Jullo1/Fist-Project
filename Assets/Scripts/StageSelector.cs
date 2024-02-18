@@ -12,7 +12,7 @@ public class StageSelector : MonoBehaviour
     public static float scrollMultiplier = 0.484f;
 
     int previousStage;
-    int maxAvailableStage = 9;
+    int maxAvailableStage = 4;
     
     List<string> stageNames = new List<string>();
     [SerializeField] Text title;
@@ -42,13 +42,15 @@ public class StageSelector : MonoBehaviour
         stageNames.Add("Volcano");
         stageNames.Add("Underground");
 
-        ApplyStageSkin();
-        ApplyStageMusic();
+        if (PlayerPrefs.HasKey("selectedStage")) currentStage = PlayerPrefs.GetInt("selectedStage");
+        ApplyStageSkin(); ApplyStageMusic();
     }
 
-    private void Start()
+    void Start()
     {
-        if (PlayerPrefs.GetInt("totalKills") >= 1500) maxAvailableStage = 9;
+        if (PlayerPrefs.GetInt("totalKills") >= 1000) maxAvailableStage = 9;
+        else if (PlayerPrefs.GetInt("totalKills") >= 500) maxAvailableStage = 7;
+        else if (PlayerPrefs.GetInt("totalKills") >= 150) maxAvailableStage = 6;
         previousStage = currentStage;
     }
 

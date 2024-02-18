@@ -22,6 +22,7 @@ public class SkinSelector : MonoBehaviour
     {
         menuManager = FindObjectOfType<MainMenu>();
 
+
         skinNames.Add("Fist Hero");
         skinNames.Add("Fist Warrior");
         skinNames.Add("Fist Machine");
@@ -43,6 +44,7 @@ public class SkinSelector : MonoBehaviour
         skinStats.Add("+2 special\n-1 attack speed");
         skinStats.Add("+2 power");
 
+        if (PlayerPrefs.HasKey("selectedSkin")) currentSkin = PlayerPrefs.GetInt("selectedSkin");
         ApplyPlayerSkin();
     }
 
@@ -74,11 +76,11 @@ public class SkinSelector : MonoBehaviour
         switch (currentSkin)
         {
             default: { unlockText = "";  return true; }
-            case 1: if (PlayerPrefs.GetInt("maxKillsInOneRun") >= 100) { unlockText = "Defeated " + PlayerPrefs.GetInt("maxKillsInOneRun") + " enemies in one run!"; return true; } else { unlockText = "Unlock:\nDefeat 100 enemies in one run"; return false; }
-            case 2: if (PlayerPrefs.GetInt("totalItemsGrabbed") >= 50) { unlockText = "Grabbed " + PlayerPrefs.GetInt("totalItemsGrabbed") + " items!"; return true; } else { unlockText = "Unlock:\nGrab " + (50 - PlayerPrefs.GetInt("totalItemsGrabbed")) + " more items"; return false; }
-            case 3: if (PlayerPrefs.GetInt("highestScore") >= 2500) { unlockText = "Highest score: " + PlayerPrefs.GetInt("highestScore") + "!"; return true; } else { unlockText = "Unlock:\nReach over 2500 score"; return false; }
-            case 4: if (PlayerPrefs.GetInt("totalSpecialAttacks") >= 150) { unlockText = "Used special attack " + PlayerPrefs.GetInt("totalSpecialAttacks") + " times!"; return true; } else { unlockText = "Unlock:\nUse special attack " + (150 - PlayerPrefs.GetInt("totalSpecialAttacks")) + " times"; return false; }
-            case 5: if (PlayerPrefs.GetInt("totalPunches") >= 3000) { unlockText = "Threw " + PlayerPrefs.GetInt("totalPunches") + " punches!"; return true; } else { unlockText = "Unlock:\nThrow " + (3000 - PlayerPrefs.GetInt("totalPunches")) + " more punches"; return false; }
+            case 1: if (PlayerPrefs.GetInt("maxKillsInOneRun") >= 50) { unlockText = "Defeated " + PlayerPrefs.GetInt("maxKillsInOneRun") + " enemies in one run!"; return true; } else { unlockText = "Unlock:\nDefeat 50 enemies in one run\nBest so far: " + PlayerPrefs.GetInt("maxKillsInOneRun").ToString(); return false; }
+            case 2: if (PlayerPrefs.GetInt("totalItemsGrabbed") >= 50) { unlockText = "Got " + PlayerPrefs.GetInt("totalItemsGrabbed") + " potions!"; return true; } else { unlockText = "Unlock:\nGet " + (50 - PlayerPrefs.GetInt("totalItemsGrabbed")) + " potions"; return false; }
+            case 3: if (PlayerPrefs.GetInt("highestScore") >= 2500) { unlockText = "Highest score: " + PlayerPrefs.GetInt("highestScore") + "!"; return true; } else { unlockText = "Unlock:\nHit 2500 score"; return false; }
+            case 4: if (PlayerPrefs.GetInt("totalSpecialAttacks") >= 150) { unlockText = "Used special " + PlayerPrefs.GetInt("totalSpecialAttacks") + " times!"; return true; } else { unlockText = "Unlock:\nUse special " + (100 - PlayerPrefs.GetInt("totalSpecialAttacks")) + " times"; return false; }
+            case 5: if (PlayerPrefs.GetInt("totalPunches") >= 3000) { unlockText = PlayerPrefs.GetInt("totalPunches") + " total punches!"; return true; } else { unlockText = "Unlock:\nThrow over " + (3000 - PlayerPrefs.GetInt("totalPunches")) + " punches"; return false; }
         }
     }
 }
