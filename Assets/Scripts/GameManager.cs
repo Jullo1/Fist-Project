@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System;
 using UnityEngine.SocialPlatforms.Impl;
+using UnityEngine.SocialPlatforms;
+using Unity.VisualScripting;
 
 public class GameManager : MonoBehaviour
 {
@@ -34,6 +36,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] Text scoreOutput;
     [SerializeField] int currentScore;
     bool freezeUI;
+    public bool timeStop;
 
     float experience;
     public float toNextLevel;
@@ -89,7 +92,7 @@ public class GameManager : MonoBehaviour
     public IEnumerator StopTime(float seconds)
     {
         foreach (Enemy enemy in FindObjectsOfType<Enemy>())
-            enemy.FreezeUnit(seconds);
+            enemy.FreezeUnit(seconds, true);
 
         backgroundMusic.pitch = 0.8f;
         pauseWaves = true;
@@ -108,12 +111,23 @@ public class GameManager : MonoBehaviour
 
     IEnumerator UpdateScoreText(int scoreAmount)
     {
+        currentScore += scoreAmount;
         for (int i = 0; i < scoreAmount; i++)
         {
-            currentScore++;
             scoreOutput.text = currentScore.ToString();
             yield return new WaitForSeconds(0.05f);
         }
+    }
+
+    IEnumerator UpdateExperienceBar(int scoreAmount)
+    {
+        for (int i = 0; i < scoreAmount; i++)
+        {
+            if (experienceUI.fillAmount == 1) break;
+            experienceUI.fillAmount += 1 / toNextLevel;
+            yield return new WaitForSeconds(0.05f);
+        }
+        if (experience >= toNextLevel) LevelUp();
     }
 
     void NextWave()
@@ -161,8 +175,7 @@ public class GameManager : MonoBehaviour
     {
         UpdateScore(amount);
         experience += amount;
-        if (experience >= toNextLevel) LevelUp();
-        else experienceUI.fillAmount = experience / toNextLevel;
+        StartCoroutine(UpdateExperienceBar(amount)); 
     }
 
     void LevelUp()

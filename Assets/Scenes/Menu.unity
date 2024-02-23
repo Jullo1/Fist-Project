@@ -136,6 +136,7 @@ GameObject:
   - component: {fileID: 7007841}
   - component: {fileID: 7007840}
   - component: {fileID: 7007843}
+  - component: {fileID: 7007844}
   m_Layer: 5
   m_Name: Version
   m_TagString: Untagged
@@ -210,7 +211,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: v0.6 Beta
+  m_Text: 
 --- !u!222 &7007842
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -275,6 +276,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &7007844
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7007836}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 558c0ecdc41e04a4a8e5dba995fe0c46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  step: Beta
 --- !u!1 &11099040
 GameObject:
   m_ObjectHideFlags: 0
@@ -1025,6 +1039,7 @@ GameObject:
   - component: {fileID: 397604983}
   - component: {fileID: 397604982}
   - component: {fileID: 397604984}
+  - component: {fileID: 397604985}
   m_Layer: 5
   m_Name: Score
   m_TagString: Untagged
@@ -1108,6 +1123,18 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
   m_EffectDistance: {x: 1, y: 1}
   m_UseGraphicAlpha: 1
+--- !u!114 &397604985
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 397604979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31d6b17a29103c04c816e907ac09c58f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &436819572
 GameObject:
   m_ObjectHideFlags: 0
@@ -2965,7 +2992,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 436819573}
-  - {fileID: 7007837}
   - {fileID: 118538017}
   - {fileID: 589415246}
   - {fileID: 397604980}
@@ -2975,6 +3001,7 @@ RectTransform:
   - {fileID: 466079615}
   - {fileID: 1015083949}
   - {fileID: 1077682597}
+  - {fileID: 7007837}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}

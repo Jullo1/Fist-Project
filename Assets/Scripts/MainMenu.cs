@@ -27,7 +27,6 @@ public class MainMenu : MonoBehaviour
 
     bool loadSceneSent;
 
-    [Obsolete]
     void Awake()
     {
         bannerAds = FindObjectOfType<BannerAds>();
@@ -51,17 +50,6 @@ public class MainMenu : MonoBehaviour
             bannerAds.ShowBannerAd();
         }
 
-        Time.timeScale = 1;
-        if (ScoreKeeper.score > 0)
-        {
-            if (!Application.isMobilePlatform) StartCoroutine(SendScore(ScoreKeeper.score));
-            StartCoroutine(UpdateScoreText(ScoreKeeper.score));
-
-            startButtonText.text = "AGAIN";
-        }
-
-        StartCoroutine(ShowBannerAdsWithDelay());
-
         if (PlayerPrefs.GetInt("totalKills") > 300 && !PlayerPrefs.HasKey("optOutReview"))
         {
             reviewWindow.SetActive(true);
@@ -70,11 +58,26 @@ public class MainMenu : MonoBehaviour
         }
     }
 
+    [Obsolete]
+    void Start()
+    {
+        Time.timeScale = 1;
+        if (ScoreKeeper.score > 0)
+        {
+            if (!Application.isMobilePlatform) StartCoroutine(SendScore(ScoreKeeper.score));
+            startButtonText.text = "AGAIN";
+        }
+        StartCoroutine(ShowBannerAdsWithDelay());
+    }
+
     IEnumerator ShowBannerAdsWithDelay()
     {
+        startButton.interactable = false;
         yield return new WaitForSeconds(1);
+
         bannerAds.LoadBanner();
         bannerAds.ShowBannerAd();
+        startButton.interactable = true;
     }
 
     void RebuildSaveData()
@@ -142,19 +145,20 @@ public class MainMenu : MonoBehaviour
 
     void LoadScene(string sceneName)
     {
+        bannerAds.HideBannerAd();
+        PlayerPrefs.SetInt("selectedStage", StageSelector.currentStage);
+        PlayerPrefs.SetInt("selectedSkin", SkinSelector.currentSkin);
+        PlayerPrefs.Save();
+
         startButton.GetComponentInChildren<Outline>().enabled = true;
         menuAudio.Play();
+
         if (!loadSceneSent) StartCoroutine(DelayBeforeLoad(sceneName));
         loadSceneSent = true;
     }
 
     public void StartGame()
     {
-        bannerAds.HideBannerAd();
-        PlayerPrefs.SetInt("selectedStage", StageSelector.currentStage);
-        PlayerPrefs.SetInt("selectedSkin", SkinSelector.currentSkin);
-        PlayerPrefs.Save();
-
         LoadScene(StageSelector.currentStage.ToString());
     }
 
@@ -165,19 +169,6 @@ public class MainMenu : MonoBehaviour
         yield return new WaitForSeconds(1f);
         GameManager.audioProgress = menuMusic.time;
         asyncOp.allowSceneActivation = true;
-    }
-
-    IEnumerator UpdateScoreText(int scoreAmount)
-    {
-        int currentScore = 0;
-        for (int i = 0; i < scoreAmount; i+=10)
-        {
-            currentScore += 10;
-            scoreOutput.text = currentScore.ToString();
-            yield return new WaitForSeconds(0.01f);
-        }
-        scoreOutput.text = ScoreKeeper.score.ToString();
-        if (ScoreKeeper.score > 2000) scoreOutput.text += "!";
     }
 
     public void LockedStage(bool locked)

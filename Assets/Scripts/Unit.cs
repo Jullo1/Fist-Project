@@ -96,10 +96,11 @@ public class Unit : Entity
             UpdateHealth(maxHitpoints);
     }
 
-    public void FreezeUnit(float time)
+    public void FreezeUnit(float time, bool disableCollision = false)
     {
         frozenTime = time;
         anim.enabled = false;
         rb.bodyType = RigidbodyType2D.Static;
+        if (disableCollision) col.isTrigger = true;
     }
 }

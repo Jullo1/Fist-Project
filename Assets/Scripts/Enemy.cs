@@ -116,6 +116,7 @@ public class Enemy : Unit
     {
         if (frozenTime <= 0)
         {
+            col.isTrigger = false;
             aliveTime += Time.deltaTime;
 
             rb.bodyType = RigidbodyType2D.Dynamic;
