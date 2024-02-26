@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class StageSelector : MonoBehaviour
 {
     MainMenu menuManager;
+    EndGameScoreOutput endGameScoreUpdator;
 
     public static int currentStage;
     public static float scoreMultiplier = 1;
@@ -27,8 +28,9 @@ public class StageSelector : MonoBehaviour
 
     void Awake()
     {
-        floor = GameObject.FindGameObjectWithTag("Floor").GetComponent<RawImage>();
         menuManager = FindObjectOfType<MainMenu>();
+        endGameScoreUpdator = FindObjectOfType<EndGameScoreOutput>();
+        floor = GameObject.FindGameObjectWithTag("Floor").GetComponent<RawImage>();
         UITexts = FindObjectsOfType<Text>();
         UIOutlines = FindObjectsOfType<Outline>();
 
@@ -56,6 +58,7 @@ public class StageSelector : MonoBehaviour
 
     public void ChangeLevel(bool next)
     {
+        endGameScoreUpdator.UpdateScoreOutput();
         if (next) currentStage++;
         else currentStage--;
 

@@ -59,6 +59,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Entity.cs" />
+    <Compile Include="Assets\Scripts\Specific\EndGameScoreOutput.cs" />
     <Compile Include="Assets\Scripts\Enemy.cs" />
     <Compile Include="Assets\Scripts\AdInitializer.cs" />
     <Compile Include="Assets\Scripts\Specific\PassthroughEnemies.cs" />
@@ -80,7 +81,6 @@
     <Compile Include="Assets\Scripts\PlayerUIHandler.cs" />
     <Compile Include="Assets\Scripts\SpriteChanger.cs" />
     <Compile Include="Assets\Scripts\ScoreKeeper.cs" />
-    <Compile Include="Assets\Scripts\Specific\EndGameScoreOutpu.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

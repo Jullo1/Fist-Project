@@ -268,22 +268,24 @@ public class Player : Unit
         specialChannel = 0;
         appliedSpecialOffset = false;
         freezeRotation = true;
-        PlayAudio(specialSFX);
         ui.SpecialReady(false);
+        bool hit;
         for (int i = 0; i < specialCharges; i++)
         {
-            if (specialCharges > 1) PlayAudio(punchSFX);
+            hit = false;
             foreach (Enemy enemy in FindObjectsOfType<Enemy>())
             {
-                if (!enemy.dead)
-                    if (Vector2.Distance(transform.position, enemy.transform.position) <= attackRange * specialRange)
+                if (Vector2.Distance(transform.position, enemy.transform.position) <= attackRange * specialRange)
+                {
+                    if ((facingRight && enemy.transform.position.x > transform.position.x) || (!facingRight && enemy.transform.position.x < transform.position.x)) //only attack enemies to the right or to the left
                     {
-                        if ((facingRight && enemy.transform.position.x > transform.position.x) || (!facingRight && enemy.transform.position.x < transform.position.x)) //only attack enemies to the right or to the left
-                        {
-                            comboAmount++;
-                            enemy.TakeHit(strength, gameObject, pushForce);
-                        }
+                        hit = true;
+                        comboAmount++;
+                        enemy.TakeHit(strength, gameObject, pushForce);
                     }
+                }
+                if (hit) PlayAudio(punchSFX);
+                else PlayAudio(missSFX);
             }
             yield return new WaitForSeconds(0.2f);
         }
@@ -383,8 +385,8 @@ public class Player : Unit
                 switch (activePowerUps[i]) //calculate feedback elements
                 {   
                     case PowerUpType.Frenzy:
-                        ui.attackCDOutlines[0].effectColor = new Color32(240, 0, 0, (byte)(Mathf.Lerp(0, 255, powerUpDuration[i] / 5)));
-                        ui.attackCDOutlines[1].effectColor = new Color32(240, 0, 0, (byte)(Mathf.Lerp(0, 255, powerUpDuration[i] / 5)));
+                        ui.attackCDOutlines[0].effectColor = new Color32(200, 50, 0, (byte)(Mathf.Lerp(0, 255, powerUpDuration[i] / 5)));
+                        ui.attackCDOutlines[1].effectColor = new Color32(200, 50, 0, (byte)(Mathf.Lerp(0, 255, powerUpDuration[i] / 5)));
                         break;
                 }
                 return;

@@ -111,9 +111,9 @@ public class GameManager : MonoBehaviour
 
     IEnumerator UpdateScoreText(int scoreAmount)
     {
-        currentScore += scoreAmount;
         for (int i = 0; i < scoreAmount; i++)
         {
+            currentScore++;
             scoreOutput.text = currentScore.ToString();
             yield return new WaitForSeconds(0.05f);
         }

@@ -116,7 +116,7 @@ public class Enemy : Unit
     {
         if (frozenTime <= 0)
         {
-            col.isTrigger = false;
+            if (!dead) col.isTrigger = false;
             aliveTime += Time.deltaTime;
 
             rb.bodyType = RigidbodyType2D.Dynamic;
@@ -173,8 +173,8 @@ public class Enemy : Unit
 
     IEnumerator Death(bool triggerRewards = true)
     {
-        col.isTrigger = true;
         dead = true;
+        col.isTrigger = true;
         sr.sortingLayerName = "DeadEnemy";
         tint.GetComponent<SpriteRenderer>().sortingLayerName = "DeadEnemy";
         if (triggerRewards)

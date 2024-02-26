@@ -232,10 +232,9 @@ public class MainMenu : MonoBehaviour
         reviewWindow.SetActive(false);
     }
 
-    public void OpenWebsite()
+    public void OpenWebsite(string tab)
     {
-        Application.OpenURL("https://julianlerej.com/");
+
+        Application.OpenURL("https://julianlerej.com/" + tab);
     }
-
-
 }
