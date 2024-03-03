@@ -69,27 +69,13 @@ public class MainMenu : MonoBehaviour
         {
             if (PlayerPrefs.GetInt("reviewCount") >= 5)
             {
-                StartCoroutine(LaunchReview());
-                PlayerPrefs.SetInt("reviewCount", 0);
+                reviewWindow.SetActive(true);
+                PlayerPrefs.SetInt("reviewCount", -25);
             }
             else PlayerPrefs.SetInt("reviewCount", PlayerPrefs.GetInt("reviewCount") + 1);
 
             PlayerPrefs.Save();
         }
-    }
-
-    IEnumerator LaunchReview()
-    {
-        reviewManager = new ReviewManager();
-        var requestFlowOperation = reviewManager.RequestReviewFlow();
-        playReviewInfo = requestFlowOperation.GetResult();
-        var launchFlowOperation = reviewManager.LaunchReviewFlow(playReviewInfo);
-        yield return launchFlowOperation;
-    }
-
-    public void ManualLaunchReview()
-    {
-        StartCoroutine(LaunchReview());
     }
 
     IEnumerator ShowBannerAdsWithDelay()
