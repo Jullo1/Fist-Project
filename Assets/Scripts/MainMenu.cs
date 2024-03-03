@@ -3,11 +3,11 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Collections;
 using System;
+using Google.Play.Review;
 
 public class MainMenu : MonoBehaviour
 {
     AudioSource menuAudio;
-
     [SerializeField] AudioSource menuMusic;
     [SerializeField] Button startButton;
     [SerializeField] Text startButtonText;
@@ -21,6 +21,8 @@ public class MainMenu : MonoBehaviour
     public Text scoreOutput;
     [SerializeField] GameObject scoreKeeper;
     [SerializeField] GameObject reviewWindow;
+    ReviewManager reviewManager;
+    PlayReviewInfo playReviewInfo;
 
     InterstitalAds interstitalAd;
     BannerAds bannerAds;
@@ -29,32 +31,26 @@ public class MainMenu : MonoBehaviour
 
     void Awake()
     {
+
         bannerAds = FindObjectOfType<BannerAds>();
         interstitalAd = FindObjectOfType<InterstitalAds>();
         menuAudio = GetComponent<AudioSource>();
 
         //InitiateSaveData(); //for testing, resets all save data
         //InitiateCheatSaveData(); //unlock everything
-        RebuildSaveData();
         LockedStage(false);
 
         if (!FindObjectOfType<ScoreKeeper>()) //instantiate scoreKeeper if there isn't one yet
         {
+            RebuildSaveData();
             Instantiate(scoreKeeper);
-            if (Application.isMobilePlatform || Application.isEditor) { interstitalAd.LoadAd(); }//only load ad on first run
+            if (Application.isMobilePlatform || Application.isEditor) { interstitalAd.LoadAd(); }//load ad to show it after first run
         }
         else if (Application.isMobilePlatform || Application.isEditor)
         {
             interstitalAd.ShowAd(); //send ad after death
             interstitalAd.LoadAd(); //then get ad ready for next run
             bannerAds.ShowBannerAd();
-        }
-
-        if (PlayerPrefs.GetInt("totalKills") > 300 && !PlayerPrefs.HasKey("optOutReview"))
-        {
-            reviewWindow.SetActive(true);
-            PlayerPrefs.SetInt("optOutReview", 1);
-            PlayerPrefs.Save();
         }
     }
 
@@ -68,6 +64,32 @@ public class MainMenu : MonoBehaviour
             startButtonText.text = "AGAIN";
         }
         StartCoroutine(ShowBannerAdsWithDelay());
+
+        if (PlayerPrefs.GetInt("totalKills") > 300 && ScoreKeeper.score > 0) //android review tab
+        {
+            if (PlayerPrefs.GetInt("reviewCount") >= 5)
+            {
+                StartCoroutine(LaunchReview());
+                PlayerPrefs.SetInt("reviewCount", 0);
+            }
+            else PlayerPrefs.SetInt("reviewCount", PlayerPrefs.GetInt("reviewCount") + 1);
+
+            PlayerPrefs.Save();
+        }
+    }
+
+    IEnumerator LaunchReview()
+    {
+        reviewManager = new ReviewManager();
+        var requestFlowOperation = reviewManager.RequestReviewFlow();
+        playReviewInfo = requestFlowOperation.GetResult();
+        var launchFlowOperation = reviewManager.LaunchReviewFlow(playReviewInfo);
+        yield return launchFlowOperation;
+    }
+
+    public void ManualLaunchReview()
+    {
+        StartCoroutine(LaunchReview());
     }
 
     IEnumerator ShowBannerAdsWithDelay()
@@ -88,6 +110,7 @@ public class MainMenu : MonoBehaviour
         if (!PlayerPrefs.HasKey("totalPunches")) PlayerPrefs.SetInt("totalPunches", 0);
         if (!PlayerPrefs.HasKey("totalSpecialAttacks")) PlayerPrefs.SetInt("totalSpecialAttacks", 0);
         if (!PlayerPrefs.HasKey("highestScore")) PlayerPrefs.SetInt("highestScore", 0);
+        if (!PlayerPrefs.HasKey("reviewCount")) PlayerPrefs.SetInt("reviewCount", 4);
 
         string temp;
         for (int i = 0; i < 9; i++)
@@ -107,6 +130,7 @@ public class MainMenu : MonoBehaviour
         PlayerPrefs.SetInt("totalPunches", 0);
         PlayerPrefs.SetInt("totalSpecialAttacks", 0);
         PlayerPrefs.SetInt("highestScore", 0);
+        PlayerPrefs.SetInt("reviewCount", 0);
 
         for (int i = 0; i < 9; i++)
             PlayerPrefs.SetInt("hiscore" + i.ToString(), 0);
@@ -123,6 +147,10 @@ public class MainMenu : MonoBehaviour
         PlayerPrefs.SetInt("totalPunches", 7843);
         PlayerPrefs.SetInt("totalSpecialAttacks", 875);
         PlayerPrefs.SetInt("highestScore", 2815);
+        PlayerPrefs.SetInt("reviewCount", 5);
+
+        for (int i = 0; i < 9; i++)
+            PlayerPrefs.SetInt("hiscore" + i.ToString(), 123123);
         PlayerPrefs.Save();
     }
 

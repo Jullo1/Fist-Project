@@ -29,7 +29,7 @@ public class Enemy : Unit
     {
         hitIndicator.gameObject.SetActive(isCurrentTarget);
         if (isCurrentTarget) ChangeSortingLayer("TargetEnemy");
-        else ChangeSortingLayer(sortingLayerName);
+        else if (!dead) ChangeSortingLayer(sortingLayerName);
     }
 
     protected void ChangeSortingLayer(string layerName)

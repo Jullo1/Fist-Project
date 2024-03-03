@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: 6b316563995b0f64fb4e25cb2a66a6fb, type: 2}
   m_LightingSettings: {fileID: 0}
 --- !u!196 &4
 NavMeshSettings:
@@ -160,7 +160,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 132, y: 22.199951}
+  m_AnchoredPosition: {x: 41.699707, y: 14}
   m_SizeDelta: {x: 885.87, y: 86.67}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &7007840
@@ -200,8 +200,8 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 2ecfe363fcd097a4195c251b7935d7cd, type: 3}
-    m_FontSize: 30
-    m_FontStyle: 1
+    m_FontSize: 31
+    m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 2
     m_MaxSize: 90
@@ -266,7 +266,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1007404875}
         m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
-        m_MethodName: RateGame
+        m_MethodName: ManualLaunchReview
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1213,7 +1213,7 @@ MonoBehaviour:
   m_FontData:
     m_Font: {fileID: 12800000, guid: 2ecfe363fcd097a4195c251b7935d7cd, type: 3}
     m_FontSize: 36
-    m_FontStyle: 1
+    m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 2
     m_MaxSize: 90
@@ -1564,8 +1564,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -49.100098, y: 14.099976}
-  m_SizeDelta: {x: 360.9, y: 139.6}
+  m_AnchoredPosition: {x: -12.300293, y: 6.7001953}
+  m_SizeDelta: {x: 360.9, y: 112.12}
   m_Pivot: {x: 1, y: 0}
 --- !u!114 &466079616
 MonoBehaviour:
@@ -2991,7 +2991,6 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 436819573}
   - {fileID: 118538017}
   - {fileID: 589415246}
   - {fileID: 397604980}
@@ -3001,6 +3000,7 @@ RectTransform:
   - {fileID: 466079615}
   - {fileID: 1015083949}
   - {fileID: 1077682597}
+  - {fileID: 436819573}
   - {fileID: 7007837}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

@@ -264,8 +264,8 @@ public class GameManager : MonoBehaviour
             case 4: enemyTint = new Color32(170, 170, 170, 50); break;
             case 5: enemyTint = new Color32(150, 200, 225, 150); break;
             case 6: enemyTint = new Color32(125, 125, 125, 150); break;
-            case 7: enemyTint = new Color32(150, 75, 75, 175); break;
-            case 8: enemyTint = new Color32(30, 30, 30, 175); break;
+            case 7: enemyTint = new Color32(150, 50, 50, 135); break;
+            case 8: enemyTint = new Color32(35, 35, 35, 125); break;
         }
     }
 

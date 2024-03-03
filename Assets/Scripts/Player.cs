@@ -284,8 +284,7 @@ public class Player : Unit
                         enemy.TakeHit(strength, gameObject, pushForce);
                     }
                 }
-                if (hit) PlayAudio(punchSFX);
-                else PlayAudio(missSFX);
+                if (hit || i == 0) PlayAudio(punchSFX);
             }
             yield return new WaitForSeconds(0.2f);
         }
@@ -327,6 +326,7 @@ public class Player : Unit
 
     IEnumerator PlayerDeath()
     {
+        rb.constraints = RigidbodyConstraints2D.FreezePosition | RigidbodyConstraints2D.FreezeRotation;
         levelMusic.volume /= 2;
         if (previousFreeze != null) StopCoroutine(previousFreeze);
         if (previousFreezeRotation != null) StopCoroutine(previousFreezeRotation);
