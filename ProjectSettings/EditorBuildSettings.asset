@@ -19,22 +19,22 @@ EditorBuildSettings:
     guid: 9919a1700deee4a4085776076e40e813
   - enabled: 1
     path: Assets/Scenes/3.unity
-    guid: 485d1b4ba1ee7604a8bd192d46497154
+    guid: 41904cbd8fe81fb4586ce66ecaeee894
   - enabled: 1
     path: Assets/Scenes/4.unity
-    guid: 3d7859b2e9771714bafd67b6988340c7
+    guid: 6f7112465c8703842ab0935a7316e4f2
   - enabled: 1
     path: Assets/Scenes/5.unity
-    guid: 6965313f4557db84ca8aa067c74be2ca
+    guid: 123a81a3b01f1824081f1a4d0f8a8f32
   - enabled: 1
     path: Assets/Scenes/6.unity
-    guid: c831f255894425b4cbf2f76aaffe396b
+    guid: 5cd91ad165d8f7f4c8409d270ce4b038
   - enabled: 1
     path: Assets/Scenes/7.unity
-    guid: 979e6bd4d98a2cd45aeaf26dacc72343
+    guid: a7fd49dd51a5afd46ba7e35270a72b5f
   - enabled: 1
     path: Assets/Scenes/8.unity
-    guid: 68a702c669efc7d4388e30bff4ba29b9
+    guid: 5df1de9396f71ec4ab241338a0d02711
   m_configObjects:
     com.unity.adaptiveperformance.google.android.provider_settings: {fileID: 11400000, guid: f8531797410655a48818ffc5d3ee1c36, type: 2}
     com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: fedd6aba1b39305409f37fcb8eeef278, type: 2}

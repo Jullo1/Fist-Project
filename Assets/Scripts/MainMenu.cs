@@ -3,7 +3,6 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Collections;
 using System;
-using Google.Play.Review;
 
 public class MainMenu : MonoBehaviour
 {
@@ -21,19 +20,12 @@ public class MainMenu : MonoBehaviour
     public Text scoreOutput;
     [SerializeField] GameObject scoreKeeper;
     [SerializeField] GameObject reviewWindow;
-    ReviewManager reviewManager;
-    PlayReviewInfo playReviewInfo;
-
-    InterstitalAds interstitalAd;
-    BannerAds bannerAds;
 
     bool loadSceneSent;
 
     void Awake()
     {
-
-        bannerAds = FindObjectOfType<BannerAds>();
-        interstitalAd = FindObjectOfType<InterstitalAds>();
+        //IronSourceAdQuality.Initialize("1d5d6bddd");
         menuAudio = GetComponent<AudioSource>();
 
         //InitiateSaveData(); //for testing, resets all save data
@@ -44,13 +36,12 @@ public class MainMenu : MonoBehaviour
         {
             RebuildSaveData();
             Instantiate(scoreKeeper);
-            if (Application.isMobilePlatform || Application.isEditor) { interstitalAd.LoadAd(); }//load ad to show it after first run
+            if (Application.isMobilePlatform || Application.isEditor) {  }//load ad to show it after first run
         }
         else if (Application.isMobilePlatform || Application.isEditor)
         {
-            interstitalAd.ShowAd(); //send ad after death
-            interstitalAd.LoadAd(); //then get ad ready for next run
-            bannerAds.ShowBannerAd();
+            //send ad after death
+            //then get ad ready for next run
         }
     }
 
@@ -83,8 +74,7 @@ public class MainMenu : MonoBehaviour
         startButton.interactable = false;
         yield return new WaitForSeconds(1);
 
-        bannerAds.LoadBanner();
-        bannerAds.ShowBannerAd();
+        //load banner here
         startButton.interactable = true;
     }
 
@@ -159,7 +149,7 @@ public class MainMenu : MonoBehaviour
 
     void LoadScene(string sceneName)
     {
-        bannerAds.HideBannerAd();
+        //load banner here too
         PlayerPrefs.SetInt("selectedStage", StageSelector.currentStage);
         PlayerPrefs.SetInt("selectedSkin", SkinSelector.currentSkin);
         PlayerPrefs.Save();
@@ -248,7 +238,6 @@ public class MainMenu : MonoBehaviour
 
     public void OpenWebsite(string tab)
     {
-
         Application.OpenURL("https://julianlerej.com/" + tab);
     }
 }

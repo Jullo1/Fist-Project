@@ -56,29 +56,74 @@
     <Analyzer Include="C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\IronSource\Scripts\iOSAgent.cs" />
+    <Compile Include="Assets\IronSource\Scripts\IronSourceEvents.cs" />
     <Compile Include="Assets\Scripts\TouchStickVisual.cs" />
+    <Compile Include="Assets\IronSource\DemoScene\IronSourceDemoScript.cs" />
+    <Compile Include="Assets\IronSource\Scripts\IronSourcePlacement.cs" />
+    <Compile Include="Assets\IronSource\Scripts\IronSourceConstants.cs" />
     <Compile Include="Assets\Scripts\Specific\PassthroughEnemies.cs" />
+    <Compile Include="Assets\IronSource\Scripts\IUnityLevelPlayRewardedVideoManual.cs" />
+    <Compile Include="Assets\IronSource\Scripts\IronSourceBannerAndroid.cs" />
     <Compile Include="Assets\Scripts\Tutorial.cs" />
     <Compile Include="Assets\Scripts\Player.cs" />
-    <Compile Include="Assets\Scripts\InterstitalAds.cs" />
+    <Compile Include="Assets\IronSource\Scripts\IronSourceSegmentAndroid.cs" />
+    <Compile Include="Assets\IronSource\Scripts\IronSourceInterstitialAndroid.cs" />
+    <Compile Include="Assets\IronSource\Scripts\IUnityRewardedVideo.cs" />
+    <Compile Include="Assets\IronSource\Scripts\IronSourceBannerLevelPlayAndroid.cs" />
     <Compile Include="Assets\Scripts\PowerUp.cs" />
+    <Compile Include="Assets\IronSource\Scripts\IUnityInterstitial.cs" />
+    <Compile Include="Assets\IronSource\Scripts\IronSourceRewardedVideoEvents.cs" />
+    <Compile Include="Assets\IronSource\Scripts\IUnityBanner.cs" />
     <Compile Include="Assets\Scripts\Specific\GameVersion.cs" />
-    <Compile Include="Assets\Scripts\AdInitializer.cs" />
+    <Compile Include="Assets\IronSource\Scripts\IronSourceUtils.cs" />
+    <Compile Include="Assets\IronSource\Scripts\IronSourceRewardedVideoLevelPlayManualAndroid.cs" />
+    <Compile Include="Assets\IronSource\Scripts\IronSourceSegment.cs" />
+    <Compile Include="Assets\IronSource\Scripts\IUnityLevelPlayRewardedVideo.cs" />
+    <Compile Include="Assets\IronSource\Scripts\IronSourceRewardedVideoLevelPlayAndroid.cs" />
+    <Compile Include="Assets\IronSource\Scripts\IUnityLevelPlayBanner.cs" />
+    <Compile Include="Assets\IronSource\Scripts\IronSourceImpressionData.cs" />
+    <Compile Include="Assets\IronSource\Scripts\IronSourceError.cs" />
     <Compile Include="Assets\Scripts\StageSelector.cs" />
+    <Compile Include="Assets\IronSource\Scripts\AndroidAgent.cs" />
+    <Compile Include="Assets\IronSource\Scripts\IronSourceBannerEvents.cs" />
     <Compile Include="Assets\Scripts\Specific\EndGameScoreOutput.cs" />
+    <Compile Include="Assets\IronSource\Scripts\IronSourceInitilizer.cs" />
+    <Compile Include="Assets\IronSource\Scripts\IronSourceOfferwallAndroid.cs" />
     <Compile Include="Assets\Scripts\Specific\Announcement.cs" />
+    <Compile Include="Assets\IronSource\Scripts\IronSourceInterstitialLevelPlayAndroid.cs" />
+    <Compile Include="Assets\IronSource\Scripts\IronSourceConfig.cs" />
+    <Compile Include="Assets\IronSource\Scripts\IronSourceMediationSettings.cs" />
+    <Compile Include="Assets\IronSource\Scripts\IUnityLevelPlayInterstitial.cs" />
     <Compile Include="Assets\Scripts\ScrollingBackground.cs" />
+    <Compile Include="Assets\IronSource\Scripts\IUnitySegment.cs" />
+    <Compile Include="Assets\IronSource\Scripts\UnsupportedPlatformAgent.cs" />
+    <Compile Include="Assets\IronSource\Scripts\IronSourceImpressionDataAndroid.cs" />
     <Compile Include="Assets\Scripts\MainMenu.cs" />
+    <Compile Include="Assets\IronSource\Scripts\WaterfallConfiguration.cs" />
     <Compile Include="Assets\Scripts\SkinSelector.cs" />
+    <Compile Include="Assets\IronSource\Scripts\IUnityOfferwall.cs" />
+    <Compile Include="Assets\IronSource\Scripts\IronSource.cs" />
     <Compile Include="Assets\Scripts\SpriteChanger.cs" />
     <Compile Include="Assets\Scripts\Enemy.cs" />
     <Compile Include="Assets\Scripts\PlayerUIHandler.cs" />
     <Compile Include="Assets\Scripts\InputManager.cs" />
+    <Compile Include="Assets\IronSource\Scripts\IUnityRewardedVideoManual.cs" />
+    <Compile Include="Assets\IronSource\Scripts\IUnityInitialization.cs" />
+    <Compile Include="Assets\IronSource\Scripts\IronSourceAdInfo.cs" />
+    <Compile Include="Assets\IronSource\Scripts\IronSourceInitializationAndroid.cs" />
     <Compile Include="Assets\Scripts\Unit.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
-    <Compile Include="Assets\Scripts\BannerAds.cs" />
+    <Compile Include="Assets\IronSource\Scripts\IronSourceIAgent.cs" />
+    <Compile Include="Assets\IronSource\Scripts\IronSourceRewardedVideoManualAndroid.cs" />
+    <Compile Include="Assets\IronSource\Scripts\IUnityImpressionData.cs" />
     <Compile Include="Assets\Scripts\ScoreKeeper.cs" />
+    <Compile Include="Assets\IronSource\Scripts\IronSourceEventsDispatcher.cs" />
+    <Compile Include="Assets\IronSource\Scripts\IronSourceRewardedVideoAndroid.cs" />
     <Compile Include="Assets\Scripts\Entity.cs" />
+    <Compile Include="Assets\IronSource\Scripts\IronSourceJSON.cs" />
+    <Compile Include="Assets\IronSource\Scripts\IronSourceInterstitialEvents.cs" />
+    <Compile Include="Assets\IronSource\Scripts\AdFormat.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
@@ -96,8 +141,6 @@
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Properties.cginc" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Surface.cginc" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
-    <None Include="Assets\GooglePlayPlugins\com.google.play.review\Proguard\review.txt" />
-    <None Include="Assets\GooglePlayPlugins\com.google.play.core\Proguard\common.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF Overlay.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Mobile.shader" />
@@ -757,11 +800,11 @@
     <Reference Include="Unity.2D.IK.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.2D.IK.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.VisualScripting.SettingsProvider.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.VisualScripting.SettingsProvider.Editor.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.2D.Path.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.2D.Path.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.VisualScripting.SettingsProvider.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.VisualScripting.SettingsProvider.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.UI">
       <HintPath>Library\ScriptAssemblies\UnityEditor.UI.dll</HintPath>
@@ -915,22 +958,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="Google.Play.Core.csproj">
-      <Project>{EEFEE685-5112-D46D-723D-1968B62C0F0C}</Project>
-      <Name>Google.Play.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="Google.Play.Review.csproj">
-      <Project>{18707622-7F6F-B018-6A80-ABBFAC2242E5}</Project>
-      <Name>Google.Play.Review</Name>
-    </ProjectReference>
-    <ProjectReference Include="Google.Android.AppBundle.Editor.csproj">
-      <Project>{778B78F7-4C55-259B-C5F4-AC27DA1E9CA0}</Project>
-      <Name>Google.Android.AppBundle.Editor</Name>
-    </ProjectReference>
-    <ProjectReference Include="Google.Play.Common.csproj">
-      <Project>{E80C9ABF-5286-BA8E-0782-C7F68337EEDB}</Project>
-      <Name>Google.Play.Common</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

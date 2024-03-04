@@ -138,10 +138,7 @@ PlayerSettings:
     16:9: 1
     Others: 1
   bundleVersion: 0.7
-  preloadedAssets:
-  - {fileID: 11400000, guid: f8531797410655a48818ffc5d3ee1c36, type: 2}
-  - {fileID: -2431709368381625114, guid: fedd6aba1b39305409f37fcb8eeef278, type: 2}
-  - {fileID: 11400000, guid: b7c82f06c9366f84e92c44a66ee3e4d3, type: 2}
+  preloadedAssets: []
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1
@@ -169,9 +166,9 @@ PlayerSettings:
     iPhone: 0
     tvOS: 0
   overrideDefaultApplicationIdentifier: 1
-  AndroidBundleVersionCode: 61
+  AndroidBundleVersionCode: 63
   AndroidMinSdkVersion: 22
-  AndroidTargetSdkVersion: 28
+  AndroidTargetSdkVersion: 0
   AndroidPreferredInstallLocation: 0
   aotOptions: 
   stripEngineCode: 1
@@ -246,9 +243,9 @@ PlayerSettings:
   clonedFromGUID: 10ad67313f4034357812315f3c407484
   templatePackageId: com.unity.template.2d@7.0.3
   templateDefaultScene: Assets/Scenes/SampleScene.unity
-  useCustomMainManifest: 0
+  useCustomMainManifest: 1
   useCustomLauncherManifest: 0
-  useCustomMainGradleTemplate: 1
+  useCustomMainGradleTemplate: 0
   useCustomLauncherGradleManifest: 0
   useCustomBaseGradleTemplate: 0
   useCustomGradlePropertiesTemplate: 1
@@ -272,7 +269,7 @@ PlayerSettings:
     banner: {fileID: 0}
   androidGamepadSupportLevel: 0
   chromeosInputEmulation: 0
-  AndroidMinifyWithR8: 0
+  AndroidMinifyWithR8: 1
   AndroidMinifyRelease: 1
   AndroidMinifyDebug: 0
   AndroidValidateAppBundleSize: 1
