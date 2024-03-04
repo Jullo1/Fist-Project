@@ -71,9 +71,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\MobileDependencyResolver\Editor\Google.IOSResolver.dll" />
+    <None Include="Assets\GooglePlayPlugins\com.google.play.core\Editor\Dependencies.xml" />
     <None Include="Assets\MobileDependencyResolver\Editor\Google.VersionHandlerImpl.dll" />
     <None Include="Assets\MobileDependencyResolver\Editor\Google.JarResolver.dll" />
     <None Include="Assets\IronSource\Editor\ISUnityAdsAdapterDependencies.xml" />
+    <None Include="Assets\GooglePlayPlugins\com.google.play.review\Editor\Dependencies.xml" />
     <None Include="Assets\IronSource\Editor\IronSourceAdQualityDependencies.xml" />
     <None Include="Assets\MobileDependencyResolver\Editor\mobile-dependency-resolver.txt" />
     <None Include="Assets\MobileDependencyResolver\Editor\Google.VersionHandler.dll" />
@@ -791,9 +793,6 @@
     <Reference Include="Unity.VisualScripting.State.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.VisualScripting.State.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.Advertisements">
-      <HintPath>Library\ScriptAssemblies\UnityEngine.Advertisements.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.2D.IK.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.2D.IK.Editor.dll</HintPath>
     </Reference>
@@ -935,9 +934,6 @@
     <Reference Include="Unity.2D.SpriteShape.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.2D.SpriteShape.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.Advertisements.Editor">
-      <HintPath>Library\ScriptAssemblies\UnityEngine.Advertisements.Editor.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.AdaptivePerformance.Profiler.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.AdaptivePerformance.Profiler.Editor.dll</HintPath>
     </Reference>
@@ -958,6 +954,22 @@
     <ProjectReference Include="Assembly-CSharp.csproj">
       <Project>{5D340FB8-FBC3-61E6-52E1-A01235B0B489}</Project>
       <Name>Assembly-CSharp</Name>
+    </ProjectReference>
+    <ProjectReference Include="Google.Play.Core.csproj">
+      <Project>{EEFEE685-5112-D46D-723D-1968B62C0F0C}</Project>
+      <Name>Google.Play.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="Google.Play.Review.csproj">
+      <Project>{18707622-7F6F-B018-6A80-ABBFAC2242E5}</Project>
+      <Name>Google.Play.Review</Name>
+    </ProjectReference>
+    <ProjectReference Include="Google.Android.AppBundle.Editor.csproj">
+      <Project>{778B78F7-4C55-259B-C5F4-AC27DA1E9CA0}</Project>
+      <Name>Google.Android.AppBundle.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Google.Play.Common.csproj">
+      <Project>{E80C9ABF-5286-BA8E-0782-C7F68337EEDB}</Project>
+      <Name>Google.Play.Common</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

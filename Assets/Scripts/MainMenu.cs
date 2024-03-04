@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Collections;
 using System;
+using Google.Play.Review;
 
 public class MainMenu : MonoBehaviour
 {
@@ -19,30 +20,40 @@ public class MainMenu : MonoBehaviour
 
     public Text scoreOutput;
     [SerializeField] GameObject scoreKeeper;
-    [SerializeField] GameObject reviewWindow;
+
+    ReviewManager reviewManager;
+    PlayReviewInfo playReviewInfo;
 
     bool loadSceneSent;
 
     void Awake()
     {
-        //IronSourceAdQuality.Initialize("1d5d6bddd");
+//ads
+#if UNITY_ANDROID
+        string appKey = "1d5d6bddd";
+#elif UNITY_IPHONE
+        string appKey = "1d5d6bddd";
+#else
+        string appKey = "unexpected_platform";
+#endif
         menuAudio = GetComponent<AudioSource>();
 
         //InitiateSaveData(); //for testing, resets all save data
         //InitiateCheatSaveData(); //unlock everything
-        LockedStage(false);
 
         if (!FindObjectOfType<ScoreKeeper>()) //instantiate scoreKeeper if there isn't one yet
         {
+            IronSource.Agent.init(appKey);
             RebuildSaveData();
             Instantiate(scoreKeeper);
-            if (Application.isMobilePlatform || Application.isEditor) {  }//load ad to show it after first run
+            if (Application.isMobilePlatform || Application.isEditor) IronSource.Agent.loadInterstitial(); //load ad to show it after first run
         }
         else if (Application.isMobilePlatform || Application.isEditor)
         {
-            //send ad after death
-            //then get ad ready for next run
+            IronSource.Agent.showInterstitial(); //send ad after death
         }
+        reviewManager = new ReviewManager();
+        StartCoroutine(LoadReview());
     }
 
     [Obsolete]
@@ -54,28 +65,55 @@ public class MainMenu : MonoBehaviour
             if (!Application.isMobilePlatform) StartCoroutine(SendScore(ScoreKeeper.score));
             startButtonText.text = "AGAIN";
         }
-        StartCoroutine(ShowBannerAdsWithDelay());
-
         if (PlayerPrefs.GetInt("totalKills") > 300 && ScoreKeeper.score > 0) //android review tab
         {
-            if (PlayerPrefs.GetInt("reviewCount") >= 5)
+            if (PlayerPrefs.GetInt("reviewCount") >= 5 && PlayerPrefs.GetInt("optedOutReview") < 5)
             {
-                reviewWindow.SetActive(true);
-                PlayerPrefs.SetInt("reviewCount", -25);
+                StartCoroutine(ShowReview());
+                if (PlayerPrefs.GetInt("optedOutReview") < 3) PlayerPrefs.SetInt("reviewCount", 0);
+                else PlayerPrefs.SetInt("reviewCount", -30);  //after showing review tab 3 times, it will appear again after a long time
+
+                PlayerPrefs.SetInt("optedOutReview", PlayerPrefs.GetInt("optedOutReview") + 1);
             }
             else PlayerPrefs.SetInt("reviewCount", PlayerPrefs.GetInt("reviewCount") + 1);
 
             PlayerPrefs.Save();
         }
+        IronSource.Agent.loadBanner(IronSourceBannerSize.BANNER, IronSourceBannerPosition.BOTTOM);
     }
 
-    IEnumerator ShowBannerAdsWithDelay()
+    IEnumerator LoadReview()
     {
-        startButton.interactable = false;
-        yield return new WaitForSeconds(1);
+        var requestFlowOperation = reviewManager.RequestReviewFlow();
+        yield return requestFlowOperation;
+        if (requestFlowOperation.Error != ReviewErrorCode.NoError)
+        {
+            // Log error. For example, using requestFlowOperation.Error.ToString().
+            yield break;
+        }
+        playReviewInfo = requestFlowOperation.GetResult();
 
-        //load banner here
-        startButton.interactable = true;
+    }
+
+    IEnumerator ShowReview()
+    {
+        var launchFlowOperation = reviewManager.LaunchReviewFlow(playReviewInfo);
+        yield return launchFlowOperation;
+        playReviewInfo = null; // Reset the object
+        if (launchFlowOperation.Error != ReviewErrorCode.NoError)
+        {
+            // Log error. For example, using requestFlowOperation.Error.ToString().
+            yield break;
+        }
+        // The flow has finished. The API does not indicate whether the user
+        // reviewed or not, or even whether the review dialog was shown. Thus, no
+        // matter the result, we continue our app flow.
+
+    }
+
+    public void LaunchReviewTab()
+    {
+        StartCoroutine(ShowReview());
     }
 
     void RebuildSaveData()
@@ -87,6 +125,7 @@ public class MainMenu : MonoBehaviour
         if (!PlayerPrefs.HasKey("totalSpecialAttacks")) PlayerPrefs.SetInt("totalSpecialAttacks", 0);
         if (!PlayerPrefs.HasKey("highestScore")) PlayerPrefs.SetInt("highestScore", 0);
         if (!PlayerPrefs.HasKey("reviewCount")) PlayerPrefs.SetInt("reviewCount", 4);
+        if (!PlayerPrefs.HasKey("optedOutReview")) PlayerPrefs.SetInt("optedOutReview", 0);
 
         string temp;
         for (int i = 0; i < 9; i++)
@@ -107,6 +146,7 @@ public class MainMenu : MonoBehaviour
         PlayerPrefs.SetInt("totalSpecialAttacks", 0);
         PlayerPrefs.SetInt("highestScore", 0);
         PlayerPrefs.SetInt("reviewCount", 0);
+        PlayerPrefs.SetInt("optedOutReview", 0);
 
         for (int i = 0; i < 9; i++)
             PlayerPrefs.SetInt("hiscore" + i.ToString(), 0);
@@ -124,6 +164,7 @@ public class MainMenu : MonoBehaviour
         PlayerPrefs.SetInt("totalSpecialAttacks", 875);
         PlayerPrefs.SetInt("highestScore", 2815);
         PlayerPrefs.SetInt("reviewCount", 5);
+        PlayerPrefs.SetInt("optedOutReview", 0);
 
         for (int i = 0; i < 9; i++)
             PlayerPrefs.SetInt("hiscore" + i.ToString(), 123123);
@@ -149,7 +190,9 @@ public class MainMenu : MonoBehaviour
 
     void LoadScene(string sceneName)
     {
-        //load banner here too
+        IronSource.Agent.destroyBanner(); //destroy banner before moving to game
+        IronSource.Agent.loadInterstitial(); //get ad ready to play it after death
+
         PlayerPrefs.SetInt("selectedStage", StageSelector.currentStage);
         PlayerPrefs.SetInt("selectedSkin", SkinSelector.currentSkin);
         PlayerPrefs.Save();
@@ -223,17 +266,6 @@ public class MainMenu : MonoBehaviour
     public void ExitGame()
     {
         Application.Quit();
-    }
-
-    public void RateGame()
-    {
-        Application.OpenURL("market://details?id=com.Jullo.FistProject");
-        if (reviewWindow) reviewWindow.SetActive(false);
-    }
-
-    public void CloseReviewWindow()
-    {
-        reviewWindow.SetActive(false);
     }
 
     public void OpenWebsite(string tab)

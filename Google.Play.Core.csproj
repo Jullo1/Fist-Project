@@ -56,14 +56,14 @@
     <Analyzer Include="C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\GooglePlayPlugins\com.google.play.core\Runtime\Scripts\Internal\TaskOnSuccessListener.cs" />
-    <Compile Include="Assets\GooglePlayPlugins\com.google.play.core\Runtime\Scripts\Internal\PlayCoreEventHandler.cs" />
-    <Compile Include="Assets\GooglePlayPlugins\com.google.play.core\Runtime\Scripts\Internal\TaskOnFailureListener.cs" />
-    <Compile Include="Assets\GooglePlayPlugins\com.google.play.core\Runtime\Scripts\Internal\PlayCoreOnFailureListener.cs" />
-    <Compile Include="Assets\GooglePlayPlugins\com.google.play.core\Runtime\Scripts\Internal\PlayCoreHelper.cs" />
-    <Compile Include="Assets\GooglePlayPlugins\com.google.play.core\Runtime\Scripts\Internal\PlayCoreConstants.cs" />
     <Compile Include="Assets\GooglePlayPlugins\com.google.play.core\Runtime\Scripts\Internal\ActivityResult.cs" />
+    <Compile Include="Assets\GooglePlayPlugins\com.google.play.core\Runtime\Scripts\Internal\PlayCoreOnFailureListener.cs" />
     <Compile Include="Assets\GooglePlayPlugins\com.google.play.core\Runtime\Scripts\Internal\PlayServicesTask.cs" />
+    <Compile Include="Assets\GooglePlayPlugins\com.google.play.core\Runtime\Scripts\Internal\TaskOnFailureListener.cs" />
+    <Compile Include="Assets\GooglePlayPlugins\com.google.play.core\Runtime\Scripts\Internal\PlayCoreConstants.cs" />
+    <Compile Include="Assets\GooglePlayPlugins\com.google.play.core\Runtime\Scripts\Internal\TaskOnSuccessListener.cs" />
+    <Compile Include="Assets\GooglePlayPlugins\com.google.play.core\Runtime\Scripts\Internal\PlayCoreHelper.cs" />
+    <Compile Include="Assets\GooglePlayPlugins\com.google.play.core\Runtime\Scripts\Internal\PlayCoreEventHandler.cs" />
     <Compile Include="Assets\GooglePlayPlugins\com.google.play.core\Runtime\Scripts\Internal\PlayCoreOnSuccessListener.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -322,23 +322,17 @@
     <Reference Include="UnityEditor.WindowsStandalone.Extensions">
       <HintPath>C:\Program Files\Unity\Hub\Editor\Unity 2021.3.35f1\Editor\Data\PlaybackEngines\WindowsStandaloneSupport\UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
     </Reference>
-    <Reference Include="Google.JarResolver">
-      <HintPath>Assets\ExternalDependencyManager\Editor\1.2.179\Google.JarResolver.dll</HintPath>
-    </Reference>
-    <Reference Include="Google.IOSResolver">
-      <HintPath>Assets\ExternalDependencyManager\Editor\1.2.179\Google.IOSResolver.dll</HintPath>
-    </Reference>
-    <Reference Include="Google.VersionHandlerImpl">
-      <HintPath>Assets\ExternalDependencyManager\Editor\1.2.179\Google.VersionHandlerImpl.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.VisualScripting.IonicZip">
       <HintPath>Library\PackageCache\com.unity.visualscripting@1.9.0\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll</HintPath>
     </Reference>
+    <Reference Include="Google.VersionHandler">
+      <HintPath>Assets\MobileDependencyResolver\Editor\Google.VersionHandler.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.VersionHandlerImpl">
+      <HintPath>Assets\MobileDependencyResolver\Editor\Google.VersionHandlerImpl.dll</HintPath>
+    </Reference>
     <Reference Include="log4netPlastic">
       <HintPath>Library\PackageCache\com.unity.collab-proxy@2.0.7\Lib\Editor\PlasticSCM\log4netPlastic.dll</HintPath>
-    </Reference>
-    <Reference Include="Google.PackageManagerResolver">
-      <HintPath>Assets\ExternalDependencyManager\Editor\1.2.179\Google.PackageManagerResolver.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Plastic.Newtonsoft.Json">
       <HintPath>Library\PackageCache\com.unity.collab-proxy@2.0.7\Lib\Editor\PlasticSCM\Unity.Plastic.Newtonsoft.Json.dll</HintPath>
@@ -355,11 +349,11 @@
     <Reference Include="Unity.VisualScripting.TextureAssets">
       <HintPath>Library\PackageCache\com.unity.visualscripting@1.9.0\Editor\VisualScripting.Core\EditorAssetResources\Unity.VisualScripting.TextureAssets.dll</HintPath>
     </Reference>
+    <Reference Include="Google.JarResolver">
+      <HintPath>Assets\MobileDependencyResolver\Editor\Google.JarResolver.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.VisualScripting.Antlr3.Runtime">
       <HintPath>Library\PackageCache\com.unity.visualscripting@1.9.0\Runtime\VisualScripting.Flow\Dependencies\NCalc\Unity.VisualScripting.Antlr3.Runtime.dll</HintPath>
-    </Reference>
-    <Reference Include="Google.VersionHandler">
-      <HintPath>Assets\ExternalDependencyManager\Editor\Google.VersionHandler.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.iOS.Extensions.Xcode">
       <HintPath>C:\Program Files\Unity\Hub\Editor\Unity 2021.3.35f1\Editor\Data\PlaybackEngines\iOSSupport\UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
