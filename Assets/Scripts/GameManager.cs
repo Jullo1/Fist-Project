@@ -180,6 +180,8 @@ public class GameManager : MonoBehaviour
 
     void LevelUp()
     {
+        if (player.dead) return; //cancel if already game over
+
         StartCoroutine(FreezeUI());
         if (Application.isMobilePlatform) mobileButton.gameObject.SetActive(false);
         paused = true;

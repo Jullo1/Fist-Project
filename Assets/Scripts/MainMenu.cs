@@ -40,6 +40,7 @@ public class MainMenu : MonoBehaviour
 
         //InitiateSaveData(); //for testing, resets all save data
         //InitiateCheatSaveData(); //unlock everything
+        LockedStage(false);
 
         if (!FindObjectOfType<ScoreKeeper>()) //instantiate scoreKeeper if there isn't one yet
         {
