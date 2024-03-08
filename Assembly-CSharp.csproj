@@ -63,8 +63,8 @@
     <Compile Include="Assets\IronSource\Scripts\IronSourcePlacement.cs" />
     <Compile Include="Assets\IronSource\Scripts\IronSourceConstants.cs" />
     <Compile Include="Assets\Scripts\Specific\PassthroughEnemies.cs" />
-    <Compile Include="Assets\IronSource\Scripts\IUnityLevelPlayRewardedVideoManual.cs" />
     <Compile Include="Assets\IronSource\Scripts\IronSourceBannerAndroid.cs" />
+    <Compile Include="Assets\IronSource\Scripts\IUnityLevelPlayRewardedVideoManual.cs" />
     <Compile Include="Assets\Scripts\Tutorial.cs" />
     <Compile Include="Assets\Scripts\Player.cs" />
     <Compile Include="Assets\IronSource\Scripts\IronSourceSegmentAndroid.cs" />
@@ -128,9 +128,12 @@
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
+    <None Include="Assets\GooglePlayGames\com.google.play.games\Proguard\games.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Mobile.cginc" />
+    <None Include="Assets\GooglePlayPlugins\com.google.play.integrity\Proguard\integrity.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF SSD.shader" />
+    <None Include="Assets\GooglePlayPlugins\com.google.play.appupdate\Proguard\app_update.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface-Mobile.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface.shader" />
     <None Include="Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
@@ -799,11 +802,11 @@
     <Reference Include="Unity.2D.IK.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.2D.IK.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.2D.Path.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.2D.Path.Editor.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.VisualScripting.SettingsProvider.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.VisualScripting.SettingsProvider.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.2D.Path.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.2D.Path.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.UI">
       <HintPath>Library\ScriptAssemblies\UnityEditor.UI.dll</HintPath>
@@ -940,11 +943,11 @@
     <Reference Include="Unity.AdaptivePerformance.Profiler.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.AdaptivePerformance.Profiler.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.AdaptivePerformance.Simulator.VRR.Extension">
-      <HintPath>Library\ScriptAssemblies\Unity.AdaptivePerformance.Simulator.VRR.Extension.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.2D.SpriteShape.Runtime">
       <HintPath>Library\ScriptAssemblies\Unity.2D.SpriteShape.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.AdaptivePerformance.Simulator.VRR.Extension">
+      <HintPath>Library\ScriptAssemblies\Unity.AdaptivePerformance.Simulator.VRR.Extension.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualScripting.State">
       <HintPath>Library\ScriptAssemblies\Unity.VisualScripting.State.dll</HintPath>
@@ -962,13 +965,37 @@
       <Project>{18707622-7F6F-B018-6A80-ABBFAC2242E5}</Project>
       <Name>Google.Play.Review</Name>
     </ProjectReference>
+    <ProjectReference Include="Google.Play.AppUpdate.csproj">
+      <Project>{EFECC47D-3C20-3E2B-DE77-909381C4DBC8}</Project>
+      <Name>Google.Play.AppUpdate</Name>
+    </ProjectReference>
+    <ProjectReference Include="Google.Play.Games.Editor.csproj">
+      <Project>{6C250C4A-338C-E507-1429-C526D74CDA1E}</Project>
+      <Name>Google.Play.Games.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Google.Play.Instant.Editor.csproj">
+      <Project>{91B96EA3-2E6F-0F09-3DFE-FD372146BD1B}</Project>
+      <Name>Google.Play.Instant.Editor</Name>
+    </ProjectReference>
     <ProjectReference Include="Google.Android.AppBundle.Editor.csproj">
       <Project>{778B78F7-4C55-259B-C5F4-AC27DA1E9CA0}</Project>
       <Name>Google.Android.AppBundle.Editor</Name>
     </ProjectReference>
+    <ProjectReference Include="Google.Play.Games.csproj">
+      <Project>{287A6EB8-06F9-8EE3-59D7-D29D40B26B1B}</Project>
+      <Name>Google.Play.Games</Name>
+    </ProjectReference>
     <ProjectReference Include="Google.Play.Common.csproj">
       <Project>{E80C9ABF-5286-BA8E-0782-C7F68337EEDB}</Project>
       <Name>Google.Play.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="Google.Play.Instant.csproj">
+      <Project>{C024E46A-9247-8A9B-6616-BB42AF0CB3D6}</Project>
+      <Name>Google.Play.Instant</Name>
+    </ProjectReference>
+    <ProjectReference Include="Google.Play.Integrity.csproj">
+      <Project>{0F591769-D6CF-3473-621D-3B94368E8E56}</Project>
+      <Name>Google.Play.Integrity</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

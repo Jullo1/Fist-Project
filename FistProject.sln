@@ -1,17 +1,29 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Google.Play.Review", "Google.Play.Review.csproj", "{18707622-7F6F-B018-6A80-ABBFAC2242E5}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp", "Assembly-CSharp.csproj", "{5D340FB8-FBC3-61E6-52E1-A01235B0B489}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Google.Play.Games", "Google.Play.Games.csproj", "{287A6EB8-06F9-8EE3-59D7-D29D40B26B1B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Google.Play.Core", "Google.Play.Core.csproj", "{EEFEE685-5112-D46D-723D-1968B62C0F0C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Google.Play.Common", "Google.Play.Common.csproj", "{E80C9ABF-5286-BA8E-0782-C7F68337EEDB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Google.Play.Review", "Google.Play.Review.csproj", "{18707622-7F6F-B018-6A80-ABBFAC2242E5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Google.Play.AppUpdate", "Google.Play.AppUpdate.csproj", "{EFECC47D-3C20-3E2B-DE77-909381C4DBC8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp-Editor", "Assembly-CSharp-Editor.csproj", "{3DB46BB2-628D-52ED-1BBB-848003A50861}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Google.Play.Instant", "Google.Play.Instant.csproj", "{C024E46A-9247-8A9B-6616-BB42AF0CB3D6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Google.Play.Integrity", "Google.Play.Integrity.csproj", "{0F591769-D6CF-3473-621D-3B94368E8E56}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Google.Android.AppBundle.Editor", "Google.Android.AppBundle.Editor.csproj", "{778B78F7-4C55-259B-C5F4-AC27DA1E9CA0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Google.Play.Instant.Editor", "Google.Play.Instant.Editor.csproj", "{91B96EA3-2E6F-0F09-3DFE-FD372146BD1B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Google.Play.Games.Editor", "Google.Play.Games.Editor.csproj", "{6C250C4A-338C-E507-1429-C526D74CDA1E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp-Editor", "Assembly-CSharp-Editor.csproj", "{3DB46BB2-628D-52ED-1BBB-848003A50861}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,10 +31,18 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{18707622-7F6F-B018-6A80-ABBFAC2242E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{18707622-7F6F-B018-6A80-ABBFAC2242E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{18707622-7F6F-B018-6A80-ABBFAC2242E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{18707622-7F6F-B018-6A80-ABBFAC2242E5}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5D340FB8-FBC3-61E6-52E1-A01235B0B489}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5D340FB8-FBC3-61E6-52E1-A01235B0B489}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5D340FB8-FBC3-61E6-52E1-A01235B0B489}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5D340FB8-FBC3-61E6-52E1-A01235B0B489}.Release|Any CPU.Build.0 = Release|Any CPU
+		{287A6EB8-06F9-8EE3-59D7-D29D40B26B1B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{287A6EB8-06F9-8EE3-59D7-D29D40B26B1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{287A6EB8-06F9-8EE3-59D7-D29D40B26B1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{287A6EB8-06F9-8EE3-59D7-D29D40B26B1B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{EEFEE685-5112-D46D-723D-1968B62C0F0C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{EEFEE685-5112-D46D-723D-1968B62C0F0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EEFEE685-5112-D46D-723D-1968B62C0F0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -31,18 +51,34 @@ Global
 		{E80C9ABF-5286-BA8E-0782-C7F68337EEDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E80C9ABF-5286-BA8E-0782-C7F68337EEDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E80C9ABF-5286-BA8E-0782-C7F68337EEDB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{18707622-7F6F-B018-6A80-ABBFAC2242E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{18707622-7F6F-B018-6A80-ABBFAC2242E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{18707622-7F6F-B018-6A80-ABBFAC2242E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{18707622-7F6F-B018-6A80-ABBFAC2242E5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3DB46BB2-628D-52ED-1BBB-848003A50861}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3DB46BB2-628D-52ED-1BBB-848003A50861}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3DB46BB2-628D-52ED-1BBB-848003A50861}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3DB46BB2-628D-52ED-1BBB-848003A50861}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EFECC47D-3C20-3E2B-DE77-909381C4DBC8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EFECC47D-3C20-3E2B-DE77-909381C4DBC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EFECC47D-3C20-3E2B-DE77-909381C4DBC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EFECC47D-3C20-3E2B-DE77-909381C4DBC8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C024E46A-9247-8A9B-6616-BB42AF0CB3D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C024E46A-9247-8A9B-6616-BB42AF0CB3D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C024E46A-9247-8A9B-6616-BB42AF0CB3D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C024E46A-9247-8A9B-6616-BB42AF0CB3D6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0F591769-D6CF-3473-621D-3B94368E8E56}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F591769-D6CF-3473-621D-3B94368E8E56}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F591769-D6CF-3473-621D-3B94368E8E56}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F591769-D6CF-3473-621D-3B94368E8E56}.Release|Any CPU.Build.0 = Release|Any CPU
 		{778B78F7-4C55-259B-C5F4-AC27DA1E9CA0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{778B78F7-4C55-259B-C5F4-AC27DA1E9CA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{778B78F7-4C55-259B-C5F4-AC27DA1E9CA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{778B78F7-4C55-259B-C5F4-AC27DA1E9CA0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{91B96EA3-2E6F-0F09-3DFE-FD372146BD1B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{91B96EA3-2E6F-0F09-3DFE-FD372146BD1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{91B96EA3-2E6F-0F09-3DFE-FD372146BD1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{91B96EA3-2E6F-0F09-3DFE-FD372146BD1B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6C250C4A-338C-E507-1429-C526D74CDA1E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C250C4A-338C-E507-1429-C526D74CDA1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C250C4A-338C-E507-1429-C526D74CDA1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6C250C4A-338C-E507-1429-C526D74CDA1E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3DB46BB2-628D-52ED-1BBB-848003A50861}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3DB46BB2-628D-52ED-1BBB-848003A50861}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3DB46BB2-628D-52ED-1BBB-848003A50861}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3DB46BB2-628D-52ED-1BBB-848003A50861}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
