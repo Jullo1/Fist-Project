@@ -1,5 +1,5 @@
 <dependencies>
-    <unityversion>4.3.40.0</unityversion>
+    <unityversion>4.3.40.2</unityversion>
     <androidPackages>
     <androidPackage spec="com.ironsource.adapters:unityadsadapter:4.3.35">
       <repositories>
@@ -16,7 +16,7 @@
     </androidPackages>
 
   <iosPods>
-    <iosPod name="IronSourceUnityAdsAdapter" version="4.3.35.0">
+    <iosPod name="IronSourceUnityAdsAdapter" version="4.3.35.2">
       <sources>
         <source>https://github.com/CocoaPods/Specs</source>
       </sources>

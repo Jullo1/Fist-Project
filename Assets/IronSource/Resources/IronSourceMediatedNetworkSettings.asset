@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6dcd730eacb2043e8a6f1c61c16243da, type: 3}
   m_Name: IronSourceMediatedNetworkSettings
   m_EditorClassIdentifier: 
-  EnableAdmob: 0
+  EnableAdmob: 1
   AdmobAndroidAppId: 
   AdmobIOSAppId: 

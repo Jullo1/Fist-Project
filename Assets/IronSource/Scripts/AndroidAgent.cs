@@ -318,7 +318,7 @@ public class AndroidAgent : IronSourceIAgent
 	
 	public void loadBanner (IronSourceBannerSize size, IronSourceBannerPosition position, string placementName)
 	{
-        getBridge().Call("loadBanner", size.Description, (int)size.Width, (int)size.Height, (int)position, placementName, (bool)size.IsAdaptiveEnabled(),(float)size.getBannerContainerParams().Width,(float)size.getBannerContainerParams().Height);
+        getBridge().Call("loadBanner", size.Description, (int)size.Width, (int)size.Height, (int)position, placementName, (bool)size.IsAdaptiveEnabled(),(bool)size.IsRespectAndroidCutoutsEnabled(),(float)size.getBannerContainerParams().Width,(float)size.getBannerContainerParams().Height);
     }
 	
 	public void destroyBanner()
@@ -344,7 +344,7 @@ public class AndroidAgent : IronSourceIAgent
 	/// <summary>
 	///  Get the adaptive height according to the width.
 	/// </summary>
-	/// <param name="getMaximalAdaptiveHeight">Returns the height maximal for adaptive banner </param>
+	/// <param name="width"> The device width </param>
 	public float getMaximalAdaptiveHeight(float width)
 	{
 		return getBridge ().Call<float> ("getMaximalAdaptiveHeight",width);
@@ -353,8 +353,6 @@ public class AndroidAgent : IronSourceIAgent
 	/// <summary>
 	///  Get device width.
 	/// </summary>
-	/// <param name="getMaximalAdaptiveHeight">Returns the device width </param>
-
 	public float getDeviceScreenWidth()
 	{
 		return getBridge ().Call<float> ("getDeviceScreenWidth");

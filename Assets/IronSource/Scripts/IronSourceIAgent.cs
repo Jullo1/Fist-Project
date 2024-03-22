@@ -172,6 +172,7 @@ public class IronSourceBannerSize
 	private string description;
 	private bool isAdaptive;
 	private ISContainerParams isContainerParams = new ISContainerParams();
+	private bool respectAndroidCutouts;
 	
 	public static IronSourceBannerSize BANNER = new IronSourceBannerSize("BANNER");
 	public static IronSourceBannerSize LARGE = new IronSourceBannerSize("LARGE");
@@ -220,6 +221,21 @@ public class IronSourceBannerSize
 	{
 		return this.isContainerParams;
 	}
+
+	/// <summary>
+	///  Set Respect for Android Cutouts. https://developer.android.com/develop/ui/views/layout/display-cutout
+	/// </summary>
+	/// <param name="SetRespectAndroidCutouts">Set if to respect the Android Cutouts or not.</param>
+	public void SetRespectAndroidCutouts(bool respectAndroidCutouts)
+	{
+		this.respectAndroidCutouts = respectAndroidCutouts;
+	}
+
+	public bool IsRespectAndroidCutoutsEnabled()
+	{
+		return this.respectAndroidCutouts;
+	}
+
 
 	public string Description { get { return description; } }
 	public int Width { get { return width; } }

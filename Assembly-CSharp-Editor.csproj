@@ -71,17 +71,36 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\ExternalDependencyManager\Editor\1.2.177\Google.PackageManagerResolver.dll" />
+    <None Include="Assets\IronSource\Editor\ISSuperAwesomeAdapterDependencies.xml" />
+    <None Include="Assets\IronSource\Editor\ISAppLovinAdapterDependencies.xml" />
+    <None Include="Assets\IronSource\Editor\ISInMobiAdapterDependencies.xml" />
+    <None Include="Assets\IronSource\Editor\ISMintegralAdapterDependencies.xml" />
+    <None Include="Assets\IronSource\Editor\ISHyprMXAdapterDependencies.xml" />
+    <None Include="Assets\IronSource\Editor\ISBidMachineAdapterDependencies.xml" />
+    <None Include="Assets\IronSource\Editor\ISAPSAdapterDependencies.xml" />
     <None Include="Assets\GooglePlayPlugins\com.google.play.core\Editor\Dependencies.xml" />
     <None Include="Assets\ExternalDependencyManager\Editor\1.2.177\Google.IOSResolver.dll" />
+    <None Include="Assets\IronSource\Editor\ISAdMobAdapterDependencies.xml" />
     <None Include="Assets\ExternalDependencyManager\Editor\Google.VersionHandler.dll" />
+    <None Include="Assets\IronSource\Editor\ISSmaatoAdapterDependencies.xml" />
     <None Include="Assets\ExternalDependencyManager\Editor\external-dependency-manager_version-1.2.177_manifest.txt" />
     <None Include="Assets\IronSource\Editor\ISUnityAdsAdapterDependencies.xml" />
     <None Include="Assets\GooglePlayPlugins\com.google.play.review\Editor\Dependencies.xml" />
+    <None Include="Assets\IronSource\Editor\ISChartboostAdapterDependencies.xml" />
     <None Include="Assets\ExternalDependencyManager\Editor\1.2.177\Google.VersionHandlerImpl.dll" />
+    <None Include="Assets\IronSource\Editor\ISFyberAdapterDependencies.xml" />
+    <None Include="Assets\IronSource\Editor\ISFacebookAdapterDependencies.xml" />
     <None Include="Assets\GooglePlayPlugins\com.google.play.appupdate\Editor\Dependencies.xml" />
+    <None Include="Assets\IronSource\Editor\ISTapJoyAdapterDependencies.xml" />
     <None Include="Assets\IronSource\Editor\IronSourceAdQualityDependencies.xml" />
     <None Include="Assets\GooglePlayPlugins\com.google.play.integrity\Editor\Dependencies.xml" />
     <None Include="Assets\IronSource\Editor\IronSourceSDKDependencies.xml" />
+    <None Include="Assets\IronSource\Editor\ISTencentAdapterDependencies.xml" />
+    <None Include="Assets\IronSource\Editor\ISVungleAdapterDependencies.xml" />
+    <None Include="Assets\IronSource\Editor\ISPangleAdapterDependencies.xml" />
+    <None Include="Assets\IronSource\Editor\ISMaioAdapterDependencies.xml" />
+    <None Include="Assets\IronSource\Editor\ISCSJAdapterDependencies.xml" />
+    <None Include="Assets\IronSource\Editor\ISMyTargetAdapterDependencies.xml" />
     <None Include="Assets\ExternalDependencyManager\Editor\1.2.177\Google.JarResolver.dll" />
   </ItemGroup>
   <ItemGroup>

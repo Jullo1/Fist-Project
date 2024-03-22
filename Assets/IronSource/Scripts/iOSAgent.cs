@@ -501,17 +501,15 @@ public class iOSAgent : IronSourceIAgent
 	/// <summary>
 	///  Get the adaptive height according to the width.
 	/// </summary>
-	/// <param name="getMaximalAdaptiveHeight">Returns the height maximal for adaptive banner </param>
+	/// <param name="width"> The device width </param>
 	public float getMaximalAdaptiveHeight(float width)
 	{
 		return CFIGetMaximalAdaptiveHeight(width);
 	}
-
 	
 	/// <summary>
 	///  Get device width in Point adjust to safe area
 	/// </summary>
-	/// <param name="getMaximalAdaptiveHeight">Returns the width of the device with safe area </param>
 	public float getDeviceScreenWidth()
 	{
 		return CFIGetDeviceScreenWidth();

@@ -7,7 +7,7 @@ public class IronSource : IronSourceIAgent
 {
 	private IronSourceIAgent _platformAgent;
 	private static IronSource _instance;
-	public static string UNITY_PLUGIN_VERSION = "7.8.1-r";
+	public static string UNITY_PLUGIN_VERSION = "7.9.1-r";
 	private static bool isUnsupportedPlatform;
 
 	private IronSource()
@@ -327,7 +327,7 @@ public class IronSource : IronSourceIAgent
 	/// <summary>
 	///  Get maximal Adaptive Height.
 	/// </summary>
-	/// <param name="getMaximalAdaptiveHeight">Get the highest height for adaptive banner </param>
+	/// <param name="width"> The device width </param>
 	public float getMaximalAdaptiveHeight(float width)
 	{
 		return _platformAgent.getMaximalAdaptiveHeight(width);
@@ -336,7 +336,6 @@ public class IronSource : IronSourceIAgent
 	/// <summary>
 	///  Get Device Screen Width.
 	/// </summary>
-	/// <param name="getMaximalAdaptiveHeight">Get the device Width.</param>
 	public float getDeviceScreenWidth()
 	{
 		return _platformAgent.getDeviceScreenWidth();

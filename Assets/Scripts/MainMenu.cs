@@ -80,6 +80,12 @@ public class MainMenu : MonoBehaviour
 
             PlayerPrefs.Save();
         }
+        StartCoroutine(LoadBannerWithDelay());
+    }
+
+    IEnumerator LoadBannerWithDelay()
+    {
+        yield return new WaitForSeconds(1);
         IronSource.Agent.loadBanner(IronSourceBannerSize.BANNER, IronSourceBannerPosition.BOTTOM);
         IronSource.Agent.displayBanner();
     }
