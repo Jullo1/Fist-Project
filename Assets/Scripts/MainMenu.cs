@@ -81,6 +81,7 @@ public class MainMenu : MonoBehaviour
             PlayerPrefs.Save();
         }
         IronSource.Agent.loadBanner(IronSourceBannerSize.BANNER, IronSourceBannerPosition.BOTTOM);
+        IronSource.Agent.displayBanner();
     }
 
     IEnumerator LoadReview()
