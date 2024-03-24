@@ -89,6 +89,11 @@ public class GameManager : MonoBehaviour
         } else if (!pauseWaves) spawnTimer += Time.deltaTime;
     }
 
+    void OnApplicationPause(bool isPaused)
+    {
+        IronSource.Agent.onApplicationPause(isPaused);
+    }
+
     public IEnumerator StopTime(float seconds)
     {
         foreach (Enemy enemy in FindObjectsOfType<Enemy>())

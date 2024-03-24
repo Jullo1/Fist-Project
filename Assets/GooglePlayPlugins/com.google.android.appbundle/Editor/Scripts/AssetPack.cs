@@ -27,9 +27,6 @@ namespace Google.Android.AppBundle.Editor
         private string _assetPackDirectoryPath;
         private Dictionary<TextureCompressionFormat, string> _compressionFormatToAssetBundleFilePath;
         private Dictionary<TextureCompressionFormat, string> _compressionFormatToAssetPackDirectoryPath;
-        private Dictionary<DeviceTier, string> _deviceTierToAssetBundleFilePath;
-        private Dictionary<DeviceTier, string> _deviceTierToAssetPackDirectoryPath;
-
 
         /// <summary>
         /// Indicates how this asset pack will be delivered.
@@ -69,17 +66,6 @@ namespace Google.Android.AppBundle.Editor
                     throw new ArgumentException("CompressionFormatToAssetPackDirectoryPath is already set.");
                 }
 
-                if (_deviceTierToAssetBundleFilePath != null)
-                {
-                    throw new ArgumentException("DeviceTierToAssetBundleFilePath is already set.");
-                }
-
-                if (_deviceTierToAssetPackDirectoryPath != null)
-                {
-                    throw new ArgumentException("DeviceTierToAssetPackDirectoryPath is already set.");
-                }
-
-
                 _assetBundleFilePath = value;
             }
         }
@@ -115,17 +101,6 @@ namespace Google.Android.AppBundle.Editor
                 {
                     throw new ArgumentException("CompressionFormatToAssetPackDirectoryPath is already set.");
                 }
-
-                if (_deviceTierToAssetBundleFilePath != null)
-                {
-                    throw new ArgumentException("DeviceTierToAssetBundleFilePath is already set.");
-                }
-
-                if (_deviceTierToAssetPackDirectoryPath != null)
-                {
-                    throw new ArgumentException("DeviceTierToAssetPackDirectoryPath is already set.");
-                }
-
 
                 _assetPackDirectoryPath = value;
             }
@@ -166,17 +141,6 @@ namespace Google.Android.AppBundle.Editor
                     throw new ArgumentException("CompressionFormatToAssetPackDirectoryPath is already set.");
                 }
 
-                if (_deviceTierToAssetBundleFilePath != null)
-                {
-                    throw new ArgumentException("DeviceTierToAssetBundleFilePath is already set.");
-                }
-
-                if (_deviceTierToAssetPackDirectoryPath != null)
-                {
-                    throw new ArgumentException("DeviceTierToAssetPackDirectoryPath is already set.");
-                }
-
-
                 _compressionFormatToAssetBundleFilePath = value;
             }
         }
@@ -216,117 +180,8 @@ namespace Google.Android.AppBundle.Editor
                     throw new ArgumentException("CompressionFormatToAssetBundleFilePath is already set.");
                 }
 
-                if (_deviceTierToAssetBundleFilePath != null)
-                {
-                    throw new ArgumentException("DeviceTierToAssetBundleFilePath is already set.");
-                }
-
-                if (_deviceTierToAssetPackDirectoryPath != null)
-                {
-                    throw new ArgumentException("DeviceTierToAssetPackDirectoryPath is already set.");
-                }
-
-
                 _compressionFormatToAssetPackDirectoryPath = value;
             }
         }
-
-        /// <summary>
-        /// Dictionary from <see cref="DeviceTier"/> to the location on disk of a single AssetBundle file.
-        /// When using Play Asset Delivery APIs, only the AssetBundle for the device's tier will be delivered.
-        /// </summary>
-        /// <exception cref="ArgumentException">
-        /// Thrown on set if any other path property is already set (non-null).
-        /// </exception>
-        public Dictionary<DeviceTier, string> DeviceTierToAssetBundleFilePath
-        {
-            get { return _deviceTierToAssetBundleFilePath; }
-            set
-            {
-                if (value == null)
-                {
-                    _deviceTierToAssetBundleFilePath = null;
-                    return;
-                }
-
-                if (_assetBundleFilePath != null)
-                {
-                    throw new ArgumentException("AssetBundleFilePath is already set.");
-                }
-
-                if (_assetPackDirectoryPath != null)
-                {
-                    throw new ArgumentException("AssetPackDirectoryPath is already set.");
-                }
-
-                if (_compressionFormatToAssetBundleFilePath != null)
-                {
-                    throw new ArgumentException("CompressionFormatToAssetBundleFilePath is already set.");
-                }
-
-                if (_compressionFormatToAssetPackDirectoryPath != null)
-                {
-                    throw new ArgumentException("CompressionFormatToAssetPackDirectoryPath is already set.");
-                }
-
-
-                if (_deviceTierToAssetPackDirectoryPath != null)
-                {
-                    throw new ArgumentException("DeviceTierToAssetPackDirectoryPath is already set.");
-                }
-
-                _deviceTierToAssetBundleFilePath = value;
-            }
-        }
-
-        /// <summary>
-        /// Dictionary from <see cref="DeviceTier"/> to the location on disk of a folder containing
-        /// raw asset files.
-        /// When using Play Asset Delivery APIs, only the folder for the device's tier will be delivered.
-        /// </summary>
-        /// <exception cref="ArgumentException">
-        /// Thrown on set if any other path property is already set (non-null).
-        /// </exception>
-        public Dictionary<DeviceTier, string> DeviceTierToAssetPackDirectoryPath
-        {
-            get { return _deviceTierToAssetPackDirectoryPath; }
-            set
-            {
-                if (value == null)
-                {
-                    _deviceTierToAssetPackDirectoryPath = null;
-                    return;
-                }
-
-                if (_assetBundleFilePath != null)
-                {
-                    throw new ArgumentException("AssetBundleFilePath is already set.");
-                }
-
-                if (_assetPackDirectoryPath != null)
-                {
-                    throw new ArgumentException("AssetPackDirectoryPath is already set.");
-                }
-
-                if (_compressionFormatToAssetBundleFilePath != null)
-                {
-                    throw new ArgumentException("CompressionFormatToAssetBundleFilePath is already set.");
-                }
-
-                if (_compressionFormatToAssetPackDirectoryPath != null)
-                {
-                    throw new ArgumentException("CompressionFormatToAssetPackDirectoryPath is already set.");
-                }
-
-
-                if (_deviceTierToAssetBundleFilePath != null)
-                {
-                    throw new ArgumentException("DeviceTierToAssetBundleFilePath is already set.");
-                }
-
-                _deviceTierToAssetPackDirectoryPath = value;
-            }
-        }
-
     }
 }

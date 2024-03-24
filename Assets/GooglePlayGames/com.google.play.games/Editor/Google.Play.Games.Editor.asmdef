@@ -1,18 +1,9 @@
 {
     "name": "Google.Play.Games.Editor",
-    "rootNamespace": "",
     "references": [
         "Google.Play.Games"
     ],
     "includePlatforms": [
         "Editor"
-    ],
-    "excludePlatforms": [],
-    "allowUnsafeCode": false,
-    "overrideReferences": false,
-    "precompiledReferences": [],
-    "autoReferenced": true,
-    "defineConstraints": [],
-    "versionDefines": [],
-    "noEngineReferences": false
+    ]
 }

@@ -3,16 +3,80 @@ apply plugin: 'com.android.library'
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-	implementation "com.google.android.gms:play-services-games-v2:+"
+// Android Resolver Dependencies Start
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0' // Assets/IronSource/Editor/ISInMobiAdapterDependencies.xml:22
+    implementation 'androidx.recyclerview:recyclerview:1.2.1' // Assets/IronSource/Editor/ISMintegralAdapterDependencies.xml:40
+    implementation 'com.amazon.android:aps-sdk:9.8.+' // Assets/IronSource/Editor/ISAPSAdapterDependencies.xml:15
+    implementation 'com.applovin:applovin-sdk:12.1.0' // Assets/IronSource/Editor/ISAppLovinAdapterDependencies.xml:15
+    implementation 'com.chartboost:chartboost-sdk:9.6.1' // Assets/IronSource/Editor/ISChartboostAdapterDependencies.xml:15
+    implementation 'com.facebook.android:audience-network-sdk:6.16.0' // Assets/IronSource/Editor/ISFacebookAdapterDependencies.xml:8
+    implementation 'com.fyber:marketplace-sdk:8.2.6' // Assets/IronSource/Editor/ISFyberAdapterDependencies.xml:8
+    implementation 'com.google.android.exoplayer:exoplayer:2.19.1' // Assets/IronSource/Editor/ISMyTargetAdapterDependencies.xml:27
+    implementation 'com.google.android.gms:play-services-ads:23.0.0' // Assets/IronSource/Editor/ISAdMobAdapterDependencies.xml:8
+    implementation 'com.google.android.gms:play-services-ads-identifier:18.0.1' // Assets/IronSource/Editor/IronSourceSDKDependencies.xml:17
+    implementation 'com.google.android.gms:play-services-basement:18.1.0' // Assets/IronSource/Editor/IronSourceSDKDependencies.xml:25
+    implementation 'com.google.android.play:core-common:2.0.0' // Assets/GooglePlayPlugins/com.google.play.core/Editor/Dependencies.xml:3
+    implementation 'com.google.android.play:review:2.0.0' // Assets/GooglePlayPlugins/com.google.play.review/Editor/Dependencies.xml:3
+    implementation 'com.google.games:gpgs-plugin-support:0.11.01' // Assets/GooglePlayGames/com.google.play.games/Editor/GooglePlayGamesPluginDependencies.xml:11
+    implementation 'com.hyprmx.android:HyprMX-SDK:6.2.3' // Assets/IronSource/Editor/ISHyprMXAdapterDependencies.xml:8
+    implementation 'com.inmobi.monetization:inmobi-ads-kotlin:10.6.7' // Assets/IronSource/Editor/ISInMobiAdapterDependencies.xml:15
+    implementation 'com.ironsource.adapters:admobadapter:4.3.43' // Assets/IronSource/Editor/ISAdMobAdapterDependencies.xml:16
+    implementation 'com.ironsource.adapters:applovinadapter:4.3.41' // Assets/IronSource/Editor/ISAppLovinAdapterDependencies.xml:8
+    implementation 'com.ironsource.adapters:apsadapter:4.3.11' // Assets/IronSource/Editor/ISAPSAdapterDependencies.xml:8
+    implementation 'com.ironsource.adapters:bidmachineadapter:4.3.6' // Assets/IronSource/Editor/ISBidMachineAdapterDependencies.xml:8
+    implementation 'com.ironsource.adapters:chartboostadapter:4.3.15' // Assets/IronSource/Editor/ISChartboostAdapterDependencies.xml:8
+    implementation 'com.ironsource.adapters:facebookadapter:4.3.45' // Assets/IronSource/Editor/ISFacebookAdapterDependencies.xml:16
+    implementation 'com.ironsource.adapters:fyberadapter:4.3.30' // Assets/IronSource/Editor/ISFyberAdapterDependencies.xml:16
+    implementation 'com.ironsource.adapters:hyprmxadapter:4.3.6' // Assets/IronSource/Editor/ISHyprMXAdapterDependencies.xml:16
+    implementation 'com.ironsource.adapters:inmobiadapter:4.3.24' // Assets/IronSource/Editor/ISInMobiAdapterDependencies.xml:8
+    implementation 'com.ironsource.adapters:maioadapter:4.1.11' // Assets/IronSource/Editor/ISMaioAdapterDependencies.xml:8
+    implementation 'com.ironsource.adapters:mintegraladapter:4.3.24' // Assets/IronSource/Editor/ISMintegralAdapterDependencies.xml:48
+    implementation 'com.ironsource.adapters:mytargetadapter:4.1.19' // Assets/IronSource/Editor/ISMyTargetAdapterDependencies.xml:8
+    implementation 'com.ironsource.adapters:pangleadapter:4.3.26' // Assets/IronSource/Editor/ISPangleAdapterDependencies.xml:8
+    implementation 'com.ironsource.adapters:smaatoadapter:4.3.10' // Assets/IronSource/Editor/ISSmaatoAdapterDependencies.xml:21
+    implementation 'com.ironsource.adapters:superawesomeadapter:4.1.9' // Assets/IronSource/Editor/ISSuperAwesomeAdapterDependencies.xml:16
+    implementation 'com.ironsource.adapters:tapjoyadapter:4.1.25' // Assets/IronSource/Editor/ISTapJoyAdapterDependencies.xml:8
+    implementation 'com.ironsource.adapters:unityadsadapter:4.3.35' // Assets/IronSource/Editor/ISUnityAdsAdapterDependencies.xml:8
+    implementation 'com.ironsource.adapters:vungleadapter:4.3.23' // Assets/IronSource/Editor/ISVungleAdapterDependencies.xml:16
+    implementation 'com.ironsource.sdk:mediationsdk:7.9.0' // Assets/IronSource/Editor/IronSourceSDKDependencies.xml:9
+    implementation 'com.ironsource:adqualitysdk:7.18.1' // Assets/IronSource/Editor/IronSourceAdQualityDependencies.xml:9
+    implementation 'com.maio:android-sdk:1.1.16@aar' // Assets/IronSource/Editor/ISMaioAdapterDependencies.xml:15
+    implementation 'com.mbridge.msdk.oversea:mbbanner:16.6.31' // Assets/IronSource/Editor/ISMintegralAdapterDependencies.xml:24
+    implementation 'com.mbridge.msdk.oversea:mbbid:16.6.31' // Assets/IronSource/Editor/ISMintegralAdapterDependencies.xml:32
+    implementation 'com.mbridge.msdk.oversea:newinterstitial:16.6.31' // Assets/IronSource/Editor/ISMintegralAdapterDependencies.xml:8
+    implementation 'com.mbridge.msdk.oversea:reward:16.6.31' // Assets/IronSource/Editor/ISMintegralAdapterDependencies.xml:16
+    implementation 'com.my.target:mytarget-sdk:5.20.0' // Assets/IronSource/Editor/ISMyTargetAdapterDependencies.xml:15
+    implementation 'com.pangle.global:ads-sdk:5.8.0.8' // Assets/IronSource/Editor/ISPangleAdapterDependencies.xml:15
+    implementation 'com.smaato.android.sdk:smaato-sdk-banner:22.6.0' // Assets/IronSource/Editor/ISSmaatoAdapterDependencies.xml:8
+    implementation 'com.smaato.android.sdk:smaato-sdk-in-app-bidding:22.6.0' // Assets/IronSource/Editor/ISSmaatoAdapterDependencies.xml:13
+    implementation 'com.tapjoy:tapjoy-android-sdk:13.0.1' // Assets/IronSource/Editor/ISTapJoyAdapterDependencies.xml:15
+    implementation 'com.unity3d.ads:unity-ads:4.9.3' // Assets/IronSource/Editor/ISUnityAdsAdapterDependencies.xml:15
+    implementation 'com.vungle:vungle-ads:7.1.0' // Assets/IronSource/Editor/ISVungleAdapterDependencies.xml:8
+    implementation 'io.bidmachine:ads:2.5.2' // Assets/IronSource/Editor/ISBidMachineAdapterDependencies.xml:15
+    implementation 'tv.superawesome.sdk.publisher:superawesome:9.3.2' // Assets/IronSource/Editor/ISSuperAwesomeAdapterDependencies.xml:8
+// Android Resolver Dependencies End
 **DEPS**}
 
+// Android Resolver Exclusions Start
 android {
+  packagingOptions {
+      exclude ('/lib/armeabi/*' + '*')
+      exclude ('/lib/mips/*' + '*')
+      exclude ('/lib/mips64/*' + '*')
+      exclude ('/lib/x86/*' + '*')
+      exclude ('/lib/x86_64/*' + '*')
+  }
+}
+// Android Resolver Exclusions End
+android {
+    ndkPath "**NDKPATH**"
+
     compileSdkVersion **APIVERSION**
     buildToolsVersion '**BUILDTOOLS**'
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
     }
 
     defaultConfig {
@@ -29,24 +93,12 @@ android {
     lintOptions {
         abortOnError false
     }
-  buildscript {
-    repositories {
-      google()
-      mavenCentral()
-    }
-  }
 
-  allprojects {
-    repositories {
-      google()
-      mavenCentral()
-    }
-  }
     aaptOptions {
         noCompress = **BUILTIN_NOCOMPRESS** + unityStreamingAssets.tokenize(', ')
-        ignoreAssetsPattern = "!.svn:!.git:!.ds_store:!*.scc:.*:!CVS:!thumbs.db:!picasa.ini:!*~"
+        ignoreAssetsPattern = "!.svn:!.git:!.ds_store:!*.scc:!CVS:!thumbs.db:!picasa.ini:!*~"
     }**PACKAGING_OPTIONS**
-}**REPOSITORIES**
+}
 **IL_CPP_BUILD_SETUP**
 **SOURCE_BUILD_SETUP**
 **EXTERNAL_SOURCES**

@@ -20,15 +20,14 @@ public class MainMenu : MonoBehaviour
 
     public Text scoreOutput;
     [SerializeField] GameObject scoreKeeper;
-
     ReviewManager reviewManager;
     PlayReviewInfo playReviewInfo;
 
     bool loadSceneSent;
 
-    void Awake()
+    void Start()
     {
-//ads
+        //ads
 #if UNITY_ANDROID
         string appKey = "1d5d6bddd";
 #elif UNITY_IPHONE
@@ -41,9 +40,11 @@ public class MainMenu : MonoBehaviour
         //InitiateSaveData(); //for testing, resets all save data
         //InitiateCheatSaveData(); //unlock everything
         LockedStage(false);
+        Time.timeScale = 1;
 
         if (!FindObjectOfType<ScoreKeeper>()) //instantiate scoreKeeper if there isn't one yet
         {
+            IronSource.Agent.validateIntegration();
             IronSource.Agent.init(appKey);
             RebuildSaveData();
             Instantiate(scoreKeeper);
@@ -53,24 +54,16 @@ public class MainMenu : MonoBehaviour
         {
             IronSource.Agent.showInterstitial(); //send ad after death
         }
-        reviewManager = new ReviewManager();
-        StartCoroutine(LoadReview());
-    }
-
-    [Obsolete]
-    void Start()
-    {
-        Time.timeScale = 1;
         if (ScoreKeeper.score > 0)
         {
-            if (!Application.isMobilePlatform) StartCoroutine(SendScore(ScoreKeeper.score));
+            //if (!Application.isMobilePlatform) StartCoroutine(SendScore(ScoreKeeper.score)); //sending score for webgl build
             startButtonText.text = "AGAIN";
         }
         if (PlayerPrefs.GetInt("totalKills") > 300 && ScoreKeeper.score > 0) //android review tab
         {
             if (PlayerPrefs.GetInt("reviewCount") >= 5 && PlayerPrefs.GetInt("optedOutReview") < 5)
             {
-                StartCoroutine(ShowReview());
+                StartCoroutine(ReviewTab());
                 if (PlayerPrefs.GetInt("optedOutReview") < 3) PlayerPrefs.SetInt("reviewCount", 0);
                 else PlayerPrefs.SetInt("reviewCount", -30);  //after showing review tab 3 times, it will appear again after a long time
 
@@ -80,18 +73,22 @@ public class MainMenu : MonoBehaviour
 
             PlayerPrefs.Save();
         }
-        StartCoroutine(LoadBannerWithDelay());
-    }
-
-    IEnumerator LoadBannerWithDelay()
-    {
-        yield return new WaitForSeconds(1);
         IronSource.Agent.loadBanner(IronSourceBannerSize.BANNER, IronSourceBannerPosition.BOTTOM);
-        IronSource.Agent.displayBanner();
     }
 
-    IEnumerator LoadReview()
+    void OnApplicationPause(bool isPaused)
     {
+        IronSource.Agent.onApplicationPause(isPaused);
+    }
+
+    public void LaunchReviewTab()
+    {
+        StartCoroutine(ReviewTab());
+    }
+
+    IEnumerator ReviewTab()
+    {
+        yield return new WaitForSeconds(0.5f);
         var requestFlowOperation = reviewManager.RequestReviewFlow();
         yield return requestFlowOperation;
         if (requestFlowOperation.Error != ReviewErrorCode.NoError)
@@ -101,10 +98,6 @@ public class MainMenu : MonoBehaviour
         }
         playReviewInfo = requestFlowOperation.GetResult();
 
-    }
-
-    IEnumerator ShowReview()
-    {
         var launchFlowOperation = reviewManager.LaunchReviewFlow(playReviewInfo);
         yield return launchFlowOperation;
         playReviewInfo = null; // Reset the object
@@ -117,11 +110,6 @@ public class MainMenu : MonoBehaviour
         // reviewed or not, or even whether the review dialog was shown. Thus, no
         // matter the result, we continue our app flow.
 
-    }
-
-    public void LaunchReviewTab()
-    {
-        StartCoroutine(ShowReview());
     }
 
     void RebuildSaveData()

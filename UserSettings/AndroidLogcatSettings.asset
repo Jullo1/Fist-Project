@@ -1,0 +1,232 @@
+{
+    "m_SelectedDeviceId": "R58R236YGAA",
+    "m_SelectedProcess": {
+        "deviceId": "R58R236YGAA",
+        "name": "com.Jullo.FistProject",
+        "processId": 11716,
+        "exited": false
+    },
+    "m_SelectedPriority": 0,
+    "m_KnownProcessesForSerialization": [
+        {
+            "deviceId": "R58R236YGAA",
+            "name": "com.Jullo.FistProject",
+            "processId": 1117,
+            "exited": true
+        },
+        {
+            "deviceId": "R58R236YGAA",
+            "name": "com.Jullo.FistProject",
+            "processId": 11633,
+            "exited": true
+        },
+        {
+            "deviceId": "R58R236YGAA",
+            "name": "com.sec.android.app.launcher",
+            "processId": 3456,
+            "exited": false
+        },
+        {
+            "deviceId": "R58R236YGAA",
+            "name": "com.Jullo.FistProject",
+            "processId": 12722,
+            "exited": true
+        },
+        {
+            "deviceId": "R58R236YGAA",
+            "name": "com.Jullo.FistProject",
+            "processId": 13963,
+            "exited": true
+        },
+        {
+            "deviceId": "R58R236YGAA",
+            "name": "com.Jullo.FistProject",
+            "processId": 16193,
+            "exited": false
+        },
+        {
+            "deviceId": "R58R236YGAA",
+            "name": "com.Jullo.FistProject",
+            "processId": 17789,
+            "exited": false
+        },
+        {
+            "deviceId": "R58R236YGAA",
+            "name": "com.Jullo.FistProject",
+            "processId": 19024,
+            "exited": false
+        },
+        {
+            "deviceId": "R58R236YGAA",
+            "name": "com.Jullo.FistProject",
+            "processId": 23615,
+            "exited": false
+        },
+        {
+            "deviceId": "R58R236YGAA",
+            "name": "com.Jullo.FistProject",
+            "processId": 25343,
+            "exited": false
+        },
+        {
+            "deviceId": "R58R236YGAA",
+            "name": "com.Jullo.FistProject",
+            "processId": 26130,
+            "exited": false
+        },
+        {
+            "deviceId": "R58R236YGAA",
+            "name": "com.Jullo.FistProject",
+            "processId": 28205,
+            "exited": false
+        },
+        {
+            "deviceId": "R58R236YGAA",
+            "name": "com.Jullo.FistProject",
+            "processId": 30854,
+            "exited": false
+        },
+        {
+            "deviceId": "R58R236YGAA",
+            "name": "com.Jullo.FistProject",
+            "processId": 32198,
+            "exited": false
+        },
+        {
+            "deviceId": "R58R236YGAA",
+            "name": "com.Jullo.FistProject",
+            "processId": 444,
+            "exited": false
+        },
+        {
+            "deviceId": "R58R236YGAA",
+            "name": "com.Jullo.FistProject",
+            "processId": 3654,
+            "exited": false
+        },
+        {
+            "deviceId": "R58R236YGAA",
+            "name": "com.Jullo.FistProject",
+            "processId": 5265,
+            "exited": false
+        },
+        {
+            "deviceId": "R58R236YGAA",
+            "name": "com.Jullo.FistProject",
+            "processId": 6382,
+            "exited": false
+        },
+        {
+            "deviceId": "R58R236YGAA",
+            "name": "com.Jullo.FistProject",
+            "processId": 7048,
+            "exited": false
+        },
+        {
+            "deviceId": "R58R236YGAA",
+            "name": "com.Jullo.FistProject",
+            "processId": 7378,
+            "exited": false
+        },
+        {
+            "deviceId": "R58R236YGAA",
+            "name": "com.Jullo.FistProject",
+            "processId": 8482,
+            "exited": false
+        },
+        {
+            "deviceId": "R58R236YGAA",
+            "name": "com.Jullo.FistProject",
+            "processId": 10320,
+            "exited": false
+        },
+        {
+            "deviceId": "R58R236YGAA",
+            "name": "com.Jullo.FistProject",
+            "processId": 11716,
+            "exited": false
+        }
+    ],
+    "m_Tags": {
+        "m_Entries": [
+            {
+                "m_Name": "Filter by all listed tags",
+                "m_Selected": false
+            },
+            {
+                "m_Name": "No Filter",
+                "m_Selected": true
+            },
+            {
+                "m_Name": "",
+                "m_Selected": false
+            },
+            {
+                "m_Name": "Tag Control...",
+                "m_Selected": false
+            },
+            {
+                "m_Name": "",
+                "m_Selected": false
+            },
+            {
+                "m_Name": "Unity",
+                "m_Selected": false
+            },
+            {
+                "m_Name": "CRASH",
+                "m_Selected": false
+            }
+        ]
+    },
+    "m_ExtraWindowState": {
+        "Type": 0,
+        "Height": 0.0
+    },
+    "m_MemoryViewerState": {
+        "MemoryWindowWidth": 170.0,
+        "MemoryTypeEnabled": [
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true
+        ],
+        "MemoryGroup": 2,
+        "AutoCapture": true
+    },
+    "m_FilterOptions": {
+        "m_Filter": "",
+        "m_UseRegularExpressions": false,
+        "m_MatchCase": false
+    },
+    "m_SymbolPaths": [],
+    "m_CaptureVideoSettings": {
+        "TimeLimitEnabled": false,
+        "TimeLimit": 180,
+        "VideoSizeEnabled": false,
+        "VideoSizeX": 1280,
+        "VideoSizeY": 720,
+        "BitRateEnabled": false,
+        "BitRateK": 20000,
+        "DisplayIdEnabled": false,
+        "DisplayId": ""
+    },
+    "m_InputSettings": {
+        "ShiftModifier": false,
+        "SendText": "",
+        "PosixKillSignal": 0,
+        "TargetProcess": {
+            "deviceId": "",
+            "name": "",
+            "processId": 0,
+            "exited": false
+        }
+    },
+    "m_AutoScroll": 0
+}

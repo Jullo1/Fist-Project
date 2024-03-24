@@ -1,0 +1,69 @@
+pluginManagement {
+    repositories {
+        **ARTIFACTORYREPOSITORY**
+        gradlePluginPortal()
+        google()
+        mavenCentral()
+    }
+}
+
+include ':launcher', ':unityLibrary'
+**INCLUDES**
+
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.PREFER_SETTINGS)
+    repositories {
+        **ARTIFACTORYREPOSITORY**
+        google()
+        mavenCentral()
+// Android Resolver Repos Start
+        def unityProjectPath = $/file:///**DIR_UNITYPROJECT**/$.replace("\\", "/")
+        maven {
+            url (unityProjectPath + "/Assets/GeneratedLocalRepo/GooglePlayGames/com.google.play.games/Editor/m2repository") // Assets/GooglePlayGames/com.google.play.games/Editor/GooglePlayGamesPluginDependencies.xml:11
+        }
+        maven {
+            url "https://android-sdk.is.com/" // Assets/IronSource/Editor/IronSourceAdQualityDependencies.xml:9, Assets/IronSource/Editor/IronSourceSDKDependencies.xml:9, Assets/IronSource/Editor/ISAdMobAdapterDependencies.xml:16, Assets/IronSource/Editor/ISAppLovinAdapterDependencies.xml:8, Assets/IronSource/Editor/ISAPSAdapterDependencies.xml:8, Assets/IronSource/Editor/ISBidMachineAdapterDependencies.xml:8, Assets/IronSource/Editor/ISChartboostAdapterDependencies.xml:8, Assets/IronSource/Editor/ISFacebookAdapterDependencies.xml:16, Assets/IronSource/Editor/ISFyberAdapterDependencies.xml:16, Assets/IronSource/Editor/ISHyprMXAdapterDependencies.xml:16, Assets/IronSource/Editor/ISInMobiAdapterDependencies.xml:8, Assets/IronSource/Editor/ISMaioAdapterDependencies.xml:8, Assets/IronSource/Editor/ISMintegralAdapterDependencies.xml:48, Assets/IronSource/Editor/ISMyTargetAdapterDependencies.xml:8, Assets/IronSource/Editor/ISPangleAdapterDependencies.xml:8, Assets/IronSource/Editor/ISSmaatoAdapterDependencies.xml:21, Assets/IronSource/Editor/ISSuperAwesomeAdapterDependencies.xml:16, Assets/IronSource/Editor/ISTapJoyAdapterDependencies.xml:8, Assets/IronSource/Editor/ISUnityAdsAdapterDependencies.xml:8, Assets/IronSource/Editor/ISVungleAdapterDependencies.xml:16
+        }
+        maven {
+            url "https://maven.google.com/" // Assets/IronSource/Editor/IronSourceSDKDependencies.xml:17, Assets/IronSource/Editor/IronSourceSDKDependencies.xml:25, Assets/IronSource/Editor/ISAdMobAdapterDependencies.xml:8, Assets/IronSource/Editor/ISAppLovinAdapterDependencies.xml:15, Assets/IronSource/Editor/ISAPSAdapterDependencies.xml:15, Assets/IronSource/Editor/ISFacebookAdapterDependencies.xml:8, Assets/IronSource/Editor/ISInMobiAdapterDependencies.xml:22, Assets/IronSource/Editor/ISMintegralAdapterDependencies.xml:40, Assets/IronSource/Editor/ISMyTargetAdapterDependencies.xml:15, Assets/IronSource/Editor/ISMyTargetAdapterDependencies.xml:27, Assets/IronSource/Editor/ISUnityAdsAdapterDependencies.xml:15
+        }
+        maven {
+            url "https://artifactory.bidmachine.io/bidmachine" // Assets/IronSource/Editor/ISBidMachineAdapterDependencies.xml:15
+        }
+        maven {
+            url "https://cboost.jfrog.io/artifactory/chartboost-ads/" // Assets/IronSource/Editor/ISChartboostAdapterDependencies.xml:15
+        }
+        maven {
+            url "https://repo.maven.apache.org/maven2/" // Assets/IronSource/Editor/ISFyberAdapterDependencies.xml:8, Assets/IronSource/Editor/ISInMobiAdapterDependencies.xml:15
+        }
+        maven {
+            url "https://repo1.maven.org/maven2/" // Assets/IronSource/Editor/ISHyprMXAdapterDependencies.xml:8
+        }
+        maven {
+            url "https://imobile-maio.github.io/maven" // Assets/IronSource/Editor/ISMaioAdapterDependencies.xml:15
+        }
+        maven {
+            url "https://dl-maven-android.mintegral.com/repository/mbridge_android_sdk_oversea/" // Assets/IronSource/Editor/ISMintegralAdapterDependencies.xml:8, Assets/IronSource/Editor/ISMintegralAdapterDependencies.xml:16, Assets/IronSource/Editor/ISMintegralAdapterDependencies.xml:24, Assets/IronSource/Editor/ISMintegralAdapterDependencies.xml:32
+        }
+        maven {
+            url "https://artifact.bytedance.com/repository/pangle/" // Assets/IronSource/Editor/ISPangleAdapterDependencies.xml:15
+        }
+        maven {
+            url "https://s3.amazonaws.com/smaato-sdk-releases/" // Assets/IronSource/Editor/ISSmaatoAdapterDependencies.xml:8, Assets/IronSource/Editor/ISSmaatoAdapterDependencies.xml:13
+        }
+        maven {
+            url "https://aa-sdk.s3-eu-west-1.amazonaws.com/android_repo/" // Assets/IronSource/Editor/ISSuperAwesomeAdapterDependencies.xml:8
+        }
+        maven {
+            url "https://sdk.tapjoy.com/" // Assets/IronSource/Editor/ISTapJoyAdapterDependencies.xml:15
+        }
+        maven {
+            url "https://jitpack.io/" // Assets/IronSource/Editor/ISVungleAdapterDependencies.xml:8
+        }
+        mavenLocal()
+// Android Resolver Repos End
+        flatDir {
+            dirs "${project(':unityLibrary').projectDir}/libs"
+        }
+    }
+}
