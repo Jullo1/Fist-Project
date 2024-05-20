@@ -48,40 +48,17 @@ public class PlayerUIHandler : MonoBehaviour
             specialTriggerUI2.fillAmount = 0;
         }
 
-        if (player.comboAmount > 1)
+        if (player.comboAmount == 0) { comboProgressBar.transform.parent.gameObject.SetActive(false); comboUI.text = ""; comboUI.color = new Color32(255, 255, 255, 255); }
+        else
         {
-
+            comboUI.color = new Color32(225, (byte)Mathf.Lerp(160, 80, player.comboAmount / player.maxComboCDBoost), 10, 255);
             comboProgressBar.transform.parent.gameObject.SetActive(true);
-            comboProgressBar.fillAmount = player.comboAmount / player.maxComboCDBoost;
             comboUI.text = "x" + player.comboAmount.ToString();
-            if (player.comboAmount >= player.maxComboCDBoost) //max combo boost achieved
-            {
-                comboUI.color = new Color32(250, 100, 0, 255);
-                comboUI.fontSize = 40;
-            }
-            else if (player.comboAmount >= player.maxComboCDBoost / 2)
-            {
-                comboUI.color = new Color32(240, 160, 0, 255);
-            }
-            else if (player.comboAmount >= player.maxComboCDBoost / 4)
-            {
-                comboUI.color = new Color32(240, 220, 0, 255);
-                comboUI.fontSize = 36;
-            }
-            else
-            {
-                comboProgressBar.transform.parent.gameObject.SetActive(false);
-                comboUI.color = new Color32(255, 255, 255, 255);
-            }
+            comboProgressBar.color = comboUI.color;
+            comboProgressBar.fillAmount = player.comboAmount / player.maxComboCDBoost;
         }
-        else //if it's 0, hide combo count and bar
-        {
-            comboUI.text = "";
-            comboUI.fontSize = 34;
-            comboUI.color = new Color32(255, 255, 255, 255);
-            comboProgressBar.transform.parent.gameObject.SetActive(false);
-        }
-        comboProgressBar.color = comboUI.color;
+        if (player.comboAmount >= player.maxComboCDBoost) comboUI.fontSize = 38;
+        else comboUI.fontSize = 34;
 
         foreach (Image circle in attackCDUI)
             circle.color = comboUI.color;

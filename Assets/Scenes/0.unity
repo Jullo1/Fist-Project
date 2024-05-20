@@ -1339,6 +1339,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -0.22375
       objectReference: {fileID: 0}
+    - target: {fileID: 2203487590388845068, guid: 4f87bafac9f1cf6489754ffd4e3c3001, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2382702670648488499, guid: 4f87bafac9f1cf6489754ffd4e3c3001, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -1442,14 +1446,6 @@ PrefabInstance:
     - target: {fileID: 2831360904475106966, guid: 4f87bafac9f1cf6489754ffd4e3c3001, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -106.83
-      objectReference: {fileID: 0}
-    - target: {fileID: 9045849346537955640, guid: 4f87bafac9f1cf6489754ffd4e3c3001, type: 3}
-      propertyPath: m_Color.r
-      value: 0.3529412
-      objectReference: {fileID: 0}
-    - target: {fileID: 9045849346537955640, guid: 4f87bafac9f1cf6489754ffd4e3c3001, type: 3}
-      propertyPath: m_FillAmount
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

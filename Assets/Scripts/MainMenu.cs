@@ -22,6 +22,7 @@ public class MainMenu : MonoBehaviour
     [SerializeField] GameObject scoreKeeper;
     [SerializeField] GameObject economySystemPrefab;
     [SerializeField] GameObject rewardedAdButton;
+    Text coinsOutput;
     EconomySystem economySystem;
     public GameObject lootGoldCoin;
 
@@ -41,11 +42,11 @@ public class MainMenu : MonoBehaviour
 #endif
 
         menuAudio = GetComponent<AudioSource>();
-
-        GameObject.FindGameObjectWithTag("CoinOutput").GetComponent<Text>().text = EconomySystem.balance.ToString(); //starts UI with previous balance unless it's 0
+        coinsOutput = GameObject.FindGameObjectWithTag("CoinOutput").GetComponent<Text>();
 
         //InitiateSaveData(); //for testing, resets all save data
         //InitiateCheatSaveData(); //unlock everything
+
         LockedStage(false);
         Time.timeScale = 1;
 
@@ -58,9 +59,13 @@ public class MainMenu : MonoBehaviour
             Instantiate(economySystemPrefab);
             if (Application.isMobilePlatform || Application.isEditor) IronSource.Agent.loadInterstitial(); //load ad to show it after first run
         }
-        else if (Application.isMobilePlatform || Application.isEditor)
+        else
         {
-            IronSource.Agent.showInterstitial(); //send ad after death
+            if (Application.isMobilePlatform || Application.isEditor)
+            {
+                IronSource.Agent.showInterstitial(); //send ad after death
+            }
+            coinsOutput.text = EconomySystem.balance.ToString(); //starts UI with previous balance unless it's 0
         }
         economySystem = FindObjectOfType<EconomySystem>();
         if (ScoreKeeper.score > 0)
