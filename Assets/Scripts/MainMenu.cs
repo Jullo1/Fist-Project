@@ -9,6 +9,7 @@ public class MainMenu : MonoBehaviour
 {
     AudioSource menuAudio;
     [SerializeField] AudioSource menuMusic;
+    [SerializeField] AudioClip[] coinSFX = new AudioClip[10];
     [SerializeField] Button startButton;
     [SerializeField] Text startButtonText;
     public Image lockedStageBackground;
@@ -20,9 +21,13 @@ public class MainMenu : MonoBehaviour
 
     public Text scoreOutput;
     [SerializeField] GameObject scoreKeeper;
+    [SerializeField] GameObject economySystemPrefab;
+    [SerializeField] GameObject rewardedAdButton;
+    EconomySystem economySystem;
+    public GameObject lootGoldCoin;
+
     ReviewManager reviewManager;
     PlayReviewInfo playReviewInfo;
-
     bool loadSceneSent;
 
     void Start()
@@ -35,30 +40,37 @@ public class MainMenu : MonoBehaviour
 #else
         string appKey = "unexpected_platform";
 #endif
+
         menuAudio = GetComponent<AudioSource>();
+
+        if (EconomySystem.balance != 0) GameObject.FindGameObjectWithTag("CoinOutput").GetComponent<Text>().text = EconomySystem.balance.ToString(); //starts UI with previous balance unless it's 0
 
         //InitiateSaveData(); //for testing, resets all save data
         //InitiateCheatSaveData(); //unlock everything
         LockedStage(false);
         Time.timeScale = 1;
 
-        if (!FindObjectOfType<ScoreKeeper>()) //instantiate scoreKeeper if there isn't one yet
+        if (!FindObjectOfType<ScoreKeeper>()) //instantiate scoreKeeper and economy system if there isn't one yet
         {
             IronSource.Agent.validateIntegration();
             IronSource.Agent.init(appKey);
             RebuildSaveData();
             Instantiate(scoreKeeper);
+            Instantiate(economySystemPrefab);
             if (Application.isMobilePlatform || Application.isEditor) IronSource.Agent.loadInterstitial(); //load ad to show it after first run
         }
         else if (Application.isMobilePlatform || Application.isEditor)
         {
             IronSource.Agent.showInterstitial(); //send ad after death
         }
+        economySystem = FindObjectOfType<EconomySystem>();
         if (ScoreKeeper.score > 0)
         {
             //if (!Application.isMobilePlatform) StartCoroutine(SendScore(ScoreKeeper.score)); //sending score for webgl build
             startButtonText.text = "AGAIN";
         }
+        StartCoroutine(AddCoins(ScoreKeeper.coins));
+
         if (PlayerPrefs.GetInt("totalKills") > 300 && ScoreKeeper.score > 0) //android review tab
         {
             if (PlayerPrefs.GetInt("reviewCount") >= 5 && PlayerPrefs.GetInt("optedOutReview") < 5)
@@ -74,6 +86,7 @@ public class MainMenu : MonoBehaviour
             PlayerPrefs.Save();
         }
         IronSource.Agent.loadBanner(IronSourceBannerSize.BANNER, IronSourceBannerPosition.BOTTOM);
+        IronSource.Agent.loadRewardedVideo();
     }
 
     void OnApplicationPause(bool isPaused)
@@ -84,6 +97,12 @@ public class MainMenu : MonoBehaviour
     public void LaunchReviewTab()
     {
         StartCoroutine(ReviewTab());
+    }
+
+    public void ShowRewardedAd()
+    {
+        if (IronSource.Agent.isRewardedVideoAvailable())
+            IronSource.Agent.showRewardedVideo();
     }
 
     IEnumerator ReviewTab()
@@ -203,6 +222,39 @@ public class MainMenu : MonoBehaviour
     public void StartGame()
     {
         LoadScene(StageSelector.currentStage.ToString());
+    }
+
+    public void ShowRewardedAdIcon(bool status)
+    {
+        rewardedAdButton.SetActive(status);
+    }
+
+    public IEnumerator AddCoins(int coins)
+    {
+        yield return new WaitForSeconds(0.5f);
+        Text currecyOutput = GameObject.FindGameObjectWithTag("CoinOutput").GetComponent<Text>();
+        while (!economySystem.ready) yield return new WaitForSeconds(0.05f);
+        economySystem.AddCoins(coins);
+        for (int i = 0; i < coins; i++)
+        {
+            GameObject coin = Instantiate(lootGoldCoin);
+            coin.transform.SetParent(GameObject.FindGameObjectWithTag("CurrencyUI").transform, false);
+            coin.transform.localScale = Vector3.one;
+            yield return new WaitForSeconds(0.28f);
+            coin.GetComponent<AudioSource>().Play();
+            currecyOutput.text = (Convert.ToInt32(currecyOutput.text) + 1).ToString();
+        }
+    }
+
+    public IEnumerator UpdateCoinsUI(long amount)
+    {
+        Text coinOutput = null;
+        while (coinOutput == null)
+        {
+            yield return new WaitForSeconds(0.05f);
+            coinOutput = GameObject.FindGameObjectWithTag("CoinOutput").GetComponent<Text>();
+        }
+        coinOutput.text = amount.ToString();
     }
 
     IEnumerator DelayBeforeLoad(string sceneName)

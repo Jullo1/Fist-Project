@@ -1,0 +1,24 @@
+<dependencies>
+ <unityversion>4.3.11.2</unityversion>
+   <androidPackages>
+    <androidPackage spec="com.ironsource.adapters:apsadapter:4.3.12">
+      <repositories>
+        <repository>https://android-sdk.is.com/</repository>
+      </repositories>
+    </androidPackage>
+  </androidPackages>
+    <androidPackages>
+      <androidPackage spec="com.amazon.android:aps-sdk:9.9.3+">
+        <repositories>
+          <repository>https://maven.google.com/</repository>
+        </repositories>
+      </androidPackage>
+    </androidPackages>
+  <iosPods>
+    <iosPod name="IronSourceAPSAdapter" version="4.3.13.2">
+      <sources>
+        <source>https://github.com/CocoaPods/Specs</source>
+      </sources>
+    </iosPod>
+  </iosPods>
+</dependencies>

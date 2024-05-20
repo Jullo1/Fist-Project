@@ -23,7 +23,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>Temp\bin\Debug\</OutputPath>
-    <DefineConstants>UNITY_2022_3_22;UNITY_2022_3;UNITY_2022;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_5_6_OR_NEWER;UNITY_2017_1_OR_NEWER;UNITY_2017_2_OR_NEWER;UNITY_2017_3_OR_NEWER;UNITY_2017_4_OR_NEWER;UNITY_2018_1_OR_NEWER;UNITY_2018_2_OR_NEWER;UNITY_2018_3_OR_NEWER;UNITY_2018_4_OR_NEWER;UNITY_2019_1_OR_NEWER;UNITY_2019_2_OR_NEWER;UNITY_2019_3_OR_NEWER;UNITY_2019_4_OR_NEWER;UNITY_2020_1_OR_NEWER;UNITY_2020_2_OR_NEWER;UNITY_2020_3_OR_NEWER;UNITY_2021_1_OR_NEWER;UNITY_2021_2_OR_NEWER;UNITY_2021_3_OR_NEWER;UNITY_2022_1_OR_NEWER;UNITY_2022_2_OR_NEWER;UNITY_2022_3_OR_NEWER;UNITY_INCLUDE_TESTS;ENABLE_AR;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_EVENT_QUEUE;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_TEXTURE_STREAMING;ENABLE_LZMA;ENABLE_UNITYEVENTS;ENABLE_VR;ENABLE_WEBCAM;ENABLE_UNITYWEBREQUEST;ENABLE_WWW;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_SERVICES_USE_WEBREQUEST;ENABLE_CLOUD_SERVICES_CRASH_REPORTING;ENABLE_CLOUD_SERVICES_NATIVE_CRASH_REPORTING;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_EDITOR_GAME_SERVICES;ENABLE_UNITY_GAME_SERVICES_ANALYTICS_SUPPORT;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_HUB_LICENSE;ENABLE_WEBSOCKET_CLIENT;ENABLE_GENERATE_NATIVE_PLUGINS_FOR_ASSEMBLIES_API;ENABLE_DIRECTOR_AUDIO;ENABLE_DIRECTOR_TEXTURE;ENABLE_MANAGED_JOBS;ENABLE_MANAGED_TRANSFORM_JOBS;ENABLE_MANAGED_ANIMATION_JOBS;ENABLE_MANAGED_AUDIO_JOBS;ENABLE_RUNTIME_PERMISSIONS;ENABLE_ENGINE_CODE_STRIPPING;ENABLE_ONSCREEN_KEYBOARD;ENABLE_MANAGED_UNITYTLS;INCLUDE_DYNAMIC_GI;ENABLE_SCRIPTING_GC_WBARRIERS;PLATFORM_SUPPORTS_MONO;ENABLE_VIDEO;ENABLE_ACCELERATOR_CLIENT_DEBUGGING;ENABLE_NAVIGATION_PACKAGE_DEBUG_VISUALIZATION;ENABLE_NAVIGATION_HEIGHTMESH_RUNTIME_SUPPORT;ENABLE_NAVIGATION_UI_REQUIRES_PACKAGE;PLATFORM_ANDROID;TEXTCORE_1_0_OR_NEWER;UNITY_ANDROID;UNITY_ANDROID_API;ENABLE_EGL;ENABLE_NETWORK;ENABLE_RUNTIME_GI;ENABLE_CRUNCH_TEXTURE_COMPRESSION;UNITY_CAN_SHOW_SPLASH_SCREEN;UNITY_HAS_GOOGLEVR;UNITY_HAS_TANGO;ENABLE_SPATIALTRACKING;ENABLE_ETC_COMPRESSION;PLATFORM_EXTENDS_VULKAN_DEVICE;PLATFORM_HAS_MULTIPLE_SWAPCHAINS;UNITY_ANDROID_SUPPORTS_SHADOWFILES;PLATFORM_UPDATES_TIME_OUTSIDE_OF_PLAYER_LOOP;ENABLE_UNITYADS_RUNTIME;UNITY_UNITYADS_API;ENABLE_MONO;NET_4_6;NET_UNITY_4_8;ENABLE_PROFILER;DEBUG;TRACE;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_WIN;ENABLE_UNITY_COLLECTIONS_CHECKS;ENABLE_BURST_AOT;UNITY_TEAM_LICENSE;ENABLE_CUSTOM_RENDER_TEXTURE;ENABLE_DIRECTOR;ENABLE_LOCALIZATION;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_TILEMAP;ENABLE_TIMELINE;ENABLE_INPUT_SYSTEM;ENABLE_LEGACY_INPUT_MANAGER;TEXTCORE_FONT_ENGINE_1_5_OR_NEWER;CSHARP_7_OR_LATER;CSHARP_7_3_OR_NEWER;UNITY_EDITOR_ONLY_COMPILATION</DefineConstants>
+    <DefineConstants>UNITY_2022_3_22;UNITY_2022_3;UNITY_2022;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_5_6_OR_NEWER;UNITY_2017_1_OR_NEWER;UNITY_2017_2_OR_NEWER;UNITY_2017_3_OR_NEWER;UNITY_2017_4_OR_NEWER;UNITY_2018_1_OR_NEWER;UNITY_2018_2_OR_NEWER;UNITY_2018_3_OR_NEWER;UNITY_2018_4_OR_NEWER;UNITY_2019_1_OR_NEWER;UNITY_2019_2_OR_NEWER;UNITY_2019_3_OR_NEWER;UNITY_2019_4_OR_NEWER;UNITY_2020_1_OR_NEWER;UNITY_2020_2_OR_NEWER;UNITY_2020_3_OR_NEWER;UNITY_2021_1_OR_NEWER;UNITY_2021_2_OR_NEWER;UNITY_2021_3_OR_NEWER;UNITY_2022_1_OR_NEWER;UNITY_2022_2_OR_NEWER;UNITY_2022_3_OR_NEWER;UNITY_INCLUDE_TESTS;ENABLE_AR;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_EVENT_QUEUE;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_TEXTURE_STREAMING;ENABLE_LZMA;ENABLE_UNITYEVENTS;ENABLE_VR;ENABLE_WEBCAM;ENABLE_UNITYWEBREQUEST;ENABLE_WWW;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_SERVICES_USE_WEBREQUEST;ENABLE_CLOUD_SERVICES_CRASH_REPORTING;ENABLE_CLOUD_SERVICES_NATIVE_CRASH_REPORTING;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_EDITOR_GAME_SERVICES;ENABLE_UNITY_GAME_SERVICES_ANALYTICS_SUPPORT;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_HUB_LICENSE;ENABLE_WEBSOCKET_CLIENT;ENABLE_GENERATE_NATIVE_PLUGINS_FOR_ASSEMBLIES_API;ENABLE_DIRECTOR_AUDIO;ENABLE_DIRECTOR_TEXTURE;ENABLE_MANAGED_JOBS;ENABLE_MANAGED_TRANSFORM_JOBS;ENABLE_MANAGED_ANIMATION_JOBS;ENABLE_MANAGED_AUDIO_JOBS;ENABLE_RUNTIME_PERMISSIONS;ENABLE_ENGINE_CODE_STRIPPING;ENABLE_ONSCREEN_KEYBOARD;ENABLE_MANAGED_UNITYTLS;INCLUDE_DYNAMIC_GI;ENABLE_SCRIPTING_GC_WBARRIERS;PLATFORM_SUPPORTS_MONO;ENABLE_VIDEO;ENABLE_ACCELERATOR_CLIENT_DEBUGGING;ENABLE_NAVIGATION_PACKAGE_DEBUG_VISUALIZATION;ENABLE_NAVIGATION_HEIGHTMESH_RUNTIME_SUPPORT;ENABLE_NAVIGATION_UI_REQUIRES_PACKAGE;PLATFORM_ANDROID;TEXTCORE_1_0_OR_NEWER;UNITY_ANDROID;UNITY_ANDROID_API;ENABLE_EGL;ENABLE_NETWORK;ENABLE_RUNTIME_GI;ENABLE_CRUNCH_TEXTURE_COMPRESSION;UNITY_CAN_SHOW_SPLASH_SCREEN;UNITY_HAS_GOOGLEVR;UNITY_HAS_TANGO;ENABLE_SPATIALTRACKING;ENABLE_ETC_COMPRESSION;PLATFORM_EXTENDS_VULKAN_DEVICE;PLATFORM_HAS_MULTIPLE_SWAPCHAINS;UNITY_ANDROID_SUPPORTS_SHADOWFILES;PLATFORM_UPDATES_TIME_OUTSIDE_OF_PLAYER_LOOP;ENABLE_UNITYADS_RUNTIME;UNITY_UNITYADS_API;ENABLE_MONO;NET_4_6;NET_UNITY_4_8;ENABLE_PROFILER;DEBUG;TRACE;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_WIN;ENABLE_UNITY_COLLECTIONS_CHECKS;ENABLE_BURST_AOT;UNITY_TEAM_LICENSE;ENABLE_CUSTOM_RENDER_TEXTURE;ENABLE_DIRECTOR;ENABLE_LOCALIZATION;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_TILEMAP;ENABLE_TIMELINE;ENABLE_INPUT_SYSTEM;ENABLE_LEGACY_INPUT_MANAGER;TEXTCORE_FONT_ENGINE_1_5_OR_NEWER;LEVELPLAY_DEPENDENCIES_INSTALLED;CSHARP_7_OR_LATER;CSHARP_7_3_OR_NEWER;UNITY_EDITOR_ONLY_COMPILATION</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <NoWarn>0169;USG0001</NoWarn>
@@ -62,87 +62,87 @@
   <ItemGroup>
     <Compile Include="Assets\GooglePlayPlugins\com.google.android.appbundle\Editor\Scripts\Internal\BuildTools\IBuildTool.cs" />
     <Compile Include="Assets\GooglePlayPlugins\com.google.android.appbundle\Editor\Scripts\Internal\Config\SerializableMultiTargetingAssetPack.cs" />
-    <Compile Include="Assets\GooglePlayPlugins\com.google.android.appbundle\Editor\Scripts\Internal\BuiltInPadHelper.cs" />
     <Compile Include="Assets\GooglePlayPlugins\com.google.android.appbundle\Editor\Scripts\Internal\BuildSettingsWindow.cs" />
-    <Compile Include="Assets\GooglePlayPlugins\com.google.android.appbundle\Editor\Scripts\Internal\PlayServices\CommandLine.cs" />
     <Compile Include="Assets\GooglePlayPlugins\com.google.android.appbundle\Editor\Scripts\Internal\CreateBundleOptions.cs" />
     <Compile Include="Assets\GooglePlayPlugins\com.google.android.appbundle\Editor\Scripts\Internal\AppBundlePublisher.cs" />
+    <Compile Include="Assets\GooglePlayPlugins\com.google.android.appbundle\Editor\Scripts\Internal\Utils\CommandLineParameters.cs" />
+    <Compile Include="Assets\GooglePlayPlugins\com.google.android.appbundle\Editor\Scripts\Internal\BuildTools\ApkSigner.cs" />
+    <Compile Include="Assets\GooglePlayPlugins\com.google.android.appbundle\Editor\Scripts\Internal\PlayServices\PlayServicesResolver.cs" />
+    <Compile Include="Assets\GooglePlayPlugins\com.google.android.appbundle\Editor\Scripts\Internal\AssetPacks\IAssetPackValidator.cs" />
+    <Compile Include="Assets\GooglePlayPlugins\com.google.android.appbundle\Editor\Scripts\Internal\BuildTools\ReleaseBuildHelper.cs" />
+    <Compile Include="Assets\GooglePlayPlugins\com.google.android.appbundle\Editor\Scripts\Internal\AssetPackManifestTransformerRegistry.cs" />
+    <Compile Include="Assets\GooglePlayPlugins\com.google.android.appbundle\Editor\Scripts\Internal\Config\SerializableAssetPackConfig.cs" />
+    <Compile Include="Assets\GooglePlayPlugins\com.google.android.appbundle\Editor\Scripts\Internal\AssetPacks\AssetBundleFolder.cs" />
+    <Compile Include="Assets\GooglePlayPlugins\com.google.android.appbundle\Editor\Scripts\Internal\BuildTools\PostBuildTask.cs" />
+    <Compile Include="Assets\GooglePlayPlugins\com.google.android.appbundle\Editor\Scripts\Internal\PlayServices\TextAreaDialog.cs" />
+    <Compile Include="Assets\GooglePlayPlugins\com.google.android.appbundle\Editor\Scripts\Internal\BuildTools\AndroidAssetPackagingTool.cs" />
+    <Compile Include="Assets\GooglePlayPlugins\com.google.android.appbundle\Editor\Scripts\Internal\BuildTools\ZipUtils.cs" />
+    <Compile Include="Assets\GooglePlayPlugins\com.google.android.appbundle\Editor\Scripts\Internal\Config\SerializableMultiTargetingAssetBundle.cs" />
+    <Compile Include="Assets\GooglePlayPlugins\com.google.android.appbundle\Editor\Scripts\Internal\Config\SerializableAssetPack.cs" />
+    <Compile Include="Assets\GooglePlayPlugins\com.google.android.appbundle\Editor\Scripts\Internal\AndroidManifest\AssetPackManifestHelper.cs" />
+    <Compile Include="Assets\GooglePlayPlugins\com.google.android.appbundle\Editor\Scripts\Internal\BuildTools\JavaUtils.cs" />
+    <Compile Include="Assets\GooglePlayPlugins\com.google.android.appbundle\Editor\Scripts\Internal\AssetPacks\TextureTargetingTools.cs" />
+    <Compile Include="Assets\GooglePlayPlugins\com.google.android.appbundle\Editor\Scripts\Internal\BuildTools\BuildToolNotInitializedException.cs" />
+    <Compile Include="Assets\GooglePlayPlugins\com.google.android.appbundle\Editor\Scripts\Internal\BuildTools\AndroidBuildTools.cs" />
+    <Compile Include="Assets\GooglePlayPlugins\com.google.android.appbundle\Editor\Scripts\AndroidBuildHelper.cs" />
+    <Compile Include="Assets\GooglePlayPlugins\com.google.android.appbundle\Editor\Scripts\AndroidBuildException.cs" />
+    <Compile Include="Assets\GooglePlayPlugins\com.google.android.appbundle\Editor\Scripts\CompressionOptions.cs" />
+    <Compile Include="Assets\GooglePlayPlugins\com.google.android.appbundle\Editor\Scripts\Internal\Config\SerializableTargetedDirectoryPath.cs" />
+    <Compile Include="Assets\GooglePlayPlugins\com.google.android.appbundle\Editor\Scripts\Internal\AssetPacks\AssetDeliveryConfig.cs" />
+    <Compile Include="Assets\GooglePlayPlugins\com.google.android.appbundle\Editor\Scripts\AssetBundleBuilder.cs" />
+    <Compile Include="Assets\GooglePlayPlugins\com.google.android.appbundle\Editor\Scripts\Internal\BuildTools\AppBundleRunner.cs" />
+    <Compile Include="Assets\GooglePlayPlugins\com.google.android.appbundle\Editor\Scripts\Internal\Utils\EmptyDictionary.cs" />
+    <Compile Include="Assets\GooglePlayPlugins\com.google.android.appbundle\Editor\Scripts\Internal\AssetPacks\AssetBundleVariant.cs" />
+    <Compile Include="Assets\GooglePlayPlugins\com.google.android.appbundle\Editor\Scripts\AndroidAppBundle.cs" />
+    <Compile Include="Assets\GooglePlayPlugins\com.google.android.appbundle\Editor\Scripts\Internal\BuildAndRunner.cs" />
+    <Compile Include="Assets\GooglePlayPlugins\com.google.android.appbundle\Editor\Scripts\AssetPackConfigSerializer.cs" />
+    <Compile Include="Assets\GooglePlayPlugins\com.google.android.appbundle\Editor\Scripts\Internal\Utils\PostBuildCommandLineDialog.cs" />
+    <Compile Include="Assets\GooglePlayPlugins\com.google.android.appbundle\Editor\Scripts\Internal\BuiltInPadHelper.cs" />
+    <Compile Include="Assets\GooglePlayPlugins\com.google.android.appbundle\Editor\Scripts\Internal\PlayServices\CommandLine.cs" />
     <Compile Include="Assets\GooglePlayPlugins\com.google.android.appbundle\Editor\Scripts\Internal\AssetPacks\AssetDeliveryWindow.cs" />
     <Compile Include="Assets\GooglePlayPlugins\com.google.android.appbundle\Editor\Scripts\Internal\AndroidManifest\IAssetPackManifestTransformer.cs" />
     <Compile Include="Assets\GooglePlayPlugins\com.google.android.appbundle\Editor\Scripts\Internal\Utils\NameAndDescriptionAttribute.cs" />
     <Compile Include="Assets\GooglePlayPlugins\com.google.android.appbundle\Editor\Scripts\Internal\BuildTools\AndroidSdkPlatform.cs" />
-    <Compile Include="Assets\GooglePlayPlugins\com.google.android.appbundle\Editor\Scripts\Internal\Utils\CommandLineParameters.cs" />
     <Compile Include="Assets\GooglePlayPlugins\com.google.android.appbundle\Editor\Scripts\Internal\Config\SerializableAssetBundle.cs" />
     <Compile Include="Assets\GooglePlayPlugins\com.google.android.appbundle\Editor\Scripts\AndroidBuildOptions.cs" />
-    <Compile Include="Assets\GooglePlayPlugins\com.google.android.appbundle\Editor\Scripts\Internal\BuildTools\ApkSigner.cs" />
-    <Compile Include="Assets\GooglePlayPlugins\com.google.android.appbundle\Editor\Scripts\Internal\PlayServices\PlayServicesResolver.cs" />
     <Compile Include="Assets\GooglePlayPlugins\com.google.android.appbundle\Editor\Scripts\Internal\PlayServices\CommandLineDialog.cs" />
-    <Compile Include="Assets\GooglePlayPlugins\com.google.android.appbundle\Editor\Scripts\Internal\AssetPacks\IAssetPackValidator.cs" />
     <Compile Include="Assets\GooglePlayPlugins\com.google.android.appbundle\Editor\Scripts\AssetPackDeliveryMode.cs" />
     <Compile Include="Assets\GooglePlayPlugins\com.google.android.appbundle\Editor\Scripts\Internal\BuildTools\BundletoolExtensions.cs" />
     <Compile Include="Assets\GooglePlayPlugins\com.google.android.appbundle\Editor\Scripts\Internal\AssetPacks\AssetPackValidatorRegistry.cs" />
     <Compile Include="Assets\GooglePlayPlugins\com.google.android.appbundle\Editor\Scripts\Internal\BuildTools\BundletoolHelper.cs" />
-    <Compile Include="Assets\GooglePlayPlugins\com.google.android.appbundle\Editor\Scripts\Internal\BuildTools\ReleaseBuildHelper.cs" />
-    <Compile Include="Assets\GooglePlayPlugins\com.google.android.appbundle\Editor\Scripts\Internal\AssetPackManifestTransformerRegistry.cs" />
-    <Compile Include="Assets\GooglePlayPlugins\com.google.android.appbundle\Editor\Scripts\Internal\Config\SerializableAssetPackConfig.cs" />
     <Compile Include="Assets\GooglePlayPlugins\com.google.android.appbundle\Editor\Scripts\Internal\AndroidManifest\ManifestConstants.cs" />
     <Compile Include="Assets\GooglePlayPlugins\com.google.android.appbundle\Editor\Scripts\Internal\BuildTools\AndroidDebugBridge.cs" />
     <Compile Include="Assets\GooglePlayPlugins\com.google.android.appbundle\Editor\Scripts\Internal\PlayServices\AndroidSdkManager.cs" />
     <Compile Include="Assets\GooglePlayPlugins\com.google.android.appbundle\Editor\Scripts\Internal\BuildTools\JarSigner.cs" />
     <Compile Include="Assets\GooglePlayPlugins\com.google.android.appbundle\Editor\Scripts\Internal\DeprecatedAarDetector.cs" />
     <Compile Include="Assets\GooglePlayPlugins\com.google.android.appbundle\Editor\Scripts\Internal\BuildTools\BundletoolConfig.cs" />
-    <Compile Include="Assets\GooglePlayPlugins\com.google.android.appbundle\Editor\Scripts\Internal\AssetPacks\AssetBundleFolder.cs" />
     <Compile Include="Assets\GooglePlayPlugins\com.google.android.appbundle\Editor\Scripts\Internal\AssetPacks\AssetPackError.cs" />
-    <Compile Include="Assets\GooglePlayPlugins\com.google.android.appbundle\Editor\Scripts\Internal\BuildTools\PostBuildTask.cs" />
     <Compile Include="Assets\GooglePlayPlugins\com.google.android.appbundle\Editor\Scripts\Internal\IBuildModeProvider.cs" />
-    <Compile Include="Assets\GooglePlayPlugins\com.google.android.appbundle\Editor\Scripts\Internal\PlayServices\TextAreaDialog.cs" />
     <Compile Include="Assets\GooglePlayPlugins\com.google.android.appbundle\Editor\Scripts\Internal\BuildTools\PostBuildRunner.cs" />
-    <Compile Include="Assets\GooglePlayPlugins\com.google.android.appbundle\Editor\Scripts\Internal\BuildTools\AndroidAssetPackagingTool.cs" />
-    <Compile Include="Assets\GooglePlayPlugins\com.google.android.appbundle\Editor\Scripts\Internal\BuildTools\ZipUtils.cs" />
     <Compile Include="Assets\GooglePlayPlugins\com.google.android.appbundle\Editor\Scripts\Internal\BuildTools\AndroidBuilder.cs" />
     <Compile Include="Assets\GooglePlayPlugins\com.google.android.appbundle\Editor\Scripts\Internal\BuildTools\AndroidSdk.cs" />
     <Compile Include="Assets\GooglePlayPlugins\com.google.android.appbundle\Editor\Scripts\Internal\Utils\WindowUtils.cs" />
-    <Compile Include="Assets\GooglePlayPlugins\com.google.android.appbundle\Editor\Scripts\Internal\Config\SerializableMultiTargetingAssetBundle.cs" />
     <Compile Include="Assets\GooglePlayPlugins\com.google.android.appbundle\Editor\Scripts\Internal\Utils\AndroidSdkPackageInstaller.cs" />
-    <Compile Include="Assets\GooglePlayPlugins\com.google.android.appbundle\Editor\Scripts\Internal\Config\SerializableAssetPack.cs" />
     <Compile Include="Assets\GooglePlayPlugins\com.google.android.appbundle\Editor\Scripts\AssetPackConfig.cs" />
     <Compile Include="Assets\GooglePlayPlugins\com.google.android.appbundle\Editor\Scripts\Internal\GoogleMenuItems.cs" />
-    <Compile Include="Assets\GooglePlayPlugins\com.google.android.appbundle\Editor\Scripts\Internal\AndroidManifest\AssetPackManifestHelper.cs" />
     <Compile Include="Assets\GooglePlayPlugins\com.google.android.appbundle\Editor\Scripts\Internal\AssetPacks\AssetPackFolderState.cs" />
     <Compile Include="Assets\GooglePlayPlugins\com.google.android.appbundle\Editor\Scripts\Internal\AssetPacks\AssetBundlePack.cs" />
-    <Compile Include="Assets\GooglePlayPlugins\com.google.android.appbundle\Editor\Scripts\Internal\BuildTools\JavaUtils.cs" />
     <Compile Include="Assets\GooglePlayPlugins\com.google.android.appbundle\Editor\Scripts\Internal\Config\AndroidBuildConfiguration.cs" />
     <Compile Include="Assets\GooglePlayPlugins\com.google.android.appbundle\Editor\Scripts\Internal\AppBundleEditorMenu.cs" />
     <Compile Include="Assets\GooglePlayPlugins\com.google.android.appbundle\Editor\Scripts\Internal\PlayCoreConflictDetector.cs" />
-    <Compile Include="Assets\GooglePlayPlugins\com.google.android.appbundle\Editor\Scripts\Internal\AssetPacks\TextureTargetingTools.cs" />
-    <Compile Include="Assets\GooglePlayPlugins\com.google.android.appbundle\Editor\Scripts\Internal\BuildTools\BuildToolNotInitializedException.cs" />
-    <Compile Include="Assets\GooglePlayPlugins\com.google.android.appbundle\Editor\Scripts\Internal\BuildTools\AndroidBuildTools.cs" />
-    <Compile Include="Assets\GooglePlayPlugins\com.google.android.appbundle\Editor\Scripts\AndroidBuildHelper.cs" />
     <Compile Include="Assets\GooglePlayPlugins\com.google.android.appbundle\Editor\Scripts\AssetPack.cs" />
     <Compile Include="Assets\GooglePlayPlugins\com.google.android.appbundle\Editor\Scripts\Internal\BuildTools\AppBundleBuilder.cs" />
-    <Compile Include="Assets\GooglePlayPlugins\com.google.android.appbundle\Editor\Scripts\AndroidBuildException.cs" />
     <Compile Include="Assets\GooglePlayPlugins\com.google.android.appbundle\Editor\Scripts\Internal\Utils\EmptyCollection.cs" />
-    <Compile Include="Assets\GooglePlayPlugins\com.google.android.appbundle\Editor\Scripts\CompressionOptions.cs" />
     <Compile Include="Assets\GooglePlayPlugins\com.google.android.appbundle\Editor\Scripts\Internal\Config\SerializationHelper.cs" />
-    <Compile Include="Assets\GooglePlayPlugins\com.google.android.appbundle\Editor\Scripts\Internal\Config\SerializableTargetedDirectoryPath.cs" />
     <Compile Include="Assets\GooglePlayPlugins\com.google.android.appbundle\Editor\Scripts\Internal\BuildTools\BuildToolLogger.cs" />
-    <Compile Include="Assets\GooglePlayPlugins\com.google.android.appbundle\Editor\Scripts\Internal\AssetPacks\AssetDeliveryConfig.cs" />
     <Compile Include="Assets\GooglePlayPlugins\com.google.android.appbundle\Editor\Scripts\AndroidBuildReport.cs" />
     <Compile Include="Assets\GooglePlayPlugins\com.google.android.appbundle\Editor\Scripts\Internal\IBuildAndRunExtension.cs" />
     <Compile Include="Assets\GooglePlayPlugins\com.google.android.appbundle\Editor\Scripts\Bundletool.cs" />
-    <Compile Include="Assets\GooglePlayPlugins\com.google.android.appbundle\Editor\Scripts\AssetBundleBuilder.cs" />
     <Compile Include="Assets\GooglePlayPlugins\com.google.android.appbundle\Editor\Scripts\Internal\AssetPacks\AssetDeliveryConfigSerializer.cs" />
     <Compile Include="Assets\GooglePlayPlugins\com.google.android.appbundle\Editor\Scripts\Internal\AndroidArchitectureHelper.cs" />
     <Compile Include="Assets\GooglePlayPlugins\com.google.android.appbundle\Editor\Scripts\BundletoolBuildMode.cs" />
-    <Compile Include="Assets\GooglePlayPlugins\com.google.android.appbundle\Editor\Scripts\Internal\BuildTools\AppBundleRunner.cs" />
-    <Compile Include="Assets\GooglePlayPlugins\com.google.android.appbundle\Editor\Scripts\Internal\Utils\EmptyDictionary.cs" />
-    <Compile Include="Assets\GooglePlayPlugins\com.google.android.appbundle\Editor\Scripts\Internal\AssetPacks\AssetBundleVariant.cs" />
-    <Compile Include="Assets\GooglePlayPlugins\com.google.android.appbundle\Editor\Scripts\AndroidAppBundle.cs" />
     <Compile Include="Assets\GooglePlayPlugins\com.google.android.appbundle\Editor\Scripts\Internal\Registry.cs" />
-    <Compile Include="Assets\GooglePlayPlugins\com.google.android.appbundle\Editor\Scripts\Internal\BuildAndRunner.cs" />
     <Compile Include="Assets\GooglePlayPlugins\com.google.android.appbundle\Editor\Scripts\Internal\PlayServices\Logger.cs" />
-    <Compile Include="Assets\GooglePlayPlugins\com.google.android.appbundle\Editor\Scripts\AssetPackConfigSerializer.cs" />
-    <Compile Include="Assets\GooglePlayPlugins\com.google.android.appbundle\Editor\Scripts\Internal\Utils\PostBuildCommandLineDialog.cs" />
     <Compile Include="Assets\GooglePlayPlugins\com.google.android.appbundle\Editor\Scripts\Internal\Utils\RegexHelper.cs" />
     <Compile Include="Assets\GooglePlayPlugins\com.google.android.appbundle\Editor\Scripts\TextureCompressionFormat.cs" />
   </ItemGroup>
@@ -548,6 +548,10 @@
     </Reference>
     <Reference Include="Unity.VisualScripting.Antlr3.Runtime">
       <HintPath>Library\PackageCache\com.unity.visualscripting@1.9.2\Runtime\VisualScripting.Flow\Dependencies\NCalc\Unity.VisualScripting.Antlr3.Runtime.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>Library\PackageCache\com.unity.nuget.newtonsoft-json@3.2.1\Runtime\Newtonsoft.Json.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.VisualScripting.TextureAssets">

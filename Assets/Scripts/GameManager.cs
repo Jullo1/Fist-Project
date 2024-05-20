@@ -49,6 +49,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] Image experienceUI;
     [SerializeField] Selectable invisibleButton;
     [SerializeField] OnScreenButton mobileButton;
+    [SerializeField] Animator levelUpCoin;
+    Text lootedCoins;
 
     [SerializeField] GameObject levelUpWindow;
     [SerializeField] Text option1Text; int option1Value;
@@ -60,11 +62,14 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
+        ScoreKeeper.coins = 0;
+        ScoreKeeper.score = 0;
         player = FindAnyObjectByType<Player>();
         menuAudio = GetComponent<AudioSource>();
         backgroundMusic = GameObject.FindGameObjectWithTag("Floor").GetComponent<AudioSource>();
         tutorial = FindAnyObjectByType<Tutorial>();
         mobileButton = FindObjectOfType<OnScreenButton>();
+        lootedCoins = GameObject.FindGameObjectWithTag("CoinOutput").GetComponent<Text>();
 
         backgroundMusic.time = audioProgress;
 
@@ -199,6 +204,14 @@ public class GameManager : MonoBehaviour
         SetupLevelUpOptions();
         levelUpWindow.SetActive(true);
         invisibleButton.Select();
+        levelUpCoin.SetTrigger("levelUp");
+        GainCoins(1);
+    }
+
+    public void GainCoins(int amount)
+    {
+        ScoreKeeper.coins += amount;
+        lootedCoins.text = ScoreKeeper.coins.ToString();
     }
 
     IEnumerator FreezeUI()

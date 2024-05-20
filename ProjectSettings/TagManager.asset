@@ -8,6 +8,8 @@ TagManager:
   - Floor
   - PlayerHealthBar
   - Score Bubble
+  - CoinOutput
+  - CurrencyUI
   layers:
   - Default
   - TransparentFX

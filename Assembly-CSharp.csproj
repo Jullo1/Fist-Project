@@ -23,7 +23,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>Temp\bin\Debug\</OutputPath>
-    <DefineConstants>UNITY_2022_3_22;UNITY_2022_3;UNITY_2022;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_5_6_OR_NEWER;UNITY_2017_1_OR_NEWER;UNITY_2017_2_OR_NEWER;UNITY_2017_3_OR_NEWER;UNITY_2017_4_OR_NEWER;UNITY_2018_1_OR_NEWER;UNITY_2018_2_OR_NEWER;UNITY_2018_3_OR_NEWER;UNITY_2018_4_OR_NEWER;UNITY_2019_1_OR_NEWER;UNITY_2019_2_OR_NEWER;UNITY_2019_3_OR_NEWER;UNITY_2019_4_OR_NEWER;UNITY_2020_1_OR_NEWER;UNITY_2020_2_OR_NEWER;UNITY_2020_3_OR_NEWER;UNITY_2021_1_OR_NEWER;UNITY_2021_2_OR_NEWER;UNITY_2021_3_OR_NEWER;UNITY_2022_1_OR_NEWER;UNITY_2022_2_OR_NEWER;UNITY_2022_3_OR_NEWER;UNITY_INCLUDE_TESTS;ENABLE_AR;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_EVENT_QUEUE;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_TEXTURE_STREAMING;ENABLE_LZMA;ENABLE_UNITYEVENTS;ENABLE_VR;ENABLE_WEBCAM;ENABLE_UNITYWEBREQUEST;ENABLE_WWW;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_SERVICES_USE_WEBREQUEST;ENABLE_CLOUD_SERVICES_CRASH_REPORTING;ENABLE_CLOUD_SERVICES_NATIVE_CRASH_REPORTING;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_EDITOR_GAME_SERVICES;ENABLE_UNITY_GAME_SERVICES_ANALYTICS_SUPPORT;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_HUB_LICENSE;ENABLE_WEBSOCKET_CLIENT;ENABLE_GENERATE_NATIVE_PLUGINS_FOR_ASSEMBLIES_API;ENABLE_DIRECTOR_AUDIO;ENABLE_DIRECTOR_TEXTURE;ENABLE_MANAGED_JOBS;ENABLE_MANAGED_TRANSFORM_JOBS;ENABLE_MANAGED_ANIMATION_JOBS;ENABLE_MANAGED_AUDIO_JOBS;ENABLE_RUNTIME_PERMISSIONS;ENABLE_ENGINE_CODE_STRIPPING;ENABLE_ONSCREEN_KEYBOARD;ENABLE_MANAGED_UNITYTLS;INCLUDE_DYNAMIC_GI;ENABLE_SCRIPTING_GC_WBARRIERS;PLATFORM_SUPPORTS_MONO;ENABLE_VIDEO;ENABLE_ACCELERATOR_CLIENT_DEBUGGING;ENABLE_NAVIGATION_PACKAGE_DEBUG_VISUALIZATION;ENABLE_NAVIGATION_HEIGHTMESH_RUNTIME_SUPPORT;ENABLE_NAVIGATION_UI_REQUIRES_PACKAGE;PLATFORM_ANDROID;TEXTCORE_1_0_OR_NEWER;UNITY_ANDROID;UNITY_ANDROID_API;ENABLE_EGL;ENABLE_NETWORK;ENABLE_RUNTIME_GI;ENABLE_CRUNCH_TEXTURE_COMPRESSION;UNITY_CAN_SHOW_SPLASH_SCREEN;UNITY_HAS_GOOGLEVR;UNITY_HAS_TANGO;ENABLE_SPATIALTRACKING;ENABLE_ETC_COMPRESSION;PLATFORM_EXTENDS_VULKAN_DEVICE;PLATFORM_HAS_MULTIPLE_SWAPCHAINS;UNITY_ANDROID_SUPPORTS_SHADOWFILES;PLATFORM_UPDATES_TIME_OUTSIDE_OF_PLAYER_LOOP;ENABLE_UNITYADS_RUNTIME;UNITY_UNITYADS_API;ENABLE_MONO;NET_STANDARD_2_0;NET_STANDARD;NET_STANDARD_2_1;NETSTANDARD;NETSTANDARD2_1;ENABLE_PROFILER;DEBUG;TRACE;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_WIN;ENABLE_UNITY_COLLECTIONS_CHECKS;ENABLE_BURST_AOT;UNITY_TEAM_LICENSE;ENABLE_CUSTOM_RENDER_TEXTURE;ENABLE_DIRECTOR;ENABLE_LOCALIZATION;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_TILEMAP;ENABLE_TIMELINE;ENABLE_INPUT_SYSTEM;ENABLE_LEGACY_INPUT_MANAGER;TEXTCORE_FONT_ENGINE_1_5_OR_NEWER;CSHARP_7_OR_LATER;CSHARP_7_3_OR_NEWER</DefineConstants>
+    <DefineConstants>UNITY_2022_3_22;UNITY_2022_3;UNITY_2022;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_5_6_OR_NEWER;UNITY_2017_1_OR_NEWER;UNITY_2017_2_OR_NEWER;UNITY_2017_3_OR_NEWER;UNITY_2017_4_OR_NEWER;UNITY_2018_1_OR_NEWER;UNITY_2018_2_OR_NEWER;UNITY_2018_3_OR_NEWER;UNITY_2018_4_OR_NEWER;UNITY_2019_1_OR_NEWER;UNITY_2019_2_OR_NEWER;UNITY_2019_3_OR_NEWER;UNITY_2019_4_OR_NEWER;UNITY_2020_1_OR_NEWER;UNITY_2020_2_OR_NEWER;UNITY_2020_3_OR_NEWER;UNITY_2021_1_OR_NEWER;UNITY_2021_2_OR_NEWER;UNITY_2021_3_OR_NEWER;UNITY_2022_1_OR_NEWER;UNITY_2022_2_OR_NEWER;UNITY_2022_3_OR_NEWER;UNITY_INCLUDE_TESTS;ENABLE_AR;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_EVENT_QUEUE;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_TEXTURE_STREAMING;ENABLE_LZMA;ENABLE_UNITYEVENTS;ENABLE_VR;ENABLE_WEBCAM;ENABLE_UNITYWEBREQUEST;ENABLE_WWW;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_SERVICES_USE_WEBREQUEST;ENABLE_CLOUD_SERVICES_CRASH_REPORTING;ENABLE_CLOUD_SERVICES_NATIVE_CRASH_REPORTING;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_EDITOR_GAME_SERVICES;ENABLE_UNITY_GAME_SERVICES_ANALYTICS_SUPPORT;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_HUB_LICENSE;ENABLE_WEBSOCKET_CLIENT;ENABLE_GENERATE_NATIVE_PLUGINS_FOR_ASSEMBLIES_API;ENABLE_DIRECTOR_AUDIO;ENABLE_DIRECTOR_TEXTURE;ENABLE_MANAGED_JOBS;ENABLE_MANAGED_TRANSFORM_JOBS;ENABLE_MANAGED_ANIMATION_JOBS;ENABLE_MANAGED_AUDIO_JOBS;ENABLE_RUNTIME_PERMISSIONS;ENABLE_ENGINE_CODE_STRIPPING;ENABLE_ONSCREEN_KEYBOARD;ENABLE_MANAGED_UNITYTLS;INCLUDE_DYNAMIC_GI;ENABLE_SCRIPTING_GC_WBARRIERS;PLATFORM_SUPPORTS_MONO;ENABLE_VIDEO;ENABLE_ACCELERATOR_CLIENT_DEBUGGING;ENABLE_NAVIGATION_PACKAGE_DEBUG_VISUALIZATION;ENABLE_NAVIGATION_HEIGHTMESH_RUNTIME_SUPPORT;ENABLE_NAVIGATION_UI_REQUIRES_PACKAGE;PLATFORM_ANDROID;TEXTCORE_1_0_OR_NEWER;UNITY_ANDROID;UNITY_ANDROID_API;ENABLE_EGL;ENABLE_NETWORK;ENABLE_RUNTIME_GI;ENABLE_CRUNCH_TEXTURE_COMPRESSION;UNITY_CAN_SHOW_SPLASH_SCREEN;UNITY_HAS_GOOGLEVR;UNITY_HAS_TANGO;ENABLE_SPATIALTRACKING;ENABLE_ETC_COMPRESSION;PLATFORM_EXTENDS_VULKAN_DEVICE;PLATFORM_HAS_MULTIPLE_SWAPCHAINS;UNITY_ANDROID_SUPPORTS_SHADOWFILES;PLATFORM_UPDATES_TIME_OUTSIDE_OF_PLAYER_LOOP;ENABLE_UNITYADS_RUNTIME;UNITY_UNITYADS_API;ENABLE_MONO;NET_STANDARD_2_0;NET_STANDARD;NET_STANDARD_2_1;NETSTANDARD;NETSTANDARD2_1;ENABLE_PROFILER;DEBUG;TRACE;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_WIN;ENABLE_UNITY_COLLECTIONS_CHECKS;ENABLE_BURST_AOT;UNITY_TEAM_LICENSE;ENABLE_CUSTOM_RENDER_TEXTURE;ENABLE_DIRECTOR;ENABLE_LOCALIZATION;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_TILEMAP;ENABLE_TIMELINE;ENABLE_INPUT_SYSTEM;ENABLE_LEGACY_INPUT_MANAGER;TEXTCORE_FONT_ENGINE_1_5_OR_NEWER;LEVELPLAY_DEPENDENCIES_INSTALLED;CSHARP_7_OR_LATER;CSHARP_7_3_OR_NEWER</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <NoWarn>0169;USG0001</NoWarn>
@@ -60,74 +60,29 @@
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\Unity 2022.3.22f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\Entity.cs" />
-    <Compile Include="Assets\IronSource\Scripts\IUnitySegment.cs" />
-    <Compile Include="Assets\Scripts\Specific\EndGameScoreOutput.cs" />
-    <Compile Include="Assets\IronSource\Scripts\IronSourceImpressionData.cs" />
-    <Compile Include="Assets\IronSource\Scripts\IronSourceImpressionDataAndroid.cs" />
-    <Compile Include="Assets\IronSource\Scripts\IronSourceOfferwallAndroid.cs" />
-    <Compile Include="Assets\IronSource\Scripts\IronSourcePlacement.cs" />
-    <Compile Include="Assets\IronSource\Scripts\IronSourceInterstitialLevelPlayAndroid.cs" />
-    <Compile Include="Assets\IronSource\Scripts\IUnityRewardedVideo.cs" />
-    <Compile Include="Assets\Scripts\Enemy.cs" />
-    <Compile Include="Assets\IronSource\Scripts\IronSourceSegmentAndroid.cs" />
-    <Compile Include="Assets\IronSource\Scripts\WaterfallConfiguration.cs" />
-    <Compile Include="Assets\IronSource\Scripts\IronSourceIAgent.cs" />
-    <Compile Include="Assets\IronSource\Scripts\UnsupportedPlatformAgent.cs" />
-    <Compile Include="Assets\IronSource\Scripts\IronSourceBannerEvents.cs" />
-    <Compile Include="Assets\Scripts\Specific\PassthroughEnemies.cs" />
     <Compile Include="Assets\Scripts\Specific\GameVersion.cs" />
-    <Compile Include="Assets\IronSource\Scripts\IUnityBanner.cs" />
-    <Compile Include="Assets\IronSource\Scripts\IUnityRewardedVideoManual.cs" />
-    <Compile Include="Assets\IronSource\Scripts\IUnityLevelPlayInterstitial.cs" />
-    <Compile Include="Assets\IronSource\Scripts\IronSourceEventsDispatcher.cs" />
-    <Compile Include="Assets\IronSource\Scripts\IUnityImpressionData.cs" />
-    <Compile Include="Assets\IronSource\Scripts\IUnityInterstitial.cs" />
     <Compile Include="Assets\Scripts\TouchStickVisual.cs" />
-    <Compile Include="Assets\Scripts\InputManager.cs" />
-    <Compile Include="Assets\IronSource\Scripts\IronSourceMediationSettings.cs" />
-    <Compile Include="Assets\IronSource\Scripts\IronSourceBannerAndroid.cs" />
     <Compile Include="Assets\Scripts\MainMenu.cs" />
-    <Compile Include="Assets\IronSource\Scripts\IronSourceConstants.cs" />
-    <Compile Include="Assets\IronSource\DemoScene\IronSourceDemoScript.cs" />
-    <Compile Include="Assets\IronSource\Scripts\IronSource.cs" />
-    <Compile Include="Assets\Scripts\Tutorial.cs" />
-    <Compile Include="Assets\IronSource\Scripts\iOSAgent.cs" />
-    <Compile Include="Assets\Scripts\Player.cs" />
-    <Compile Include="Assets\IronSource\Scripts\IronSourceRewardedVideoManualAndroid.cs" />
-    <Compile Include="Assets\Scripts\GameManager.cs" />
-    <Compile Include="Assets\Scripts\PowerUp.cs" />
     <Compile Include="Assets\Scripts\ScrollingBackground.cs" />
-    <Compile Include="Assets\Scripts\Specific\Announcement.cs" />
-    <Compile Include="Assets\IronSource\Scripts\IronSourceRewardedVideoAndroid.cs" />
     <Compile Include="Assets\Scripts\SkinSelector.cs" />
     <Compile Include="Assets\Scripts\Unit.cs" />
-    <Compile Include="Assets\IronSource\Scripts\IUnityLevelPlayRewardedVideoManual.cs" />
-    <Compile Include="Assets\IronSource\Scripts\IUnityLevelPlayRewardedVideo.cs" />
-    <Compile Include="Assets\IronSource\Scripts\IUnityInitialization.cs" />
-    <Compile Include="Assets\IronSource\Scripts\IronSourceRewardedVideoEvents.cs" />
-    <Compile Include="Assets\IronSource\Scripts\IronSourceRewardedVideoLevelPlayManualAndroid.cs" />
-    <Compile Include="Assets\IronSource\Scripts\IronSourceEvents.cs" />
-    <Compile Include="Assets\IronSource\Scripts\IronSourceInitializationAndroid.cs" />
-    <Compile Include="Assets\Scripts\StageSelector.cs" />
-    <Compile Include="Assets\IronSource\Scripts\IronSourceJSON.cs" />
-    <Compile Include="Assets\IronSource\Scripts\IronSourceRewardedVideoLevelPlayAndroid.cs" />
+    <Compile Include="Assets\Scripts\Economy\EconomySystem.cs" />
+    <Compile Include="Assets\LevelPlay\Samples\UnityLevelPlaySample\Scripts\LevelPlaySample.cs" />
     <Compile Include="Assets\Scripts\PlayerUIHandler.cs" />
-    <Compile Include="Assets\Scripts\SpriteChanger.cs" />
     <Compile Include="Assets\Scripts\ScoreKeeper.cs" />
-    <Compile Include="Assets\IronSource\Scripts\AndroidAgent.cs" />
-    <Compile Include="Assets\IronSource\Scripts\IronSourceUtils.cs" />
-    <Compile Include="Assets\IronSource\Scripts\IronSourceInitilizer.cs" />
-    <Compile Include="Assets\IronSource\Scripts\IUnityOfferwall.cs" />
-    <Compile Include="Assets\IronSource\Scripts\IUnityLevelPlayBanner.cs" />
-    <Compile Include="Assets\IronSource\Scripts\IronSourceAdInfo.cs" />
-    <Compile Include="Assets\IronSource\Scripts\IronSourceBannerLevelPlayAndroid.cs" />
-    <Compile Include="Assets\IronSource\Scripts\IronSourceSegment.cs" />
-    <Compile Include="Assets\IronSource\Scripts\IronSourceError.cs" />
-    <Compile Include="Assets\IronSource\Scripts\IronSourceConfig.cs" />
-    <Compile Include="Assets\IronSource\Scripts\IronSourceInterstitialEvents.cs" />
-    <Compile Include="Assets\IronSource\Scripts\AdFormat.cs" />
-    <Compile Include="Assets\IronSource\Scripts\IronSourceInterstitialAndroid.cs" />
+    <Compile Include="Assets\Scripts\Entity.cs" />
+    <Compile Include="Assets\Scripts\Specific\EndGameScoreOutput.cs" />
+    <Compile Include="Assets\Scripts\AdsManager.cs" />
+    <Compile Include="Assets\Scripts\Enemy.cs" />
+    <Compile Include="Assets\Scripts\Specific\PassthroughEnemies.cs" />
+    <Compile Include="Assets\Scripts\InputManager.cs" />
+    <Compile Include="Assets\Scripts\Tutorial.cs" />
+    <Compile Include="Assets\Scripts\Player.cs" />
+    <Compile Include="Assets\Scripts\GameManager.cs" />
+    <Compile Include="Assets\Scripts\PowerUp.cs" />
+    <Compile Include="Assets\Scripts\Specific\Announcement.cs" />
+    <Compile Include="Assets\Scripts\StageSelector.cs" />
+    <Compile Include="Assets\Scripts\SpriteChanger.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
@@ -482,6 +437,10 @@
     </Reference>
     <Reference Include="Unity.VisualScripting.Antlr3.Runtime">
       <HintPath>Library\PackageCache\com.unity.visualscripting@1.9.2\Runtime\VisualScripting.Flow\Dependencies\NCalc\Unity.VisualScripting.Antlr3.Runtime.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>Library\PackageCache\com.unity.nuget.newtonsoft-json@3.2.1\Runtime\Newtonsoft.Json.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.Android.Types">
@@ -1004,6 +963,10 @@
       <HintPath>Library\ScriptAssemblies\Unity.AdaptivePerformance.Simulator.Extension.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Unity.Services.Core">
+      <HintPath>Library\ScriptAssemblies\Unity.Services.Core.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Unity.2D.PixelPerfect.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.2D.PixelPerfect.Editor.dll</HintPath>
       <Private>False</Private>
@@ -1036,6 +999,10 @@
       <HintPath>Library\ScriptAssemblies\Unity.2D.Tilemap.Extras.Editor.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Unity.Services.Core.Environments">
+      <HintPath>Library\ScriptAssemblies\Unity.Services.Core.Environments.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Unity.Collections">
       <HintPath>Library\ScriptAssemblies\Unity.Collections.dll</HintPath>
       <Private>False</Private>
@@ -1060,6 +1027,10 @@
       <HintPath>Library\ScriptAssemblies\Unity.2D.Aseprite.Editor.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Unity.Services.Core.Analytics">
+      <HintPath>Library\ScriptAssemblies\Unity.Services.Core.Analytics.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Unity.AI.Navigation.Editor.ConversionSystem">
       <HintPath>Library\ScriptAssemblies\Unity.AI.Navigation.Editor.ConversionSystem.dll</HintPath>
       <Private>False</Private>
@@ -1082,6 +1053,10 @@
     </Reference>
     <Reference Include="Unity.Burst">
       <HintPath>Library\ScriptAssemblies\Unity.Burst.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.Services.Authentication.Editor.Shared">
+      <HintPath>Library\ScriptAssemblies\Unity.Services.Authentication.Editor.Shared.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.AdaptivePerformance.Google.Android.Editor">
@@ -1128,20 +1103,16 @@
       <HintPath>Library\ScriptAssemblies\Unity.VisualScripting.Core.Editor.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Unity.2D.Tilemap.Extras">
+      <HintPath>Library\ScriptAssemblies\Unity.2D.Tilemap.Extras.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Unity.AdaptivePerformance.Samsung.Android.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.AdaptivePerformance.Samsung.Android.Editor.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.AdaptivePerformance.Profiler.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.AdaptivePerformance.Profiler.Editor.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Unity.2D.Tilemap.Extras">
-      <HintPath>Library\ScriptAssemblies\Unity.2D.Tilemap.Extras.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.UI">
-      <HintPath>Library\ScriptAssemblies\UnityEngine.UI.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.AdaptivePerformance.UI.Editor">
@@ -1162,6 +1133,10 @@
     </Reference>
     <Reference Include="Unity.2D.Common.Runtime">
       <HintPath>Library\ScriptAssemblies\Unity.2D.Common.Runtime.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>Library\ScriptAssemblies\UnityEngine.UI.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.Timeline">
@@ -1192,12 +1167,20 @@
       <HintPath>Library\ScriptAssemblies\Unity.AI.Navigation.Updater.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Unity.Mobile.AndroidLogcat.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.Mobile.AndroidLogcat.Editor.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Unity.VisualScripting.State.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.VisualScripting.State.Editor.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Unity.Mobile.AndroidLogcat.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.Mobile.AndroidLogcat.Editor.dll</HintPath>
+    <Reference Include="Unity.Services.Authentication">
+      <HintPath>Library\ScriptAssemblies\Unity.Services.Authentication.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.Services.Authentication.PlayerAccounts">
+      <HintPath>Library\ScriptAssemblies\Unity.Services.Authentication.PlayerAccounts.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.Mathematics">
@@ -1240,6 +1223,10 @@
       <HintPath>Library\ScriptAssemblies\Unity.2D.IK.Editor.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Unity.Services.Economy">
+      <HintPath>Library\ScriptAssemblies\Unity.Services.Economy.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Google.Play.Common.csproj">
@@ -1257,6 +1244,10 @@
     <ProjectReference Include="Google.Play.Review.csproj">
       <Project>{18707622-7F6F-B018-6A80-ABBFAC2242E5}</Project>
       <Name>Google.Play.Review</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.LevelPlay.csproj">
+      <Project>{7CD1E76A-D4C4-F04D-9561-01BC9ED76944}</Project>
+      <Name>Unity.LevelPlay</Name>
     </ProjectReference>
     <ProjectReference Include="Google.Android.AppBundle.Editor.csproj">
       <Project>{778B78F7-4C55-259B-C5F4-AC27DA1E9CA0}</Project>

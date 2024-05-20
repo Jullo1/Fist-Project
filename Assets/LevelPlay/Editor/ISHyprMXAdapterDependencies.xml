@@ -1,0 +1,26 @@
+<dependencies>
+  <unityversion>4.3.8.0</unityversion>
+    <androidPackages>
+    <androidPackage spec="com.hyprmx.android:HyprMX-SDK:6.2.3">
+      <repositories>
+        <repository>https://repo1.maven.org/maven2/</repository>
+      </repositories>
+    </androidPackage>
+  </androidPackages>
+
+    <androidPackages>
+    <androidPackage spec="com.ironsource.adapters:hyprmxadapter:4.3.8">
+      <repositories>
+        <repository>https://android-sdk.is.com/</repository>
+      </repositories>
+    </androidPackage>
+  </androidPackages>
+
+  <iosPods>
+    <iosPod name="IronSourceHyprMXAdapter" version="4.3.5.1">
+      <sources>
+        <source>https://github.com/CocoaPods/Specs</source>
+      </sources>
+    </iosPod>
+  </iosPods>
+</dependencies>

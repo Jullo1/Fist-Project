@@ -16,6 +16,7 @@ public class Enemy : Unit
     [SerializeField] GameObject frenzyDrop;
     [SerializeField] GameObject experiencePotionDrop;
     [SerializeField] GameObject timeStopDrop;
+    [SerializeField] GameObject coinDrop;
     TextMeshPro scoreBubble;
 
     public List<PowerUpType> dropList = new List<PowerUpType>();
@@ -161,6 +162,9 @@ public class Enemy : Unit
                 break;
             case PowerUpType.TimeStop:
                 newDrop = Instantiate(timeStopDrop);
+                break;
+            case PowerUpType.Coin:
+                newDrop = Instantiate(coinDrop);
                 break;
         }
         newDrop.transform.position = transform.position;

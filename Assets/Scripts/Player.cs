@@ -358,6 +358,9 @@ public class Player : Unit
             case PowerUpType.Experience:
                 game.GainExperience(50);
                 return;
+            case PowerUpType.Coin:
+                game.GainCoins(1);
+                return;
             case PowerUpType.TimeStop:
                 if (timeStopRoutine != null) StopCoroutine (timeStopRoutine);
                 timeStopRoutine = StartCoroutine(game.StopTime(powerUp.duration));

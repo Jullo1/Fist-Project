@@ -1241,12 +1241,12 @@
       <HintPath>Library\ScriptAssemblies\Unity.AI.Navigation.Updater.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Unity.VisualScripting.State.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.VisualScripting.State.Editor.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="Unity.Mobile.AndroidLogcat.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.Mobile.AndroidLogcat.Editor.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.VisualScripting.State.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.VisualScripting.State.Editor.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.Mathematics">
@@ -1310,6 +1310,10 @@
     <ProjectReference Include="Google.Play.Review.csproj">
       <Project>{18707622-7F6F-B018-6A80-ABBFAC2242E5}</Project>
       <Name>Google.Play.Review</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.LevelPlay.csproj">
+      <Project>{7CD1E76A-D4C4-F04D-9561-01BC9ED76944}</Project>
+      <Name>Unity.LevelPlay</Name>
     </ProjectReference>
     <ProjectReference Include="Google.Android.AppBundle.Editor.csproj">
       <Project>{778B78F7-4C55-259B-C5F4-AC27DA1E9CA0}</Project>
