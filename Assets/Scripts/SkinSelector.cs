@@ -35,7 +35,7 @@ public class SkinSelector : MonoBehaviour
         skinDescriptions.Add("AI-powered punching bot");
         skinDescriptions.Add("When you throw that many punches and unlock the golden skin");
         skinDescriptions.Add("Sleep-inducing magic");
-        skinDescriptions.Add("Fist Hero that has transcended the limits of a regular Fist Hero");
+        skinDescriptions.Add("Fist Hero that transcended the limits of a regular Fist Hero");
 
         skinStats.Add("");
         skinStats.Add("+1 attack speed");

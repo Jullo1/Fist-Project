@@ -3294,7 +3294,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   menuMusic: {fileID: 1181139467}
   coinSFX:
-  - {fileID: 8300000, guid: fa44c82218516c445884e00745cefef5, type: 3}
+  - {fileID: 8300000, guid: 03fb762fc21ba5c4c82c448b2f99f003, type: 3}
   - {fileID: 8300000, guid: 03fb762fc21ba5c4c82c448b2f99f003, type: 3}
   - {fileID: 8300000, guid: db53db2213594194ca6c531693455a25, type: 3}
   - {fileID: 8300000, guid: 764fa86afb67f164f9c7ad384e387e5b, type: 3}

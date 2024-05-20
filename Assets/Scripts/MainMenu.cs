@@ -9,7 +9,6 @@ public class MainMenu : MonoBehaviour
 {
     AudioSource menuAudio;
     [SerializeField] AudioSource menuMusic;
-    [SerializeField] AudioClip[] coinSFX = new AudioClip[10];
     [SerializeField] Button startButton;
     [SerializeField] Text startButtonText;
     public Image lockedStageBackground;
@@ -43,7 +42,7 @@ public class MainMenu : MonoBehaviour
 
         menuAudio = GetComponent<AudioSource>();
 
-        if (EconomySystem.balance != 0) GameObject.FindGameObjectWithTag("CoinOutput").GetComponent<Text>().text = EconomySystem.balance.ToString(); //starts UI with previous balance unless it's 0
+        GameObject.FindGameObjectWithTag("CoinOutput").GetComponent<Text>().text = EconomySystem.balance.ToString(); //starts UI with previous balance unless it's 0
 
         //InitiateSaveData(); //for testing, resets all save data
         //InitiateCheatSaveData(); //unlock everything
