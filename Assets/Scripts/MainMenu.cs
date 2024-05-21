@@ -97,7 +97,7 @@ public class MainMenu : MonoBehaviour
 
     IEnumerator CheckForRewardedVideo()
     {
-        while (!IronSource.Agent.isRewardedVideoAvailable()) yield return new WaitForSeconds(0.5f);
+        while (!IronSource.Agent.isRewardedVideoAvailable()) yield return new WaitForSeconds(5f);
         ShowRewardedAdIcon(true);
     }
 

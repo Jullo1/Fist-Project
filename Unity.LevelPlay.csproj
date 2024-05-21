@@ -102,6 +102,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\LevelPlay\Runtime\Unity.LevelPlay.asmdef" />
+    <None Include="Assets\LevelPlay\Runtime\Plugins\Android\IronSource.androidlib\AndroidManifest.xml" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

@@ -3,7 +3,7 @@
     "m_SelectedProcess": {
         "deviceId": "R58R236YGAA",
         "name": "com.Jullo.FistProject",
-        "processId": 21485,
+        "processId": 21609,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -264,6 +264,42 @@
             "deviceId": "R58R236YGAA",
             "name": "com.Jullo.FistProject",
             "processId": 21485,
+            "exited": false
+        },
+        {
+            "deviceId": "R58R236YGAA",
+            "name": "com.Jullo.FistProject",
+            "processId": 24811,
+            "exited": false
+        },
+        {
+            "deviceId": "R58R236YGAA",
+            "name": "com.Jullo.FistProject",
+            "processId": 30551,
+            "exited": false
+        },
+        {
+            "deviceId": "R58R236YGAA",
+            "name": "com.Jullo.FistProject",
+            "processId": 32628,
+            "exited": false
+        },
+        {
+            "deviceId": "R58R236YGAA",
+            "name": "com.Jullo.FistProject",
+            "processId": 8157,
+            "exited": false
+        },
+        {
+            "deviceId": "R58R236YGAA",
+            "name": "com.Jullo.FistProject",
+            "processId": 19299,
+            "exited": false
+        },
+        {
+            "deviceId": "R58R236YGAA",
+            "name": "com.Jullo.FistProject",
+            "processId": 21609,
             "exited": false
         }
     ],

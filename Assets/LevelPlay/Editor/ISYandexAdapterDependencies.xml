@@ -1,5 +1,5 @@
 <dependencies>
-    <unityversion>4.3.0.0</unityversion>
+    <unityversion>4.3.1.0</unityversion>
   <androidPackages>
     <androidPackage spec="com.yandex.android:mobileads:7.0.1">
     </androidPackage>
@@ -14,7 +14,7 @@
   </androidPackages>
 
   <iosPods>
-    <iosPod name="IronSourceYandexAdapter" version="4.3.0.0">
+    <iosPod name="IronSourceYandexAdapter" version="4.3.1.0">
       <sources>
         <source>https://github.com/CocoaPods/Specs</source>
       </sources>
