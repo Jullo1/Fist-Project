@@ -161,6 +161,7 @@ public class AdsManager : MonoBehaviour
     // The Rewarded Video ad view is about to be closed. Your activity will regain its focus.
     void RewardedVideoOnAdClosedEvent(IronSourceAdInfo adInfo)
     {
+        IronSource.Agent.loadRewardedVideo();
     }
     // The user completed to watch the video, and should be rewarded.
     // The placement parameter will include the reward data.
@@ -168,10 +169,12 @@ public class AdsManager : MonoBehaviour
     void RewardedVideoOnAdRewardedEvent(IronSourcePlacement placement, IronSourceAdInfo adInfo)
     {
         StartCoroutine(menu.AddCoins(3));
+        IronSource.Agent.loadRewardedVideo();
     }
     // The rewarded video ad was failed to show.
     void RewardedVideoOnAdShowFailedEvent(IronSourceError error, IronSourceAdInfo adInfo)
     {
+        IronSource.Agent.loadRewardedVideo();
     }
     // Invoked when the video ad was clicked.
     // This callback is not supported by all networks, and we recommend using it only if

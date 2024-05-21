@@ -3293,17 +3293,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menuMusic: {fileID: 1181139467}
-  coinSFX:
-  - {fileID: 8300000, guid: 03fb762fc21ba5c4c82c448b2f99f003, type: 3}
-  - {fileID: 8300000, guid: 03fb762fc21ba5c4c82c448b2f99f003, type: 3}
-  - {fileID: 8300000, guid: db53db2213594194ca6c531693455a25, type: 3}
-  - {fileID: 8300000, guid: 764fa86afb67f164f9c7ad384e387e5b, type: 3}
-  - {fileID: 8300000, guid: 13bba896ffd0d374ea529a115889402b, type: 3}
-  - {fileID: 8300000, guid: 393472564b20f1c4e94f544a04d8c280, type: 3}
-  - {fileID: 8300000, guid: 2225702eabc62d1449371b12a3f4c6f4, type: 3}
-  - {fileID: 8300000, guid: 34e7262a80f34ff47b803eac792442cd, type: 3}
-  - {fileID: 8300000, guid: 20ecdb428afdd8f498633ede3a9e31a4, type: 3}
-  - {fileID: 8300000, guid: c562ed9d2dc534649856de45cc5666e9, type: 3}
   startButton: {fileID: 118538018}
   startButtonText: {fileID: 443236730}
   lockedStageBackground: {fileID: 1217310380}

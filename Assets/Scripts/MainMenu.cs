@@ -90,7 +90,15 @@ public class MainMenu : MonoBehaviour
             PlayerPrefs.Save();
         }
         IronSource.Agent.loadBanner(IronSourceBannerSize.BANNER, IronSourceBannerPosition.BOTTOM);
-        IronSource.Agent.loadRewardedVideo();
+
+        if (!IronSource.Agent.isRewardedVideoAvailable()) IronSource.Agent.loadRewardedVideo();
+        StartCoroutine(CheckForRewardedVideo());
+    }
+
+    IEnumerator CheckForRewardedVideo()
+    {
+        while (!IronSource.Agent.isRewardedVideoAvailable()) yield return new WaitForSeconds(0.5f);
+        ShowRewardedAdIcon(true);
     }
 
     void OnApplicationPause(bool isPaused)
@@ -112,6 +120,7 @@ public class MainMenu : MonoBehaviour
     IEnumerator ReviewTab()
     {
         yield return new WaitForSeconds(0.5f);
+        reviewManager = new ReviewManager();
         var requestFlowOperation = reviewManager.RequestReviewFlow();
         yield return requestFlowOperation;
         if (requestFlowOperation.Error != ReviewErrorCode.NoError)
