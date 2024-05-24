@@ -15,7 +15,7 @@ public static class dataSource
 
 public class IronSource : IronSourceIAgent
 {
-    [System.Obsolete(@"Please use the pluginVersion function", false)] public static string UNITY_PLUGIN_VERSION = @"8.0.0-r";
+    [System.Obsolete(@"Please use the pluginVersion function", false)] public static string UNITY_PLUGIN_VERSION = @"8.1.0-r";
     public static IronSource Agent { get; }
     public void clearRewardedVideoServerParams();
     public void destroyBanner();
@@ -509,6 +509,172 @@ public class WaterfallConfiguration
         public WaterfallConfiguration Build();
         public WaterfallConfiguration.WaterfallConfigurationBuilder SetCeiling(double ceiling);
         public WaterfallConfiguration.WaterfallConfigurationBuilder SetFloor(double floor);
+    }
+}
+
+namespace com.unity3d.mediation
+{
+    public interface ILevelPlayBannerAd : System.IDisposable
+    {
+        public event System.Action<LevelPlayAdInfo> OnAdClicked;
+        public event System.Action<LevelPlayAdInfo> OnAdCollapsed;
+        public event System.Action<LevelPlayAdInfo> OnAdDisplayed;
+        public event System.Action<LevelPlayAdDisplayInfoError> OnAdDisplayFailed;
+        public event System.Action<LevelPlayAdInfo> OnAdExpanded;
+        public event System.Action<LevelPlayAdInfo> OnAdLeftApplication;
+        public event System.Action<LevelPlayAdInfo> OnAdLoaded;
+        public event System.Action<LevelPlayAdError> OnAdLoadFailed;
+        public void DestroyAd();
+        public LevelPlayAdSize GetAdSize();
+        public string GetAdUnitId();
+        public string GetPlacementName();
+        public LevelPlayBannerPosition GetPosition();
+        public void HideAd();
+        public void LoadAd();
+        public void PauseAutoRefresh();
+        public void ResumeAutoRefresh();
+        public void ShowAd();
+    }
+
+    public abstract class IosNativeObject : System.IDisposable
+    {
+        public System.IntPtr NativePtr { get; protected set; }
+        protected IosNativeObject(bool usesCallbacks) {}
+        protected bool CheckDisposedAndLogError(string message);
+        public virtual void Dispose();
+        protected static T Get<T>(System.IntPtr ptr) where T : IosNativeObject;
+    }
+
+    public class LevelPlay
+    {
+        public static event System.Action<LevelPlayInitError> OnInitFailed;
+        public static event System.Action<LevelPlayConfiguration> OnInitSuccess;
+        public LevelPlay() {}
+        public static void Init(string appKey, string userId = default(string), LevelPlayAdFormat[] adFormats = default(LevelPlayAdFormat[]));
+    }
+
+    public class LevelPlayAdDisplayInfoError
+    {
+        public LevelPlayAdInfo DisplayLevelPlayAdInfo { get; }
+        public LevelPlayAdError LevelPlayError { get; }
+        public LevelPlayAdDisplayInfoError(LevelPlayAdInfo levelPlayAdInfo, LevelPlayAdError error) {}
+        public override string ToString();
+    }
+
+    public class LevelPlayAdError
+    {
+        public string AdUnitId { get; }
+        public int ErrorCode { get; }
+        public string ErrorMessage { get; }
+        public LevelPlayAdError(string adUnitId, int errorCode, string errorMessage) {}
+        public override string ToString();
+    }
+
+    public enum LevelPlayAdFormat
+    {
+        BANNER = 0,
+        INTERSTITIAL = 1,
+        REWARDED = 2,
+    }
+
+    public class LevelPlayAdInfo
+    {
+        public readonly string ab;
+        public readonly string adFormat;
+        public readonly string adNetwork;
+        [JetBrains.Annotations.CanBeNull] public readonly LevelPlayAdSize adSize;
+        public readonly string adUnitId;
+        public readonly string auctionId;
+        public readonly string country;
+        public readonly string encryptedCPM;
+        public readonly string instanceId;
+        public readonly string instanceName;
+        public readonly string placementName;
+        public readonly string precision;
+        public readonly System.Nullable<double> revenue;
+        public readonly string segmentName;
+        public override string ToString();
+    }
+
+    public class LevelPlayAdSize
+    {
+        public static LevelPlayAdSize BANNER;
+        public static LevelPlayAdSize LARGE;
+        public static LevelPlayAdSize LEADERBOARD;
+        public static LevelPlayAdSize MEDIUM_RECTANGLE;
+        public string Description { get; }
+        public int Height { get; }
+        public int Width { get; }
+        public static LevelPlayAdSize CreateCustomBannerSize(int width, int height);
+        public override string ToString();
+    }
+
+    public sealed class LevelPlayBannerAd : ILevelPlayBannerAd, System.IDisposable
+    {
+        public event System.Action<LevelPlayAdInfo> OnAdClicked;
+        public event System.Action<LevelPlayAdInfo> OnAdCollapsed;
+        public event System.Action<LevelPlayAdInfo> OnAdDisplayed;
+        public event System.Action<LevelPlayAdDisplayInfoError> OnAdDisplayFailed;
+        public event System.Action<LevelPlayAdInfo> OnAdExpanded;
+        public event System.Action<LevelPlayAdInfo> OnAdLeftApplication;
+        public event System.Action<LevelPlayAdInfo> OnAdLoaded;
+        public event System.Action<LevelPlayAdError> OnAdLoadFailed;
+        public LevelPlayBannerAd(string adUnitId, LevelPlayAdSize size = default(LevelPlayAdSize), LevelPlayBannerPosition position = LevelPlayBannerPosition.BottomCenter, string placementName = default(string), bool displayOnLoad = true) {}
+        public void DestroyAd();
+        public void Dispose();
+        public LevelPlayAdSize GetAdSize();
+        public string GetAdUnitId();
+        public string GetPlacementName();
+        public LevelPlayBannerPosition GetPosition();
+        public void HideAd();
+        public void LoadAd();
+        public void PauseAutoRefresh();
+        public void ResumeAutoRefresh();
+        public void ShowAd();
+    }
+
+    public enum LevelPlayBannerPosition
+    {
+        BottomCenter = 2,
+        TopCenter = 1,
+    }
+
+    public class LevelPlayConfiguration
+    {
+        public bool IsAdQualityEnabled { get; }
+    }
+
+    public class LevelPlayInitError
+    {
+        public int ErrorCode { get; }
+        public string ErrorMessage { get; }
+        public string ToString();
+    }
+
+    public class UnsupportedBannerAd : System.IDisposable
+    {
+        public event System.EventHandler<LevelPlayAdInfo> OnAdClicked;
+        public event System.EventHandler<LevelPlayAdInfo> OnAdCollapsed;
+        public event System.EventHandler<LevelPlayAdInfo> OnAdDisplayed;
+        public event System.EventHandler<LevelPlayAdDisplayInfoError> OnAdDisplayFailed;
+        public event System.EventHandler<LevelPlayAdInfo> OnAdExpanded;
+        public event System.EventHandler<LevelPlayAdInfo> OnAdLeftApplication;
+        public event System.EventHandler<LevelPlayAdInfo> OnAdLoaded;
+        public event System.EventHandler<LevelPlayAdError> OnAdLoadFailed;
+        public LevelPlayAdSize AdSize { get; }
+        public string AdUnitId { get; }
+        public string PlacementName { get; }
+        public LevelPlayBannerPosition Position { get; }
+        public LevelPlayAdSize Size { get; }
+        public UnsupportedBannerAd(string adUnitId, LevelPlayAdSize size, LevelPlayBannerPosition position, string placementId) {}
+        public void DestroyAd();
+        public void Dispose();
+        public void HideAd();
+        public void Load();
+        public void PauseAutoRefresh();
+        public void ResumeAutoRefresh();
+        public void SetAutoRefresh(bool flag);
+        public void ShowAd();
     }
 }
 

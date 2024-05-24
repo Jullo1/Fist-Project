@@ -13,6 +13,7 @@
 - (void) setClientSideCallbacks:(bool)useClientSideCallbacks;
 - (void) setLanguage:(NSString *)language;
 - (void) setRewardedVideoCustomParams:(NSString *)rvParams;
+- (void) setOfferwallCustomParams:(NSString *)owParams;
 
 @end
 
@@ -28,6 +29,7 @@
 }
 
 - (void) setLanguage:(NSString *)language {
+    [ISSupersonicAdsConfiguration configurations].language = language;
 }
 
 - (void) setRewardedVideoCustomParams:(NSString *)rvParams {
@@ -51,6 +53,10 @@ extern "C" {
     void CFSetRewardedVideoCustomParams(const char *rvParams){
         [[IronSourceUnityConfig new] setRewardedVideoCustomParams:ParseNSStringParam(rvParams)];
     }
+    void CFSetOfferwallCustomParams(const char *owParam){
+        [[IronSourceUnityConfig new] setOfferwallCustomParams:ParseNSStringParam(owParam)];
+    }
+    
     
 #ifdef __cplusplus
 }

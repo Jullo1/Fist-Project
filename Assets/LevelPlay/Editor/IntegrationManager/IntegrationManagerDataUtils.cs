@@ -6,10 +6,9 @@ using System.Text.RegularExpressions;
 using System.Xml;
 using IronSourceJSON;
 using UnityEngine;
-#if LEVELPLAY_DEPENDENCIES_INSTALLED
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-#endif
+
 namespace Unity.Services.LevelPlay.Editor.IntegrationManager
 {
     static class IntegrationManagerDataUtils
@@ -54,12 +53,11 @@ namespace Unity.Services.LevelPlay.Editor.IntegrationManager
         internal static bool DeserializeJsonToDictionary(string json, out Dictionary<string, object> dictionary)
         {
             dictionary = new Dictionary<string, object>();
-#if LEVELPLAY_DEPENDENCIES_INSTALLED
             if (!IsJsonValid(json))
             {
                 return false;
             }
-#endif
+
             try
             {
                 dictionary = Json.Deserialize(json) as Dictionary<string, object>;
@@ -85,14 +83,13 @@ namespace Unity.Services.LevelPlay.Editor.IntegrationManager
 
             return downloadURL;
         }
-#if LEVELPLAY_DEPENDENCIES_INSTALLED
+
         internal static bool IsJsonValid(string json)
         {
             if (json == null)
             {
                 return false;
             }
-
 
             try
             {
@@ -104,6 +101,5 @@ namespace Unity.Services.LevelPlay.Editor.IntegrationManager
                 return false;
             }
         }
-        #endif
     }
 }

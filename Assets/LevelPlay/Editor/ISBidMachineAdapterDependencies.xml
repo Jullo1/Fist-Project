@@ -1,5 +1,5 @@
 <dependencies>
- <unityversion>4.3.8.2</unityversion>
+ <unityversion>4.3.8.3</unityversion>
     <androidPackages>
     <androidPackage spec="com.ironsource.adapters:bidmachineadapter:4.3.6">
          <repositories>
@@ -15,7 +15,7 @@
       </androidPackage>
     </androidPackages>
   <iosPods>
-    <iosPod name="IronSourceBidMachineAdapter" version="4.3.8.2">
+    <iosPod name="IronSourceBidMachineAdapter" version="4.3.8.3">
       <sources>
         <source>https://github.com/CocoaPods/Specs</source>
       </sources>

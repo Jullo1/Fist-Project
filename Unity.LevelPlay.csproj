@@ -60,37 +60,60 @@
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\Unity 2022.3.22f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\LevelPlay\Runtime\Platforms\IPlatformBannerAd.cs" />
+    <Compile Include="Assets\LevelPlay\Runtime\Platforms\Android\UnityBannerAdListener.cs" />
     <Compile Include="Assets\LevelPlay\Runtime\IronSourceBannerEvents.cs" />
+    <Compile Include="Assets\LevelPlay\Runtime\Platforms\Android\AndroidLevelPlaySdk.cs" />
+    <Compile Include="Assets\LevelPlay\Runtime\Platforms\ThreadUtil.cs" />
     <Compile Include="Assets\LevelPlay\Runtime\Platforms\Android\AndroidAgent.cs" />
+    <Compile Include="Assets\LevelPlay\Runtime\Api\LevelPlayAdSize.cs" />
+    <Compile Include="Assets\LevelPlay\Runtime\Api\LevelPlayAdFormat.cs" />
     <Compile Include="Assets\LevelPlay\Runtime\IUnitySegment.cs" />
     <Compile Include="Assets\LevelPlay\Runtime\IUnityLevelPlayInterstitial.cs" />
     <Compile Include="Assets\LevelPlay\Runtime\IronSourceUtils.cs" />
     <Compile Include="Assets\LevelPlay\Runtime\Platforms\Android\IronSourceInitializationAndroid.cs" />
+    <Compile Include="Assets\LevelPlay\Runtime\Api\LevelPlayConfiguration.cs" />
     <Compile Include="Assets\LevelPlay\Runtime\IUnityLevelPlayBanner.cs" />
+    <Compile Include="Assets\LevelPlay\Runtime\Platforms\Android\UnityLevelPlayInitListener.cs" />
     <Compile Include="Assets\LevelPlay\Runtime\IronSourceSegment.cs" />
+    <Compile Include="Assets\LevelPlay\Runtime\Platforms\iOS\iOSBannerAd.cs" />
     <Compile Include="Assets\LevelPlay\Runtime\IronSourceRewardedVideoEvents.cs" />
     <Compile Include="Assets\LevelPlay\Runtime\IronSourceIAgent.cs" />
     <Compile Include="Assets\LevelPlay\Runtime\IronSourceConstants.cs" />
     <Compile Include="Assets\LevelPlay\Runtime\IUnityLevelPlayRewardedVideo.cs" />
     <Compile Include="Assets\LevelPlay\Runtime\AssemblyInfo.cs" />
+    <Compile Include="Assets\LevelPlay\Runtime\Api\LevelPlayInitError.cs" />
     <Compile Include="Assets\LevelPlay\Runtime\IronSourceError.cs" />
     <Compile Include="Assets\LevelPlay\Runtime\IUnityImpressionData.cs" />
     <Compile Include="Assets\LevelPlay\Runtime\Platforms\Android\IronSourceBannerLevelPlayAndroid.cs" />
+    <Compile Include="Assets\LevelPlay\Runtime\Api\LevelPlayAdError.cs" />
+    <Compile Include="Assets\LevelPlay\Runtime\Api\ILevelPlayBannerAd.cs" />
     <Compile Include="Assets\LevelPlay\Runtime\Platforms\Android\IronSourceImpressionDataAndroid.cs" />
     <Compile Include="Assets\LevelPlay\Runtime\IronSourceEventsDispatcher.cs" />
+    <Compile Include="Assets\LevelPlay\Runtime\Platforms\Android\IUnityLevelPlayInitListener.cs" />
+    <Compile Include="Assets\LevelPlay\Runtime\Api\LevelPlay.cs" />
     <Compile Include="Assets\LevelPlay\Runtime\Platforms\iOS\iOSAgent.cs" />
+    <Compile Include="Assets\LevelPlay\Runtime\Api\LevelPlayBannerAd.cs" />
     <Compile Include="Assets\LevelPlay\Runtime\Platforms\Android\IronSourceRewardedVideoLevelPlayAndroid.cs" />
+    <Compile Include="Assets\LevelPlay\Runtime\Platforms\iOS\IosNativeObject.cs" />
     <Compile Include="Assets\LevelPlay\Runtime\IUnityLevelPlayRewardedVideoManual.cs" />
+    <Compile Include="Assets\LevelPlay\Runtime\Api\LevelPlayAdDisplayInfoError.cs" />
     <Compile Include="Assets\LevelPlay\Runtime\IUnityInitialization.cs" />
+    <Compile Include="Assets\LevelPlay\Runtime\Platforms\Android\IUnityBannerAdListener.cs" />
+    <Compile Include="Assets\LevelPlay\Runtime\Api\LevelPlayBannerPosition.cs" />
     <Compile Include="Assets\LevelPlay\Runtime\IronSourceImpressionData.cs" />
+    <Compile Include="Assets\LevelPlay\Runtime\Platforms\Unsupported\UnsupportedBannerAd.cs" />
     <Compile Include="Assets\LevelPlay\Runtime\Platforms\Android\IronSourceSegmentAndroid.cs" />
     <Compile Include="Assets\LevelPlay\Runtime\Platforms\Android\IronSourceInterstitialLevelPlayAndroid.cs" />
     <Compile Include="Assets\LevelPlay\Runtime\AdFormat.cs" />
     <Compile Include="Assets\LevelPlay\Runtime\IronSourceInterstitialEvents.cs" />
     <Compile Include="Assets\LevelPlay\Runtime\IronSourceInitilizer.cs" />
+    <Compile Include="Assets\LevelPlay\Runtime\Api\LevelPlayAdInfo.cs" />
     <Compile Include="Assets\LevelPlay\Runtime\IronSourceConfig.cs" />
+    <Compile Include="Assets\LevelPlay\Runtime\Platforms\Android\AndroidBannerAd.cs" />
     <Compile Include="Assets\LevelPlay\Runtime\IronSourceMediationSettings.cs" />
     <Compile Include="Assets\LevelPlay\Runtime\WaterfallConfiguration.cs" />
+    <Compile Include="Assets\LevelPlay\Runtime\Platforms\iOS\IosLevelPlaySdk.cs" />
     <Compile Include="Assets\LevelPlay\Runtime\Platforms\Android\IronSourceRewardedVideoLevelPlayManualAndroid.cs" />
     <Compile Include="Assets\LevelPlay\Runtime\IronSource.cs" />
     <Compile Include="Assets\LevelPlay\Runtime\Platforms\Unsupported\UnsupportedPlatformAgent.cs" />
@@ -98,11 +121,11 @@
     <Compile Include="Assets\LevelPlay\Runtime\IronSourceEvents.cs" />
     <Compile Include="Assets\LevelPlay\Runtime\Tools\LevelPlayLogger.cs" />
     <Compile Include="Assets\LevelPlay\Runtime\IronSourcePlacement.cs" />
+    <Compile Include="Assets\LevelPlay\Runtime\Platforms\iOS\IosBannerAdListener.cs" />
     <Compile Include="Assets\LevelPlay\Runtime\IronSourceAdInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\LevelPlay\Runtime\Unity.LevelPlay.asmdef" />
-    <None Include="Assets\LevelPlay\Runtime\Plugins\Android\IronSource.androidlib\AndroidManifest.xml" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

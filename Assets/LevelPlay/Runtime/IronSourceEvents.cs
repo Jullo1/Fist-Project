@@ -83,7 +83,6 @@ public class IronSourceEvents : MonoBehaviour
             }
         };
     }
-
     //subscribe to IronSourceSegmentAndroid onSegmentRecieved event and notify to subscribed event inside the app
     private void registerSegmentEvents()
     {
@@ -110,7 +109,6 @@ public class IronSourceEvents : MonoBehaviour
             }
         };
     }
-
 #endif
 
 #if !UNITY_ANDROID
@@ -194,7 +192,7 @@ public class IronSourceEvents : MonoBehaviour
         if (_onSegmentReceivedEvent != null)
             _onSegmentReceivedEvent(segmentName);
     }
-
+    
 #endif
 
     // ******************************* ConsentView Callbacks *******************************

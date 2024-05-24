@@ -12,7 +12,7 @@ public class IronSource : IronSourceIAgent
     private IronSourceIAgent _platformAgent;
     private static IronSource _instance;
     [Obsolete("Please use the pluginVersion function", false)]
-    public static string UNITY_PLUGIN_VERSION = "8.0.0-r";
+    public static string UNITY_PLUGIN_VERSION = "8.1.0-r";
     private static bool isUnsupportedPlatform;
 
     private IronSource()
@@ -40,7 +40,6 @@ public class IronSource : IronSourceIAgent
         var ironSourceInterstitialEvents = new GameObject("IronSourceInterstitialEvents", ironSourceInterstitialType).GetComponent<IronSourceInterstitialEvents>(); // Creates IronSourceInterstitialEvents gameObject
         var ironSourceBannerEvents = new GameObject("IronSourceBannerEvents", ironSourceBannerType).GetComponent<IronSourceBannerEvents>(); // Creates IronSourceBannerEvents gameObject
     }
-
 
     #region IronSourceIAgent implementation
     /// <summary>

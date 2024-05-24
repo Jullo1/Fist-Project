@@ -1,5 +1,5 @@
 <dependencies>
-    <unityversion>4.3.27.0</unityversion>
+    <unityversion>4.3.27.1</unityversion>
     <androidPackages>
         <androidPackage spec="com.mbridge.msdk.oversea:newinterstitial:16.7.31">
             <repositories>
@@ -49,7 +49,7 @@
     </androidPackages>
 
   <iosPods>
-    <iosPod name="IronSourceMintegralAdapter" version="4.3.23.2">
+    <iosPod name="IronSourceMintegralAdapter" version="4.3.23.3">
       <sources>
         <source>https://github.com/CocoaPods/Specs</source>
       </sources>

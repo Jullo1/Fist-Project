@@ -1,5 +1,5 @@
 <dependencies>
-    <unityversion>4.3.43.0</unityversion>
+    <unityversion>4.3.43.1</unityversion>
   <androidPackages>
     <androidPackage spec="com.vungle:vungle-ads:7.3.2">
       <repositories>
@@ -17,7 +17,7 @@
   </androidPackages>
 
   <iosPods>
-    <iosPod name="IronSourceVungleAdapter" version="4.3.35.0">
+    <iosPod name="IronSourceVungleAdapter" version="4.3.35.1">
       <sources>
         <source>https://github.com/CocoaPods/Specs</source>
       </sources>

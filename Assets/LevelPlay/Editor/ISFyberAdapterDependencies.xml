@@ -1,5 +1,5 @@
 <dependencies>
- <unityversion>4.3.42.2</unityversion>
+ <unityversion>4.3.42.3</unityversion>
     <androidPackages>
     <androidPackage spec="com.fyber:marketplace-sdk:8.2.6">
       <repositories>
@@ -17,7 +17,7 @@
   </androidPackages>
 
   <iosPods>
-    <iosPod name="IronSourceFyberAdapter" version="4.3.34.2">
+    <iosPod name="IronSourceFyberAdapter" version="4.3.34.3">
       <sources>
         <source>https://github.com/CocoaPods/Specs</source>
       </sources>

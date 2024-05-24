@@ -1,5 +1,5 @@
 <dependencies>
- <unityversion>4.3.1.0</unityversion>
+ <unityversion>4.3.1.1</unityversion>
     <androidPackages>
     <androidPackage spec="com.ironsource.adapters:molocoadapter:4.3.0">
          <repositories>
@@ -12,7 +12,7 @@
       </androidPackage>
     </androidPackages>
   <iosPods>
-    <iosPod name="IronSourceMolocoAdapter" version="4.3.1.0">
+    <iosPod name="IronSourceMolocoAdapter" version="4.3.1.1">
       <sources>
         <source>https://github.com/CocoaPods/Specs</source>
       </sources>

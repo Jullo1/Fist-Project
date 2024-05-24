@@ -39,7 +39,7 @@ dependencies {
     implementation 'com.ironsource.adapters:unityadsadapter:4.3.39' // Assets/LevelPlay/Editor/ISUnityAdsAdapterDependencies.xml:8
     implementation 'com.ironsource.adapters:vungleadapter:4.3.24' // Assets/LevelPlay/Editor/ISVungleAdapterDependencies.xml:16
     implementation 'com.ironsource.adapters:yandexadapter:4.3.0' // Assets/LevelPlay/Editor/ISYandexAdapterDependencies.xml:13
-    implementation 'com.ironsource.sdk:mediationsdk:8.0.0' // Assets/LevelPlay/Editor/IronSourceSDKDependencies.xml:9
+    implementation 'com.ironsource.sdk:mediationsdk:8.1.0' // Assets/LevelPlay/Editor/IronSourceSDKDependencies.xml:9
     implementation 'com.maio:android-sdk:1.1.16@aar' // Assets/LevelPlay/Editor/ISMaioAdapterDependencies.xml:15
     implementation 'com.mbridge.msdk.oversea:mbbanner:16.7.31' // Assets/LevelPlay/Editor/ISMintegralAdapterDependencies.xml:24
     implementation 'com.mbridge.msdk.oversea:mbbid:16.7.31' // Assets/LevelPlay/Editor/ISMintegralAdapterDependencies.xml:32

@@ -16,7 +16,7 @@ namespace Unity.Services.LevelPlay.Editor.IntegrationManager
     {
         // Package
         const string k_IronsourceUnityPackageURL =
-            "https://github.com/ironsource-mobile/Unity-sdk/raw/master/${PackageVersion}/IronSource_IntegrationManager_v${PackageVersion}.unitypackage";
+            "https://github.com/ironsource-mobile/Unity-sdk/raw/master/${PackageVersion}/UnityLevelPlay_v${PackageVersion}.unitypackage";
 
         // Core functionality links
         const string k_IronsourceSDKInfo = "https://s3.amazonaws.com/ssa.public/Network-Manager/IronSourceSDKInfo.json";

@@ -168,7 +168,6 @@ public class LevelPlaySample : MonoBehaviour
     }
 
     #endregion
-    
     #region AdInfo Interstitial
 
     void InterstitialOnAdReadyEvent(IronSourceAdInfo adInfo)

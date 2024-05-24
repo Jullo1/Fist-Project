@@ -1,5 +1,5 @@
 <dependencies>
-<unityversion>4.1.12.2</unityversion>
+<unityversion>4.1.12.3</unityversion>
   <androidPackages>
     <androidPackage spec="tv.superawesome.sdk.publisher:superawesome:9.3.2">
       <repositories>
@@ -17,7 +17,7 @@
   </androidPackages>
     
     <iosPods>
-      <iosPod name="IronSourceSuperAwesomeAdapter" version="4.1.11.2">
+      <iosPod name="IronSourceSuperAwesomeAdapter" version="4.1.11.3">
         <sources>
           <source>https://github.com/CocoaPods/Specs</source>
         </sources>
