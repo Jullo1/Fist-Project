@@ -50,32 +50,37 @@ public class MainMenu : MonoBehaviour
         LockedStage(false);
         Time.timeScale = 1;
 
-        if (!FindObjectOfType<ScoreKeeper>()) //instantiate scoreKeeper and economy system if there isn't one yet
+        //first run, initialize all functionality elements
+        if (!FindObjectOfType<ScoreKeeper>())
         {
             IronSource.Agent.validateIntegration();
             IronSource.Agent.init(appKey);
             RebuildSaveData();
             Instantiate(scoreKeeper);
             Instantiate(economySystemPrefab);
-            if (Application.isMobilePlatform || Application.isEditor) IronSource.Agent.loadInterstitial(); //load ad to show it after first run
+            if (Application.isMobilePlatform || Application.isEditor) StartCoroutine(LoadAds());
         }
+        
+        //returned to main menu
         else
         {
             if (Application.isMobilePlatform || Application.isEditor)
             {
+                IronSource.Agent.displayBanner();
                 IronSource.Agent.showInterstitial(); //send ad after death
             }
             coinsOutput.text = EconomySystem.balance.ToString(); //starts UI with previous balance unless it's 0
         }
-        economySystem = FindObjectOfType<EconomySystem>();
+
+        //webgl sendscore
         if (ScoreKeeper.score > 0)
         {
             //if (!Application.isMobilePlatform) StartCoroutine(SendScore(ScoreKeeper.score)); //sending score for webgl build
             startButtonText.text = "AGAIN";
         }
-        StartCoroutine(AddCoins(ScoreKeeper.coins));
 
-        if (PlayerPrefs.GetInt("totalKills") > 300 && ScoreKeeper.score > 0) //android review tab
+        //android review
+        if (PlayerPrefs.GetInt("totalKills") > 300 && ScoreKeeper.score > 0) 
         {
             if (PlayerPrefs.GetInt("reviewCount") >= 5 && PlayerPrefs.GetInt("optedOutReview") < 5)
             {
@@ -89,16 +94,30 @@ public class MainMenu : MonoBehaviour
 
             PlayerPrefs.Save();
         }
-        IronSource.Agent.loadBanner(IronSourceBannerSize.BANNER, IronSourceBannerPosition.BOTTOM);
 
-        if (!IronSource.Agent.isRewardedVideoAvailable()) IronSource.Agent.loadRewardedVideo();
-        StartCoroutine(CheckForRewardedVideo());
+        economySystem = FindObjectOfType<EconomySystem>();
+        StartCoroutine(AddCoins(ScoreKeeper.coins));
+
+        StartCoroutine(CheckRewarded()); //if reward ad is ready, enable button
     }
 
-    IEnumerator CheckForRewardedVideo()
+    IEnumerator CheckRewarded()
     {
-        while (!IronSource.Agent.isRewardedVideoAvailable()) yield return new WaitForSeconds(5f);
-        ShowRewardedAdIcon(true);
+        while (!IronSource.Agent.isRewardedVideoAvailable())
+        {
+            ShowRewardedAdIcon(false);
+            yield return new WaitForSeconds(5f);
+        }
+        if (!IronSource.Agent.isRewardedVideoPlacementCapped("Main_Menu")) ShowRewardedAdIcon(true);
+    }
+
+    IEnumerator LoadAds()
+    {
+        yield return new WaitForSeconds(0.5f);
+
+        //load all ads
+        IronSource.Agent.loadBanner(IronSourceBannerSize.BANNER, IronSourceBannerPosition.BOTTOM);
+        IronSource.Agent.loadInterstitial();
     }
 
     void OnApplicationPause(bool isPaused)
@@ -218,8 +237,8 @@ public class MainMenu : MonoBehaviour
 
     void LoadScene(string sceneName)
     {
-        IronSource.Agent.destroyBanner(); //destroy banner before moving to game
-        IronSource.Agent.loadInterstitial(); //get ad ready to play it after death
+        IronSource.Agent.loadInterstitial(); //load ad for next run
+        IronSource.Agent.hideBanner(); //hide banner before moving to game
 
         PlayerPrefs.SetInt("selectedStage", StageSelector.currentStage);
         PlayerPrefs.SetInt("selectedSkin", SkinSelector.currentSkin);

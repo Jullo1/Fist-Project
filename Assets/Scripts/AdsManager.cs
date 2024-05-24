@@ -1,14 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class AdsManager : MonoBehaviour
 {
-    MainMenu menu;
-    private void Awake()
-    {
-        menu = GetComponent<MainMenu>();
-    }
     private void OnEnable()
     {
         //Add AdInfo Banner Events
@@ -146,13 +142,11 @@ public class AdsManager : MonoBehaviour
     // This replaces the RewardedVideoAvailabilityChangedEvent(true) event
     void RewardedVideoOnAdAvailable(IronSourceAdInfo adInfo)
     {
-        menu.ShowRewardedAdIcon(true);
     }
     // Indicates that no ads are available to be displayed
     // This replaces the RewardedVideoAvailabilityChangedEvent(false) event
     void RewardedVideoOnAdUnavailable()
     {
-        menu.ShowRewardedAdIcon(false);
     }
     // The Rewarded Video ad view has opened. Your activity will loose focus.
     void RewardedVideoOnAdOpenedEvent(IronSourceAdInfo adInfo)
@@ -167,7 +161,7 @@ public class AdsManager : MonoBehaviour
     // When using server-to-server callbacks, you may ignore this event and wait for the ironSource server callback.
     void RewardedVideoOnAdRewardedEvent(IronSourcePlacement placement, IronSourceAdInfo adInfo)
     {
-        StartCoroutine(menu.AddCoins(3));
+        StartCoroutine(GetComponent<MainMenu>().AddCoins(3));
     }
     // The rewarded video ad was failed to show.
     void RewardedVideoOnAdShowFailedEvent(IronSourceError error, IronSourceAdInfo adInfo)

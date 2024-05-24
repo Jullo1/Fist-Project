@@ -3,7 +3,7 @@
     "m_SelectedProcess": {
         "deviceId": "R58R236YGAA",
         "name": "com.Jullo.FistProject",
-        "processId": 10038,
+        "processId": 22388,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -11,301 +11,67 @@
         {
             "deviceId": "R58R236YGAA",
             "name": "com.Jullo.FistProject",
-            "processId": 1117,
+            "processId": 28518,
             "exited": true
         },
         {
             "deviceId": "R58R236YGAA",
             "name": "com.Jullo.FistProject",
-            "processId": 11633,
+            "processId": 30216,
             "exited": true
         },
         {
             "deviceId": "R58R236YGAA",
             "name": "com.sec.android.app.launcher",
-            "processId": 3456,
+            "processId": 2822,
             "exited": false
         },
         {
             "deviceId": "R58R236YGAA",
             "name": "com.Jullo.FistProject",
-            "processId": 12722,
+            "processId": 1389,
             "exited": true
         },
         {
             "deviceId": "R58R236YGAA",
             "name": "com.Jullo.FistProject",
-            "processId": 13963,
+            "processId": 3855,
             "exited": true
         },
         {
             "deviceId": "R58R236YGAA",
             "name": "com.Jullo.FistProject",
-            "processId": 16193,
+            "processId": 7856,
             "exited": false
         },
         {
             "deviceId": "R58R236YGAA",
             "name": "com.Jullo.FistProject",
-            "processId": 17789,
+            "processId": 8994,
             "exited": false
         },
         {
             "deviceId": "R58R236YGAA",
             "name": "com.Jullo.FistProject",
-            "processId": 19024,
+            "processId": 12746,
             "exited": false
         },
         {
             "deviceId": "R58R236YGAA",
             "name": "com.Jullo.FistProject",
-            "processId": 23615,
+            "processId": 16722,
             "exited": false
         },
         {
             "deviceId": "R58R236YGAA",
             "name": "com.Jullo.FistProject",
-            "processId": 25343,
+            "processId": 20288,
             "exited": false
         },
         {
             "deviceId": "R58R236YGAA",
             "name": "com.Jullo.FistProject",
-            "processId": 26130,
-            "exited": false
-        },
-        {
-            "deviceId": "R58R236YGAA",
-            "name": "com.Jullo.FistProject",
-            "processId": 28205,
-            "exited": false
-        },
-        {
-            "deviceId": "R58R236YGAA",
-            "name": "com.Jullo.FistProject",
-            "processId": 30854,
-            "exited": false
-        },
-        {
-            "deviceId": "R58R236YGAA",
-            "name": "com.Jullo.FistProject",
-            "processId": 32198,
-            "exited": false
-        },
-        {
-            "deviceId": "R58R236YGAA",
-            "name": "com.Jullo.FistProject",
-            "processId": 444,
-            "exited": false
-        },
-        {
-            "deviceId": "R58R236YGAA",
-            "name": "com.Jullo.FistProject",
-            "processId": 3654,
-            "exited": false
-        },
-        {
-            "deviceId": "R58R236YGAA",
-            "name": "com.Jullo.FistProject",
-            "processId": 5265,
-            "exited": false
-        },
-        {
-            "deviceId": "R58R236YGAA",
-            "name": "com.Jullo.FistProject",
-            "processId": 6382,
-            "exited": false
-        },
-        {
-            "deviceId": "R58R236YGAA",
-            "name": "com.Jullo.FistProject",
-            "processId": 7048,
-            "exited": false
-        },
-        {
-            "deviceId": "R58R236YGAA",
-            "name": "com.Jullo.FistProject",
-            "processId": 7378,
-            "exited": false
-        },
-        {
-            "deviceId": "R58R236YGAA",
-            "name": "com.Jullo.FistProject",
-            "processId": 8482,
-            "exited": false
-        },
-        {
-            "deviceId": "R58R236YGAA",
-            "name": "com.Jullo.FistProject",
-            "processId": 10320,
-            "exited": false
-        },
-        {
-            "deviceId": "R58R236YGAA",
-            "name": "com.Jullo.FistProject",
-            "processId": 11716,
-            "exited": false
-        },
-        {
-            "deviceId": "R58R236YGAA",
-            "name": "com.Jullo.FistProject",
-            "processId": 24381,
-            "exited": false
-        },
-        {
-            "deviceId": "R58R236YGAA",
-            "name": "com.Jullo.FistProject",
-            "processId": 26090,
-            "exited": false
-        },
-        {
-            "deviceId": "R58R236YGAA",
-            "name": "com.Jullo.FistProject",
-            "processId": 27398,
-            "exited": false
-        },
-        {
-            "deviceId": "R58R236YGAA",
-            "name": "com.Jullo.FistProject",
-            "processId": 32508,
-            "exited": false
-        },
-        {
-            "deviceId": "R58R236YGAA",
-            "name": "com.Jullo.FistProject",
-            "processId": 4643,
-            "exited": false
-        },
-        {
-            "deviceId": "R58R236YGAA",
-            "name": "com.Jullo.FistProject",
-            "processId": 6429,
-            "exited": false
-        },
-        {
-            "deviceId": "R58R236YGAA",
-            "name": "com.Jullo.FistProject",
-            "processId": 8612,
-            "exited": false
-        },
-        {
-            "deviceId": "R58R236YGAA",
-            "name": "com.Jullo.FistProject",
-            "processId": 20241,
-            "exited": false
-        },
-        {
-            "deviceId": "R58R236YGAA",
-            "name": "com.Jullo.FistProject",
-            "processId": 24534,
-            "exited": false
-        },
-        {
-            "deviceId": "R58R236YGAA",
-            "name": "com.Jullo.FistProject",
-            "processId": 11355,
-            "exited": false
-        },
-        {
-            "deviceId": "R58R236YGAA",
-            "name": "com.Jullo.FistProject",
-            "processId": 16737,
-            "exited": false
-        },
-        {
-            "deviceId": "R58R236YGAA",
-            "name": "com.Jullo.FistProject",
-            "processId": 18190,
-            "exited": false
-        },
-        {
-            "deviceId": "R58R236YGAA",
-            "name": "com.Jullo.FistProject",
-            "processId": 21654,
-            "exited": false
-        },
-        {
-            "deviceId": "R58R236YGAA",
-            "name": "com.Jullo.FistProject",
-            "processId": 22613,
-            "exited": false
-        },
-        {
-            "deviceId": "R58R236YGAA",
-            "name": "com.Jullo.FistProject",
-            "processId": 23319,
-            "exited": false
-        },
-        {
-            "deviceId": "R58R236YGAA",
-            "name": "com.Jullo.FistProject",
-            "processId": 25600,
-            "exited": false
-        },
-        {
-            "deviceId": "R58R236YGAA",
-            "name": "com.Jullo.FistProject",
-            "processId": 26003,
-            "exited": false
-        },
-        {
-            "deviceId": "R58R236YGAA",
-            "name": "com.Jullo.FistProject",
-            "processId": 7337,
-            "exited": false
-        },
-        {
-            "deviceId": "R58R236YGAA",
-            "name": "com.Jullo.FistProject",
-            "processId": 18441,
-            "exited": false
-        },
-        {
-            "deviceId": "R58R236YGAA",
-            "name": "com.Jullo.FistProject",
-            "processId": 21485,
-            "exited": false
-        },
-        {
-            "deviceId": "R58R236YGAA",
-            "name": "com.Jullo.FistProject",
-            "processId": 24811,
-            "exited": false
-        },
-        {
-            "deviceId": "R58R236YGAA",
-            "name": "com.Jullo.FistProject",
-            "processId": 30551,
-            "exited": false
-        },
-        {
-            "deviceId": "R58R236YGAA",
-            "name": "com.Jullo.FistProject",
-            "processId": 32628,
-            "exited": false
-        },
-        {
-            "deviceId": "R58R236YGAA",
-            "name": "com.Jullo.FistProject",
-            "processId": 8157,
-            "exited": false
-        },
-        {
-            "deviceId": "R58R236YGAA",
-            "name": "com.Jullo.FistProject",
-            "processId": 19299,
-            "exited": false
-        },
-        {
-            "deviceId": "R58R236YGAA",
-            "name": "com.Jullo.FistProject",
-            "processId": 21609,
-            "exited": false
-        },
-        {
-            "deviceId": "R58R236YGAA",
-            "name": "com.Jullo.FistProject",
-            "processId": 10038,
+            "processId": 22388,
             "exited": false
         }
     ],
