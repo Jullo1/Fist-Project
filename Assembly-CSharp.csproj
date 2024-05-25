@@ -60,29 +60,52 @@
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\Unity 2022.3.22f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\IronSourceAdQuality\Scripts\AdQuality\ISAdQualityMediationNetwork.cs" />
+    <Compile Include="Assets\IronSourceAdQuality\Scripts\AdQuality\ISAdQualityConfig.cs" />
+    <Compile Include="Assets\IronSourceAdQuality\Scripts\AdQuality\ISAdQualityCustomMediationRevenue.cs" />
     <Compile Include="Assets\Scripts\Specific\GameVersion.cs" />
+    <Compile Include="Assets\IronSourceAdQuality\Scripts\AdQuality\ISAdQualityJSON.cs" />
     <Compile Include="Assets\Scripts\TouchStickVisual.cs" />
+    <Compile Include="Assets\IronSourceAdQuality\Scripts\Singletons\UnitySingleton.cs" />
+    <Compile Include="Assets\IronSourceAdQuality\Scripts\Config\ISAdQualityEditorScript.cs" />
     <Compile Include="Assets\Scripts\MainMenu.cs" />
+    <Compile Include="Assets\IronSourceAdQuality\Scripts\Config\ObjectDictionary.cs" />
     <Compile Include="Assets\Scripts\ScrollingBackground.cs" />
     <Compile Include="Assets\Scripts\SkinSelector.cs" />
     <Compile Include="Assets\Scripts\Unit.cs" />
     <Compile Include="Assets\Scripts\Economy\EconomySystem.cs" />
+    <Compile Include="Assets\IronSourceAdQuality\Scripts\AdQuality\ISAdQualitySegment.cs" />
     <Compile Include="Assets\LevelPlay\Samples\UnityLevelPlaySample\Scripts\LevelPlaySample.cs" />
+    <Compile Include="Assets\IronSourceAdQuality\Scripts\Config\UnityDictionary.cs" />
+    <Compile Include="Assets\IronSourceAdQuality\Scripts\AdQuality\ISADQualityDeviceIdType.cs" />
     <Compile Include="Assets\Scripts\PlayerUIHandler.cs" />
     <Compile Include="Assets\Scripts\ScoreKeeper.cs" />
+    <Compile Include="Assets\IronSourceAdQuality\Scripts\AdQuality\ISAdQualityLogLevel.cs" />
     <Compile Include="Assets\Scripts\Entity.cs" />
     <Compile Include="Assets\Scripts\Specific\EndGameScoreOutput.cs" />
+    <Compile Include="Assets\IronSourceAdQuality\Scripts\AdQuality\ISAdQualityiOSInitHandler.cs" />
     <Compile Include="Assets\Scripts\AdsManager.cs" />
     <Compile Include="Assets\Scripts\Enemy.cs" />
+    <Compile Include="Assets\IronSourceAdQuality\Scripts\AdQuality\IronSourceAdQuality.cs" />
     <Compile Include="Assets\Scripts\Specific\PassthroughEnemies.cs" />
+    <Compile Include="Assets\IronSourceAdQuality\Scripts\Singletons\BaseBehaviour.cs" />
     <Compile Include="Assets\Scripts\InputManager.cs" />
+    <Compile Include="Assets\IronSourceAdQuality\Scripts\AdQuality\ISAdQualityUtils.cs" />
     <Compile Include="Assets\Scripts\Tutorial.cs" />
     <Compile Include="Assets\Scripts\Player.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\PowerUp.cs" />
     <Compile Include="Assets\Scripts\Specific\Announcement.cs" />
+    <Compile Include="Assets\IronSourceAdQuality\Scripts\AdQuality\ISAdQualityAdType.cs" />
+    <Compile Include="Assets\IronSourceAdQuality\Scripts\Singletons\SceneSingleton.cs" />
+    <Compile Include="Assets\IronSourceAdQuality\Scripts\AdQuality\ISAdQualityInitCallback.cs" />
+    <Compile Include="Assets\IronSourceAdQuality\Scripts\Config\IronSourceAdQualityManifestTools.cs" />
     <Compile Include="Assets\Scripts\StageSelector.cs" />
+    <Compile Include="Assets\IronSourceAdQuality\Scripts\AdQuality\ISAdQualityInitError.cs" />
     <Compile Include="Assets\Scripts\SpriteChanger.cs" />
+    <Compile Include="Assets\IronSourceAdQuality\Scripts\AdQuality\ISAdQualityAndroidInitHandler.cs" />
+    <Compile Include="Assets\IronSourceAdQuality\Scripts\Singletons\CodeGeneratedSingleton.cs" />
+    <Compile Include="Assets\IronSourceAdQuality\Scripts\AdQuality\ISAdQualityInitCallbackWrapper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

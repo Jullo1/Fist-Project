@@ -36,6 +36,8 @@
     <package>com.ironsource.adapters:vungleadapter:4.3.24</package>
     <package>com.ironsource.adapters:yandexadapter:4.3.0</package>
     <package>com.ironsource.sdk:mediationsdk:8.1.0</package>
+    <package>com.ironsource.unity:adqualitysdk:7.19.2</package>
+    <package>com.ironsource:adqualitysdk:7.19.2</package>
     <package>com.maio:android-sdk:1.1.16@aar</package>
     <package>com.mbridge.msdk.oversea:mbbanner:16.7.31</package>
     <package>com.mbridge.msdk.oversea:mbbid:16.7.31</package>

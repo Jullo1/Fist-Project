@@ -1,0 +1,16 @@
+using System;
+public enum ISAdQualityAdType {
+	UNKNOWN = -1,
+	RICH_MEDIA = 0,
+	INTERSTITIAL = 1,
+	APP_WALL = 2,
+	VIDEO = 3,
+	REWARDED_VIDEO = 4,
+	NATIVE = 5,
+	BANNER = 6,
+	OFFER_WALL = 7,
+	NATIVE_HTML = 8,
+	EXTERNAL = 9,
+	REWARDED = 10,
+	INTERACTIVE = 11
+};

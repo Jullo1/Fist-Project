@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class AdsManager : MonoBehaviour
 {
+    bool rewarded;
     private void OnEnable()
     {
         //Add AdInfo Banner Events
@@ -32,6 +33,8 @@ public class AdsManager : MonoBehaviour
         IronSourceRewardedVideoEvents.onAdShowFailedEvent += RewardedVideoOnAdShowFailedEvent;
         IronSourceRewardedVideoEvents.onAdRewardedEvent += RewardedVideoOnAdRewardedEvent;
         IronSourceRewardedVideoEvents.onAdClickedEvent += RewardedVideoOnAdClickedEvent;
+        IronSourceRewardedVideoEvents.onAdReadyEvent += RewardedVideoOnAdReadyEvent;
+        IronSourceRewardedVideoEvents.onAdLoadFailedEvent += RewardedVideoOnAdLoadFailedEvent;
 
 
     }
@@ -147,6 +150,7 @@ public class AdsManager : MonoBehaviour
     // This replaces the RewardedVideoAvailabilityChangedEvent(false) event
     void RewardedVideoOnAdUnavailable()
     {
+        FindObjectOfType<MainMenu>().ShowRewardedAdIcon(false);
     }
     // The Rewarded Video ad view has opened. Your activity will loose focus.
     void RewardedVideoOnAdOpenedEvent(IronSourceAdInfo adInfo)
@@ -155,13 +159,16 @@ public class AdsManager : MonoBehaviour
     // The Rewarded Video ad view is about to be closed. Your activity will regain its focus.
     void RewardedVideoOnAdClosedEvent(IronSourceAdInfo adInfo)
     {
+        if (rewarded) StartCoroutine(FindObjectOfType<MainMenu>().AddCoins(3));
+        rewarded = false;
+        StartCoroutine(FindObjectOfType<MainMenu>().CheckRewarded());
     }
     // The user completed to watch the video, and should be rewarded.
     // The placement parameter will include the reward data.
     // When using server-to-server callbacks, you may ignore this event and wait for the ironSource server callback.
     void RewardedVideoOnAdRewardedEvent(IronSourcePlacement placement, IronSourceAdInfo adInfo)
     {
-        StartCoroutine(GetComponent<MainMenu>().AddCoins(3));
+        rewarded = true;
     }
     // The rewarded video ad was failed to show.
     void RewardedVideoOnAdShowFailedEvent(IronSourceError error, IronSourceAdInfo adInfo)
@@ -173,6 +180,15 @@ public class AdsManager : MonoBehaviour
     void RewardedVideoOnAdClickedEvent(IronSourcePlacement placement, IronSourceAdInfo adInfo)
     {
     }
-
-    #endregion
+    // Indicates that the Rewarded video ad was loaded successfully. 
+    // AdInfo parameter includes information about the loaded ad
+    void RewardedVideoOnAdReadyEvent(IronSourceAdInfo adInfo)
+    {
+        FindObjectOfType<MainMenu>().ShowRewardedAdIcon(true);
+    }
+    // Indicates that the Rewarded video ad failed to be loaded 
+    void RewardedVideoOnAdLoadFailedEvent(IronSourceError error)
+    {
+    }
+    # endregion
 }

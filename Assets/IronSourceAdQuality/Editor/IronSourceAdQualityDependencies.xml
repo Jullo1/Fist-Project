@@ -1,0 +1,36 @@
+<dependencies>
+  <unityversion>7.19.2</unityversion>
+
+  <androidPackages>
+    <androidPackage spec="com.ironsource:adqualitysdk:7.19.2">
+      <repositories>
+        <repository>https://android-sdk.is.com/</repository>
+      </repositories>
+    </androidPackage>
+  </androidPackages>
+
+    <androidPackages>
+    <androidPackage spec="com.ironsource.unity:adqualitysdk:7.19.2">
+      <repositories>
+        <repository>https://android-sdk.is.com/</repository>
+      </repositories>
+    </androidPackage>
+  </androidPackages>
+
+  <iosPods>
+    <iosPod name="IronSourceAdQualitySDK" version="7.19.2">
+      <sources>
+        <source>https://github.com/CocoaPods/Specs</source>
+      </sources>
+    </iosPod>
+  </iosPods>
+
+    <iosPods>
+    <iosPod name="IronSourceAdQualityUnityBridge" version="7.19.2">
+      <sources>
+        <source>https://github.com/CocoaPods/Specs</source>
+      </sources>
+    </iosPod>
+  </iosPods>
+
+</dependencies>

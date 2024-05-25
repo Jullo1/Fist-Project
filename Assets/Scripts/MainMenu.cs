@@ -29,6 +29,7 @@ public class MainMenu : MonoBehaviour
     ReviewManager reviewManager;
     PlayReviewInfo playReviewInfo;
     bool loadSceneSent;
+    bool loadingRewardedAd;
 
     void Start()
     {
@@ -53,8 +54,14 @@ public class MainMenu : MonoBehaviour
         //first run, initialize all functionality elements
         if (!FindObjectOfType<ScoreKeeper>())
         {
+            IronSource.Agent.setConsent(true);
+            IronSource.Agent.setMetaData("do_not_sell", "false");
+            IronSource.Agent.setMetaData("is_child_directed", "false");
+            IronSource.Agent.setManualLoadRewardedVideo(true);
+            IronSource.Agent.init(appKey, IronSourceAdUnits.REWARDED_VIDEO, IronSourceAdUnits.INTERSTITIAL, IronSourceAdUnits.BANNER);
+            IronSource.Agent.shouldTrackNetworkState(true);
             IronSource.Agent.validateIntegration();
-            IronSource.Agent.init(appKey);
+            IronSourceAdQuality.Initialize(appKey);
             RebuildSaveData();
             Instantiate(scoreKeeper);
             Instantiate(economySystemPrefab);
@@ -101,13 +108,12 @@ public class MainMenu : MonoBehaviour
         StartCoroutine(CheckRewarded()); //if reward ad is ready, enable button
     }
 
-    IEnumerator CheckRewarded()
+    public IEnumerator CheckRewarded()
     {
-        while (!IronSource.Agent.isRewardedVideoAvailable())
-        {
-            ShowRewardedAdIcon(false);
-            yield return new WaitForSeconds(5f);
-        }
+        yield return new WaitForSeconds(0.5f);
+        IronSource.Agent.loadRewardedVideo();
+        while (!IronSource.Agent.isRewardedVideoAvailable()) yield return new WaitForSeconds(5f);
+
         if (!IronSource.Agent.isRewardedVideoPlacementCapped("Main_Menu")) ShowRewardedAdIcon(true);
     }
 
@@ -118,6 +124,7 @@ public class MainMenu : MonoBehaviour
         //load all ads
         IronSource.Agent.loadBanner(IronSourceBannerSize.BANNER, IronSourceBannerPosition.BOTTOM);
         IronSource.Agent.loadInterstitial();
+        IronSource.Agent.loadRewardedVideo();
     }
 
     void OnApplicationPause(bool isPaused)
@@ -134,6 +141,16 @@ public class MainMenu : MonoBehaviour
     {
         if (IronSource.Agent.isRewardedVideoAvailable())
             IronSource.Agent.showRewardedVideo();
+        else if (!loadingRewardedAd) StartCoroutine(ManualShowRewardedVideo()); //in case rewarded failed to load, reload it once more manually, wait a few seconds, then show the ad
+    }
+
+    public IEnumerator ManualShowRewardedVideo()
+    {
+        loadingRewardedAd = true;
+        IronSource.Agent.loadRewardedVideo();
+        yield return new WaitForSeconds(3f);
+        loadingRewardedAd = false;
+        IronSource.Agent.showRewardedVideo();
     }
 
     IEnumerator ReviewTab()
