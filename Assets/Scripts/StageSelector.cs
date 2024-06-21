@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -22,6 +21,8 @@ public class StageSelector : MonoBehaviour
     Text[] UITexts;
     Outline[] UIOutlines;
     [SerializeField] Outline startButtonOutline;
+    [SerializeField] Image rewardAdButton;
+    [SerializeField] Outline rewardAdButtonOutline;
 
     [SerializeField] List<AudioClip> musicList = new List<AudioClip>();
     [SerializeField] AudioSource backgroundMusic;
@@ -113,14 +114,14 @@ public class StageSelector : MonoBehaviour
         //recolor texts and outlines
         switch (currentStage)
         {
-            default: ApplyStageColors(Color.black, new Color32(0, 0, 0, 64), false); break;
+            default: ApplyStageColors(Color.black, new Color32(255, 255, 255, 32), false); break;
             case 1: ApplyStageColors(new Color32(0, 60, 20, 255), new Color32(145, 100, 50, 255), true); break;
             case 2: ApplyStageColors(new Color32(240, 170, 90, 255), new Color32(50, 50, 50, 128), true); break;
             case 3: ApplyStageColors(new Color32(250, 220, 175, 255), new Color32(0, 0, 0, 64), true); break;
-            case 4: ApplyStageColors(new Color32(195, 195, 195, 255), new Color32(0, 0, 0, 255), true); break;
-            case 5: ApplyStageColors(new Color32(110, 165, 200, 255), new Color32(200, 255, 255, 255), true); break;
+            case 4: ApplyStageColors(new Color32(195, 195, 195, 255), new Color32(0, 0, 0, 128), true); break;
+            case 5: ApplyStageColors(new Color32(110, 165, 200, 255), new Color32(200, 255, 255, 212), true); break;
             case 6: ApplyStageColors(new Color32(40, 40, 40, 255), new Color32(200, 200, 200, 255), true); break;
-            case 7: ApplyStageColors(new Color32(200, 90, 40, 255), new Color32(40, 40, 40, 255), true); break;
+            case 7: ApplyStageColors(new Color32(200, 90, 40, 255), new Color32(40, 40, 40, 184), true); break;
             case 8: ApplyStageColors(new Color32(100, 100, 200, 255), new Color32(0, 0, 0, 128), true); break; 
         }
     }
@@ -137,6 +138,9 @@ public class StageSelector : MonoBehaviour
             startButtonOutline.effectColor = new Color32(textColor.r, textColor.g, textColor.b, 128);
             text.color = textColor;
         }
+
+        rewardAdButton.color = textColor;
+        rewardAdButtonOutline.effectColor = outlineColor;
     }
 
     void ApplyStageMusic()

@@ -5,9 +5,6 @@ using UnityEngine.InputSystem.OnScreen;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System;
-using UnityEngine.SocialPlatforms.Impl;
-using UnityEngine.SocialPlatforms;
-using Unity.VisualScripting;
 
 public class GameManager : MonoBehaviour
 {

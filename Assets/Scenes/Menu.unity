@@ -865,6 +865,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: b51e67ce3277b65499a4ec35ec0b11c4, type: 3}
   - {fileID: 21300000, guid: 2d698b0152b69bb47933470eb93e4f41, type: 3}
   startButtonOutline: {fileID: 443236732}
+  rewardAdButton: {fileID: 1750403711}
+  rewardAdButtonOutline: {fileID: 1750403713}
   musicList:
   - {fileID: 8300000, guid: e04ee77a3a583394584de9f97a7c2804, type: 3}
   - {fileID: 8300000, guid: 48a7c09d5fda3254f85ecbfc20f2093f, type: 3}
@@ -1547,7 +1549,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Next update will include the Market, coin drops enabled!
+  m_Text: 'Next update: The Market. Collect coins now!'
 --- !u!222 &436819578
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4542,6 +4544,7 @@ GameObject:
   - component: {fileID: 1750403712}
   - component: {fileID: 1750403711}
   - component: {fileID: 1750403710}
+  - component: {fileID: 1750403713}
   m_Layer: 5
   m_Name: Reward Ad Button
   m_TagString: Untagged
@@ -4662,6 +4665,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1750403708}
   m_CullTransparentMesh: 1
+--- !u!114 &1750403713
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1750403708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 2, y: -2}
+  m_UseGraphicAlpha: 1
 --- !u!1 &1819406763
 GameObject:
   m_ObjectHideFlags: 0

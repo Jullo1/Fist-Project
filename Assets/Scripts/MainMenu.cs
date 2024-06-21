@@ -4,6 +4,8 @@ using UnityEngine.SceneManagement;
 using System.Collections;
 using System;
 using Google.Play.Review;
+using Unity.Services.Core;
+using Unity.Services.Analytics;
 
 public class MainMenu : MonoBehaviour
 {
@@ -31,7 +33,7 @@ public class MainMenu : MonoBehaviour
     bool loadSceneSent;
     bool loadingRewardedAd;
 
-    void Start()
+    async void Start()
     {
         //ads
 #if UNITY_ANDROID
@@ -66,6 +68,8 @@ public class MainMenu : MonoBehaviour
             Instantiate(scoreKeeper);
             Instantiate(economySystemPrefab);
             if (Application.isMobilePlatform || Application.isEditor) StartCoroutine(LoadAds());
+            await UnityServices.InitializeAsync();
+            AnalyticsService.Instance.StartDataCollection();
         }
         
         //returned to main menu
