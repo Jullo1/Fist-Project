@@ -7,7 +7,10 @@ dependencies {
     implementation 'androidx.legacy:legacy-support-v4:1.0.0' // Assets/LevelPlay/Editor/ISInMobiAdapterDependencies.xml:22
     implementation 'androidx.recyclerview:recyclerview:1.2.1' // Assets/LevelPlay/Editor/ISMintegralAdapterDependencies.xml:40
     implementation 'com.amazon.android:aps-sdk:9.9.3+' // Assets/LevelPlay/Editor/ISAPSAdapterDependencies.xml:15
+    implementation 'com.android.installreferrer:installreferrer:2.1' // Assets/AppsFlyer/Editor/AppsFlyerDependencies.xml:10
     implementation 'com.applovin:applovin-sdk:12.4.3' // Assets/LevelPlay/Editor/ISAppLovinAdapterDependencies.xml:15
+    implementation 'com.appsflyer:af-android-sdk:6.14.2' // Assets/AppsFlyer/Editor/AppsFlyerDependencies.xml:6
+    implementation 'com.appsflyer:unity-wrapper:6.14.4' // Assets/AppsFlyer/Editor/AppsFlyerDependencies.xml:8
     implementation 'com.chartboost:chartboost-sdk:9.7.0' // Assets/LevelPlay/Editor/ISChartboostAdapterDependencies.xml:15
     implementation 'com.facebook.android:audience-network-sdk:6.17.0' // Assets/LevelPlay/Editor/ISFacebookAdapterDependencies.xml:8
     implementation 'com.fyber:marketplace-sdk:8.2.6' // Assets/LevelPlay/Editor/ISFyberAdapterDependencies.xml:8

@@ -19,6 +19,7 @@ public class MainMenu : MonoBehaviour
     [SerializeField] Image characterPreview;
     [SerializeField] Text lockedStageText;
     [SerializeField] Text lockedCharacterText;
+    [SerializeField] GameObject marketTab;
 
     public Text scoreOutput;
     [SerializeField] GameObject scoreKeeper;
@@ -46,6 +47,7 @@ public class MainMenu : MonoBehaviour
 
         menuAudio = GetComponent<AudioSource>();
         coinsOutput = GameObject.FindGameObjectWithTag("CoinOutput").GetComponent<Text>();
+        if (Application.internetReachability == NetworkReachability.NotReachable) coinsOutput.text = "Offline"; //offline mode, will not gather coins
 
         //InitiateSaveData(); //for testing, resets all save data
         //InitiateCheatSaveData(); //unlock everything
@@ -71,16 +73,20 @@ public class MainMenu : MonoBehaviour
             await UnityServices.InitializeAsync();
             AnalyticsService.Instance.StartDataCollection();
         }
-        
         //returned to main menu
         else
         {
             if (Application.isMobilePlatform || Application.isEditor)
             {
                 IronSource.Agent.displayBanner();
-                IronSource.Agent.showInterstitial(); //send ad after death
+                if (!ScoreKeeper.adPlayed)
+                {
+                    IronSource.Agent.showInterstitial(); //send ad after death
+                    ScoreKeeper.adPlayed = true;
+                } else ScoreKeeper.adPlayed = false;
             }
             coinsOutput.text = EconomySystem.balance.ToString(); //starts UI with previous balance unless it's 0
+            FindObjectOfType<EconomySystem>().LoadInventory();
         }
 
         //webgl sendscore
@@ -284,6 +290,8 @@ public class MainMenu : MonoBehaviour
 
     public IEnumerator AddCoins(int coins)
     {
+        if (Application.internetReachability == NetworkReachability.NotReachable) coinsOutput.text = "Offline"; //offline mode, will not gather coins
+
         yield return new WaitForSeconds(0.5f);
         Text currecyOutput = GameObject.FindGameObjectWithTag("CoinOutput").GetComponent<Text>();
         while (!economySystem.ready) yield return new WaitForSeconds(0.05f);
@@ -367,6 +375,11 @@ public class MainMenu : MonoBehaviour
     public void ExitGame()
     {
         Application.Quit();
+    }
+
+    public void ToggleMarket(bool active)
+    {
+        marketTab.SetActive(active);
     }
 
     public void OpenWebsite(string tab)

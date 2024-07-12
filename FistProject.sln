@@ -13,11 +13,17 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unity.LevelPlay", "Unity.Le
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Google.Play.Games.Editor", "Google.Play.Games.Editor.csproj", "{6C250C4A-338C-E507-1429-C526D74CDA1E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppsFlyer", "AppsFlyer.csproj", "{75794ED0-F5D4-1BF5-DC33-BAED36AC97FC}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Google.Play.Common", "Google.Play.Common.csproj", "{E80C9ABF-5286-BA8E-0782-C7F68337EEDB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Google.Play.Core", "Google.Play.Core.csproj", "{EEFEE685-5112-D46D-723D-1968B62C0F0C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppsFlyer.Editor", "AppsFlyer.Editor.csproj", "{951205B6-1C47-2AC9-5DE6-672EF1447FDD}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Google.Play.Review", "Google.Play.Review.csproj", "{18707622-7F6F-B018-6A80-ABBFAC2242E5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests.csproj", "{CEE22F2F-C089-FF48-A391-0FEA4924A030}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -49,6 +55,10 @@ Global
 		{6C250C4A-338C-E507-1429-C526D74CDA1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6C250C4A-338C-E507-1429-C526D74CDA1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6C250C4A-338C-E507-1429-C526D74CDA1E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{75794ED0-F5D4-1BF5-DC33-BAED36AC97FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{75794ED0-F5D4-1BF5-DC33-BAED36AC97FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{75794ED0-F5D4-1BF5-DC33-BAED36AC97FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{75794ED0-F5D4-1BF5-DC33-BAED36AC97FC}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E80C9ABF-5286-BA8E-0782-C7F68337EEDB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E80C9ABF-5286-BA8E-0782-C7F68337EEDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E80C9ABF-5286-BA8E-0782-C7F68337EEDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -57,10 +67,18 @@ Global
 		{EEFEE685-5112-D46D-723D-1968B62C0F0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EEFEE685-5112-D46D-723D-1968B62C0F0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EEFEE685-5112-D46D-723D-1968B62C0F0C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{951205B6-1C47-2AC9-5DE6-672EF1447FDD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{951205B6-1C47-2AC9-5DE6-672EF1447FDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{951205B6-1C47-2AC9-5DE6-672EF1447FDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{951205B6-1C47-2AC9-5DE6-672EF1447FDD}.Release|Any CPU.Build.0 = Release|Any CPU
 		{18707622-7F6F-B018-6A80-ABBFAC2242E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{18707622-7F6F-B018-6A80-ABBFAC2242E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{18707622-7F6F-B018-6A80-ABBFAC2242E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{18707622-7F6F-B018-6A80-ABBFAC2242E5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CEE22F2F-C089-FF48-A391-0FEA4924A030}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CEE22F2F-C089-FF48-A391-0FEA4924A030}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CEE22F2F-C089-FF48-A391-0FEA4924A030}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CEE22F2F-C089-FF48-A391-0FEA4924A030}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

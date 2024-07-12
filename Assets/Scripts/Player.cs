@@ -61,10 +61,11 @@ public class Player : Unit
 
     void Start()
     {
+        //apply skin stats
         switch(SkinSelector.currentSkin)
         {
             default: break;
-            case 1: //warrior
+            case 1: //dude
                 UpgradeStat(playerStats.attackSpeed, 0.20f);
                 break;
             case 2: //machine
@@ -85,10 +86,16 @@ public class Player : Unit
                 break;
             case 5: //super
                 UpgradeStat(playerStats.strength, 6);
-                UpgradeStat(playerStats.pushForce, 150);
+                UpgradeStat(playerStats.pushForce, 100);
                 break;
-
         }
+        //apply upgrade stats
+        UpgradeStat(playerStats.strength, PlayerPrefs.GetInt("STRENGTH") * 2);
+        UpgradeStat(playerStats.pushForce, PlayerPrefs.GetInt("STRENGTH") * 20);
+        UpgradeStat(playerStats.attackSpeed, PlayerPrefs.GetInt("ATTACKSPEED") * 0.10f);
+        UpgradeStat(playerStats.specialCooldown, PlayerPrefs.GetInt("SPECIAL") * 2.50f);
+        UpgradeStat(playerStats.specialAttackCount, PlayerPrefs.GetInt("SPECIAL"));
+        UpgradeStat(playerStats.moveSpeed, PlayerPrefs.GetInt("MOVEMENT") * 0.10f);
     }
 
     void Update()

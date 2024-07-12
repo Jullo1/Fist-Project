@@ -3,7 +3,10 @@
     <package>androidx.legacy:legacy-support-v4:1.0.0</package>
     <package>androidx.recyclerview:recyclerview:1.2.1</package>
     <package>com.amazon.android:aps-sdk:9.9.3+</package>
+    <package>com.android.installreferrer:installreferrer:2.1</package>
     <package>com.applovin:applovin-sdk:12.4.3</package>
+    <package>com.appsflyer:af-android-sdk:6.14.2</package>
+    <package>com.appsflyer:unity-wrapper:6.14.4</package>
     <package>com.chartboost:chartboost-sdk:9.7.0</package>
     <package>com.facebook.android:audience-network-sdk:6.17.0</package>
     <package>com.fyber:marketplace-sdk:8.2.6</package>

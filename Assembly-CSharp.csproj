@@ -90,6 +90,7 @@
     <Compile Include="Assets\Scripts\Specific\PassthroughEnemies.cs" />
     <Compile Include="Assets\IronSourceAdQuality\Scripts\Singletons\BaseBehaviour.cs" />
     <Compile Include="Assets\Scripts\InputManager.cs" />
+    <Compile Include="Assets\Scripts\Economy\Market.cs" />
     <Compile Include="Assets\IronSourceAdQuality\Scripts\AdQuality\ISAdQualityUtils.cs" />
     <Compile Include="Assets\Scripts\Tutorial.cs" />
     <Compile Include="Assets\Scripts\Player.cs" />
@@ -459,8 +460,20 @@
       <HintPath>Library\PackageCache\com.unity.collections@1.2.4\Unity.Collections.LowLevel.ILSupport\Unity.Collections.LowLevel.ILSupport.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="NSubstitute">
+      <HintPath>Assets\AppsFlyer\Tests\NSubstitute.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Unity.VisualScripting.Antlr3.Runtime">
-      <HintPath>Library\PackageCache\com.unity.visualscripting@1.9.2\Runtime\VisualScripting.Flow\Dependencies\NCalc\Unity.VisualScripting.Antlr3.Runtime.dll</HintPath>
+      <HintPath>Library\PackageCache\com.unity.visualscripting@1.9.4\Runtime\VisualScripting.Flow\Dependencies\NCalc\Unity.VisualScripting.Antlr3.Runtime.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe">
+      <HintPath>Assets\AppsFlyer\Tests\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Castle.Core">
+      <HintPath>Assets\AppsFlyer\Tests\Castle.Core.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json">
@@ -1281,9 +1294,17 @@
       <Project>{7CD1E76A-D4C4-F04D-9561-01BC9ED76944}</Project>
       <Name>Unity.LevelPlay</Name>
     </ProjectReference>
+    <ProjectReference Include="AppsFlyer.Editor.csproj">
+      <Project>{951205B6-1C47-2AC9-5DE6-672EF1447FDD}</Project>
+      <Name>AppsFlyer.Editor</Name>
+    </ProjectReference>
     <ProjectReference Include="Google.Android.AppBundle.Editor.csproj">
       <Project>{778B78F7-4C55-259B-C5F4-AC27DA1E9CA0}</Project>
       <Name>Google.Android.AppBundle.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="AppsFlyer.csproj">
+      <Project>{75794ED0-F5D4-1BF5-DC33-BAED36AC97FC}</Project>
+      <Name>AppsFlyer</Name>
     </ProjectReference>
     <ProjectReference Include="Google.Play.Games.csproj">
       <Project>{287A6EB8-06F9-8EE3-59D7-D29D40B26B1B}</Project>

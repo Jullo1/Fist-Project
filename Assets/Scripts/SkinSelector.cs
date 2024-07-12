@@ -24,7 +24,7 @@ public class SkinSelector : MonoBehaviour
 
 
         skinNames.Add("Fist Hero");
-        skinNames.Add("Fist Warrior");
+        skinNames.Add("Fist Dude");
         skinNames.Add("Fist Machine");
         skinNames.Add("Golden Fist Hero");
         skinNames.Add("Fist Wizard");
