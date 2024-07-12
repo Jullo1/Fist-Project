@@ -9,7 +9,7 @@ public class Market : MonoBehaviour
 {
     EconomySystem economy;
     int[] ownedItemStep = new int[4];
-    string[,] upgradeNames = new string[4, 4] { { "Ice Cream", "Pizza", "ChocoBar", "Steak" }, { "Coffee", "Soda", "Energy Drink", "Liquid Lightning" }, { "Cap", "Hood", "Wizard Hat", "Headband" }, { "Boots", "High End Sneakers", "Ultra Lightweight Shoes", "Feathertech Experimental Footwear" } };
+    string[,] upgradeNames = new string[4, 4] { { "Apple", "Pizza", "ChocoBar", "Sundae" }, { "Mineral Water", "Soda", "Energy Drink", "Liquid Lightning" }, { "Hood", "Helmet", "Wizard Hat", "Headband" }, { "Boots", "Ultra Lightweight Shoes", "Feathertech Experimental Footwear", "High End Sneakers" } };
 
     [SerializeField] Sprite[] upgradeSprites;
     int[] costs = new int[4] {4,16,64,256};

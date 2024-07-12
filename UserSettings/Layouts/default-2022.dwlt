@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1920
     height: 997
   m_ShowMode: 4
-  m_Title: Scene
+  m_Title: Hierarchy
   m_RootView: {fileID: 7}
   m_MinSize: {x: 875, y: 321}
   m_MaxSize: {x: 10000, y: 10000}
@@ -486,7 +486,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Art/Sprites/Items/Market
+    - Assets/Scripts/Economy
     m_Globs: []
     m_OriginalText: 
     m_ImportLogFlags: 0
@@ -494,16 +494,16 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Art/Sprites/Items/Market
+  - Assets/Scripts/Economy
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\EDGELESS2\Documents\Unity\FistProject
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 102}
-    m_SelectedIDs: 2cfe0100
-    m_LastClickedID: 130604
-    m_ExpandedIDs: 000000003279000034790000f27900000a7a0000ca930100d2930100dc930100e8fd010000ca9a3bffffff7f
+    scrollPos: {x: 0, y: 294}
+    m_SelectedIDs: 507d0000
+    m_LastClickedID: 32080
+    m_ExpandedIDs: 00000000387600003a760000a6790000be790000087a00000a7a000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -531,7 +531,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000003279000034790000
+    m_ExpandedIDs: 00000000387600003a760000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -673,7 +673,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: beedfdffbca4feff06a5feffc4a8feff3caafeffb4abfeff2cadfeffa4aefeff1cb0feff94b1feff06b3feff90b4feffc4b4feffd6edfeff34f8feff2efcfeffc803ffff500effffb4c6ffff12fbfffff4ffffff9e730000a673000000740000f8a3000000a400006e570100e06c01001c6d01008e6d0100966d0100206e01006c6e0100
+      m_ExpandedIDs: e4e5ffff2ee6ffffece9ffff64ebffffdcecffff54eeffffccefffff44f1ffffbcf2ffff2ef4ffffb8f5ffffecf5ffff00fbfffff27200002e7300009e7300003a7400008c740000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1079,9 +1079,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -0.1269082, y: 1.895453, z: 0.38800496}
+    m_Target: {x: 4.4920197, y: -0.5475187, z: 0.4616813}
     speed: 2
-    m_Value: {x: -0.1269082, y: 1.895453, z: 0.38800496}
+    m_Value: {x: 4.5031953, y: -0.5680673, z: 0.46337926}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1131,9 +1131,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 11.310698
+    m_Target: 3.9430523
     speed: 2
-    m_Value: 11.310698
+    m_Value: 3.7732558
   m_Ortho:
     m_Target: 1
     speed: 2
