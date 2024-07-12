@@ -201,6 +201,12 @@ public class MainMenu : MonoBehaviour
         if (!PlayerPrefs.HasKey("reviewCount")) PlayerPrefs.SetInt("reviewCount", 4);
         if (!PlayerPrefs.HasKey("optedOutReview")) PlayerPrefs.SetInt("optedOutReview", 0);
 
+        //set all upgrades at 0 on startup before checking player inventory
+        PlayerPrefs.SetInt("STRENGTH", 0);
+        PlayerPrefs.SetInt("ATTACKSPEED", 0);
+        PlayerPrefs.SetInt("SPECIAL", 0);
+        PlayerPrefs.SetInt("MOVEMENT", 0);
+
         string temp;
         for (int i = 0; i < 9; i++)
         {
@@ -377,9 +383,9 @@ public class MainMenu : MonoBehaviour
         Application.Quit();
     }
 
-    public void ToggleMarket(bool active)
+    public void ToggleMarket()
     {
-        marketTab.SetActive(active);
+        marketTab.SetActive(!marketTab.activeSelf);
     }
 
     public void OpenWebsite(string tab)

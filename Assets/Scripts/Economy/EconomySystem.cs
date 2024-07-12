@@ -39,6 +39,13 @@ public class EconomySystem : MonoBehaviour
         //AddCoins(1000);
     }
 
+    public async void ReloadCurrency()
+    {
+        PlayerBalance fistCoinBalance = await fistCoinDefinition.GetPlayerBalanceAsync();
+        balance = fistCoinBalance.Balance;
+        StartCoroutine(menu.UpdateCoinsUI(balance));
+    }
+
     public async void AddCoins(long lootedCoins)
     {
         PlayerBalance fistCoinBalance = await fistCoinDefinition.GetPlayerBalanceAsync();
@@ -56,11 +63,6 @@ public class EconomySystem : MonoBehaviour
         market.SetUpgradeStep(1, 0);
         market.SetUpgradeStep(2, 0);
         market.SetUpgradeStep(3, 0);
-
-        PlayerPrefs.SetInt("STRENGTH", 0);
-        PlayerPrefs.SetInt("ATTACKSPEED", 0);
-        PlayerPrefs.SetInt("SPECIAL", 0);
-        PlayerPrefs.SetInt("MOVEMENT", 0);
 
         //adjust market inventory to match player's progress
         for (int i = 0; i < playerInventory.PlayersInventoryItems.Count; i++)
