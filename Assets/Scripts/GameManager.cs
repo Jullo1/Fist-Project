@@ -91,10 +91,12 @@ public class GameManager : MonoBehaviour
         } else if (!pauseWaves) spawnTimer += Time.deltaTime;
     }
 
+#if UNITY_ANDROID
     void OnApplicationPause(bool isPaused)
     {
         IronSource.Agent.onApplicationPause(isPaused);
     }
+#endif
 
     public IEnumerator StopTime(float seconds)
     {

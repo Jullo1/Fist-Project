@@ -3,10 +3,11 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Collections;
 using System;
+#if UNITY_ANDROID
 using Google.Play.Review;
+#endif
 using Unity.Services.Core;
 using Unity.Services.Analytics;
-
 public class MainMenu : MonoBehaviour
 {
     AudioSource menuAudio;
@@ -28,12 +29,14 @@ public class MainMenu : MonoBehaviour
     Text coinsOutput;
     EconomySystem economySystem;
     public GameObject lootGoldCoin;
-
+#if UNITY_ANDROID
     ReviewManager reviewManager;
     PlayReviewInfo playReviewInfo;
+#endif
     bool loadSceneSent;
     bool loadingRewardedAd;
 
+    [Obsolete]
     async void Start()
     {
         //ads
@@ -58,6 +61,10 @@ public class MainMenu : MonoBehaviour
         //first run, initialize all functionality elements
         if (!FindObjectOfType<ScoreKeeper>())
         {
+            RebuildSaveData();
+            Instantiate(scoreKeeper);
+            Instantiate(economySystemPrefab);
+#if UNITY_ANDROID
             IronSource.Agent.setConsent(true);
             IronSource.Agent.setMetaData("do_not_sell", "false");
             IronSource.Agent.setMetaData("is_child_directed", "false");
@@ -66,25 +73,22 @@ public class MainMenu : MonoBehaviour
             IronSource.Agent.shouldTrackNetworkState(true);
             IronSource.Agent.validateIntegration();
             IronSourceAdQuality.Initialize(appKey);
-            RebuildSaveData();
-            Instantiate(scoreKeeper);
-            Instantiate(economySystemPrefab);
             if (Application.isMobilePlatform || Application.isEditor) StartCoroutine(LoadAds());
+#endif
             await UnityServices.InitializeAsync();
             AnalyticsService.Instance.StartDataCollection();
         }
         //returned to main menu
         else
         {
-            if (Application.isMobilePlatform || Application.isEditor)
+#if UNITY_ANDROID
+            IronSource.Agent.displayBanner();
+            if (!ScoreKeeper.adPlayed)
             {
-                IronSource.Agent.displayBanner();
-                if (!ScoreKeeper.adPlayed)
-                {
-                    IronSource.Agent.showInterstitial(); //send ad after death
-                    ScoreKeeper.adPlayed = true;
-                } else ScoreKeeper.adPlayed = false;
-            }
+                IronSource.Agent.showInterstitial(); //send ad after death
+                ScoreKeeper.adPlayed = true;
+            } else ScoreKeeper.adPlayed = false;
+#endif
             coinsOutput.text = EconomySystem.balance.ToString(); //starts UI with previous balance unless it's 0
             FindObjectOfType<EconomySystem>().LoadInventory();
         }
@@ -92,10 +96,13 @@ public class MainMenu : MonoBehaviour
         //webgl sendscore
         if (ScoreKeeper.score > 0)
         {
-            //if (!Application.isMobilePlatform) StartCoroutine(SendScore(ScoreKeeper.score)); //sending score for webgl build
+#if UNITY_WEBGL
+            StartCoroutine(SendScore(ScoreKeeper.score)); //sending score for webgl build
+#endif
             startButtonText.text = "AGAIN";
         }
 
+#if UNITY_ANDROID
         //android review
         if (PlayerPrefs.GetInt("totalKills") > 300 && ScoreKeeper.score > 0) 
         {
@@ -111,6 +118,7 @@ public class MainMenu : MonoBehaviour
 
             PlayerPrefs.Save();
         }
+#endif
 
         economySystem = FindObjectOfType<EconomySystem>();
         StartCoroutine(AddCoins(ScoreKeeper.coins));
@@ -121,22 +129,27 @@ public class MainMenu : MonoBehaviour
     public IEnumerator CheckRewarded()
     {
         yield return new WaitForSeconds(0.5f);
+#if UNITY_ANDROID
         IronSource.Agent.loadRewardedVideo();
         while (!IronSource.Agent.isRewardedVideoAvailable()) yield return new WaitForSeconds(5f);
 
         if (!IronSource.Agent.isRewardedVideoPlacementCapped("Main_Menu")) ShowRewardedAdIcon(true);
+#endif
     }
 
     IEnumerator LoadAds()
     {
         yield return new WaitForSeconds(0.5f);
 
+#if UNITY_ANDROID
         //load all ads
         IronSource.Agent.loadBanner(IronSourceBannerSize.BANNER, IronSourceBannerPosition.BOTTOM);
         IronSource.Agent.loadInterstitial();
         IronSource.Agent.loadRewardedVideo();
+#endif
     }
 
+#if UNITY_ANDROID
     void OnApplicationPause(bool isPaused)
     {
         IronSource.Agent.onApplicationPause(isPaused);
@@ -146,14 +159,18 @@ public class MainMenu : MonoBehaviour
     {
         StartCoroutine(ReviewTab());
     }
+#endif
 
+#if UNITY_ANDROID
     public void ShowRewardedAd()
     {
         if (IronSource.Agent.isRewardedVideoAvailable())
             IronSource.Agent.showRewardedVideo();
         else if (!loadingRewardedAd) StartCoroutine(ManualShowRewardedVideo()); //in case rewarded failed to load, reload it once more manually, wait a few seconds, then show the ad
-    }
+}
+#endif
 
+#if UNITY_ANDROID
     public IEnumerator ManualShowRewardedVideo()
     {
         loadingRewardedAd = true;
@@ -162,7 +179,9 @@ public class MainMenu : MonoBehaviour
         loadingRewardedAd = false;
         IronSource.Agent.showRewardedVideo();
     }
+#endif
 
+#if UNITY_ANDROID
     IEnumerator ReviewTab()
     {
         yield return new WaitForSeconds(0.5f);
@@ -187,8 +206,8 @@ public class MainMenu : MonoBehaviour
         // The flow has finished. The API does not indicate whether the user
         // reviewed or not, or even whether the review dialog was shown. Thus, no
         // matter the result, we continue our app flow.
-
-    }
+}
+#endif
 
     void RebuildSaveData()
     {
@@ -270,9 +289,10 @@ public class MainMenu : MonoBehaviour
 
     void LoadScene(string sceneName)
     {
+        #if UNITY_ANDROID
         IronSource.Agent.loadInterstitial(); //load ad for next run
         IronSource.Agent.hideBanner(); //hide banner before moving to game
-
+        #endif
         PlayerPrefs.SetInt("selectedStage", StageSelector.currentStage);
         PlayerPrefs.SetInt("selectedSkin", SkinSelector.currentSkin);
         PlayerPrefs.Save();
