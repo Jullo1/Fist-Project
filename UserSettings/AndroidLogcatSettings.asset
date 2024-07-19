@@ -3,7 +3,7 @@
     "m_SelectedProcess": {
         "deviceId": "R58R236YGAA",
         "name": "com.Jullo.FistProject",
-        "processId": 1033,
+        "processId": 19923,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -192,6 +192,12 @@
             "deviceId": "R58R236YGAA",
             "name": "com.Jullo.FistProject",
             "processId": 1033,
+            "exited": false
+        },
+        {
+            "deviceId": "R58R236YGAA",
+            "name": "com.Jullo.FistProject",
+            "processId": 19923,
             "exited": false
         }
     ],

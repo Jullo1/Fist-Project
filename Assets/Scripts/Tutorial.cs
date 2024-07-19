@@ -45,7 +45,7 @@ public class Tutorial : MonoBehaviour
                 headerMessages.Add("Welcome to Fist Project");
                 if (Application.isMobilePlatform)
                 {
-                    headerMessages.Add("Move with the left stick");
+                    headerMessages.Add("Use the left stick to move");
                     if (PlayerPrefs.GetInt("AutoMode") == 0)
                     {
                         headerMessages.Add("Tap anywhere else to attack");
@@ -53,7 +53,7 @@ public class Tutorial : MonoBehaviour
                 }
                 else
                 {
-                    headerMessages.Add("Move with WASD");
+                    headerMessages.Add("Move with WASD keys");
                     if (PlayerPrefs.GetInt("AutoMode") == 0)
                     {
                         headerMessages.Add("Press space to attack");
@@ -62,14 +62,14 @@ public class Tutorial : MonoBehaviour
                 break;
             case 2: //combo
                 headerMessages.Add("Your special attack is ready!");
-                if (PlayerPrefs.GetInt("AutoMode") == 0)
-                    headerMessages.Add("Hold attack to send enemies flying");
+                if (Application.isMobilePlatform)
+                {
+                    headerMessages.Add("Hold tap to send enemies flying");
+                }
                 else
                 {
-                    if (Application.isMobilePlatform) headerMessages.Add("Tap to send enemies flying");
-                    else headerMessages.Add("Hold space to send enemies flying");
+                    headerMessages.Add("Hold space to send enemies flying");
                 }
-                    
                 break;
         }
         header.text = headerMessages[0];
