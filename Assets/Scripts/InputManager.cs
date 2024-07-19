@@ -75,14 +75,14 @@ public class InputManager : MonoBehaviour
                             player.ChannelSpecial(touchTimer[i]);
 
                         if (Input.touches[i].phase == UnityEngine.TouchPhase.Ended)
-                            if (Input.touches[i].position.x > 1500) player.CheckAttack(); //this will only be called if not using the onscreen stick with this finger
+                            if (Input.touches[i].position.x > 1500) if (player.autoMode) player.channelSpecialAuto = true; else player.CheckAttack(); //this will only be called if not using the onscreen stick with this finger
                     }
                 }
             }
             else if (!player.freezeAttack) //keyboard or controller
             {
+                if (Input.GetKeyUp(KeyCode.Space) || Input.GetButtonUp("Attack")) { if (player.autoMode) player.channelSpecialAuto = true; else player.CheckAttack(); }
                 if (Input.GetKey(KeyCode.Space) || Input.GetButton("Attack")) player.ChannelSpecial();
-                if (Input.GetKeyUp(KeyCode.Space) || Input.GetButtonUp("Attack")) player.CheckAttack();
             }
         }
         if (Input.GetKey(KeyCode.Escape) || Input.GetButton("Exit Game")) game.GameOver();

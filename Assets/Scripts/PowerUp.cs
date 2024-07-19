@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public enum PowerUpType { None, Health, FullRecovery, Experience, Frenzy, OneHitKO, TimeStop, Perfection, Infinity, Phoenix , Coin};
+public enum PowerUpType { None, Health, FullRecovery, Experience, Frenzy, OneHitKO, TimeStop, Perfection, Infinity, Phoenix , Coin, MiniTimeStop };
 public class PowerUp : Entity
 {
     Player player;
@@ -17,7 +17,9 @@ public class PowerUp : Entity
     {
         base.Awake();
         player = FindObjectOfType<Player>();
-        audioSource = FindObjectOfType<GameManager>().transform.GetComponentInChildren<AudioSource>();
+
+        if (FindObjectOfType<GameManager>().transform.GetComponentInChildren<AudioSource>())
+            audioSource = FindObjectOfType<GameManager>().transform.GetComponentInChildren<AudioSource>();
     }
 
     void Update()

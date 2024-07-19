@@ -21,6 +21,7 @@ public class MainMenu : MonoBehaviour
     [SerializeField] Text lockedStageText;
     [SerializeField] Text lockedCharacterText;
     [SerializeField] GameObject marketTab;
+    [SerializeField] Text autoModeText;
 
     public Text scoreOutput;
     [SerializeField] GameObject scoreKeeper;
@@ -122,8 +123,9 @@ public class MainMenu : MonoBehaviour
 
         economySystem = FindObjectOfType<EconomySystem>();
         StartCoroutine(AddCoins(ScoreKeeper.coins));
-
         StartCoroutine(CheckRewarded()); //if reward ad is ready, enable button
+
+        RefreshUITexts();
     }
 
     public IEnumerator CheckRewarded()
@@ -135,6 +137,31 @@ public class MainMenu : MonoBehaviour
 
         if (!IronSource.Agent.isRewardedVideoPlacementCapped("Main_Menu")) ShowRewardedAdIcon(true);
 #endif
+    }
+
+    void RefreshUITexts()
+    {
+        if (PlayerPrefs.GetInt("AutoMode") == 1)
+            autoModeText.text = "Auto Mode";
+        else if (PlayerPrefs.GetInt("AutoMode") == 0)
+            autoModeText.text = "Manual Mode";
+    }
+    public void ToggleAutoMode()
+    {
+        ResetTutorial();
+        int isAutoMode = PlayerPrefs.GetInt("AutoMode");
+        if (isAutoMode == 1)
+        {
+            PlayerPrefs.SetInt("AutoMode", 0);
+            autoModeText.text = "Manual Mode";
+            PlayerPrefs.Save();
+        }
+        else
+        {
+            PlayerPrefs.SetInt("AutoMode", 1);
+            autoModeText.text = "Auto Mode";
+            PlayerPrefs.Save();
+        }
     }
 
     IEnumerator LoadAds()
@@ -211,6 +238,7 @@ public class MainMenu : MonoBehaviour
 
     void RebuildSaveData()
     {
+        if (!PlayerPrefs.HasKey("AutoMode")) PlayerPrefs.SetInt("AutoMode", 1);
         if (!PlayerPrefs.HasKey("totalKills")) PlayerPrefs.SetInt("totalKills", 0);
         if (!PlayerPrefs.HasKey("maxKillsInOneRun")) PlayerPrefs.SetInt("maxKillsInOneRun", 0);
         if (!PlayerPrefs.HasKey("totalItemsGrabbed")) PlayerPrefs.SetInt("totalItemsGrabbed", 0);
@@ -238,6 +266,7 @@ public class MainMenu : MonoBehaviour
     void InitiateSaveData()
     {
         PlayerPrefs.DeleteAll();
+        PlayerPrefs.SetInt("AutoMode", 1);
         PlayerPrefs.SetInt("totalKills", 0);
         PlayerPrefs.SetInt("maxKillsInOneRun", 0);
         PlayerPrefs.SetInt("totalItemsGrabbed", 0);
@@ -256,6 +285,7 @@ public class MainMenu : MonoBehaviour
     void InitiateCheatSaveData()
     {
         PlayerPrefs.DeleteAll();
+        PlayerPrefs.SetInt("AutoMode", 1);
         PlayerPrefs.SetInt("totalKills", 4368);
         PlayerPrefs.SetInt("maxKillsInOneRun", 152);
         PlayerPrefs.SetInt("totalItemsGrabbed", 321);

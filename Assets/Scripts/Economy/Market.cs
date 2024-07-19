@@ -9,7 +9,7 @@ public class Market : MonoBehaviour
 {
     EconomySystem economy;
     int[] ownedItemStep = new int[4];
-    string[,] upgradeNames = new string[4, 4] { { "Apple", "Pizza", "ChocoBar", "Sundae" }, { "Mineral Water", "Soda", "Energy Drink", "Liquid Lightning" }, { "Hood", "Helmet", "Wizard Hat", "Headband" }, { "Boots", "Ultra Lightweight Shoes", "Feathertech Experimental Footwear", "High End Sneakers" } };
+    string[,] upgradeNames = new string[4, 4] { { "Apple", "Pizza", "ChocoBar", "Sundae" }, { "Mineral Water", "Soda", "Energy Drink", "Thunder Aid" }, { "Hood", "Helmet", "Wizard Hat", "Headband" }, { "Boots", "Ultra Lightweight Shoes", "High End Sneakers", "Feathertech Experimental Footwear" } };
 
     [SerializeField] Sprite[] upgradeSprites;
     int[] costs = new int[4] {4,16,64,256};
@@ -27,7 +27,7 @@ public class Market : MonoBehaviour
         {
             case "STRENGTH":
                 if (ownedItemStep[0] >= 4) break;
-                if ((int)EconomySystem.balance > costs[ownedItemStep[0]])
+                if ((int)EconomySystem.balance >= costs[ownedItemStep[0]])
                 {
                     await EconomyService.Instance.Purchases.MakeVirtualPurchaseAsync("BUYSTRENGTH" + (ownedItemStep[0] + 1).ToString());
                     SetUpgradeStep(0, ownedItemStep[0] + 1);
@@ -35,7 +35,7 @@ public class Market : MonoBehaviour
                 break;
             case "ATTACKSPEED":
                 if (ownedItemStep[1] >= 4) break;
-                if ((int)EconomySystem.balance > costs[ownedItemStep[1]])
+                if ((int)EconomySystem.balance >= costs[ownedItemStep[1]])
                 {
                     await EconomyService.Instance.Purchases.MakeVirtualPurchaseAsync("BUYATTACKSPEED" + (ownedItemStep[1] + 1).ToString());
                     SetUpgradeStep(1, ownedItemStep[1] + 1);
@@ -43,7 +43,7 @@ public class Market : MonoBehaviour
                 break;
             case "SPECIAL":
                 if (ownedItemStep[2] >= 4) break;
-                if ((int)EconomySystem.balance > costs[ownedItemStep[2]])
+                if ((int)EconomySystem.balance >= costs[ownedItemStep[2]])
                 {
                     await EconomyService.Instance.Purchases.MakeVirtualPurchaseAsync("BUYSPECIAL" + (ownedItemStep[2] + 1).ToString());
                     SetUpgradeStep(2, ownedItemStep[2] + 1);
@@ -51,7 +51,7 @@ public class Market : MonoBehaviour
                 break;
             case "MOVEMENT":
                 if (ownedItemStep[3] >= 4) break;
-                if ((int)EconomySystem.balance > costs[ownedItemStep[3]])
+                if ((int)EconomySystem.balance >= costs[ownedItemStep[3]])
                 {
                     await EconomyService.Instance.Purchases.MakeVirtualPurchaseAsync("BUYMOVEMENT" + (ownedItemStep[3] + 1).ToString());
                     SetUpgradeStep(3, ownedItemStep[3] + 1);

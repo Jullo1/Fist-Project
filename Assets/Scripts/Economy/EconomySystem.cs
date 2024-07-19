@@ -3,9 +3,6 @@ using Unity.Services.Core;
 using Unity.Services.Authentication;
 using Unity.Services.Economy;
 using Unity.Services.Economy.Model;
-using UnityEngine.UI;
-using System.Collections;
-using System.Collections.Generic;
 
 public class EconomySystem : MonoBehaviour
 {

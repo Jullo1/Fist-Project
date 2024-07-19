@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AdaptivePerformance;
 using UnityEngine.InputSystem.OnScreen;
 using UnityEngine.UI;
 
@@ -42,12 +43,33 @@ public class Tutorial : MonoBehaviour
                 return;
             case 1: //attack
                 headerMessages.Add("Welcome to Fist Project");
-                if (Application.isMobilePlatform) { headerMessages.Add("Move with the left stick"); headerMessages.Add("Tap anywhere else to attack"); }
-                else { headerMessages.Add("Move with WASD"); headerMessages.Add("Press space to attack"); }
+                if (Application.isMobilePlatform)
+                {
+                    headerMessages.Add("Move with the left stick");
+                    if (PlayerPrefs.GetInt("AutoMode") == 0)
+                    {
+                        headerMessages.Add("Tap anywhere else to attack");
+                    }
+                }
+                else
+                {
+                    headerMessages.Add("Move with WASD");
+                    if (PlayerPrefs.GetInt("AutoMode") == 0)
+                    {
+                        headerMessages.Add("Press space to attack");
+                    }
+                }
                 break;
             case 2: //combo
                 headerMessages.Add("Your special attack is ready!");
-                headerMessages.Add("Hold attack to send enemies flying");
+                if (PlayerPrefs.GetInt("AutoMode") == 0)
+                    headerMessages.Add("Hold attack to send enemies flying");
+                else
+                {
+                    if (Application.isMobilePlatform) headerMessages.Add("Tap to send enemies flying");
+                    else headerMessages.Add("Hold space to send enemies flying");
+                }
+                    
                 break;
         }
         header.text = headerMessages[0];

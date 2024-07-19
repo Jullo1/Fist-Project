@@ -14,7 +14,7 @@ public class Unit : Entity
     public int hitpoints;
     public int maxHitpoints;
     public bool dead;
-    protected float frozenTime;
+    public float frozenTime;
     public bool freezeAttack;
 
     protected int hitQueue; //useful for stop time, after the buff ends, the unit will take multiple hits one after the other

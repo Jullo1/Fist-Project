@@ -4812,13 +4812,15 @@ ParticleSystemRenderer:
   m_RenderAlignment: 0
   m_Pivot: {x: 0, y: 0, z: 0}
   m_Flip: {x: 0, y: 0, z: 0}
-  m_UseCustomVertexStreams: 1
   m_EnableGPUInstancing: 1
   m_ApplyActiveColorSpace: 1
   m_AllowRoll: 1
   m_FreeformStretching: 0
   m_RotateWithStretchDirection: 1
+  m_UseCustomVertexStreams: 1
   m_VertexStreams: 000304
+  m_UseCustomTrailVertexStreams: 0
+  m_TrailVertexStreams: 00010304
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
   m_Mesh1: {fileID: 0}
   m_Mesh2: {fileID: 0}
@@ -9732,13 +9734,15 @@ ParticleSystemRenderer:
   m_RenderAlignment: 0
   m_Pivot: {x: 0, y: 0, z: 0}
   m_Flip: {x: 0, y: 0, z: 0}
-  m_UseCustomVertexStreams: 1
   m_EnableGPUInstancing: 1
   m_ApplyActiveColorSpace: 1
   m_AllowRoll: 1
   m_FreeformStretching: 0
   m_RotateWithStretchDirection: 1
+  m_UseCustomVertexStreams: 1
   m_VertexStreams: 000304
+  m_UseCustomTrailVertexStreams: 0
+  m_TrailVertexStreams: 00010304
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
   m_Mesh1: {fileID: 0}
   m_Mesh2: {fileID: 0}
@@ -14688,13 +14692,15 @@ ParticleSystemRenderer:
   m_RenderAlignment: 0
   m_Pivot: {x: 0, y: 0, z: 0}
   m_Flip: {x: 0, y: 0, z: 0}
-  m_UseCustomVertexStreams: 1
   m_EnableGPUInstancing: 1
   m_ApplyActiveColorSpace: 1
   m_AllowRoll: 1
   m_FreeformStretching: 0
   m_RotateWithStretchDirection: 1
+  m_UseCustomVertexStreams: 1
   m_VertexStreams: 000304
+  m_UseCustomTrailVertexStreams: 0
+  m_TrailVertexStreams: 00010304
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
   m_Mesh1: {fileID: 0}
   m_Mesh2: {fileID: 0}
@@ -14765,7 +14771,7 @@ MonoBehaviour:
   size: 1
   freeze: 0
   moveSpeed: 2.2
-  attackRange: 2
+  attackRange: 1.75
   strength: 7
   pushForce: 200
   attackCD:
@@ -14775,6 +14781,7 @@ MonoBehaviour:
   hitpoints: 3
   maxHitpoints: 3
   dead: 0
+  frozenTime: 0
   freezeAttack: 0
   hitSound: {fileID: 8300000, guid: e9e87a3377ca8214e9e7193f038750a2, type: 3}
   punchSFX: {fileID: 8300000, guid: e9e87a3377ca8214e9e7193f038750a2, type: 3}
@@ -14788,12 +14795,13 @@ MonoBehaviour:
   channelingSpecial: 0
   specialRange: 1.5
   specialCharges: 2
+  channelSpecialAuto: 0
   comboAmount: 0
   maxComboCDBoost: 20
   comboCDBoost: 1
   invincible: 0
   hasPowerUp: 0
-  currentFrenzyTimer: 0
+  autoMode: 1
 --- !u!114 &8953781668786574092
 MonoBehaviour:
   m_ObjectHideFlags: 0

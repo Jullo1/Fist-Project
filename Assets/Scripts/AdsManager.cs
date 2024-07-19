@@ -159,7 +159,7 @@ public class AdsManager : MonoBehaviour
     // The Rewarded Video ad view is about to be closed. Your activity will regain its focus.
     void RewardedVideoOnAdClosedEvent(IronSourceAdInfo adInfo)
     {
-        if (rewarded) StartCoroutine(FindObjectOfType<MainMenu>().AddCoins(3));
+        if (rewarded) StartCoroutine(FindObjectOfType<MainMenu>().AddCoins(4));
         rewarded = false;
         StartCoroutine(FindObjectOfType<MainMenu>().CheckRewarded());
     }

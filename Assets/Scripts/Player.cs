@@ -23,6 +23,7 @@ public class Player : Unit
     public bool channelingSpecial;
     public float specialRange;
     public int specialCharges;
+    public bool channelSpecialAuto;
 
     public int comboAmount;
     public float maxComboCDBoost;
@@ -30,11 +31,11 @@ public class Player : Unit
 
     public float invincible;
     public bool hasPowerUp;
-    [SerializeField] float currentFrenzyTimer;//for feedback
 
     Coroutine previousFreeze; //to stop previous freeze coroutine
     Coroutine previousFreezeRotation;
     bool facingRight;
+    public bool autoMode;
 
     ScrollingBackground scrollingBackground;
     bool colliding;
@@ -46,7 +47,6 @@ public class Player : Unit
     protected override void Awake()
     {
         base.Awake();
-
         levelMusic = GameObject.FindGameObjectWithTag("Floor").GetComponent<AudioSource>();
         ui = GetComponent<PlayerUIHandler>();
         scrollingBackground = FindObjectOfType<ScrollingBackground>();
@@ -57,12 +57,27 @@ public class Player : Unit
             baseAttackCD.Add(attackCD[i]);
             attackTimer.Add(0);
         }
+
+        if (PlayerPrefs.GetInt("AutoMode") == 1)
+            autoMode = true;
+        else if (PlayerPrefs.GetInt("AutoMode") == 0)
+            autoMode = false;
     }
 
     void Start()
     {
+        if (autoMode)
+        {
+            attackRange = 1.25f;
+            specialRange = 2;
+        }
+        else
+        {
+            attackRange = 1.75f;
+            specialRange = 1.5f;
+        }
         //apply skin stats
-        switch(SkinSelector.currentSkin)
+        switch (SkinSelector.currentSkin)
         {
             default: break;
             case 1: //dude
@@ -104,10 +119,26 @@ public class Player : Unit
         {
             ChargeCDs();
             if (hasPowerUp) CheckPowerUp(); //checks for this bool so that it doesnt have to go through the array all the time
-            if (!freeze && !dead) CheckAttackTargets(); //enable hit indicator and face for closest enemy (if within attack range)
+            if (!freeze && !dead)
+                if (CheckAttackTargets()) //checks for enemy in range, shows hit indicator on target and face the closest enemy
+                    if (autoMode && !channelingSpecial) CheckAttack();  //and attack it if attackCD is ready in automode
         }
 
-        if (!channelingSpecial) specialChannel = 0;
+        if (channelSpecialAuto) ChannelSpecialAuto();
+        else if (!channelingSpecial) specialChannel = 0;
+    }
+
+    public void ChannelSpecialAuto()
+    {
+        if (specialTimer < specialCD)
+        {
+            channelSpecialAuto = false;
+            return;
+        }
+        channelingSpecial = true;
+        specialChannel += Time.deltaTime; 
+        if (specialChannel > 0.6f && (Input.GetKeyUp(KeyCode.Space) || Input.GetButtonUp("Attack")))
+            StartCoroutine(SpecialAttack());
     }
 
     public void ChannelSpecial(float inputHoldOffset = 0f)
@@ -167,6 +198,7 @@ public class Player : Unit
     {
         if (specialChannel > 0.4f)
             StartCoroutine(SpecialAttack());
+        if (freezeAttack) return;
         else if (!channelingSpecial)
         {
             specialChannel = 0;
@@ -263,12 +295,13 @@ public class Player : Unit
             comboAmount = 0;
         }
         game.punchCount++;
-        StartCoroutine(FreezeAttack(0.1f));
+        StartCoroutine(FreezeAttack(0.35f));
     }
 
     IEnumerator SpecialAttack()
     {
         if (game.paused) yield return null;
+        channelSpecialAuto = false;
         anim.SetTrigger("special");
         FaceTarget(GetClosestEnemy().gameObject);
         specialTimer = 0f;

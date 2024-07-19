@@ -16,9 +16,11 @@ public class Enemy : Unit
     [SerializeField] GameObject frenzyDrop;
     [SerializeField] GameObject experiencePotionDrop;
     [SerializeField] GameObject timeStopDrop;
+    [SerializeField] GameObject miniTimeStopDrop;
     [SerializeField] GameObject coinDrop;
     TextMeshPro scoreBubble;
 
+    [SerializeField] bool ghost;
     public List<PowerUpType> dropList = new List<PowerUpType>();
     bool spawnCheck = true;
     float aliveTime;
@@ -117,7 +119,7 @@ public class Enemy : Unit
     {
         if (frozenTime <= 0)
         {
-            if (!dead) col.isTrigger = false;
+            if (!dead && !ghost) col.isTrigger = false;
             aliveTime += Time.deltaTime;
 
             rb.bodyType = RigidbodyType2D.Dynamic;
@@ -163,6 +165,9 @@ public class Enemy : Unit
             case PowerUpType.TimeStop:
                 newDrop = Instantiate(timeStopDrop);
                 break;
+            case PowerUpType.MiniTimeStop:
+                newDrop = Instantiate(miniTimeStopDrop);
+                break;
             case PowerUpType.Coin:
                 newDrop = Instantiate(coinDrop);
                 break;
@@ -179,6 +184,7 @@ public class Enemy : Unit
     {
         dead = true;
         col.isTrigger = true;
+        anim.enabled = true;
         sr.sortingLayerName = "DeadEnemy";
         tint.GetComponent<SpriteRenderer>().sortingLayerName = "DeadEnemy";
         if (triggerRewards)

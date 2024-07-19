@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     AudioSource menuAudio;
     AudioSource backgroundMusic;
     [SerializeField] AudioClip selectSFX;
+    List<ParticleSystem> particles = new List<ParticleSystem>();
 
     public static float audioProgress;
 
@@ -74,6 +75,8 @@ public class GameManager : MonoBehaviour
         currentWave = 0;
 
         ApplyEnemyTint();
+
+        particles.AddRange(FindObjectsOfType<ParticleSystem>());
     }
 
     void Start()
@@ -101,15 +104,26 @@ public class GameManager : MonoBehaviour
     public IEnumerator StopTime(float seconds)
     {
         foreach (Enemy enemy in FindObjectsOfType<Enemy>())
-            enemy.FreezeUnit(seconds, true);
-
+            if (!enemy.dead) enemy.FreezeUnit(seconds, true);
+        foreach (ParticleSystem particle in particles)
+            particle.Pause();
         backgroundMusic.pitch = 0.8f;
         pauseWaves = true;
 
         yield return new WaitForSeconds(seconds);
+
         pauseWaves = false;
         backgroundMusic.pitch = 1f;
         menuAudio.Stop();
+        foreach (ParticleSystem particle in particles)
+            particle.Play();
+    }
+
+    public IEnumerator StopParticles(float seconds)
+    {
+
+        yield return new WaitForSeconds(seconds);
+
     }
 
     public void UpdateScore(int score, bool kill = true)
