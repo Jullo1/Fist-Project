@@ -115,10 +115,10 @@ public class StageSelector : MonoBehaviour
         switch (currentStage)
         {
             default: ApplyStageColors(Color.black, new Color32(255, 255, 255, 32), false); break;
-            case 1: ApplyStageColors(new Color32(0, 60, 20, 255), new Color32(145, 100, 50, 255), true); break;
+            case 1: ApplyStageColors(new Color32(160, 180, 60, 255), new Color32(120, 80, 40, 255), true); break;
             case 2: ApplyStageColors(new Color32(240, 170, 90, 255), new Color32(50, 50, 50, 128), true); break;
             case 3: ApplyStageColors(new Color32(250, 220, 175, 255), new Color32(0, 0, 0, 64), true); break;
-            case 4: ApplyStageColors(new Color32(195, 195, 195, 255), new Color32(0, 0, 0, 128), true); break;
+            case 4: ApplyStageColors(new Color32(210, 210, 210, 255), new Color32(0, 0, 0, 184), true); break;
             case 5: ApplyStageColors(new Color32(110, 165, 200, 255), new Color32(200, 255, 255, 212), true); break;
             case 6: ApplyStageColors(new Color32(40, 40, 40, 255), new Color32(200, 200, 200, 255), true); break;
             case 7: ApplyStageColors(new Color32(200, 90, 40, 255), new Color32(40, 40, 40, 184), true); break;

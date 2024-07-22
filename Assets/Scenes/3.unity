@@ -737,7 +737,7 @@ PrefabInstance:
       objectReference: {fileID: 429819717}
     - target: {fileID: 1048475923611409127, guid: f31643bcc55df71449011d1fac8f46df, type: 3}
       propertyPath: spawnRate
-      value: 5.5
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1048475923611409127, guid: f31643bcc55df71449011d1fac8f46df, type: 3}
       propertyPath: scoreOutput
@@ -769,7 +769,7 @@ PrefabInstance:
       objectReference: {fileID: 9013288256728285134, guid: 20520c35a89ccee4b8cdd4c8b6f8d8d0, type: 3}
     - target: {fileID: 1048475923611409127, guid: f31643bcc55df71449011d1fac8f46df, type: 3}
       propertyPath: waveIntensityMultiplier
-      value: 1.085
+      value: 1.075
       objectReference: {fileID: 0}
     - target: {fileID: 1048475923611409127, guid: f31643bcc55df71449011d1fac8f46df, type: 3}
       propertyPath: enemyUnitSpawnIntensity.Array.size
@@ -777,19 +777,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1048475923611409127, guid: f31643bcc55df71449011d1fac8f46df, type: 3}
       propertyPath: enemyUnitSpawnIntensity.Array.data[0]
-      value: 1.5
+      value: 1.15
       objectReference: {fileID: 0}
     - target: {fileID: 1048475923611409127, guid: f31643bcc55df71449011d1fac8f46df, type: 3}
       propertyPath: enemyUnitSpawnIntensity.Array.data[1]
-      value: 0.65
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1048475923611409127, guid: f31643bcc55df71449011d1fac8f46df, type: 3}
       propertyPath: enemyUnitSpawnIntensity.Array.data[2]
-      value: 0.45
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1048475923611409127, guid: f31643bcc55df71449011d1fac8f46df, type: 3}
       propertyPath: enemyUnitSpawnIntensity.Array.data[3]
-      value: 0.7
+      value: 0.85
       objectReference: {fileID: 0}
     - target: {fileID: 1489780371352344164, guid: f31643bcc55df71449011d1fac8f46df, type: 3}
       propertyPath: m_Camera
@@ -1746,6 +1746,10 @@ PrefabInstance:
     - target: {fileID: 5919136027458972321, guid: 4fff07e3287c91a4ea5f354d21d23e97, type: 3}
       propertyPath: simulationSpeed
       value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5919136027458972321, guid: 4fff07e3287c91a4ea5f354d21d23e97, type: 3}
+      propertyPath: NoiseModule.enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5919136027458972321, guid: 4fff07e3287c91a4ea5f354d21d23e97, type: 3}
       propertyPath: InitialModule.maxNumParticles

@@ -7,6 +7,6 @@ public class GameVersion : MonoBehaviour
 
     void Start()
     {
-        GetComponent<Text>().text = "v" + Application.version + " " + step + " - Report Bug!";
+        GetComponent<Text>().text = "v" + Application.version + " " + step;
     }
 }

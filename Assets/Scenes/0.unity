@@ -1195,7 +1195,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 81b9043195325614d81390841f34dbc3, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.15
+  m_Volume: 0.12
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -1662,8 +1662,20 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5919136027458972321, guid: 4fff07e3287c91a4ea5f354d21d23e97, type: 3}
+      propertyPath: NoiseModule.frequency
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5919136027458972321, guid: 4fff07e3287c91a4ea5f354d21d23e97, type: 3}
+      propertyPath: NoiseModule.strength.scalar
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 5919136027458972321, guid: 4fff07e3287c91a4ea5f354d21d23e97, type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5919136027458972321, guid: 4fff07e3287c91a4ea5f354d21d23e97, type: 3}
       propertyPath: EmissionModule.rateOverTime.scalar
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7266525186068094301, guid: 4fff07e3287c91a4ea5f354d21d23e97, type: 3}
       propertyPath: EmissionModule.rateOverTime.scalar
@@ -1755,6 +1767,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 429819717}
     - target: {fileID: 1048475923611409127, guid: f31643bcc55df71449011d1fac8f46df, type: 3}
+      propertyPath: spawnRate
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1048475923611409127, guid: f31643bcc55df71449011d1fac8f46df, type: 3}
       propertyPath: scoreOutput
       value: 
       objectReference: {fileID: 996570988}
@@ -1764,11 +1780,11 @@ PrefabInstance:
       objectReference: {fileID: 2106381247}
     - target: {fileID: 1048475923611409127, guid: f31643bcc55df71449011d1fac8f46df, type: 3}
       propertyPath: waveIntensityMultiplier
-      value: 1.045
+      value: 1.05
       objectReference: {fileID: 0}
     - target: {fileID: 1048475923611409127, guid: f31643bcc55df71449011d1fac8f46df, type: 3}
       propertyPath: enemyUnitSpawnIntensity.Array.data[0]
-      value: 1.25
+      value: 1.8
       objectReference: {fileID: 0}
     - target: {fileID: 1048475923611409127, guid: f31643bcc55df71449011d1fac8f46df, type: 3}
       propertyPath: enemyUnitSpawnIntensity.Array.data[1]
@@ -1776,7 +1792,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1048475923611409127, guid: f31643bcc55df71449011d1fac8f46df, type: 3}
       propertyPath: enemyUnitSpawnIntensity.Array.data[2]
-      value: 0.75
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 1489780371352344164, guid: f31643bcc55df71449011d1fac8f46df, type: 3}
       propertyPath: m_Camera

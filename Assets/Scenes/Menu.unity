@@ -161,7 +161,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 56, y: 14}
-  m_SizeDelta: {x: 1483.19, y: 86.67}
+  m_SizeDelta: {x: 1040.1, y: 86.67}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &7007840
 MonoBehaviour:
@@ -1006,7 +1006,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 48a7c09d5fda3254f85ecbfc20f2093f, type: 3}
   - {fileID: 8300000, guid: 34575ed094664094bae5d429edc4eb7f, type: 3}
   backgroundMusic: {fileID: 1181139467}
-  stageTextColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &250775122
 GameObject:
   m_ObjectHideFlags: 0

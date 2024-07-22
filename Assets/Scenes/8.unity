@@ -225,7 +225,7 @@ PrefabInstance:
       objectReference: {fileID: 429819717}
     - target: {fileID: 1048475923611409127, guid: f31643bcc55df71449011d1fac8f46df, type: 3}
       propertyPath: spawnRate
-      value: 5.5
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1048475923611409127, guid: f31643bcc55df71449011d1fac8f46df, type: 3}
       propertyPath: scoreOutput
@@ -257,7 +257,7 @@ PrefabInstance:
       objectReference: {fileID: 5886114919672351050, guid: fd582ae01d0d4bd4491e918efc1df557, type: 3}
     - target: {fileID: 1048475923611409127, guid: f31643bcc55df71449011d1fac8f46df, type: 3}
       propertyPath: waveIntensityMultiplier
-      value: 1.11
+      value: 1.1
       objectReference: {fileID: 0}
     - target: {fileID: 1048475923611409127, guid: f31643bcc55df71449011d1fac8f46df, type: 3}
       propertyPath: enemyUnitSpawnIntensity.Array.size
@@ -265,19 +265,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1048475923611409127, guid: f31643bcc55df71449011d1fac8f46df, type: 3}
       propertyPath: enemyUnitSpawnIntensity.Array.data[0]
-      value: 1.65
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1048475923611409127, guid: f31643bcc55df71449011d1fac8f46df, type: 3}
       propertyPath: enemyUnitSpawnIntensity.Array.data[1]
-      value: 0.55
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1048475923611409127, guid: f31643bcc55df71449011d1fac8f46df, type: 3}
       propertyPath: enemyUnitSpawnIntensity.Array.data[2]
-      value: 0.92
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1048475923611409127, guid: f31643bcc55df71449011d1fac8f46df, type: 3}
       propertyPath: enemyUnitSpawnIntensity.Array.data[3]
-      value: 0.45
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1489780371352344164, guid: f31643bcc55df71449011d1fac8f46df, type: 3}
       propertyPath: m_Camera
@@ -1745,14 +1745,18 @@ PrefabInstance:
       objectReference: {fileID: 10301, guid: 0000000000000000f000000000000000, type: 0}
     - target: {fileID: 5393152932716433449, guid: 4fff07e3287c91a4ea5f354d21d23e97, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.8
+      value: -4.29
       objectReference: {fileID: 0}
     - target: {fileID: 5393152932716433449, guid: 4fff07e3287c91a4ea5f354d21d23e97, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.11
+      value: 0.9
       objectReference: {fileID: 0}
     - target: {fileID: 5919136027458972321, guid: 4fff07e3287c91a4ea5f354d21d23e97, type: 3}
       propertyPath: simulationSpeed
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5919136027458972321, guid: 4fff07e3287c91a4ea5f354d21d23e97, type: 3}
+      propertyPath: NoiseModule.strength.scalar
       value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 5919136027458972321, guid: 4fff07e3287c91a4ea5f354d21d23e97, type: 3}
@@ -1773,7 +1777,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5919136027458972321, guid: 4fff07e3287c91a4ea5f354d21d23e97, type: 3}
       propertyPath: EmissionModule.rateOverTime.scalar
-      value: 3
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5919136027458972321, guid: 4fff07e3287c91a4ea5f354d21d23e97, type: 3}
       propertyPath: InitialModule.startColor.maxColor.a
@@ -1793,7 +1797,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5919136027458972321, guid: 4fff07e3287c91a4ea5f354d21d23e97, type: 3}
       propertyPath: InitialModule.gravityModifier.scalar
-      value: 0.3
+      value: 0.15
       objectReference: {fileID: 0}
     - target: {fileID: 5952566212567687106, guid: 4fff07e3287c91a4ea5f354d21d23e97, type: 3}
       propertyPath: m_Color.b

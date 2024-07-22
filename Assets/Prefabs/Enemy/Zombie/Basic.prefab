@@ -403,7 +403,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1912394309026589758
 Transform:
   m_ObjectHideFlags: 0
@@ -557,8 +557,8 @@ MonoBehaviour:
   attackCD:
   - 0.3
   attackTimer: []
-  hitpoints: 8
-  maxHitpoints: 8
+  hitpoints: 7
+  maxHitpoints: 7
   dead: 0
   frozenTime: 0
   freezeAttack: 0

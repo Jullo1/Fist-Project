@@ -104,7 +104,7 @@ MonoBehaviour:
   freeze: 0
   audioClip: {fileID: 8300000, guid: 25ff03d353029d040a4a469dd36c8277, type: 3}
   powerUpType: 6
-  duration: 2
+  duration: 2.5
   value: 0
 --- !u!58 &8767435869717256735
 CircleCollider2D:

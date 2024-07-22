@@ -1146,7 +1146,7 @@ PrefabInstance:
       objectReference: {fileID: 429819717}
     - target: {fileID: 1048475923611409127, guid: f31643bcc55df71449011d1fac8f46df, type: 3}
       propertyPath: spawnRate
-      value: 8
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1048475923611409127, guid: f31643bcc55df71449011d1fac8f46df, type: 3}
       propertyPath: scoreOutput
@@ -1170,7 +1170,7 @@ PrefabInstance:
       objectReference: {fileID: 5886114919672351050, guid: bacb2f12ec5203d4287c6cec36868fcb, type: 3}
     - target: {fileID: 1048475923611409127, guid: f31643bcc55df71449011d1fac8f46df, type: 3}
       propertyPath: waveIntensityMultiplier
-      value: 1.1
+      value: 1.075
       objectReference: {fileID: 0}
     - target: {fileID: 1048475923611409127, guid: f31643bcc55df71449011d1fac8f46df, type: 3}
       propertyPath: enemyUnitSpawnIntensity.Array.size
@@ -1178,11 +1178,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1048475923611409127, guid: f31643bcc55df71449011d1fac8f46df, type: 3}
       propertyPath: enemyUnitSpawnIntensity.Array.data[0]
-      value: 3.25
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1048475923611409127, guid: f31643bcc55df71449011d1fac8f46df, type: 3}
       propertyPath: enemyUnitSpawnIntensity.Array.data[1]
-      value: 0.75
+      value: 0.65
       objectReference: {fileID: 0}
     - target: {fileID: 1489780371352344164, guid: f31643bcc55df71449011d1fac8f46df, type: 3}
       propertyPath: m_Camera

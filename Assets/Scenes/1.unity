@@ -384,7 +384,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 43e254193983204469934e71dbd773a6, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.03
+  m_Volume: 0.4
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -1635,9 +1635,25 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3762599043960120060, guid: 4fff07e3287c91a4ea5f354d21d23e97, type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3762599043960120060, guid: 4fff07e3287c91a4ea5f354d21d23e97, type: 3}
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7112556019629497196, guid: 4fff07e3287c91a4ea5f354d21d23e97, type: 3}
       propertyPath: m_SortingLayer
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7266525186068094301, guid: 4fff07e3287c91a4ea5f354d21d23e97, type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7266525186068094301, guid: 4fff07e3287c91a4ea5f354d21d23e97, type: 3}
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7450985731919077255, guid: 4fff07e3287c91a4ea5f354d21d23e97, type: 3}
       propertyPath: m_Name
@@ -1718,7 +1734,7 @@ PrefabInstance:
       objectReference: {fileID: 429819717}
     - target: {fileID: 1048475923611409127, guid: f31643bcc55df71449011d1fac8f46df, type: 3}
       propertyPath: spawnRate
-      value: 6.5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1048475923611409127, guid: f31643bcc55df71449011d1fac8f46df, type: 3}
       propertyPath: option1Text
@@ -1762,7 +1778,7 @@ PrefabInstance:
       objectReference: {fileID: 9013288256728285134, guid: 1df0b43f71bde6448bd6af8ab1cb830b, type: 3}
     - target: {fileID: 1048475923611409127, guid: f31643bcc55df71449011d1fac8f46df, type: 3}
       propertyPath: waveIntensityMultiplier
-      value: 1.05
+      value: 1.055
       objectReference: {fileID: 0}
     - target: {fileID: 1048475923611409127, guid: f31643bcc55df71449011d1fac8f46df, type: 3}
       propertyPath: enemyUnitSpawnIntensity.Array.size
@@ -1770,7 +1786,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1048475923611409127, guid: f31643bcc55df71449011d1fac8f46df, type: 3}
       propertyPath: enemyUnitSpawnIntensity.Array.data[0]
-      value: 1.75
+      value: 1.7
       objectReference: {fileID: 0}
     - target: {fileID: 1048475923611409127, guid: f31643bcc55df71449011d1fac8f46df, type: 3}
       propertyPath: enemyUnitSpawnIntensity.Array.data[1]
@@ -1778,7 +1794,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1048475923611409127, guid: f31643bcc55df71449011d1fac8f46df, type: 3}
       propertyPath: enemyUnitSpawnIntensity.Array.data[2]
-      value: 0.8
+      value: 0.9
       objectReference: {fileID: 0}
     - target: {fileID: 1489780371352344164, guid: f31643bcc55df71449011d1fac8f46df, type: 3}
       propertyPath: m_Camera
