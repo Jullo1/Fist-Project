@@ -1,21 +1,21 @@
 <dependencies>
-    <unityversion>4.3.49.1</unityversion>
+    <unityversion>4.3.50.3</unityversion>
     <androidPackages>
-    <androidPackage spec="com.ironsource.adapters:applovinadapter:4.3.43">
+    <androidPackage spec="com.ironsource.adapters:applovinadapter:4.3.44">
       <repositories>
         <repository>https://android-sdk.is.com/</repository>
       </repositories>
     </androidPackage>
   </androidPackages>
     <androidPackages>
-      <androidPackage spec="com.applovin:applovin-sdk:12.4.3">
+      <androidPackage spec="com.applovin:applovin-sdk:12.5.0">
         <repositories>
           <repository>https://maven.google.com/</repository>
         </repositories>
       </androidPackage>
     </androidPackages>
   <iosPods>
-    <iosPod name="IronSourceAppLovinAdapter" version="4.3.45.1">
+    <iosPod name="IronSourceAppLovinAdapter" version="4.3.46.3">
       <sources>
         <source>https://github.com/CocoaPods/Specs</source>
       </sources>

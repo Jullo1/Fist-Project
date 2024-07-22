@@ -157,7 +157,7 @@ public class IronSourceBannerEvents : MonoBehaviour
         remove
         {
             if (_onAdLoadedEvent
-                != null || _onAdLoadedEvent
+                != null && _onAdLoadedEvent
                     .GetInvocationList().Contains(value))
             {
                 _onAdLoadedEvent

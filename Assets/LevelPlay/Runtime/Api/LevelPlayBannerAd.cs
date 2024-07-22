@@ -35,9 +35,9 @@ namespace com.unity3d.mediation
             string placementName = null, bool displayOnLoad = true)
         {
             size ??= LevelPlayAdSize.BANNER;
-#if UNITY_ANDROID
+#if UNITY_ANDROID && !UNITY_EDITOR
             _bannerAd = new AndroidBannerAd(adUnitId, size, position, placementName, displayOnLoad);
-#elif UNITY_IOS
+#elif UNITY_IOS && !UNITY_EDITOR
             _bannerAd = new iOSBannerAd(adUnitId, size, position, placementName, displayOnLoad);
 #else
             _bannerAd = new UnsupportedBannerAd(adUnitId, size, position, placementName);

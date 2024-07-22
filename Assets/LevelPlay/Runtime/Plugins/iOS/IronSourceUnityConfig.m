@@ -32,10 +32,6 @@
     [ISSupersonicAdsConfiguration configurations].language = language;
 }
 
-- (void) setRewardedVideoCustomParams:(NSString *)rvParams {
-}
-
-
 
 #ifdef __cplusplus
 extern "C" {

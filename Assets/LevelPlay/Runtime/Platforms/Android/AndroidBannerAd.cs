@@ -99,10 +99,9 @@ namespace com.unity3d.mediation
                 {
                     _mBannerAdListener ??= new UnityBannerAdListener(this);
 
-                    AndroidJavaObject androidSize = GetBannerSize(adSize);
-
-                    _mBannerAd = new AndroidJavaObject(k_BannerAdClassName, adUnitId, androidSize, (int)position,
-                        placementName, displayOnLoad, _mBannerAdListener);
+                    _mBannerAd = new AndroidJavaObject(k_BannerAdClassName, adUnitId,
+                        adSize.Description, adSize.Width, adSize.Height, adSize.CustomWidth,
+                        (int)position, placementName, displayOnLoad, _mBannerAdListener);
                 }
                 catch (Exception e)
                 {
@@ -233,15 +232,6 @@ namespace com.unity3d.mediation
                     });
                 }
             }
-        }
-
-        AndroidJavaObject GetBannerSize(LevelPlayAdSize size)
-        {
-            if (size == null)
-                return null;
-            AndroidJavaObject androidSize = new AndroidJavaObject(k_BannerSizeClassName);
-            androidSize = androidSize.CallStatic<AndroidJavaObject>(k_FuncGetAdSize, size.Description, size.Width, size.Height);
-            return androidSize;
         }
 
         bool CheckDisposedAndLogError(string message)

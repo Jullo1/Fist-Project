@@ -63,7 +63,7 @@ namespace com.unity3d.mediation
         /// </summary>
         static LevelPlay()
         {
-#if UNITY_ANDROID
+#if UNITY_ANDROID && !UNITY_EDITOR
             AndroidLevelPlaySdk.OnInitSuccess += (configuration) =>
             {
                 InitSuccessReceived?.Invoke(configuration);
@@ -72,7 +72,7 @@ namespace com.unity3d.mediation
             {
                 OnInitFailedReceived?.Invoke(error);
             };
-#elif UNITY_IOS
+#elif UNITY_IOS && !UNITY_EDITOR
             IosLevelPlaySdk.OnInitSuccess += (configuration) =>
             {
                 InitSuccessReceived?.Invoke(configuration);
@@ -92,9 +92,9 @@ namespace com.unity3d.mediation
         /// <param name="adFormats">Optional array of ad formats to initialize.</param>
         public static void Init(string appKey, string userId = null, LevelPlayAdFormat[] adFormats = null)
         {
-#if UNITY_ANDROID
+#if UNITY_ANDROID && !UNITY_EDITOR
             AndroidLevelPlaySdk.Initialize(appKey, userId, adFormats);
-#elif UNITY_IOS
+#elif UNITY_IOS && !UNITY_EDITOR
             IosLevelPlaySdk.Initialize(appKey, userId, adFormats);
 #endif
         }

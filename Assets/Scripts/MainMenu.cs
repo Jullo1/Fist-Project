@@ -8,6 +8,7 @@ using Google.Play.Review;
 #endif
 using Unity.Services.Core;
 using Unity.Services.Analytics;
+
 public class MainMenu : MonoBehaviour
 {
     AudioSource menuAudio;
@@ -36,6 +37,10 @@ public class MainMenu : MonoBehaviour
 #endif
     bool loadSceneSent;
     bool loadingRewardedAd;
+
+    float timer;
+    bool lockedStage;
+    Color oneOpacity = new Color(0, 0, 0, 1f);
 
     [Obsolete]
     async void Start()
@@ -126,6 +131,12 @@ public class MainMenu : MonoBehaviour
         StartCoroutine(CheckRewarded()); //if reward ad is ready, enable button
 
         RefreshUITexts();
+    }
+
+    void Update()
+    {
+        timer += Time.deltaTime;
+        if (timer > 2 && !lockedStage) lockedStageText.color -= oneOpacity*Time.deltaTime;
     }
 
     public IEnumerator CheckRewarded()
@@ -238,6 +249,7 @@ public class MainMenu : MonoBehaviour
 
     void RebuildSaveData()
     {
+        if (!PlayerPrefs.HasKey("FirstRun")) PlayerPrefs.SetInt("FirstRun", 0);
         if (!PlayerPrefs.HasKey("AutoMode")) PlayerPrefs.SetInt("AutoMode", 1);
         if (!PlayerPrefs.HasKey("totalKills")) PlayerPrefs.SetInt("totalKills", 0);
         if (!PlayerPrefs.HasKey("maxKillsInOneRun")) PlayerPrefs.SetInt("maxKillsInOneRun", 0);
@@ -385,6 +397,8 @@ public class MainMenu : MonoBehaviour
 
     public void LockedStage(bool locked)
     {
+        timer = 0;
+        lockedStage = locked;
         if (StageSelector.currentStage == 0) lockedStageBackground.color = new Color32(255, 255, 255, 20);
         else lockedStageBackground.color = new Color32(0, 0, 0, 200);
 

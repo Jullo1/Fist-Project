@@ -68,46 +68,45 @@ public class Player : Unit
     {
         if (autoMode)
         {
-            attackRange = 1.25f;
+            attackRange = 1.35f;
             specialRange = 2;
         }
         else
         {
             attackRange = 1.75f;
-            specialRange = 1.5f;
+            specialRange = 1.65f;
         }
         //apply skin stats
         switch (SkinSelector.currentSkin)
         {
             default: break;
             case 1: //dude
-                UpgradeStat(playerStats.attackSpeed, 0.20f);
+                UpgradeStat(playerStats.strength, 2);
                 break;
             case 2: //machine
-                UpgradeStat(playerStats.attackSpeed, 0.40f);
-                UpgradeStat(playerStats.moveSpeed, -0.20f);
+                UpgradeStat(playerStats.attackSpeed, 0.25f);
+                UpgradeStat(playerStats.moveSpeed, -0.10f);
                 break;
             case 3: //golden
-                UpgradeStat(playerStats.strength, 3);
-                UpgradeStat(playerStats.pushForce, 50);
-                UpgradeStat(playerStats.attackSpeed, 0.20f);
+                UpgradeStat(playerStats.strength, 2);
+                UpgradeStat(playerStats.pushForce, 40);
+                UpgradeStat(playerStats.attackSpeed, 0.125f);
                 UpgradeStat(playerStats.specialCooldown, -2.5f);
-                UpgradeStat(playerStats.specialAttackCount, -1);
                 break;
             case 4: //wizard
                 UpgradeStat(playerStats.specialCooldown, 5.0f);
                 UpgradeStat(playerStats.specialAttackCount, 2);
-                UpgradeStat(playerStats.attackSpeed, -0.20f);
+                UpgradeStat(playerStats.attackSpeed, -0.125f);
                 break;
             case 5: //super
-                UpgradeStat(playerStats.strength, 6);
-                UpgradeStat(playerStats.pushForce, 100);
+                UpgradeStat(playerStats.strength, 4);
+                UpgradeStat(playerStats.pushForce, 80);
                 break;
         }
         //apply upgrade stats
         UpgradeStat(playerStats.strength, PlayerPrefs.GetInt("STRENGTH") * 2);
         UpgradeStat(playerStats.pushForce, PlayerPrefs.GetInt("STRENGTH") * 20);
-        UpgradeStat(playerStats.attackSpeed, PlayerPrefs.GetInt("ATTACKSPEED") * 0.10f);
+        UpgradeStat(playerStats.attackSpeed, PlayerPrefs.GetInt("ATTACKSPEED") * 0.125f);
         UpgradeStat(playerStats.specialCooldown, PlayerPrefs.GetInt("SPECIAL") * 2.50f);
         UpgradeStat(playerStats.specialAttackCount, PlayerPrefs.GetInt("SPECIAL"));
         UpgradeStat(playerStats.moveSpeed, PlayerPrefs.GetInt("MOVEMENT") * 0.10f);
@@ -461,7 +460,7 @@ public class Player : Unit
             case PowerUpType.Frenzy:
                 for (int i = 0; i < attackCD.Count; i++)
                 {
-                    if (status) attackCD[i] = attackCD[i] / 2;
+                    if (status) attackCD[i] = attackCD[i] / 3;
                     else attackCD[i] = baseAttackCD[i];
                     attackTimer[i] = attackCD[i]; //fully charge next attack when frenzy activates or expires
                 }

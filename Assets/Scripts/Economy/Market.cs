@@ -31,6 +31,7 @@ public class Market : MonoBehaviour
                 {
                     await EconomyService.Instance.Purchases.MakeVirtualPurchaseAsync("BUYSTRENGTH" + (ownedItemStep[0] + 1).ToString());
                     SetUpgradeStep(0, ownedItemStep[0] + 1);
+                    PlayerPrefs.SetInt("STRENGTH", PlayerPrefs.GetInt("STRENGTH") + 1);
                 }
                 break;
             case "ATTACKSPEED":
@@ -39,6 +40,7 @@ public class Market : MonoBehaviour
                 {
                     await EconomyService.Instance.Purchases.MakeVirtualPurchaseAsync("BUYATTACKSPEED" + (ownedItemStep[1] + 1).ToString());
                     SetUpgradeStep(1, ownedItemStep[1] + 1);
+                    PlayerPrefs.SetInt("ATTACKSPEED", PlayerPrefs.GetInt("ATTACKSPEED") + 1);
                 }
                 break;
             case "SPECIAL":
@@ -47,6 +49,7 @@ public class Market : MonoBehaviour
                 {
                     await EconomyService.Instance.Purchases.MakeVirtualPurchaseAsync("BUYSPECIAL" + (ownedItemStep[2] + 1).ToString());
                     SetUpgradeStep(2, ownedItemStep[2] + 1);
+                    PlayerPrefs.SetInt("SPECIAL", PlayerPrefs.GetInt("SPECIAL") + 1);
                 }
                 break;
             case "MOVEMENT":
@@ -55,6 +58,7 @@ public class Market : MonoBehaviour
                 {
                     await EconomyService.Instance.Purchases.MakeVirtualPurchaseAsync("BUYMOVEMENT" + (ownedItemStep[3] + 1).ToString());
                     SetUpgradeStep(3, ownedItemStep[3] + 1);
+                    PlayerPrefs.SetInt("MOVEMENT", PlayerPrefs.GetInt("MOVEMENT") + 1);
                 }
                 break;
         }

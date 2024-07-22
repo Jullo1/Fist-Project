@@ -40,12 +40,10 @@ namespace com.unity3d.mediation
 
         public void PauseAutoRefresh()
         {
-            throw new NotImplementedException();
         }
 
         public void ResumeAutoRefresh()
         {
-            throw new NotImplementedException();
         }
 
         public void SetAutoRefresh(bool flag)

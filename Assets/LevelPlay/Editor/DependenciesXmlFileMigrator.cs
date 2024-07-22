@@ -10,7 +10,7 @@ namespace Unity.Services.LevelPlay.Editor
         const string k_AssetsEditorPath = "Assets/LevelPlay/Editor";
         const string k_IronSourceSdkFileName = "IronSourceSDKDependencies.xml";
         const string k_MsgSdkDependenciesXmlUpdated = "The {0} file was updated to {1}.";
-        const string k_IronSourceDependenciesVersion = "8.1.0";
+        const string k_IronSourceDependenciesVersion = "8.2.0";
         const string k_IronSourceDependenciesUrl = "https://s3.amazonaws.com/ssa.public/Dependencies-xmls/IronSource/{0}/IronSourceSDKDependencies.xml";
 
         [InitializeOnLoadMethod]

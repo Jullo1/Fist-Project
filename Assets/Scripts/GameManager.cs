@@ -269,14 +269,14 @@ public class GameManager : MonoBehaviour
         switch (upgradeIndex)
         {
             case 1: //power
-                player.UpgradeStat(playerStats.strength, 3);
-                player.UpgradeStat(playerStats.pushForce, 75);
+                player.UpgradeStat(playerStats.strength, 2);
+                player.UpgradeStat(playerStats.pushForce, 40);
                 break;
             case 2: //attack speed
-                player.UpgradeStat(playerStats.attackSpeed, 0.20f);
+                player.UpgradeStat(playerStats.attackSpeed, 0.15f);
                 break;
             case 3: //movement
-                player.UpgradeStat(playerStats.moveSpeed, 0.20f);
+                player.UpgradeStat(playerStats.moveSpeed, 0.10f);
                 break;
             case 4: //special
                 player.UpgradeStat(playerStats.specialCooldown, 2.5f);

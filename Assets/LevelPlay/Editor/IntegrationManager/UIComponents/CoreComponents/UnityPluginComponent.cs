@@ -62,7 +62,6 @@ namespace Unity.Services.LevelPlay.Editor.IntegrationManager.UIComponents
 
         public void Draw()
         {
-            GUI.enabled = IsPackageUpgradable(currentlyInstalledPackageVersion, latestPackageVersion);
             using (new EditorGUILayout.HorizontalScope(GUILayout.ExpandWidth(true)))
             {
                 GUILayout.Space(10);
@@ -72,6 +71,7 @@ namespace Unity.Services.LevelPlay.Editor.IntegrationManager.UIComponents
                 {
                     majorHeaderText.Draw();
                     GUILayout.FlexibleSpace();
+                    GUI.enabled = IsPackageUpgradable(currentlyInstalledPackageVersion, latestPackageVersion);
                     version.Draw();
                     button.Draw();
                     GUILayout.Space(10);

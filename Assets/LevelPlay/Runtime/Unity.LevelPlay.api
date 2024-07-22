@@ -15,7 +15,7 @@ public static class dataSource
 
 public class IronSource : IronSourceIAgent
 {
-    [System.Obsolete(@"Please use the pluginVersion function", false)] public static string UNITY_PLUGIN_VERSION = @"8.1.0-r";
+    [System.Obsolete(@"Please use the pluginVersion function", false)] public static string UNITY_PLUGIN_VERSION = @"8.2.0-r";
     public static IronSource Agent { get; }
     public void clearRewardedVideoServerParams();
     public void destroyBanner();
@@ -128,7 +128,7 @@ public class IronSourceBannerSize
     public ISContainerParams getBannerContainerParams();
     public bool IsAdaptiveEnabled();
     public bool IsRespectAndroidCutoutsEnabled();
-    public void SetAdaptive(bool adaptive);
+    public void SetAdaptive(bool adaptive, int customWidth = -1);
     public void setBannerContainerParams(ISContainerParams parameters);
     public void SetRespectAndroidCutouts(bool respectAndroidCutouts);
 }
@@ -602,9 +602,11 @@ namespace com.unity3d.mediation
         public static LevelPlayAdSize LARGE;
         public static LevelPlayAdSize LEADERBOARD;
         public static LevelPlayAdSize MEDIUM_RECTANGLE;
+        public int CustomWidth { get; }
         public string Description { get; }
         public int Height { get; }
         public int Width { get; }
+        public static LevelPlayAdSize CreateAdaptiveAdSize(int customWidth = -1);
         public static LevelPlayAdSize CreateCustomBannerSize(int width, int height);
         public override string ToString();
     }

@@ -396,9 +396,13 @@ public class IronSourceBannerSize
     /// Set the banner to adaptive
     /// </summary>
     /// <param name="adaptive">Is the banner adaptive</param>
-    public void SetAdaptive(bool adaptive)
+    /// <param name="customWidth">Custom width of the adaptive banner container.
+    /// On Android, it is measured in DP(density-independent pixels), and on IOS, it is in measured in Points. </param>
+    public void SetAdaptive(bool adaptive, int customWidth = -1)
     {
         this.isAdaptive = adaptive;
+        ISContainerParams containerParams = new ISContainerParams { Width = customWidth };
+        this.setBannerContainerParams(containerParams);
     }
 
     /// <summary>
@@ -411,7 +415,7 @@ public class IronSourceBannerSize
     }
 
     /// <summary>
-    ///  Set the Container for adaptive banner.
+    ///  This API is optional and should only be called if you need to set a custom-sized container for Adaptive banner.
     /// </summary>
     /// <param name="ISContainerParams">The Container params Width and Height.</param>
     public void setBannerContainerParams(ISContainerParams parameters)
@@ -419,6 +423,10 @@ public class IronSourceBannerSize
         this.isContainerParams = parameters;
     }
 
+    /// <summary>
+    /// Get the ISContainerParams object.
+    /// </summary>
+    /// <returns>ISContainerParams object</returns>
     public ISContainerParams getBannerContainerParams()
     {
         return this.isContainerParams;

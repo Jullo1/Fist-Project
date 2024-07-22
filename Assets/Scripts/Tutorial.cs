@@ -41,26 +41,33 @@ public class Tutorial : MonoBehaviour
             default:
                 InstantExitTutorial();
                 return;
-            case 1: //attack
-                headerMessages.Add("Welcome to Fist Project");
+            case 1: //movement and attack
+                if (PlayerPrefs.GetInt("FirstRun") == 0) headerMessages.Add("Welcome to Fist Project");
+                else
+                {
+                    if (PlayerPrefs.GetInt("AutoMode") == 1)
+                        headerMessages.Add("Auto Mode enabled!");
+                    else 
+                        headerMessages.Add("Manual Mode enabled!");
+                }
                 if (Application.isMobilePlatform)
                 {
-                    headerMessages.Add("Use the left stick to move");
+                    if (PlayerPrefs.GetInt("FirstRun") == 0) { headerMessages.Add("Use the left stick to move"); PlayerPrefs.SetInt("FirstRun", 1); }
                     if (PlayerPrefs.GetInt("AutoMode") == 0)
                     {
-                        headerMessages.Add("Tap anywhere else to attack");
+                        headerMessages.Add("Tap anywhere to attack");
                     }
                 }
                 else
                 {
-                    headerMessages.Add("Move with WASD keys");
-                    if (PlayerPrefs.GetInt("AutoMode") == 0)
+                    if (PlayerPrefs.GetInt("FirstRun") == 0) { headerMessages.Add("Move with WASD keys"); PlayerPrefs.SetInt("FirstRun", 1); }
+                        if (PlayerPrefs.GetInt("AutoMode") == 0)
                     {
                         headerMessages.Add("Press space to attack");
                     }
                 }
                 break;
-            case 2: //combo
+            case 2: //special
                 headerMessages.Add("Your special attack is ready!");
                 if (Application.isMobilePlatform)
                 {

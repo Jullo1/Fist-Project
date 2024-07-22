@@ -47,7 +47,7 @@ void LPMBannerAdViewDelegateDestroy(void *delegateRef) {
          self.displayed = displayedCallback;
          self.failedToDisplay = failedDisplayCallback;
          self.expand = expandedCallback;
-         self.collapse = collapsedCallback;         
+         self.collapse = collapsedCallback;
          self.leaveApp = leftAppCallback;
          self.bannerAd = bannerAd;
      }

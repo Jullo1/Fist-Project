@@ -14770,13 +14770,13 @@ MonoBehaviour:
   weight: 10
   size: 1
   freeze: 0
-  moveSpeed: 2.2
+  moveSpeed: 1.8
   attackRange: 1.75
-  strength: 7
-  pushForce: 200
+  strength: 3
+  pushForce: 100
   attackCD:
-  - 1.75
-  - 1.75
+  - 2.5
+  - 2.5
   attackTimer: []
   hitpoints: 3
   maxHitpoints: 3
@@ -14789,12 +14789,12 @@ MonoBehaviour:
   specialSFX: {fileID: 8300000, guid: e9e87a3377ca8214e9e7193f038750a2, type: 3}
   deathSFX: {fileID: 8300000, guid: e9e87a3377ca8214e9e7193f038750a2, type: 3}
   baseAttackCD: []
-  specialCD: 30
+  specialCD: 35
   specialTimer: 0
   specialChannel: 0
   channelingSpecial: 0
-  specialRange: 1.5
-  specialCharges: 2
+  specialRange: 1.65
+  specialCharges: 1
   channelSpecialAuto: 0
   comboAmount: 0
   maxComboCDBoost: 20

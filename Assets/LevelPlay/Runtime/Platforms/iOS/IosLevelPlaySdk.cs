@@ -21,7 +21,7 @@ namespace com.unity3d.mediation
 
         public static void Initialize(string appKey, string userId, LevelPlayAdFormat[] adFormats)
         {
-
+            setPluginData("Unity", IronSource.pluginVersion(), IronSource.unityVersion());
             new GameObject("IosLevelPlaySdk", typeof(IosLevelPlaySdk)).GetComponent<IosLevelPlaySdk>();
             LPMInitialize(appKey, userId, GetAdFormatArray(adFormats));
         }
@@ -50,6 +50,9 @@ namespace com.unity3d.mediation
 
         [DllImport("__Internal")]
         private static extern void LPMInitialize(string appKey, string userId, string[] adFormats);
+
+        [DllImport("__Internal")]
+        private static extern void setPluginData(string pluginType, string pluginVersion, string pluginFrameworkVersion);
 
         public void OnInitializationSuccess(string configuration)
         {

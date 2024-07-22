@@ -15,13 +15,20 @@ public class SkinSelector : MonoBehaviour
     [SerializeField] Text title;
     [SerializeField] Text description;
     [SerializeField] Text statsField;
+    [SerializeField] Text unlockTextUI;
+    Outline unlockTextOutline;
     string unlockText;
 
+    public float timer;
+    public bool unlocked;
+    Color oneOpacity = new Color(0,0,0,1);
+    Vector3 unlockTextInitialPos;
 
     void Awake()
     {
         menuManager = FindObjectOfType<MainMenu>();
-
+        unlockTextOutline = unlockTextUI.gameObject.GetComponent<Outline>();
+        unlockTextInitialPos = unlockTextUI.transform.localPosition;
 
         skinNames.Add("Fist Hero");
         skinNames.Add("Fist Dude");
@@ -38,7 +45,7 @@ public class SkinSelector : MonoBehaviour
         skinDescriptions.Add("Fist Hero that transcended the limits of a regular Fist Hero");
 
         skinStats.Add("");
-        skinStats.Add("+1 attack speed");
+        skinStats.Add("+1 power");
         skinStats.Add("+2 attack speed\n-1 movement");
         skinStats.Add("+1 power\n+1 attack speed\n-1 special");
         skinStats.Add("+2 special\n-1 attack speed");
@@ -48,15 +55,37 @@ public class SkinSelector : MonoBehaviour
         ApplyPlayerSkin();
     }
 
+    void Update()
+    {
+        timer += Time.deltaTime;
+        if (unlocked)
+        {
+            unlockTextUI.transform.localPosition += Vector3.up * Time.deltaTime * 5;
+            if (timer > 2f)
+            {
+                unlockTextUI.color -= oneOpacity * Time.deltaTime;
+                unlockTextOutline.effectColor -= oneOpacity * Time.deltaTime;
+            }
+        }
+        if (unlockTextUI.color.a <= 0) unlockTextUI.gameObject.SetActive(false);
+    }
+
     public void ChangeSkin(bool next)
     {
+        unlockTextUI.gameObject.SetActive(true);
+        timer = 0;
+        unlockTextUI.color = new Color(unlockTextUI.color.r, unlockTextUI.color.g, unlockTextUI.color.b, 1);
+        unlockTextOutline.effectColor = new Color(unlockTextOutline.effectColor.r, unlockTextOutline.effectColor.g, unlockTextOutline.effectColor.b, 0.5f);
+        unlockTextUI.transform.localPosition = unlockTextInitialPos;
+
         if (next) currentSkin++;
         else currentSkin--;
 
         if (currentSkin >= skinNames.Count) currentSkin = 0;
         else if (currentSkin < 0) currentSkin = skinNames.Count - 1;
 
-        if (CheckIfUnlocked()) menuManager.LockedCharacter(false, unlockText);
+        unlocked = CheckIfUnlocked();
+        if (unlocked) menuManager.LockedCharacter(false, unlockText);
         else menuManager.LockedCharacter(true, unlockText);
 
         ApplyPlayerSkin();

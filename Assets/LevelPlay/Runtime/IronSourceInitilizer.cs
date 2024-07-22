@@ -25,8 +25,8 @@ public class IronSourceInitilizer
                 }
                 else
                 {
-                    IronSource.Agent.init(appKey);
                     IronSource.UNITY_PLUGIN_VERSION += IronSource.UNITY_PLUGIN_VERSION.Contains("-r") ? "i" : "-i";
+                    IronSource.Agent.init(appKey);
                 }
             }
 

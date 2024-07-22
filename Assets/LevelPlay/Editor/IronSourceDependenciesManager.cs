@@ -25,7 +25,7 @@ public class IronSourceDependenciesManager : EditorWindow
 
     const string k_IntegrationManagerWindowTitle = "LevelPlay Network Manager";
     const string k_LevelPlayPackageName = "com.unity.services.levelplay";
-    const string k_LevelPlayPackageVersion = "8.1.0";
+    const string k_LevelPlayPackageVersion = "8.2.0";
     const string k_AdapterInfoNotAvailable = "Please wait while LevelPlay SDK and adapter information loads.";
     const string k_HeaderUpm = "Unity Package (Ads Mediation UPM Package)";
     const string k_HeaderUnityPackage = "Unity Package (Unity Plugin)";

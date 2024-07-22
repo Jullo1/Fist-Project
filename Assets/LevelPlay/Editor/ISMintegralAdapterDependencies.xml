@@ -1,7 +1,7 @@
 <dependencies>
-    <unityversion>4.3.27.1</unityversion>
+    <unityversion>4.3.28.1</unityversion>
     <androidPackages>
-        <androidPackage spec="com.mbridge.msdk.oversea:newinterstitial:16.7.31">
+        <androidPackage spec="com.mbridge.msdk.oversea:newinterstitial:16.7.71">
             <repositories>
                 <repository>https://dl-maven-android.mintegral.com/repository/mbridge_android_sdk_oversea/</repository>
             </repositories>
@@ -9,7 +9,7 @@
     </androidPackages>
     
     <androidPackages>
-        <androidPackage spec="com.mbridge.msdk.oversea:reward:16.7.31">
+        <androidPackage spec="com.mbridge.msdk.oversea:reward:16.7.71">
             <repositories>
                 <repository>https://dl-maven-android.mintegral.com/repository/mbridge_android_sdk_oversea/</repository>
             </repositories>
@@ -17,7 +17,7 @@
     </androidPackages>
 
     <androidPackages>
-        <androidPackage spec="com.mbridge.msdk.oversea:mbbanner:16.7.31">
+        <androidPackage spec="com.mbridge.msdk.oversea:mbbanner:16.7.71">
             <repositories>
                 <repository>https://dl-maven-android.mintegral.com/repository/mbridge_android_sdk_oversea/</repository>
             </repositories>
@@ -25,7 +25,7 @@
     </androidPackages>
 
     <androidPackages>
-        <androidPackage spec="com.mbridge.msdk.oversea:mbbid:16.7.31">
+        <androidPackage spec="com.mbridge.msdk.oversea:mbbid:16.7.71">
             <repositories>
                 <repository>https://dl-maven-android.mintegral.com/repository/mbridge_android_sdk_oversea/</repository>
             </repositories>
@@ -41,7 +41,7 @@
     </androidPackages>
 
     <androidPackages>
-        <androidPackage spec="com.ironsource.adapters:mintegraladapter:4.3.26">
+        <androidPackage spec="com.ironsource.adapters:mintegraladapter:4.3.27">
             <repositories>
                 <repository>https://android-sdk.is.com/</repository>
             </repositories>
@@ -49,7 +49,7 @@
     </androidPackages>
 
   <iosPods>
-    <iosPod name="IronSourceMintegralAdapter" version="4.3.23.3">
+    <iosPod name="IronSourceMintegralAdapter" version="4.3.24.1">
       <sources>
         <source>https://github.com/CocoaPods/Specs</source>
       </sources>

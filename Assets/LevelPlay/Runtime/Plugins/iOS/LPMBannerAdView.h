@@ -7,7 +7,7 @@
 extern "C" {
 #endif
 
-void *LPMBannerAdViewCreate(const char *adUnitId, const char *placementName, const char *description, int width, int height);
+void *LPMBannerAdViewCreate(const char *adUnitId, const char *placementName, const char *description, int width, int height, int customWidth);
 void LPMBannerAdViewSetDelegate(void *bannerAdViewRef, void *delegateRef);
 
 void LPMBannerAdViewLoadAd(void *bannerAdViewRef);

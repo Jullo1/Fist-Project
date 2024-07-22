@@ -135,8 +135,8 @@ public class StageSelector : MonoBehaviour
         }
         foreach (Text text in UITexts)
         {
-            startButtonOutline.effectColor = new Color32(textColor.r, textColor.g, textColor.b, 128);
             text.color = textColor;
+            startButtonOutline.effectColor = new Color32(textColor.r, textColor.g, textColor.b, 128);
         }
 
         rewardAdButton.color = textColor;

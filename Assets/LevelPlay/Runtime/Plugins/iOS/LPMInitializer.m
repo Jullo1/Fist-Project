@@ -33,6 +33,15 @@ extern "C" {
                                              adFormats:formatsArray];
     }
     
+    void setPluginData(const char *pluginType, const char *pluginVersion, const char *pluginFrameworkVersion) {
+        NSString *type = GetStringParam(pluginType);
+        NSString *version = GetStringParam(pluginVersion);
+        NSString *frameworkVersion = GetStringParam(pluginFrameworkVersion);
+        
+        // Use the sharedInstance to set plugin data
+        [[LPMInitializer sharedInstance] setPluginData:type pluginVersion:version pluginFrameworkVersion:frameworkVersion];
+    }
+    
     
 #ifdef __cplusplus
 }
@@ -63,6 +72,21 @@ extern "C" {
             [self initializationDidCompleteWithConfiguration: config];
         }
     }];
+}
+
+- (void)setPluginData:(NSString *)pluginType pluginVersion:(NSString *)pluginVersion pluginFrameworkVersion:(NSString *)pluginFrameworkVersion {
+    if (pluginType) {
+        [ISConfigurations getConfigurations].plugin = pluginType;
+    }
+    
+    if (pluginVersion) {
+        [ISConfigurations getConfigurations].pluginVersion = pluginVersion;
+    }
+    
+    if (pluginFrameworkVersion) {
+        [ISConfigurations getConfigurations].pluginFrameworkVersion = pluginFrameworkVersion;
+    }
+    NSLog(@"PLUGIN IS: %@ %@ %@", [ISConfigurations getConfigurations].plugin, [ISConfigurations getConfigurations].pluginVersion, [ISConfigurations getConfigurations].pluginFrameworkVersion);
 }
 
 - (NSString *)serializeConfigToJSON:(LPMConfiguration *)config {

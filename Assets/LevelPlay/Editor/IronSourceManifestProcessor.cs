@@ -23,7 +23,7 @@ public class IronSourceManifestProcessor : IPreprocessBuild
     private const string AD_ID_PERMISSION_ATTR = "com.google.android.gms.permission.AD_ID";
     private const string MANIFEST_PERMISSION = "uses-permission";
     private const string MANIFEST_META_DATA = "meta-data";
-    string m_AndroidManifestPath => EnvironmentVariables.androidManifestPath;
+    string m_AndroidManifestPath { get; set; } = EnvironmentVariables.androidManifestPath;
     private XNamespace ns = "http://schemas.android.com/apk/res/android";
 
     public int callbackOrder { get { return 0; } }
@@ -98,6 +98,9 @@ public class IronSourceManifestProcessor : IPreprocessBuild
                     GetPermissionElement(permissons, AD_ID_PERMISSION_ATTR).Remove();
                 }
             }
+
+            m_AndroidManifestPath ??= BuildManifest();
+
             elemManifest.Save(m_AndroidManifestPath);
 
         }
@@ -168,6 +171,8 @@ public class IronSourceManifestProcessor : IPreprocessBuild
         XDocument manifest = null;
         try
         {
+            m_AndroidManifestPath ??= BuildManifest();
+
             manifest = XDocument.Load(m_AndroidManifestPath);
         }
 #pragma warning disable 0168
@@ -190,6 +195,18 @@ public class IronSourceManifestProcessor : IPreprocessBuild
         }
 
         return elemManifest;
+    }
+    
+    // Fallback method for path
+
+    string BuildManifest()
+    {
+        const string k_AndroidLibPath = "Runtime/Plugins/Android/IronSource.androidlib/AndroidManifest.xml";
+        var k_UpmManifestPath = Path.Combine("Packages/com.unity.services.levelplay", k_AndroidLibPath);
+        var k_DotUnityPackageManifestPath = Path.Combine("LevelPlay", k_AndroidLibPath);
+        var k_path = Path.GetFullPath(k_UpmManifestPath);
+
+        return File.Exists(k_path) ? k_path : Path.Combine(Application.dataPath, k_DotUnityPackageManifestPath);
     }
 }
 #endif

@@ -8,6 +8,7 @@ namespace com.unity3d.mediation
         private int width;
         private int height;
         private string description;
+        private int customWidth = -1;
 
         /// <summary>
         /// Standard banner size
@@ -53,6 +54,19 @@ namespace com.unity3d.mediation
         }
 
         /// <summary>
+        /// Creates an adaptive banner with default screen width.
+        /// The default screen width is used if the custom width is not specified. Specify the custom width if necessary.
+        /// </summary>
+        /// <param name="customWidth">Custom width of the adaptive banner container.
+        /// On Android, it is measured in DP(density-independent pixels), and on IOS, it is in measured in Points.</param>
+        /// <returns>A new instance of <see cref="LevelPlayAdSize"/> representing the Adaptive size.</returns>
+        public static LevelPlayAdSize CreateAdaptiveAdSize(int customWidth = -1)
+        {
+            var adaptiveBanner = new LevelPlayAdSize("ADAPTIVE") { customWidth = customWidth };
+            return adaptiveBanner;
+        }
+
+        /// <summary>
         /// Description for the banner
         /// </summary>
         public string Description { get { return description; } }
@@ -66,6 +80,11 @@ namespace com.unity3d.mediation
         /// Height of the banner
         /// </summary>
         public int Height { get { return height; } }
+
+        /// <summary>
+        /// Custom width of the banner in DP
+        /// </summary>
+        public int CustomWidth { get { return customWidth; } }
 
         public override string ToString()
         {

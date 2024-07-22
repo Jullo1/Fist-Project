@@ -1,5 +1,5 @@
 <dependencies>
-<unityversion>4.3.28.3</unityversion>
+<unityversion>4.3.28.5</unityversion>
   <androidPackages>
     <androidPackage spec="com.ironsource.adapters:inmobiadapter:4.3.24">
       <repositories>
@@ -22,7 +22,7 @@
     </androidPackage>
   </androidPackages>
   <iosPods>
-    <iosPod name="IronSourceInMobiAdapter" version="4.3.23.3">
+    <iosPod name="IronSourceInMobiAdapter" version="4.3.23.5">
       <sources>
         <source>https://github.com/CocoaPods/Specs</source>
       </sources>
