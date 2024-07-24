@@ -12,7 +12,7 @@ public class Market : MonoBehaviour
     string[,] upgradeNames = new string[4, 4] { { "Apple", "Pizza", "ChocoBar", "Sundae" }, { "Mineral Water", "Soda", "Energy Drink", "Thunder Aid" }, { "Hood", "Helmet", "Wizard Hat", "Headband" }, { "Boots", "Ultra Lightweight Shoes", "High End Sneakers", "Feathertech Experimental Footwear" } };
 
     [SerializeField] Sprite[] upgradeSprites;
-    int[] costs = new int[4] {4,16,64,256};
+    int[] costs = new int[4] {4,16,32,64};
 
     [SerializeField] Button marketButton;
     [SerializeField] List<Button> upgradeButtons;

@@ -769,7 +769,7 @@ PrefabInstance:
       objectReference: {fileID: 9013288256728285134, guid: 20520c35a89ccee4b8cdd4c8b6f8d8d0, type: 3}
     - target: {fileID: 1048475923611409127, guid: f31643bcc55df71449011d1fac8f46df, type: 3}
       propertyPath: waveIntensityMultiplier
-      value: 1.075
+      value: 1.055
       objectReference: {fileID: 0}
     - target: {fileID: 1048475923611409127, guid: f31643bcc55df71449011d1fac8f46df, type: 3}
       propertyPath: enemyUnitSpawnIntensity.Array.size

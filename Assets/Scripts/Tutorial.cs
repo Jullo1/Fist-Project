@@ -42,7 +42,7 @@ public class Tutorial : MonoBehaviour
                 InstantExitTutorial();
                 return;
             case 1: //movement and attack
-                if (PlayerPrefs.GetInt("FirstRun") == 0) headerMessages.Add("Welcome to Fist Project");
+                if (PlayerPrefs.GetInt("FirstRun") == 0) headerMessages.Add("Welcome to Fist Project!");
                 else
                 {
                     if (PlayerPrefs.GetInt("AutoMode") == 1)

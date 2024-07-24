@@ -23,6 +23,7 @@ public class MainMenu : MonoBehaviour
     [SerializeField] Text lockedCharacterText;
     [SerializeField] GameObject marketTab;
     [SerializeField] Text autoModeText;
+    [SerializeField] GameObject controlsModeUnlockText;
 
     public Text scoreOutput;
     [SerializeField] GameObject scoreKeeper;
@@ -159,19 +160,26 @@ public class MainMenu : MonoBehaviour
     }
     public void ToggleAutoMode()
     {
-        ResetTutorial();
-        int isAutoMode = PlayerPrefs.GetInt("AutoMode");
-        if (isAutoMode == 1)
+        if ((PlayerPrefs.GetInt("totalKills") >= 400))
         {
-            PlayerPrefs.SetInt("AutoMode", 0);
-            autoModeText.text = "Manual Mode";
-            PlayerPrefs.Save();
+            ResetTutorial();
+            int isAutoMode = PlayerPrefs.GetInt("AutoMode");
+            if (isAutoMode == 1)
+            {
+                PlayerPrefs.SetInt("AutoMode", 0);
+                autoModeText.text = "Manual Mode";
+                PlayerPrefs.Save();
+            }
+            else
+            {
+                PlayerPrefs.SetInt("AutoMode", 1);
+                autoModeText.text = "Auto Mode";
+                PlayerPrefs.Save();
+            }
         }
         else
         {
-            PlayerPrefs.SetInt("AutoMode", 1);
-            autoModeText.text = "Auto Mode";
-            PlayerPrefs.Save();
+            controlsModeUnlockText.SetActive(true);
         }
     }
 
@@ -433,12 +441,12 @@ public class MainMenu : MonoBehaviour
             default: return 0; //includes first stage
             case 1: return 50 - currentKills;
             case 2: return 150 - currentKills;
-            case 3: return 300 - currentKills;
-            case 4: return 500 - currentKills;
-            case 5: return 750 - currentKills;
-            case 6: return 1250 - currentKills;
+            case 3: return 400 - currentKills;
+            case 4: return 700 - currentKills;
+            case 5: return 1050 - currentKills;
+            case 6: return 1500 - currentKills;
             case 7: return 2000 - currentKills;
-            case 8: return 3000 - currentKills;
+            case 8: return 2600 - currentKills;
         }
     }
 
