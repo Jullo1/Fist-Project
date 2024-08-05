@@ -25,6 +25,7 @@ public class StageSelector : MonoBehaviour
     [SerializeField] Image rewardAdButton;
     [SerializeField] Outline rewardAdButtonOutline;
     [SerializeField] Outline marketButtonOutline;
+    [SerializeField] Button[] navigateStagesButtons;
 
     [SerializeField] List<AudioClip> musicList = new List<AudioClip>();
     [SerializeField] AudioSource backgroundMusic;
@@ -60,6 +61,20 @@ public class StageSelector : MonoBehaviour
         else if (PlayerPrefs.GetInt("totalKills") >= 500) maxAvailableStage = 7;
         else if (PlayerPrefs.GetInt("totalKills") >= 150) maxAvailableStage = 6;
         previousStage = currentStage;
+        HideNavigateButtons();
+    }
+
+    void HideNavigateButtons()
+    {
+        if (currentStage == 0)
+            navigateStagesButtons[0].gameObject.SetActive(false);
+        else
+            navigateStagesButtons[0].gameObject.SetActive(true);
+
+        if (currentStage == maxAvailableStage - 1)
+            navigateStagesButtons[1].gameObject.SetActive(false);
+        else
+            navigateStagesButtons[1].gameObject.SetActive(true);
     }
 
     public void ChangeLevel(bool next)
@@ -67,7 +82,9 @@ public class StageSelector : MonoBehaviour
         endGameScoreUpdator.UpdateScoreOutput();
         if (next) currentStage++;
         else currentStage--;
+        HideNavigateButtons();
 
+        //loops through stages after reaching the end, just in case in previous/next buttons fail to hide
         if (currentStage >= stageNames.Count || currentStage > maxAvailableStage - 1) currentStage = 0;
         else if (currentStage < 0) currentStage = maxAvailableStage - 1;
 
@@ -75,11 +92,13 @@ public class StageSelector : MonoBehaviour
         {
             menuManager.lockedStageBackground.color = new Color32(255, 255, 255, 20);
             menuManager.lockedCharacterMask.color = new Color32(255, 255, 255, 20);
+            navigateStagesButtons[0].gameObject.SetActive(false);
         }
         else
         {
             menuManager.lockedStageBackground.color = new Color32(0, 0, 0, 200);
             menuManager.lockedCharacterMask.color = new Color32(0, 0, 0, 200);
+            navigateStagesButtons[0].gameObject.SetActive(true);
         }
 
         if (ScoreKeeper.score > 0) //hide score when changing stage, useful for sharing screenshots of highest score

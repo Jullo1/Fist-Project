@@ -18,7 +18,7 @@ public class MainMenu : MonoBehaviour
     public Image lockedStageBackground;
     public Image lockedCharacterMask;
     public Image lockedCharacterBackground;
-    [SerializeField] Image characterPreview;
+    [SerializeField] SpriteRenderer characterPreview;
     [SerializeField] Text lockedStageText;
     [SerializeField] Text lockedCharacterText;
     [SerializeField] GameObject marketTab;
@@ -422,6 +422,7 @@ public class MainMenu : MonoBehaviour
         {
             lockedCharacterMask.gameObject.SetActive(true);
             lockedCharacterBackground.gameObject.SetActive(true);
+            startButton.gameObject.SetActive(false);
             lockedCharacterText.text = unlockText;
             characterPreview.color = new Color32(50, 50, 50, 255);
         }
@@ -429,6 +430,7 @@ public class MainMenu : MonoBehaviour
         {
             lockedCharacterMask.gameObject.SetActive(false);
             lockedCharacterBackground.gameObject.SetActive(false);
+            startButton.gameObject.SetActive(true);
             lockedCharacterText.text = unlockText;
             characterPreview.color = new Color32(255, 255, 255, 255);
         }
@@ -459,7 +461,7 @@ public class MainMenu : MonoBehaviour
     public void ToggleMarket()
     {
         marketTab.SetActive(!marketTab.activeSelf);
-        marketButtonOutline.enabled = !marketTab.activeSelf;
+        marketButtonOutline.enabled = marketTab.activeSelf;
     }
 
     public void OpenWebsite(string tab)

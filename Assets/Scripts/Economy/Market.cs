@@ -78,7 +78,7 @@ public class Market : MonoBehaviour
         }
         else
         {
-            upgradeCosts[type].text = "$" + costs[step].ToString();
+            upgradeCosts[type].text = costs[step].ToString();
             upgradeTexts[type].text = upgradeNames[type, step]; //setup icons and names
             upgradeImages[type].sprite = upgradeSprites[(type * 4) + step];
         }

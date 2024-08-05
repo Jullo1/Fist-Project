@@ -10,16 +10,17 @@ public class SkinSelector : MonoBehaviour
     List<string> skinNames = new List<string>();
     List<string> skinDescriptions = new List<string>();
     List<string> skinStats = new List<string>();
-    [SerializeField] List<Sprite> skinSprites = new List<Sprite>();
-    [SerializeField] Image selectedSkin;
     [SerializeField] Text title;
     [SerializeField] Text description;
     [SerializeField] Text statsField;
     [SerializeField] Text unlockTextUI;
+    [SerializeField] Button[] navigateSkinButtons;
+    [SerializeField] Animator characterPreviewAnim;
+
     Outline unlockTextOutline;
     string unlockText;
 
-    public float timer;
+    float timer;
     public bool unlocked;
     Color oneOpacity = new Color(0,0,0,1);
     Vector3 unlockTextInitialPos;
@@ -55,6 +56,11 @@ public class SkinSelector : MonoBehaviour
         ApplyPlayerSkin();
     }
 
+    void Start()
+    {
+        HideNavigateButtons();
+    }
+
     void Update()
     {
         timer += Time.deltaTime;
@@ -65,6 +71,7 @@ public class SkinSelector : MonoBehaviour
             {
                 unlockTextUI.color -= oneOpacity * Time.deltaTime;
                 unlockTextOutline.effectColor -= oneOpacity * Time.deltaTime;
+                //characterPreviewAnim.SetBool("move", true);
             }
         }
         if (unlockTextUI.color.a <= 0) unlockTextUI.gameObject.SetActive(false);
@@ -72,6 +79,7 @@ public class SkinSelector : MonoBehaviour
 
     public void ChangeSkin(bool next)
     {
+        //characterPreviewAnim.SetBool("move", false);
         unlockTextUI.gameObject.SetActive(true);
         timer = 0;
         unlockTextUI.color = new Color(unlockTextUI.color.r, unlockTextUI.color.g, unlockTextUI.color.b, 1);
@@ -80,6 +88,8 @@ public class SkinSelector : MonoBehaviour
 
         if (next) currentSkin++;
         else currentSkin--;
+
+        HideNavigateButtons();
 
         if (currentSkin >= skinNames.Count) currentSkin = 0;
         else if (currentSkin < 0) currentSkin = skinNames.Count - 1;
@@ -95,9 +105,21 @@ public class SkinSelector : MonoBehaviour
     {
         title.text = skinNames[currentSkin];
         description.text = skinDescriptions[currentSkin];
-        selectedSkin.sprite = skinSprites[currentSkin];
         statsField.text = skinStats[currentSkin];
         SpriteChanger.playerSpriteSheetName = skinNames[currentSkin];
+    }
+
+    void HideNavigateButtons()
+    {
+        if (currentSkin == 0)
+            navigateSkinButtons[0].gameObject.SetActive(false);
+        else
+            navigateSkinButtons[0].gameObject.SetActive(true);
+
+        if (currentSkin == skinNames.Count - 1)
+            navigateSkinButtons[1].gameObject.SetActive(false);
+        else
+            navigateSkinButtons[1].gameObject.SetActive(true);
     }
 
     public bool CheckIfUnlocked()

@@ -1,5 +1,6 @@
 using UnityEngine;
 using System;
+using UnityEngine.UI;
 
 public class SpriteChanger : MonoBehaviour
 {
@@ -21,5 +22,6 @@ public class SpriteChanger : MonoBehaviour
                 renderer.sprite = newSprite;
 
         }
+
     }
 }

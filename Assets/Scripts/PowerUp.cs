@@ -10,6 +10,7 @@ public class PowerUp : Entity
     public PowerUpType powerUpType;
     public float duration;
     public float value; //determines the effectiveness of the power up, if applicable
+    bool active;
 
     float timer; //after a few seconds, enemies will be able to destroy the power up. After some more the power up will disappear
 
@@ -24,14 +25,15 @@ public class PowerUp : Entity
 
     void Update()
     {
-        if (timer > 10) {
+        if (timer > 0.5f) {
+            active = true;
             if (timer > 60) Destroy(gameObject);
         } timer += Time.deltaTime;
     }
 
-    void OnTriggerEnter2D(Collider2D collider)
+    void OnTriggerStay2D(Collider2D collider)
     {
-        if (collider.tag == "Player")
+        if (collider.tag == "Player" && active)
         {
             player.ActivatePowerUp(GetComponent<PowerUp>());
             audioSource.clip = audioClip;
