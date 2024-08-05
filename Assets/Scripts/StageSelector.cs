@@ -13,16 +13,18 @@ public class StageSelector : MonoBehaviour
 
     int previousStage;
     int maxAvailableStage = 4;
-    
+
     List<string> stageNames = new List<string>();
     [SerializeField] Text title;
     [SerializeField] List<Sprite> stageSprites = new List<Sprite>();
     RawImage floor;
     Text[] UITexts;
+    [SerializeField] Text warningText;
     Outline[] UIOutlines;
     [SerializeField] Outline startButtonOutline;
     [SerializeField] Image rewardAdButton;
     [SerializeField] Outline rewardAdButtonOutline;
+    [SerializeField] Outline marketButtonOutline;
 
     [SerializeField] List<AudioClip> musicList = new List<AudioClip>();
     [SerializeField] AudioSource backgroundMusic;
@@ -34,6 +36,9 @@ public class StageSelector : MonoBehaviour
         floor = GameObject.FindGameObjectWithTag("Floor").GetComponent<RawImage>();
         UITexts = FindObjectsOfType<Text>();
         UIOutlines = FindObjectsOfType<Outline>();
+
+        for (int i = 0; i < UIOutlines.Length; i++)
+            if (UIOutlines[i].gameObject.tag == "MarketButton") UIOutlines[i] = UIOutlines[0];
 
         stageNames.Add("Plains");
         stageNames.Add("Forest");
@@ -132,6 +137,7 @@ public class StageSelector : MonoBehaviour
         {
             outline.enabled = outlineEnabled;
             outline.effectColor = outlineColor;
+            warningText.color = textColor;
         }
         foreach (Text text in UITexts)
         {
@@ -141,6 +147,7 @@ public class StageSelector : MonoBehaviour
 
         rewardAdButton.color = textColor;
         rewardAdButtonOutline.effectColor = outlineColor;
+        marketButtonOutline.effectColor = textColor;
     }
 
     void ApplyStageMusic()

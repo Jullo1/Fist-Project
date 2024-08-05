@@ -61,7 +61,7 @@ public class Tutorial : MonoBehaviour
                 else
                 {
                     if (PlayerPrefs.GetInt("FirstRun") == 0) { headerMessages.Add("Move with WASD keys"); PlayerPrefs.SetInt("FirstRun", 1); }
-                        if (PlayerPrefs.GetInt("AutoMode") == 0)
+                    if (PlayerPrefs.GetInt("AutoMode") == 0)
                     {
                         headerMessages.Add("Press space to attack");
                     }

@@ -273,7 +273,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: bug
+          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &7007844
@@ -998,9 +998,11 @@ MonoBehaviour:
   - {fileID: 21300000, guid: c8c3ad17b749e9a49b2465e74769ceb3, type: 3}
   - {fileID: 21300000, guid: b51e67ce3277b65499a4ec35ec0b11c4, type: 3}
   - {fileID: 21300000, guid: 2d698b0152b69bb47933470eb93e4f41, type: 3}
+  warningText: {fileID: 1104070871}
   startButtonOutline: {fileID: 443236732}
   rewardAdButton: {fileID: 1750403711}
   rewardAdButtonOutline: {fileID: 1750403713}
+  marketButtonOutline: {fileID: 362820880}
   musicList:
   - {fileID: 8300000, guid: e04ee77a3a583394584de9f97a7c2804, type: 3}
   - {fileID: 8300000, guid: 48a7c09d5fda3254f85ecbfc20f2093f, type: 3}
@@ -1130,7 +1132,7 @@ MonoBehaviour:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
+  m_Maskable: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1431,7 +1433,7 @@ GameObject:
   - component: {fileID: 362820880}
   m_Layer: 5
   m_Name: Text
-  m_TagString: Untagged
+  m_TagString: MarketButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1467,9 +1469,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
-  m_EffectDistance: {x: 2, y: 2}
-  m_UseGraphicAlpha: 1
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5019608}
+  m_EffectDistance: {x: 2, y: 0}
+  m_UseGraphicAlpha: 0
 --- !u!114 &362820881
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1486,7 +1488,7 @@ MonoBehaviour:
   m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
+  m_Maskable: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -4681,6 +4683,7 @@ MonoBehaviour:
   lockedStageText: {fileID: 1066222307}
   lockedCharacterText: {fileID: 1467226616}
   marketTab: {fileID: 1436459508}
+  marketButtonOutline: {fileID: 362820880}
   autoModeText: {fileID: 693204463}
   controlsModeUnlockText: {fileID: 1104070869}
   scoreOutput: {fileID: 397604982}

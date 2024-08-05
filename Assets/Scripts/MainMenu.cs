@@ -22,6 +22,7 @@ public class MainMenu : MonoBehaviour
     [SerializeField] Text lockedStageText;
     [SerializeField] Text lockedCharacterText;
     [SerializeField] GameObject marketTab;
+    [SerializeField] Outline marketButtonOutline;
     [SerializeField] Text autoModeText;
     [SerializeField] GameObject controlsModeUnlockText;
 
@@ -311,7 +312,7 @@ public class MainMenu : MonoBehaviour
         PlayerPrefs.SetInt("totalItemsGrabbed", 321);
         PlayerPrefs.SetInt("totalPunches", 7843);
         PlayerPrefs.SetInt("totalSpecialAttacks", 875);
-        PlayerPrefs.SetInt("highestScore", 2815);
+        PlayerPrefs.SetInt("highestScore", 5815);
         PlayerPrefs.SetInt("reviewCount", 5);
         PlayerPrefs.SetInt("optedOutReview", 0);
 
@@ -458,6 +459,7 @@ public class MainMenu : MonoBehaviour
     public void ToggleMarket()
     {
         marketTab.SetActive(!marketTab.activeSelf);
+        marketButtonOutline.enabled = !marketTab.activeSelf;
     }
 
     public void OpenWebsite(string tab)

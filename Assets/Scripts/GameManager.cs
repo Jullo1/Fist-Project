@@ -291,7 +291,7 @@ public class GameManager : MonoBehaviour
         switch(StageSelector.currentStage)
         {
             case 0: enemyTint = new Color32(0, 0, 0, 0); break;
-            case 1: enemyTint = new Color32(100, 125, 40, 175); break;
+            case 1: enemyTint = new Color32(100, 125, 40, 125); break;
             case 2: enemyTint = new Color32(180, 140, 85, 220); break;
             case 3: enemyTint = new Color32(150, 130, 100, 150); break;
             case 4: enemyTint = new Color32(170, 170, 170, 50); break;

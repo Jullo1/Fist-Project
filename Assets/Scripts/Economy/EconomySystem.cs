@@ -33,7 +33,7 @@ public class EconomySystem : MonoBehaviour
 
         LoadInventory();
         ready = true;
-        //AddCoins(1000);
+        //AddCoins(5000);
     }
 
     public async void ReloadCurrency()
