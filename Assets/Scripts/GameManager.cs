@@ -13,7 +13,17 @@ public class GameManager : MonoBehaviour
     AudioSource menuAudio;
     AudioSource backgroundMusic;
     [SerializeField] AudioClip selectSFX;
+    [SerializeField] AudioClip coinSFX;
+    [SerializeField] AudioClip timeSFX;
+    [SerializeField] AudioClip healSFX;
+    [SerializeField] PowerUp healthPowerUp;
+    [SerializeField] GameObject timePotionUI;
+    [SerializeField] GameObject healthPotionUI;
+
+    bool coinOption;
     List<ParticleSystem> particles = new List<ParticleSystem>();
+    float musicPitch = 1;
+    float timeMultiplier = 1;
 
     public static float audioProgress;
 
@@ -36,6 +46,7 @@ public class GameManager : MonoBehaviour
     bool freezeUI;
     public bool timeStop;
 
+
     float experience;
     public float toNextLevel;
 
@@ -48,15 +59,16 @@ public class GameManager : MonoBehaviour
     [SerializeField] Selectable invisibleButton;
     [SerializeField] OnScreenButton mobileButton;
     [SerializeField] Animator levelUpCoin;
+
     Text lootedCoins;
 
     [SerializeField] GameObject levelUpWindow;
     [SerializeField] Text option1Text; int option1Value;
     [SerializeField] Text option2Text; int option2Value;
-    List<string> optionsList = new List<string>() { "Power" , "Attack Speed" , "Movement" , "Special"};
+    List<string> optionsList = new List<string>() { "Power" , "Attack Speed" , "Movement" , "Special", "Coin"};
 
     Tutorial tutorial;
-
+    public int playerLevel;
 
     void Awake()
     {
@@ -71,7 +83,7 @@ public class GameManager : MonoBehaviour
 
         backgroundMusic.time = audioProgress;
 
-        toNextLevel = 100;
+        toNextLevel = 50;
         currentWave = 0;
 
         ApplyEnemyTint();
@@ -113,17 +125,10 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(seconds);
 
         pauseWaves = false;
-        backgroundMusic.pitch = 1f;
+        backgroundMusic.pitch = musicPitch;
         menuAudio.Stop();
         foreach (ParticleSystem particle in particles)
             particle.Play();
-    }
-
-    public IEnumerator StopParticles(float seconds)
-    {
-
-        yield return new WaitForSeconds(seconds);
-
     }
 
     public void UpdateScore(int score, bool kill = true)
@@ -205,20 +210,64 @@ public class GameManager : MonoBehaviour
     {
         if (player.dead) return; //cancel if already game over
 
+        timePotionUI.SetActive(false);
+        healthPotionUI.SetActive(false);
+        levelUpCoin.gameObject.SetActive(false);
+
         StartCoroutine(FreezeUI());
         if (Application.isMobilePlatform) mobileButton.gameObject.SetActive(false);
         paused = true;
 
         Time.timeScale = 0;
         experience = 0;
-        toNextLevel += toNextLevel/2;
+        if (toNextLevel < 400) toNextLevel += toNextLevel;
+        playerLevel++;
         experienceUI.fillAmount = 0;
 
         SetupLevelUpOptions();
         levelUpWindow.SetActive(true);
         invisibleButton.Select();
-        levelUpCoin.SetTrigger("levelUp");
-        GainCoins(1);
+
+        if (playerLevel == 3)
+        {
+            timePotionUI.SetActive(true);
+            menuAudio.clip = timeSFX;
+            timeMultiplier = 1.2f;
+            musicPitch = 1.1f;
+            backgroundMusic.pitch = musicPitch;
+        }
+
+        else if (playerLevel == 6)
+        {
+            timePotionUI.SetActive(true);
+            menuAudio.clip = timeSFX;
+            timeMultiplier = 1.4f;
+            musicPitch = 1.2f;
+            backgroundMusic.pitch = musicPitch;
+        }
+
+        else if (playerLevel == 9)
+        {
+            timePotionUI.SetActive(true);
+            menuAudio.clip = timeSFX;
+            timeMultiplier = 1.6f;
+            musicPitch = 1.3f;
+            backgroundMusic.pitch = musicPitch;
+        }
+        else if (playerLevel % 2 == 0)
+        {
+            healthPotionUI.SetActive(true);
+            menuAudio.clip = healSFX;
+            player.ActivatePowerUp(healthPowerUp);
+        }
+        else
+        {
+            levelUpCoin.gameObject.SetActive(true);
+            levelUpCoin.SetTrigger("levelUp");
+            menuAudio.clip = coinSFX;
+            GainCoins(1);
+        }
+        menuAudio.Play();
     }
 
     public void GainCoins(int amount)
@@ -236,8 +285,8 @@ public class GameManager : MonoBehaviour
 
     void SetupLevelUpOptions()
     {
-        option1Value = UnityEngine.Random.Range(1, 5);
-        do { option2Value = UnityEngine.Random.Range(1, 5); } while (option2Value == option1Value); //make sure we get 2 different options
+        option1Value = UnityEngine.Random.Range(1, 6);
+        do { option2Value = UnityEngine.Random.Range(1, 6); } while (option2Value == option1Value); //make sure we get 2 different options
         option1Text.text = optionsList[option1Value-1];
         option1Text.transform.GetChild(0).GetComponent<Text>().text = optionsList[option1Value - 1];
         option2Text.text = optionsList[option2Value-1];
@@ -257,8 +306,15 @@ public class GameManager : MonoBehaviour
                     SelectUpgrade(option2Value);
                     break;
             }
-            menuAudio.clip = selectSFX;
+
+            if (coinOption)
+            {
+                menuAudio.clip = coinSFX;
+                coinOption = false;
+            }
+            else menuAudio.clip = selectSFX;
             menuAudio.Play();
+
             player.sendAnimTrigger("cancel");
             StartCoroutine(player.FreezeAttack(0.05f)); //freeze attack so that the game doesnt send an input when you release the key for selecting an option
         }
@@ -281,6 +337,10 @@ public class GameManager : MonoBehaviour
             case 4: //special
                 player.UpgradeStat(playerStats.specialCooldown, 2.5f);
                 player.UpgradeStat(playerStats.specialAttackCount, 1);
+                break;
+            case 5: //coin
+                coinOption = true;
+                GainCoins(1);
                 break;
         }
         ContinueGame();
@@ -307,7 +367,7 @@ public class GameManager : MonoBehaviour
         if (Application.isMobilePlatform) mobileButton.gameObject.SetActive(false);
         paused = false;
         levelUpWindow.SetActive(false);
-        Time.timeScale = 1;
+        Time.timeScale = timeMultiplier;
     }
 
     public void GameOver()

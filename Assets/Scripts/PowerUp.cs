@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public enum PowerUpType { None, Health, FullRecovery, Experience, Frenzy, OneHitKO, TimeStop, Perfection, Infinity, Phoenix , Coin, MiniTimeStop };
