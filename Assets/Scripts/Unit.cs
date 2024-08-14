@@ -96,7 +96,7 @@ public class Unit : Entity
             UpdateHealth(maxHitpoints);
     }
 
-    public void FreezeUnit(float time, bool disableCollision = false)
+    public virtual void FreezeUnit(float time, bool disableCollision = false)
     {
         frozenTime = time;
         anim.enabled = false;

@@ -122,7 +122,7 @@ public class GameManager : MonoBehaviour
         backgroundMusic.pitch = 0.8f;
         pauseWaves = true;
 
-        yield return new WaitForSeconds(seconds);
+        yield return new WaitForSeconds(seconds * timeMultiplier);
 
         pauseWaves = false;
         backgroundMusic.pitch = musicPitch;
@@ -228,44 +228,44 @@ public class GameManager : MonoBehaviour
         levelUpWindow.SetActive(true);
         invisibleButton.Select();
 
-        if (playerLevel == 3)
+        if (playerLevel == 4)
         {
             timePotionUI.SetActive(true);
             menuAudio.clip = timeSFX;
-            timeMultiplier = 1.2f;
+            timeMultiplier = 1.1f;
             musicPitch = 1.1f;
             backgroundMusic.pitch = musicPitch;
         }
 
-        else if (playerLevel == 6)
+        else if (playerLevel == 8)
         {
             timePotionUI.SetActive(true);
             menuAudio.clip = timeSFX;
-            timeMultiplier = 1.4f;
+            timeMultiplier = 1.2f;
             musicPitch = 1.2f;
             backgroundMusic.pitch = musicPitch;
         }
 
-        else if (playerLevel == 9)
+        else if (playerLevel == 12)
         {
             timePotionUI.SetActive(true);
             menuAudio.clip = timeSFX;
-            timeMultiplier = 1.6f;
+            timeMultiplier = 1.3f;
             musicPitch = 1.3f;
             backgroundMusic.pitch = musicPitch;
         }
         else if (playerLevel % 2 == 0)
         {
-            healthPotionUI.SetActive(true);
-            menuAudio.clip = healSFX;
-            player.ActivatePowerUp(healthPowerUp);
-        }
-        else
-        {
             levelUpCoin.gameObject.SetActive(true);
             levelUpCoin.SetTrigger("levelUp");
             menuAudio.clip = coinSFX;
             GainCoins(1);
+        }
+        else
+        {
+            healthPotionUI.SetActive(true);
+            menuAudio.clip = healSFX;
+            player.ActivatePowerUp(healthPowerUp);
         }
         menuAudio.Play();
     }
