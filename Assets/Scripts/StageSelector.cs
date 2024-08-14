@@ -23,6 +23,8 @@ public class StageSelector : MonoBehaviour
     Outline[] UIOutlines;
     [SerializeField] Outline startButtonOutline;
     [SerializeField] Image rewardAdButton;
+    [SerializeField] Image experienceBar;
+    [SerializeField] Image experienceBarBackground;
     [SerializeField] Outline rewardAdButtonOutline;
     [SerializeField] Outline marketButtonOutline;
     [SerializeField] Button[] navigateStagesButtons;
@@ -165,6 +167,8 @@ public class StageSelector : MonoBehaviour
         }
 
         rewardAdButton.color = textColor;
+        experienceBar.color = textColor;
+        experienceBarBackground.color = outlineColor;
         rewardAdButtonOutline.effectColor = outlineColor;
         marketButtonOutline.effectColor = textColor;
     }

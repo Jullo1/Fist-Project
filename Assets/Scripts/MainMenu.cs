@@ -8,6 +8,7 @@ using Google.Play.Review;
 #endif
 using Unity.Services.Core;
 using Unity.Services.Analytics;
+using Unity.VisualScripting;
 
 public class MainMenu : MonoBehaviour
 {
@@ -25,6 +26,9 @@ public class MainMenu : MonoBehaviour
     [SerializeField] Outline marketButtonOutline;
     [SerializeField] Text autoModeText;
     [SerializeField] GameObject controlsModeUnlockText;
+    [SerializeField] Image experienceBar;
+    [SerializeField] Text playerLevelText;
+    int previousXP;
 
     public Text scoreOutput;
     [SerializeField] GameObject scoreKeeper;
@@ -44,7 +48,6 @@ public class MainMenu : MonoBehaviour
     bool lockedStage;
     Color oneOpacity = new Color(0, 0, 0, 1f);
 
-    [Obsolete]
     async void Start()
     {
         //ads
@@ -85,6 +88,8 @@ public class MainMenu : MonoBehaviour
 #endif
             await UnityServices.InitializeAsync();
             AnalyticsService.Instance.StartDataCollection();
+
+            previousXP = PlayerPrefs.GetInt("Experience");
         }
         //returned to main menu
         else
@@ -99,6 +104,7 @@ public class MainMenu : MonoBehaviour
 #endif
             coinsOutput.text = EconomySystem.balance.ToString(); //starts UI with previous balance unless it's 0
             FindObjectOfType<EconomySystem>().LoadInventory();
+            AddXP(ScoreKeeper.score);
         }
 
         //webgl sendscore
@@ -158,7 +164,43 @@ public class MainMenu : MonoBehaviour
             autoModeText.text = "Auto Mode";
         else if (PlayerPrefs.GetInt("AutoMode") == 0)
             autoModeText.text = "Manual Mode";
+
+        playerLevelText.text = PlayerPrefs.GetInt("PlayerLevel").ToString();
+        float a = PlayerPrefs.GetInt("Experience");
+        float b = PlayerPrefs.GetInt("ToNextLevel");
+        StartCoroutine(AddExperienceToBar(a/b));
     }
+
+    IEnumerator AddExperienceToBar(float totalAmount)
+    {
+        float startXP = previousXP;
+        float maxXP = PlayerPrefs.GetInt("ToNextLevel");
+
+        experienceBar.rectTransform.localScale = new Vector3(startXP/maxXP, experienceBar.rectTransform.localScale.y, 1);
+        do {
+            experienceBar.rectTransform.localScale += new Vector3(totalAmount / 100, 0, 0);
+            yield return new WaitForSeconds(0.01f);
+        } while (experienceBar.rectTransform.localScale.x < totalAmount);
+    }
+
+    void AddXP(int xp)
+    {
+        previousXP = PlayerPrefs.GetInt("Experience");
+        int newValue = previousXP + xp;
+        PlayerPrefs.SetInt("Experience", newValue);
+
+        //level up
+        while (PlayerPrefs.GetInt("Experience") >= PlayerPrefs.GetInt("ToNextLevel"))
+        {
+            experienceBar.rectTransform.localScale = new Vector3(0, experienceBar.rectTransform.localScale.y, 1);
+            previousXP = 0;
+            PlayerPrefs.SetInt("Experience", PlayerPrefs.GetInt("Experience") - PlayerPrefs.GetInt("ToNextLevel"));
+            PlayerPrefs.SetInt("PlayerLevel", PlayerPrefs.GetInt("PlayerLevel") + 1);
+            PlayerPrefs.SetInt("ToNextLevel", PlayerPrefs.GetInt("PlayerLevel") * 500);
+        }
+        PlayerPrefs.Save();
+    }
+
     public void ToggleAutoMode()
     {
         if ((PlayerPrefs.GetInt("totalKills") >= 400))
@@ -268,6 +310,9 @@ public class MainMenu : MonoBehaviour
         if (!PlayerPrefs.HasKey("highestScore")) PlayerPrefs.SetInt("highestScore", 0);
         if (!PlayerPrefs.HasKey("reviewCount")) PlayerPrefs.SetInt("reviewCount", 4);
         if (!PlayerPrefs.HasKey("optedOutReview")) PlayerPrefs.SetInt("optedOutReview", 0);
+        if (!PlayerPrefs.HasKey("Experience")) PlayerPrefs.SetInt("Experience", 0);
+        if (!PlayerPrefs.HasKey("PlayerLevel")) PlayerPrefs.SetInt("PlayerLevel", 1);
+        if (!PlayerPrefs.HasKey("ToNextLevel")) PlayerPrefs.SetInt("ToNextLevel", 500);
 
         //set all upgrades at 0 on startup before checking player inventory
         PlayerPrefs.SetInt("STRENGTH", 0);
@@ -296,6 +341,9 @@ public class MainMenu : MonoBehaviour
         PlayerPrefs.SetInt("highestScore", 0);
         PlayerPrefs.SetInt("reviewCount", 0);
         PlayerPrefs.SetInt("optedOutReview", 0);
+        PlayerPrefs.SetInt("Experience", 0);
+        PlayerPrefs.SetInt("PlayerLevel", 1);
+        PlayerPrefs.SetInt("ToNextLevel", 500);
 
         for (int i = 0; i < 9; i++)
             PlayerPrefs.SetInt("hiscore" + i.ToString(), 0);
