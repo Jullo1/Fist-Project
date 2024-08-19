@@ -7,21 +7,26 @@ public class SpriteChanger : MonoBehaviour
     public static string playerSpriteSheetName;
     [SerializeField] string spriteSheetName;
     [SerializeField] string location;
+    SpriteRenderer[] sr;
 
+    Sprite[] subSprites;
+
+    void Awake()
+    {
+        sr = GetComponentsInChildren<SpriteRenderer>();
+        LoadTextures();
+    }
     void LateUpdate()
     {
-        if (gameObject.tag == "Player") spriteSheetName = playerSpriteSheetName;
-        var subSprites = Resources.LoadAll<Sprite>("Characters/" + location + "/" + spriteSheetName);
-
-        foreach (var renderer in GetComponentsInChildren<SpriteRenderer>())
+        foreach (SpriteRenderer renderer in sr)
         {
-            string spriteName = renderer.sprite.name;
-            var newSprite = Array.Find(subSprites, item => item.name == spriteName);
-
-            if (newSprite)
-                renderer.sprite = newSprite;
-
+            renderer.sprite = Array.Find(subSprites, item => item.name == renderer.sprite.name);
         }
+    }
 
+    public void LoadTextures()
+    {
+        if (gameObject.tag == "Player") spriteSheetName = playerSpriteSheetName;
+        subSprites = Resources.LoadAll<Sprite>("Characters/" + location + "/" + spriteSheetName);
     }
 }

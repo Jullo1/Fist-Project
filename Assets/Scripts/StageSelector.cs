@@ -12,7 +12,8 @@ public class StageSelector : MonoBehaviour
     public static float scrollMultiplier = 0.484f;
 
     int previousStage;
-    int maxAvailableStage = 4;
+    int maxAvailableStage = 3;
+    int playerLevel;
 
     List<string> stageNames = new List<string>();
     [SerializeField] Text title;
@@ -25,6 +26,7 @@ public class StageSelector : MonoBehaviour
     [SerializeField] Image rewardAdButton;
     [SerializeField] Image experienceBar;
     [SerializeField] Image experienceBarBackground;
+    [SerializeField] Text experienceText;
     [SerializeField] Outline rewardAdButtonOutline;
     [SerializeField] Outline marketButtonOutline;
     [SerializeField] Button[] navigateStagesButtons;
@@ -59,11 +61,19 @@ public class StageSelector : MonoBehaviour
 
     void Start()
     {
-        if (PlayerPrefs.GetInt("totalKills") >= 1000) maxAvailableStage = 9;
-        else if (PlayerPrefs.GetInt("totalKills") >= 500) maxAvailableStage = 7;
-        else if (PlayerPrefs.GetInt("totalKills") >= 150) maxAvailableStage = 6;
+        CheckMaxAvailableStage();
         previousStage = currentStage;
         HideNavigateButtons();
+    }
+
+    void CheckMaxAvailableStage()
+    {
+        playerLevel = PlayerPrefs.GetInt("PlayerLevel");
+        if (playerLevel >= 6) maxAvailableStage = 9;
+        else if (playerLevel >= 4) maxAvailableStage = 7;
+        else if (playerLevel >= 3) maxAvailableStage = 5;
+        else if (playerLevel >= 2) maxAvailableStage = 4;
+        else  maxAvailableStage = 3;
     }
 
     void HideNavigateButtons()
@@ -81,6 +91,7 @@ public class StageSelector : MonoBehaviour
 
     public void ChangeLevel(bool next)
     {
+        CheckMaxAvailableStage();
         endGameScoreUpdator.UpdateScoreOutput();
         if (next) currentStage++;
         else currentStage--;
@@ -168,6 +179,8 @@ public class StageSelector : MonoBehaviour
 
         rewardAdButton.color = textColor;
         experienceBar.color = textColor;
+        experienceText.color = textColor;
+        experienceText.GetComponent<Outline>().effectColor = outlineColor;
         experienceBarBackground.color = outlineColor;
         rewardAdButtonOutline.effectColor = outlineColor;
         marketButtonOutline.effectColor = textColor;
@@ -207,7 +220,7 @@ public class StageSelector : MonoBehaviour
 
     public void CheckIfUnlocked()
     {
-        if (menuManager.StageRequirements(currentStage) <= 0) menuManager.LockedStage(false);
+        if (menuManager.StageRequirements(currentStage) <= PlayerPrefs.GetInt("PlayerLevel")) menuManager.LockedStage(false);
         else menuManager.LockedStage(true);
     }
 }

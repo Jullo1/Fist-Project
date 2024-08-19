@@ -16,6 +16,7 @@ public class SkinSelector : MonoBehaviour
     [SerializeField] Text unlockTextUI;
     [SerializeField] Button[] navigateSkinButtons;
     [SerializeField] Animator characterPreviewAnim;
+    AudioSource aud;
 
     Outline unlockTextOutline;
     string unlockText;
@@ -28,6 +29,7 @@ public class SkinSelector : MonoBehaviour
     void Awake()
     {
         menuManager = FindObjectOfType<MainMenu>();
+        aud = GetComponent<AudioSource>();
         unlockTextOutline = unlockTextUI.gameObject.GetComponent<Outline>();
         unlockTextInitialPos = unlockTextUI.transform.localPosition;
 
@@ -79,6 +81,7 @@ public class SkinSelector : MonoBehaviour
 
     public void ChangeSkin(bool next)
     {
+        aud.pitch = Random.Range(0.85f, 1.05f);
         //characterPreviewAnim.SetBool("move", false);
         unlockTextUI.gameObject.SetActive(true);
         timer = 0;

@@ -283,6 +283,7 @@ public class Player : Unit
         {
             FaceTarget(target.gameObject); //face the enemy on attack
             target.TakeHit(strength, gameObject, pushForce);
+            aud.pitch = Random.Range(0.85f, 1.05f);
             PlayAudio(punchSFX);
             comboAmount++;
             specialTimer += 1f;
@@ -323,7 +324,11 @@ public class Player : Unit
                         enemy.TakeHit(strength, gameObject, pushForce);
                     }
                 }
-                if (hit || i == 0) PlayAudio(punchSFX);
+                if (hit || i == 0)
+                {
+                    aud.pitch = Random.Range(0.85f, 1.05f);
+                    PlayAudio(punchSFX);
+                }
             }
             yield return new WaitForSeconds(0.2f);
         }

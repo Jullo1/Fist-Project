@@ -8,7 +8,6 @@ using Google.Play.Review;
 #endif
 using Unity.Services.Core;
 using Unity.Services.Analytics;
-using Unity.VisualScripting;
 
 public class MainMenu : MonoBehaviour
 {
@@ -28,6 +27,7 @@ public class MainMenu : MonoBehaviour
     [SerializeField] GameObject controlsModeUnlockText;
     [SerializeField] Image experienceBar;
     [SerializeField] Text playerLevelText;
+    [SerializeField] Text playerExperienceText;
     int previousXP;
 
     public Text scoreOutput;
@@ -94,17 +94,20 @@ public class MainMenu : MonoBehaviour
         //returned to main menu
         else
         {
+
+            coinsOutput.text = EconomySystem.balance.ToString(); //starts UI with previous balance unless it's 0
+            FindObjectOfType<EconomySystem>().LoadInventory();
+            AddXP(ScoreKeeper.score);
+
 #if UNITY_ANDROID
             IronSource.Agent.displayBanner();
             if (!ScoreKeeper.adPlayed)
             {
                 IronSource.Agent.showInterstitial(); //send ad after death
                 ScoreKeeper.adPlayed = true;
-            } else ScoreKeeper.adPlayed = false;
+            }
+            else ScoreKeeper.adPlayed = false;
 #endif
-            coinsOutput.text = EconomySystem.balance.ToString(); //starts UI with previous balance unless it's 0
-            FindObjectOfType<EconomySystem>().LoadInventory();
-            AddXP(ScoreKeeper.score);
         }
 
         //webgl sendscore
@@ -181,6 +184,8 @@ public class MainMenu : MonoBehaviour
             experienceBar.rectTransform.localScale += new Vector3(totalAmount / 100, 0, 0);
             yield return new WaitForSeconds(0.01f);
         } while (experienceBar.rectTransform.localScale.x < totalAmount);
+
+        playerExperienceText.text = PlayerPrefs.GetInt("Experience").ToString() + "/" + PlayerPrefs.GetInt("ToNextLevel").ToString();
     }
 
     void AddXP(int xp)
@@ -195,15 +200,15 @@ public class MainMenu : MonoBehaviour
             experienceBar.rectTransform.localScale = new Vector3(0, experienceBar.rectTransform.localScale.y, 1);
             previousXP = 0;
             PlayerPrefs.SetInt("Experience", PlayerPrefs.GetInt("Experience") - PlayerPrefs.GetInt("ToNextLevel"));
+            PlayerPrefs.SetInt("ToNextLevel", PlayerPrefs.GetInt("PlayerLevel") * 1000);
             PlayerPrefs.SetInt("PlayerLevel", PlayerPrefs.GetInt("PlayerLevel") + 1);
-            PlayerPrefs.SetInt("ToNextLevel", PlayerPrefs.GetInt("PlayerLevel") * 500);
         }
         PlayerPrefs.Save();
     }
 
     public void ToggleAutoMode()
     {
-        if ((PlayerPrefs.GetInt("totalKills") >= 400))
+        if ((PlayerPrefs.GetInt("PlayerLevel") >= 4))
         {
             ResetTutorial();
             int isAutoMode = PlayerPrefs.GetInt("AutoMode");
@@ -300,6 +305,21 @@ public class MainMenu : MonoBehaviour
 
     void RebuildSaveData()
     {
+        if (!PlayerPrefs.HasKey("PlayerLevel"))
+        {
+            if (!PlayerPrefs.HasKey("totalKills"))
+            {
+                PlayerPrefs.SetInt("PlayerLevel", 1);
+                PlayerPrefs.SetInt("Experience", 0);
+                PlayerPrefs.SetInt("ToNextLevel", 500);
+            }
+            else //update level for those who played before the player level update
+            {
+                PlayerPrefs.SetInt("PlayerLevel", PlayerPrefs.GetInt("totalKills")/100);
+                PlayerPrefs.SetInt("Experience", PlayerPrefs.GetInt("PlayerLevel")*14);
+                PlayerPrefs.SetInt("ToNextLevel", (PlayerPrefs.GetInt("PlayerLevel") + 1) * 1000);
+            }
+        }
         if (!PlayerPrefs.HasKey("FirstRun")) PlayerPrefs.SetInt("FirstRun", 0);
         if (!PlayerPrefs.HasKey("AutoMode")) PlayerPrefs.SetInt("AutoMode", 1);
         if (!PlayerPrefs.HasKey("totalKills")) PlayerPrefs.SetInt("totalKills", 0);
@@ -310,9 +330,7 @@ public class MainMenu : MonoBehaviour
         if (!PlayerPrefs.HasKey("highestScore")) PlayerPrefs.SetInt("highestScore", 0);
         if (!PlayerPrefs.HasKey("reviewCount")) PlayerPrefs.SetInt("reviewCount", 4);
         if (!PlayerPrefs.HasKey("optedOutReview")) PlayerPrefs.SetInt("optedOutReview", 0);
-        if (!PlayerPrefs.HasKey("Experience")) PlayerPrefs.SetInt("Experience", 0);
-        if (!PlayerPrefs.HasKey("PlayerLevel")) PlayerPrefs.SetInt("PlayerLevel", 1);
-        if (!PlayerPrefs.HasKey("ToNextLevel")) PlayerPrefs.SetInt("ToNextLevel", 500);
+        
 
         //set all upgrades at 0 on startup before checking player inventory
         PlayerPrefs.SetInt("STRENGTH", 0);
@@ -363,6 +381,9 @@ public class MainMenu : MonoBehaviour
         PlayerPrefs.SetInt("highestScore", 5815);
         PlayerPrefs.SetInt("reviewCount", 5);
         PlayerPrefs.SetInt("optedOutReview", 0);
+        PlayerPrefs.SetInt("Experience", 25000);
+        PlayerPrefs.SetInt("PlayerLevel", 50);
+        PlayerPrefs.SetInt("ToNextLevel", 50000);
 
         for (int i = 0; i < 9; i++)
             PlayerPrefs.SetInt("hiscore" + i.ToString(), 123123);
@@ -460,7 +481,7 @@ public class MainMenu : MonoBehaviour
         else lockedStageBackground.color = new Color32(0, 0, 0, 200);
 
         string temp = "hiscore" + StageSelector.currentStage.ToString();
-        if (locked) { lockedStageBackground.gameObject.SetActive(true); lockedStageText.text = "Defeat " + StageRequirements((StageSelector.currentStage)).ToString() + " more enemies"; }
+        if (locked) { lockedStageBackground.gameObject.SetActive(true); lockedStageText.text = "Unlock at level " + StageRequirements(StageSelector.currentStage).ToString(); }
         else { lockedStageBackground.gameObject.SetActive(false); if (!PlayerPrefs.HasKey(temp)) { lockedStageText.text = ""; return; } else if (PlayerPrefs.GetInt(temp) == 0) lockedStageText.text = ""; else lockedStageText.text = "Best Score: " + (PlayerPrefs.GetInt(temp)).ToString(); }
     }
 
@@ -486,18 +507,18 @@ public class MainMenu : MonoBehaviour
 
     public int StageRequirements(int stageNum)
     {
-        int currentKills = PlayerPrefs.GetInt("totalKills");
+        int playerLevel = PlayerPrefs.GetInt("PlayerLevel");
         switch (stageNum)
         {
-            default: return 0; //includes first stage
-            case 1: return 50 - currentKills;
-            case 2: return 150 - currentKills;
-            case 3: return 400 - currentKills;
-            case 4: return 700 - currentKills;
-            case 5: return 1050 - currentKills;
-            case 6: return 1500 - currentKills;
-            case 7: return 2000 - currentKills;
-            case 8: return 2600 - currentKills;
+            default: return 0;
+            case 1: return 2;
+            case 2: return 3;
+            case 3: return 5;
+            case 4: return 8;
+            case 5: return 10;
+            case 6: return 12;
+            case 7: return 15;
+            case 8: return 18;
         }
     }
 

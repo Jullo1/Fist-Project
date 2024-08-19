@@ -220,7 +220,7 @@ public class GameManager : MonoBehaviour
 
         Time.timeScale = 0;
         experience = 0;
-        if (toNextLevel < 400) toNextLevel += toNextLevel;
+        if (toNextLevel <= 400) toNextLevel += toNextLevel;
         playerLevel++;
         experienceUI.fillAmount = 0;
 
