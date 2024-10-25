@@ -26,17 +26,18 @@ namespace com.unity3d.mediation
         /// <param name="adUnitId">The unique ID for the ad unit.</param>
         /// <param name="size">Size of the banner ad.
         /// Defaults to <see cref="LevelPlayAdSize.BANNER"/> if null.</param>
-        /// <param name="position">Position on the screen where the ad will be displayed. 
+        /// <param name="position">Position on the screen where the ad will be displayed.
         /// Defaults to <see cref="LevelPlayBannerPosition.BottomCenter"/> if not specified.</param>
         /// <param name="placementName">Optional name used for reporting and targeting. This parameter is optional and can be null.</param>
-        /// <param name="displayOnLoad">Determines whether the ad should be displayed immediately after loading. 
+        /// <param name="displayOnLoad">Determines whether the ad should be displayed immediately after loading.
+        /// <param name="respectSafeArea">Determines whether the ad should be displayed within the safe area of the screen, where no notch, status bar or camera is oresent..
         /// Defaults to true.</param>
         public LevelPlayBannerAd(string adUnitId, LevelPlayAdSize size = null, LevelPlayBannerPosition position = LevelPlayBannerPosition.BottomCenter,
-            string placementName = null, bool displayOnLoad = true)
+            string placementName = null, bool displayOnLoad = true, bool respectSafeArea = false)
         {
             size ??= LevelPlayAdSize.BANNER;
 #if UNITY_ANDROID && !UNITY_EDITOR
-            _bannerAd = new AndroidBannerAd(adUnitId, size, position, placementName, displayOnLoad);
+            _bannerAd = new AndroidBannerAd(adUnitId, size, position, placementName, displayOnLoad, respectSafeArea);
 #elif UNITY_IOS && !UNITY_EDITOR
             _bannerAd = new iOSBannerAd(adUnitId, size, position, placementName, displayOnLoad);
 #else
@@ -116,7 +117,7 @@ namespace com.unity3d.mediation
         {
             _bannerAd.PauseAutoRefresh();
         }
-        
+
         /// <summary>
         /// Resumes the auto-refreshing of the banner ad that was previously paused.
         /// </summary>

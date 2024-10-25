@@ -1,5 +1,5 @@
 <dependencies>
-<unityversion>4.1.14.13</unityversion>
+<unityversion>4.1.14.14</unityversion>
     <androidPackages>
     <androidPackage spec="com.ironsource.adapters:maioadapter:4.1.11">
       <repositories>
@@ -16,7 +16,7 @@
     </androidPackages>
     
   <iosPods>
-    <iosPod name="IronSourceMaioAdapter" version="4.1.11.13">
+    <iosPod name="IronSourceMaioAdapter" version="4.1.11.14">
       <sources>
         <source>https://github.com/CocoaPods/Specs</source>
       </sources>

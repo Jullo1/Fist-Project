@@ -1,7 +1,7 @@
 <dependencies>
-<unityversion>4.3.6.5</unityversion>
+<unityversion>4.3.8.0</unityversion>
   <iosPods>
-    <iosPod name="IronSourceTencentAdapter" version="4.3.6.5">
+    <iosPod name="IronSourceTencentAdapter" version="4.3.8.0">
       <sources>
         <source>https://github.com/CocoaPods/Specs</source>
       </sources>

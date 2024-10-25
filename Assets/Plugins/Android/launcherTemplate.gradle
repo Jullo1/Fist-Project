@@ -19,6 +19,7 @@ allprojects {
 }
 
 android {
+	namespace "**NAMESPACE**"
     ndkPath "**NDKPATH**"
 
     compileSdkVersion **APIVERSION**

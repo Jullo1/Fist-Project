@@ -1,21 +1,21 @@
 <dependencies>
- <unityversion>4.3.9.3</unityversion>
+ <unityversion>4.3.10.1</unityversion>
     <androidPackages>
-    <androidPackage spec="com.ironsource.adapters:bidmachineadapter:4.3.7">
+    <androidPackage spec="com.ironsource.adapters:bidmachineadapter:4.3.8">
          <repositories>
         <repository>https://android-sdk.is.com/</repository>
       </repositories>
     </androidPackage>
   </androidPackages>
     <androidPackages>
-      <androidPackage spec="io.bidmachine:ads:2.7.0">
+      <androidPackage spec="io.bidmachine:ads:3.0.0">
         <repositories>
           <repository>https://artifactory.bidmachine.io/bidmachine</repository>
         </repositories>
       </androidPackage>
     </androidPackages>
   <iosPods>
-    <iosPod name="IronSourceBidMachineAdapter" version="4.3.9.3">
+    <iosPod name="IronSourceBidMachineAdapter" version="4.3.10.1">
       <sources>
         <source>https://github.com/CocoaPods/Specs</source>
       </sources>

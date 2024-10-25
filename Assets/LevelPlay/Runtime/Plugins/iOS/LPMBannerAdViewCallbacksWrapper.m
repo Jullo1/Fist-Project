@@ -6,6 +6,7 @@
 //
 
 #import "LPMBannerAdViewCallbacksWrapper.h"
+#import "LPMUtilities.h"
 
 @implementation LPMBannerAdViewCallbacksWrapper
 
@@ -54,55 +55,10 @@ void LPMBannerAdViewDelegateDestroy(void *delegateRef) {
      return self;
  }
 
-// LPMAdInfo conversion methods
-- (NSString *)serializeAdInfoToJSON:(LPMAdInfo *)adInfo {
-    NSDictionary *adInfoDict = @{
-        @"adUnitId": adInfo.adUnitId ?: @"",
-        @"adSize": [self serializeAdSizeToJSON:adInfo.adSize],
-        @"adFormat": adInfo.adFormat ?: @"",
-        @"placementName": adInfo.placementName ?: @"",
-        @"auctionId": adInfo.auction_id ?: @"",
-        @"country": adInfo.country ?: @"",
-        @"ab": adInfo.ab ?: @"",
-        @"segmentName": adInfo.segment_name ?: @"",
-        @"adNetwork": adInfo.ad_network ?: @"",
-        @"instanceName": adInfo.instance_name ?: @"",
-        @"instanceId": adInfo.instance_id ?: @"",
-        @"revenue": adInfo.revenue ?: @"",
-        @"precision": adInfo.precision ?: @"",
-        @"encryptedCPM": adInfo.encrypted_cpm ?: @""
-    };
-    NSError *error;
-    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:adInfoDict options:0 error:&error];
-    return jsonData ? [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding] : @"";
-}
-
-- (NSString *)serializeAdSizeToJSON:(LPMAdSize *)adSize {
-    NSDictionary *adSizeDict = @{
-        @"description": adSize.sizeDescription ?: @"",
-        @"width": @(adSize.width) ?: @0,
-        @"height": @(adSize.height) ?: @0
-    };
-    NSError *error;
-    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:adSizeDict options:0 error:&error];
-    return jsonData ? [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding] : @"";
-}
-
-- (NSString *)serializeErrorToJSON:(NSError *)adError AdUnitId:(NSString *)adUnitId{
-    NSDictionary *errorDict = @{
-        @"errorCode": [@(adError.code) stringValue] ?: @"",
-        @"errorMessage": adError.description ?: @"",
-        @"adUnitId": adUnitId ?: @""
-    };
-    NSError *error;
-    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:errorDict options:0 error:&error];
-    return jsonData ? [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding] : @"";
-}
-
 #pragma mark - LPMBannerAdViewDelegate Methods
 
 - (void)didLoadAdWithAdInfo:(LPMAdInfo *)adInfo {
-    NSString *jsonString = [self serializeAdInfoToJSON:adInfo];
+    NSString *jsonString = [LPMUtilities serializeAdInfoToJSON:adInfo];
     const char *adInfoString = [jsonString UTF8String];
     if (self.loadSuccess) {
         self.loadSuccess( self.bannerAd, adInfoString);
@@ -111,7 +67,7 @@ void LPMBannerAdViewDelegateDestroy(void *delegateRef) {
 }
 
 - (void)didFailToLoadAdWithAdUnitId:(NSString *)adUnitId error:(NSError *)error {
-    NSString *jsonString = [self serializeErrorToJSON:error AdUnitId:adUnitId];
+    NSString *jsonString = [LPMUtilities serializeErrorToJSON:error adUnitId:adUnitId];
     const char *errorString = [jsonString UTF8String];
     if (self.loadFail){
         self.loadFail(self.bannerAd, errorString);
@@ -119,7 +75,7 @@ void LPMBannerAdViewDelegateDestroy(void *delegateRef) {
 }
 
 - (void)didClickAdWithAdInfo:(LPMAdInfo *)adInfo {
-    NSString *jsonString = [self serializeAdInfoToJSON:adInfo];
+    NSString *jsonString = [LPMUtilities serializeAdInfoToJSON:adInfo];
     const char *adInfoString = [jsonString UTF8String];
    if (self.clicked) {
          self.clicked( self.bannerAd, adInfoString);
@@ -127,7 +83,7 @@ void LPMBannerAdViewDelegateDestroy(void *delegateRef) {
 }
 
 - (void)didDisplayAdWithAdInfo:(LPMAdInfo *)adInfo {
-    NSString *jsonString = [self serializeAdInfoToJSON:adInfo];
+    NSString *jsonString = [LPMUtilities serializeAdInfoToJSON:adInfo];
     const char *adInfoString = [jsonString UTF8String];
   if (self.displayed) {
            self.displayed(self.bannerAd, adInfoString);
@@ -135,10 +91,10 @@ void LPMBannerAdViewDelegateDestroy(void *delegateRef) {
 }
 
 - (void)didFailToDisplayAdWithAdInfo:(LPMAdInfo *)adInfo error:(NSError *)error {
-    NSString *jsonString = [self serializeAdInfoToJSON:adInfo];
+    NSString *jsonString = [LPMUtilities serializeAdInfoToJSON:adInfo];
     const char *adInfoString = [jsonString UTF8String];
 
-    NSString *jsonStringError = [self serializeErrorToJSON:error AdUnitId:nil];
+    NSString *jsonStringError = [LPMUtilities serializeErrorToJSON:error];
     const char *errorString = [jsonStringError UTF8String];
     if(self.failedToDisplay) {
         self.failedToDisplay(self.bannerAd, adInfoString, errorString);
@@ -146,7 +102,7 @@ void LPMBannerAdViewDelegateDestroy(void *delegateRef) {
 }
 
 - (void)didExpandAdWithAdInfo:(LPMAdInfo *)adInfo {
-    NSString *jsonString = [self serializeAdInfoToJSON:adInfo];
+    NSString *jsonString = [LPMUtilities serializeAdInfoToJSON:adInfo];
     const char *adInfoString = [jsonString UTF8String];
     if(self.expand) {
         self.expand(self.bannerAd, adInfoString);
@@ -154,7 +110,7 @@ void LPMBannerAdViewDelegateDestroy(void *delegateRef) {
 }
 
 - (void)didCollapseAdWithAdInfo:(LPMAdInfo *)adInfo {
-    NSString *jsonString = [self serializeAdInfoToJSON:adInfo];
+    NSString *jsonString = [LPMUtilities serializeAdInfoToJSON:adInfo];
     const char *adInfoString = [jsonString UTF8String];
     if(self.collapse) {
         self.collapse(self.bannerAd, adInfoString);
@@ -162,7 +118,7 @@ void LPMBannerAdViewDelegateDestroy(void *delegateRef) {
 }
 
 - (void)didLeaveAppWithAdInfo:(LPMAdInfo *)adInfo {
-    NSString *jsonString = [self serializeAdInfoToJSON:adInfo];
+    NSString *jsonString = [LPMUtilities serializeAdInfoToJSON:adInfo];
     const char *adInfoString = [jsonString UTF8String];
     if(self.leaveApp) {
         self.leaveApp(self.bannerAd, adInfoString);

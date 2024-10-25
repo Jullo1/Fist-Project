@@ -1,5 +1,5 @@
 <dependencies>
-    <unityversion>4.1.25.0</unityversion>
+    <unityversion>4.1.26.0</unityversion>
     <androidPackages>
         <androidPackage spec="com.ironsource.adapters:mytargetadapter:4.1.20">
             <repositories>
@@ -27,7 +27,7 @@
         </androidPackage>
     </androidPackages>
     <iosPods>
-        <iosPod name="IronSourceMyTargetAdapter" version="4.1.23.0">
+        <iosPod name="IronSourceMyTargetAdapter" version="4.1.24.0">
             <sources>
                 <source>https://github.com/CocoaPods/Specs</source>
             </sources>

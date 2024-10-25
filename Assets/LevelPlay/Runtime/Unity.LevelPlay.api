@@ -15,7 +15,7 @@ public static class dataSource
 
 public class IronSource : IronSourceIAgent
 {
-    [System.Obsolete(@"Please use the pluginVersion function", false)] public static string UNITY_PLUGIN_VERSION = @"8.2.0-r";
+    [System.Obsolete(@"Please use the pluginVersion function", false)] public static string UNITY_PLUGIN_VERSION = @"8.3.0-r";
     public static IronSource Agent { get; }
     public void clearRewardedVideoServerParams();
     public void destroyBanner();
@@ -536,6 +536,22 @@ namespace com.unity3d.mediation
         public void ShowAd();
     }
 
+    public interface ILevelPlayInterstitialAd : System.IDisposable
+    {
+        public event System.Action<LevelPlayAdInfo> OnAdClicked;
+        public event System.Action<LevelPlayAdInfo> OnAdClosed;
+        public event System.Action<LevelPlayAdInfo> OnAdDisplayed;
+        public event System.Action<LevelPlayAdDisplayInfoError> OnAdDisplayFailed;
+        public event System.Action<LevelPlayAdInfo> OnAdInfoChanged;
+        public event System.Action<LevelPlayAdInfo> OnAdLoaded;
+        public event System.Action<LevelPlayAdError> OnAdLoadFailed;
+        public string AdUnitId { get; }
+        public void DestroyAd();
+        public bool IsAdReady();
+        public void LoadAd();
+        public void ShowAd(string placementName = default(string));
+    }
+
     public abstract class IosNativeObject : System.IDisposable
     {
         public System.IntPtr NativePtr { get; protected set; }
@@ -621,7 +637,7 @@ namespace com.unity3d.mediation
         public event System.Action<LevelPlayAdInfo> OnAdLeftApplication;
         public event System.Action<LevelPlayAdInfo> OnAdLoaded;
         public event System.Action<LevelPlayAdError> OnAdLoadFailed;
-        public LevelPlayBannerAd(string adUnitId, LevelPlayAdSize size = default(LevelPlayAdSize), LevelPlayBannerPosition position = LevelPlayBannerPosition.BottomCenter, string placementName = default(string), bool displayOnLoad = true) {}
+        public LevelPlayBannerAd(string adUnitId, LevelPlayAdSize size = default(LevelPlayAdSize), LevelPlayBannerPosition position = LevelPlayBannerPosition.BottomCenter, string placementName = default(string), bool displayOnLoad = true, bool respectSafeArea = false) {}
         public void DestroyAd();
         public void Dispose();
         public LevelPlayAdSize GetAdSize();
@@ -651,6 +667,25 @@ namespace com.unity3d.mediation
         public int ErrorCode { get; }
         public string ErrorMessage { get; }
         public string ToString();
+    }
+
+    public class LevelPlayInterstitialAd : ILevelPlayInterstitialAd, System.IDisposable
+    {
+        public event System.Action<LevelPlayAdInfo> OnAdClicked;
+        public event System.Action<LevelPlayAdInfo> OnAdClosed;
+        public event System.Action<LevelPlayAdInfo> OnAdDisplayed;
+        public event System.Action<LevelPlayAdDisplayInfoError> OnAdDisplayFailed;
+        public event System.Action<LevelPlayAdInfo> OnAdInfoChanged;
+        public event System.Action<LevelPlayAdInfo> OnAdLoaded;
+        public event System.Action<LevelPlayAdError> OnAdLoadFailed;
+        public string AdUnitId { get; }
+        public LevelPlayInterstitialAd(string adUnitId) {}
+        public void DestroyAd();
+        public void Dispose();
+        public bool IsAdReady();
+        public static bool IsPlacementCapped(string placementName);
+        public void LoadAd();
+        public void ShowAd(string placementName = default(string));
     }
 
     public class UnsupportedBannerAd : System.IDisposable

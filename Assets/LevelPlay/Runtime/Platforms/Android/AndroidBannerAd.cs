@@ -86,7 +86,7 @@ namespace com.unity3d.mediation
 
         volatile bool _mDisposed;
 
-        public AndroidBannerAd(string adUnitId, LevelPlayAdSize adSize, LevelPlayBannerPosition position, string placementName, bool displayOnLoad)
+        public AndroidBannerAd(string adUnitId, LevelPlayAdSize adSize, LevelPlayBannerPosition position, string placementName, bool displayOnLoad, bool respectSafeArea)
         {
             AdUnitId = adUnitId;
             AdSize = adSize;
@@ -98,10 +98,9 @@ namespace com.unity3d.mediation
                 try
                 {
                     _mBannerAdListener ??= new UnityBannerAdListener(this);
-
                     _mBannerAd = new AndroidJavaObject(k_BannerAdClassName, adUnitId,
                         adSize.Description, adSize.Width, adSize.Height, adSize.CustomWidth,
-                        (int)position, placementName, displayOnLoad, _mBannerAdListener);
+                        (int)position, placementName, displayOnLoad, respectSafeArea, _mBannerAdListener);
                 }
                 catch (Exception e)
                 {

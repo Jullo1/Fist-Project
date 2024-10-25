@@ -22,7 +22,7 @@ dependencyResolutionManagement {
             url (unityProjectPath + "/Assets/GeneratedLocalRepo/GooglePlayGames/com.google.play.games/Editor/m2repository") // Assets/GooglePlayGames/com.google.play.games/Editor/GooglePlayGamesPluginDependencies.xml:11
         }
         maven {
-            url "https://android-sdk.is.com/" // Assets/IronSourceAdQuality/Editor/IronSourceAdQualityDependencies.xml:9, Assets/IronSourceAdQuality/Editor/IronSourceAdQualityDependencies.xml:17, Assets/LevelPlay/Editor/IronSourceSDKDependencies.xml:9, Assets/LevelPlay/Editor/ISAdMobAdapterDependencies.xml:16, Assets/LevelPlay/Editor/ISAppLovinAdapterDependencies.xml:8, Assets/LevelPlay/Editor/ISAPSAdapterDependencies.xml:8, Assets/LevelPlay/Editor/ISBidMachineAdapterDependencies.xml:8, Assets/LevelPlay/Editor/ISChartboostAdapterDependencies.xml:8, Assets/LevelPlay/Editor/ISFacebookAdapterDependencies.xml:16, Assets/LevelPlay/Editor/ISFyberAdapterDependencies.xml:16, Assets/LevelPlay/Editor/ISHyprMXAdapterDependencies.xml:16, Assets/LevelPlay/Editor/ISInMobiAdapterDependencies.xml:8, Assets/LevelPlay/Editor/ISMaioAdapterDependencies.xml:8, Assets/LevelPlay/Editor/ISMintegralAdapterDependencies.xml:48, Assets/LevelPlay/Editor/ISMolocoAdapterDependencies.xml:8, Assets/LevelPlay/Editor/ISMyTargetAdapterDependencies.xml:8, Assets/LevelPlay/Editor/ISPangleAdapterDependencies.xml:8, Assets/LevelPlay/Editor/ISSmaatoAdapterDependencies.xml:21, Assets/LevelPlay/Editor/ISSuperAwesomeAdapterDependencies.xml:16, Assets/LevelPlay/Editor/ISUnityAdsAdapterDependencies.xml:8, Assets/LevelPlay/Editor/ISVungleAdapterDependencies.xml:16, Assets/LevelPlay/Editor/ISYandexAdapterDependencies.xml:13
+            url "https://android-sdk.is.com/" // Assets/IronSourceAdQuality/Editor/IronSourceAdQualityDependencies.xml:9, Assets/IronSourceAdQuality/Editor/IronSourceAdQualityDependencies.xml:17, Assets/LevelPlay/Editor/IronSourceSDKDependencies.xml:9, Assets/LevelPlay/Editor/ISAdMobAdapterDependencies.xml:16, Assets/LevelPlay/Editor/ISAppLovinAdapterDependencies.xml:8, Assets/LevelPlay/Editor/ISAPSAdapterDependencies.xml:8, Assets/LevelPlay/Editor/ISBidMachineAdapterDependencies.xml:8, Assets/LevelPlay/Editor/ISChartboostAdapterDependencies.xml:8, Assets/LevelPlay/Editor/ISFacebookAdapterDependencies.xml:16, Assets/LevelPlay/Editor/ISFyberAdapterDependencies.xml:16, Assets/LevelPlay/Editor/ISHyprMXAdapterDependencies.xml:16, Assets/LevelPlay/Editor/ISInMobiAdapterDependencies.xml:8, Assets/LevelPlay/Editor/ISMaioAdapterDependencies.xml:8, Assets/LevelPlay/Editor/ISMintegralAdapterDependencies.xml:48, Assets/LevelPlay/Editor/ISMobileFuseAdapterDependencies.xml:8, Assets/LevelPlay/Editor/ISMolocoAdapterDependencies.xml:8, Assets/LevelPlay/Editor/ISMyTargetAdapterDependencies.xml:8, Assets/LevelPlay/Editor/ISOguryAdapterDependencies.xml:8, Assets/LevelPlay/Editor/ISPangleAdapterDependencies.xml:8, Assets/LevelPlay/Editor/ISSmaatoAdapterDependencies.xml:21, Assets/LevelPlay/Editor/ISSuperAwesomeAdapterDependencies.xml:16, Assets/LevelPlay/Editor/ISUnityAdsAdapterDependencies.xml:8, Assets/LevelPlay/Editor/ISVerveAdapterDependencies.xml:8, Assets/LevelPlay/Editor/ISVungleAdapterDependencies.xml:16, Assets/LevelPlay/Editor/ISYandexAdapterDependencies.xml:13
         }
         maven {
             url "https://maven.google.com/" // Assets/LevelPlay/Editor/IronSourceSDKDependencies.xml:17, Assets/LevelPlay/Editor/IronSourceSDKDependencies.xml:25, Assets/LevelPlay/Editor/ISAdMobAdapterDependencies.xml:8, Assets/LevelPlay/Editor/ISAppLovinAdapterDependencies.xml:15, Assets/LevelPlay/Editor/ISAPSAdapterDependencies.xml:15, Assets/LevelPlay/Editor/ISFacebookAdapterDependencies.xml:8, Assets/LevelPlay/Editor/ISInMobiAdapterDependencies.xml:22, Assets/LevelPlay/Editor/ISMintegralAdapterDependencies.xml:40, Assets/LevelPlay/Editor/ISMyTargetAdapterDependencies.xml:15, Assets/LevelPlay/Editor/ISMyTargetAdapterDependencies.xml:27, Assets/LevelPlay/Editor/ISUnityAdsAdapterDependencies.xml:15
@@ -46,6 +46,9 @@ dependencyResolutionManagement {
             url "https://dl-maven-android.mintegral.com/repository/mbridge_android_sdk_oversea/" // Assets/LevelPlay/Editor/ISMintegralAdapterDependencies.xml:8, Assets/LevelPlay/Editor/ISMintegralAdapterDependencies.xml:16, Assets/LevelPlay/Editor/ISMintegralAdapterDependencies.xml:24, Assets/LevelPlay/Editor/ISMintegralAdapterDependencies.xml:32
         }
         maven {
+            url "https://maven.ogury.co" // Assets/LevelPlay/Editor/ISOguryAdapterDependencies.xml:15
+        }
+        maven {
             url "https://artifact.bytedance.com/repository/pangle/" // Assets/LevelPlay/Editor/ISPangleAdapterDependencies.xml:15
         }
         maven {
@@ -53,6 +56,9 @@ dependencyResolutionManagement {
         }
         maven {
             url "https://aa-sdk.s3-eu-west-1.amazonaws.com/android_repo/" // Assets/LevelPlay/Editor/ISSuperAwesomeAdapterDependencies.xml:8
+        }
+        maven {
+            url "https://verve.jfrog.io/artifactory/verve-gradle-release" // Assets/LevelPlay/Editor/ISVerveAdapterDependencies.xml:15
         }
         maven {
             url "https://jitpack.io/" // Assets/LevelPlay/Editor/ISVungleAdapterDependencies.xml:8

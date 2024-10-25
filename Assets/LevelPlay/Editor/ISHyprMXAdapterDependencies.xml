@@ -1,5 +1,5 @@
 <dependencies>
-  <unityversion>4.3.8.3</unityversion>
+  <unityversion>4.3.8.4</unityversion>
     <androidPackages>
     <androidPackage spec="com.hyprmx.android:HyprMX-SDK:6.2.3">
       <repositories>
@@ -17,7 +17,7 @@
   </androidPackages>
 
   <iosPods>
-    <iosPod name="IronSourceHyprMXAdapter" version="4.3.5.4">
+    <iosPod name="IronSourceHyprMXAdapter" version="4.3.5.5">
       <sources>
         <source>https://github.com/CocoaPods/Specs</source>
       </sources>

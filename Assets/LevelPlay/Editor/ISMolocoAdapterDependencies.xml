@@ -1,18 +1,18 @@
 <dependencies>
- <unityversion>4.3.3.1</unityversion>
+ <unityversion>4.3.6.0</unityversion>
     <androidPackages>
-    <androidPackage spec="com.ironsource.adapters:molocoadapter:4.3.3">
+    <androidPackage spec="com.ironsource.adapters:molocoadapter:4.3.5">
          <repositories>
         <repository>https://android-sdk.is.com/</repository>
       </repositories>
     </androidPackage>
   </androidPackages>
     <androidPackages>
-      <androidPackage spec="com.moloco.sdk:moloco-sdk:3.0.1">
+      <androidPackage spec="com.moloco.sdk:moloco-sdk:3.1.0">
       </androidPackage>
     </androidPackages>
   <iosPods>
-    <iosPod name="IronSourceMolocoAdapter" version="4.3.3.1">
+    <iosPod name="IronSourceMolocoAdapter" version="4.3.6.0">
       <sources>
         <source>https://github.com/CocoaPods/Specs</source>
       </sources>

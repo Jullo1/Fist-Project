@@ -1,12 +1,9 @@
 #import "LPMBannerAdView.h"
 #import "LPMBannerAdViewCallbacksWrapper.h"
+#import "LPMUtilities.h"
 #import <IronSource/LPMBannerAdView.h>
 #import <UIKit/UIKit.h>
 
-// Converts C style string to NSString
-#define GetStringParam(_x_)                                                    \
-(_x_ != NULL) ? [NSString stringWithUTF8String:_x_]                          \
-: [NSString stringWithUTF8String:""]
 
 CGFloat getDeviceScreenWidth(void) {
     UIScreen *mainScreen = [UIScreen mainScreen];
@@ -21,7 +18,7 @@ CGFloat getDeviceScreenWidth(void) {
 
 LPMAdSize *GetAdSizeFromDescription(const char *description, int width,
                                     int height, int customWidth) {
-    NSString *desc = GetStringParam(description);
+    NSString *desc = [LPMUtilities getStringFromCString:description];
     
     if (strcmp(description, "CUSTOM") == 0) {
         return [LPMAdSize customSizeWithWidth:width height:height];
@@ -51,9 +48,9 @@ extern "C" {
     void *LPMBannerAdViewCreate(const char *adUnitId, const char *placementName,
                                 const char *description, int width, int height, int customWidth) {
         LPMBannerAdView *bannerAdView =
-        [[LPMBannerAdView alloc] initWithAdUnitId:GetStringParam(adUnitId)];
+        [[LPMBannerAdView alloc] initWithAdUnitId:[LPMUtilities getStringFromCString:adUnitId]];
         
-        [bannerAdView setPlacementName:GetStringParam(placementName)];
+        [bannerAdView setPlacementName:[LPMUtilities getStringFromCString:placementName]];
         
         LPMAdSize *adSize = GetAdSizeFromDescription(description, width, height, customWidth);
         [bannerAdView setAdSize:adSize];
