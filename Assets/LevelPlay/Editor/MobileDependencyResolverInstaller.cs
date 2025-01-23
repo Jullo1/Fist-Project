@@ -86,7 +86,7 @@ namespace Unity.Services.LevelPlay.Editor
             }
             catch (Exception e)
             {
-                LevelPlayLogger.LogException(e);
+                EditorServices.Instance.LevelPlayLogger.LogException(e);
                 return false;
             }
         }

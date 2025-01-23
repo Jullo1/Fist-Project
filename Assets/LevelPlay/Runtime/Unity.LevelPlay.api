@@ -15,27 +15,27 @@ public static class dataSource
 
 public class IronSource : IronSourceIAgent
 {
-    [System.Obsolete(@"Please use the pluginVersion function", false)] public static string UNITY_PLUGIN_VERSION = @"8.3.0-r";
+    [System.Obsolete(@"Please use the pluginVersion function", false)] public static string UNITY_PLUGIN_VERSION = @"8.4.1-r";
     public static IronSource Agent { get; }
     public void clearRewardedVideoServerParams();
-    public void destroyBanner();
-    public void displayBanner();
+    [System.Obsolete(@"This method will be removed in version 9.0.0. Please use the LevelPlayBannerAd.DestroyAd() method instead.")] public void destroyBanner();
+    [System.Obsolete(@"This method will be removed in version 9.0.0. Please use the LevelPlayBannerAd.ShowAd() method instead.")] public void displayBanner();
     public string getAdvertiserId();
     public System.Nullable<int> getConversionValue();
-    public float getDeviceScreenWidth();
-    public float getMaximalAdaptiveHeight(float width);
+    [System.Obsolete(@"This method will be removed in version 9.0.0.")] public float getDeviceScreenWidth();
+    [System.Obsolete(@"This method will be removed in version 9.0.0.")] public float getMaximalAdaptiveHeight(float width);
     public IronSourcePlacement getPlacementInfo(string placementName);
-    public void hideBanner();
+    [System.Obsolete(@"This method will be removed in version 9.0.0. Please use the LevelPlayBannerAd.HideAd() method instead.")] public void hideBanner();
     public void init(string appKey);
     public void init(string appKey, params string[] adUnits);
-    public bool isBannerPlacementCapped(string placementName);
+    [System.Obsolete(@"This method will be removed in version 9.0.0.")] public bool isBannerPlacementCapped(string placementName);
     public bool isInterstitialPlacementCapped(string placementName);
     public bool isInterstitialReady();
     public bool isRewardedVideoAvailable();
     public bool isRewardedVideoPlacementCapped(string placementName);
     public void launchTestSuite();
-    public void loadBanner(IronSourceBannerSize size, IronSourceBannerPosition position);
-    public void loadBanner(IronSourceBannerSize size, IronSourceBannerPosition position, string placementName);
+    [System.Obsolete(@"This method will be removed in version 9.0.0. Please use the LevelPlayBannerAd.LoadAd() method instead.")] public void loadBanner(IronSourceBannerSize size, IronSourceBannerPosition position);
+    [System.Obsolete(@"This method will be removed in version 9.0.0. Please use the LevelPlayBannerAd.LoadAd() method instead.")] public void loadBanner(IronSourceBannerSize size, IronSourceBannerPosition position, string placementName);
     public void loadConsentViewWithType(string consentViewType);
     public void loadInterstitial();
     public void loadRewardedVideo();
@@ -85,20 +85,20 @@ public class IronSourceAdInfo
 
 public static class IronSourceAdUnits
 {
-    public static string BANNER { get; }
+    [System.Obsolete(@"This value will be removed in version 9.0.0. Please use LevelPlayAdFormat.BANNER instead.")] public static string BANNER { get; }
     public static string INTERSTITIAL { get; }
     public static string OFFERWALL { get; }
     public static string REWARDED_VIDEO { get; }
 }
 
-public class IronSourceBannerEvents : UnityEngine.MonoBehaviour
+[System.Obsolete(@"This class will be removed in version 9.0.0. Please use ILevelPlayBannerAd instead.")] public class IronSourceBannerEvents : UnityEngine.MonoBehaviour
 {
-    public static event System.Action<IronSourceAdInfo> onAdClickedEvent;
-    public static event System.Action<IronSourceAdInfo> onAdLeftApplicationEvent;
-    public static event System.Action<IronSourceAdInfo> onAdLoadedEvent;
-    public static event System.Action<IronSourceError> onAdLoadFailedEvent;
-    public static event System.Action<IronSourceAdInfo> onAdScreenDismissedEvent;
-    public static event System.Action<IronSourceAdInfo> onAdScreenPresentedEvent;
+    [System.Obsolete(@"This event will be removed in version 9.0.0. Please use ILevelPlayBannerAd.OnAdClicked instead.")] public static event System.Action<IronSourceAdInfo> onAdClickedEvent;
+    [System.Obsolete(@"This event will be removed in version 9.0.0. Please use ILevelPlayBannerAd.OnAdLeftApplication instead.")] public static event System.Action<IronSourceAdInfo> onAdLeftApplicationEvent;
+    [System.Obsolete(@"This event will be removed in version 9.0.0. Please use ILevelPlayBannerAd.OnAdLoaded instead.")] public static event System.Action<IronSourceAdInfo> onAdLoadedEvent;
+    [System.Obsolete(@"This event will be removed in version 9.0.0. Please use ILevelPlayBannerAd.OnAdLoadFailed instead.")] public static event System.Action<IronSourceError> onAdLoadFailedEvent;
+    [System.Obsolete(@"This event will be removed in version 9.0.0.")] public static event System.Action<IronSourceAdInfo> onAdScreenDismissedEvent;
+    [System.Obsolete(@"This event will be removed in version 9.0.0. Please use ILevelPlayBannerAd.OnAdDisplayed instead.")] public static event System.Action<IronSourceAdInfo> onAdScreenPresentedEvent;
     public IronSourceBannerEvents() {}
     [System.Obsolete(@"This function will be made private in a future version. Please avoid triggering events manually.", false)] public void onAdClicked(string args);
     [System.Obsolete(@"This function will be made private in a future version. Please avoid triggering events manually.", false)] public void onAdLeftApplication(string args);
@@ -108,29 +108,29 @@ public class IronSourceBannerEvents : UnityEngine.MonoBehaviour
     [System.Obsolete(@"This function will be made private in a future version. Please avoid triggering events manually.", false)] public void onAdScreenPresented(string args);
 }
 
-public enum IronSourceBannerPosition
+[System.Obsolete(@"This class will be removed in version 9.0.0., please use LevelPlayBannerPosition instead.")] public enum IronSourceBannerPosition
 {
-    BOTTOM = 2,
-    TOP = 1,
+    [System.Obsolete(@"This value will be removed in version 9.0.0. Please use LevelPlayBannerPosition.BottomCenter instead.")] BOTTOM = 2,
+    [System.Obsolete(@"This value will be removed in version 9.0.0. Please use LevelPlayBannerPosition.TopCenter instead.")] TOP = 1,
 }
 
-public class IronSourceBannerSize
+[System.Obsolete(@"This class will be removed in version 9.0.0. Please use LevelPlayAdSize instead.")] public class IronSourceBannerSize
 {
-    public static IronSourceBannerSize BANNER;
-    public static IronSourceBannerSize LARGE;
-    public static IronSourceBannerSize RECTANGLE;
-    public static IronSourceBannerSize SMART;
-    public string Description { get; }
-    public int Height { get; }
-    public int Width { get; }
-    public IronSourceBannerSize(string description) {}
-    public IronSourceBannerSize(int width, int height) {}
-    public ISContainerParams getBannerContainerParams();
-    public bool IsAdaptiveEnabled();
-    public bool IsRespectAndroidCutoutsEnabled();
-    public void SetAdaptive(bool adaptive, int customWidth = -1);
-    public void setBannerContainerParams(ISContainerParams parameters);
-    public void SetRespectAndroidCutouts(bool respectAndroidCutouts);
+    [System.Obsolete(@"This value will be removed in version 9.0.0. Please use LevelPlayAdSize.BANNER instead.")] public static IronSourceBannerSize BANNER;
+    [System.Obsolete(@"This value will be removed in version 9.0.0. Please use LevelPlayAdSize.LARGE instead.")] public static IronSourceBannerSize LARGE;
+    [System.Obsolete(@"This value will be removed in version 9.0.0. Please use LevelPlayAdSize.MEDIUM_RECTANGLE instead.")] public static IronSourceBannerSize RECTANGLE;
+    [System.Obsolete(@"This value will be removed in version 9.0.0.")] public static IronSourceBannerSize SMART;
+    [System.Obsolete(@"This value will be removed in version 9.0.0. Please use LevelPlayAdSize.Description instead.")] public string Description { get; }
+    [System.Obsolete(@"This value will be removed in version 9.0.0. Please use LevelPlayAdSize.Height instead.")] public int Height { get; }
+    [System.Obsolete(@"This value will be removed in version 9.0.0. Please use LevelPlayAdSize.Width instead.")] public int Width { get; }
+    [System.Obsolete(@"This method will be removed in version 9.0.0.")] public IronSourceBannerSize(string description) {}
+    [System.Obsolete(@"This method will be removed in version 9.0.0. Please use LevelPlayAdSize.CreateCustomBannerSize() instead.")] public IronSourceBannerSize(int width, int height) {}
+    [System.Obsolete(@"This method will be removed in version 9.0.0.")] public ISContainerParams getBannerContainerParams();
+    [System.Obsolete(@"This method will be removed in version 9.0.0.")] public bool IsAdaptiveEnabled();
+    [System.Obsolete(@"This method will be removed in version 9.0.0.")] public bool IsRespectAndroidCutoutsEnabled();
+    [System.Obsolete(@"This method will be removed in version 9.0.0. Please use LevelPlayBannerSize.CreateAdaptiveAdSize() instead.")] public void SetAdaptive(bool adaptive, int customWidth = -1);
+    [System.Obsolete(@"This method will be removed in version 9.0.0.")] public void setBannerContainerParams(ISContainerParams parameters);
+    [System.Obsolete(@"This method will be removed in version 9.0.0. Please refer to the LevelPlayBannerAd class documentation to handle Android display cutouts (Respect Safe Area).")] public void SetRespectAndroidCutouts(bool respectAndroidCutouts);
 }
 
 public class IronSourceConfig
@@ -224,24 +224,24 @@ public class IronSourceEvents : UnityEngine.MonoBehaviour
 public interface IronSourceIAgent
 {
     public void clearRewardedVideoServerParams();
-    public void destroyBanner();
-    public void displayBanner();
+    [System.Obsolete(@"This method will be removed in version 9.0.0. Please use the LevelPlayBannerAd.DestroyAd() method instead.")] public void destroyBanner();
+    [System.Obsolete(@"This method will be removed in version 9.0.0. Please use the LevelPlayBannerAd.ShowAd() method instead.")] public void displayBanner();
     public string getAdvertiserId();
     public System.Nullable<int> getConversionValue();
     public float getDeviceScreenWidth();
     public float getMaximalAdaptiveHeight(float width);
     public IronSourcePlacement getPlacementInfo(string name);
-    public void hideBanner();
+    [System.Obsolete(@"This method will be removed in version 9.0.0. Please use the LevelPlayBannerAd.HideAd() method instead.")] public void hideBanner();
     public void init(string appKey);
     public void init(string appKey, params string[] adUnits);
-    public bool isBannerPlacementCapped(string placementName);
+    [System.Obsolete(@"This method will be removed in version 9.0.0.")] public bool isBannerPlacementCapped(string placementName);
     public bool isInterstitialPlacementCapped(string placementName);
     public bool isInterstitialReady();
     public bool isRewardedVideoAvailable();
     public bool isRewardedVideoPlacementCapped(string placementName);
     public void launchTestSuite();
-    public void loadBanner(IronSourceBannerSize size, IronSourceBannerPosition position);
-    public void loadBanner(IronSourceBannerSize size, IronSourceBannerPosition position, string placementName);
+    [System.Obsolete(@"This method will be removed in version 9.0.0. Please use the LevelPlayBannerAd.LoadAd() method instead.")] public void loadBanner(IronSourceBannerSize size, IronSourceBannerPosition position);
+    [System.Obsolete(@"This method will be removed in version 9.0.0. Please use the LevelPlayBannerAd.LoadAd() method instead.")] public void loadBanner(IronSourceBannerSize size, IronSourceBannerPosition position, string placementName);
     public void loadConsentViewWithType(string consentViewType);
     public void loadInterstitial();
     public void loadRewardedVideo();
@@ -271,8 +271,9 @@ public interface IronSourceIAgent
 public class IronSourceImpressionData
 {
     public readonly string ab;
+    public readonly string adFormat;
     public readonly string adNetwork;
-    public readonly string adUnit;
+    [System.Obsolete(@"This parameter will be removed in version 9.0.0. Please use the AdFormat parameter instead.")] public readonly string adUnit;
     public readonly string allData;
     public readonly string auctionId;
     public readonly System.Nullable<int> conversionValue;
@@ -280,7 +281,9 @@ public class IronSourceImpressionData
     public readonly string encryptedCPM;
     public readonly string instanceId;
     public readonly string instanceName;
-    public readonly System.Nullable<double> lifetimeRevenue;
+    [System.Obsolete(@"This parameter will be removed in version 9.0.0.")] public readonly System.Nullable<double> lifetimeRevenue;
+    public readonly string mediationAdUnitId;
+    public readonly string mediationAdUnitName;
     public readonly string placement;
     public readonly string precision;
     public readonly System.Nullable<double> revenue;
@@ -316,7 +319,7 @@ public class IronSourceInterstitialEvents : UnityEngine.MonoBehaviour
 public class IronSourceMediationSettings : UnityEngine.ScriptableObject
 {
     [UnityEngine.Header(@"Ironsource SKAdNetwork ID")] [UnityEngine.Tooltip(@"Add Ironsource SKAdNetworkIdentifier to your Info.plist for iOS 14+")] public bool AddIronsourceSkadnetworkID;
-    [UnityEngine.Header(@"Ironsource AppKey")] [UnityEngine.Tooltip(@"Add your application AppKeys, as provided in Ironsource Platform")] public string AndroidAppKey;
+    [UnityEngine.Tooltip(@"Add your application AppKeys, as provided in Ironsource Platform")] public string AndroidAppKey;
     [UnityEngine.Header(@"Google Play Services Settings")] [UnityEngine.Tooltip(@"Add Google Play Services normal permission for API level 31 (Android 12)")] public bool DeclareAD_IDPermission;
     [UnityEngine.Header(@"Project Features")] public bool EnableAdapterDebug;
     public bool EnableIntegrationHelper;
@@ -387,11 +390,11 @@ public class IronSourceSegment
     public static IronSourcePlacement getPlacementFromObject(object placementObject);
 }
 
-public class ISContainerParams
+[System.Obsolete(@"This class will be removed in version 9.0.0.")] public class ISContainerParams
 {
-    public float Height { get; set; }
-    public float Width { get; set; }
-    public ISContainerParams() {}
+    [System.Obsolete(@"This value will be removed in version 9.0.0.")] public float Height { get; set; }
+    [System.Obsolete(@"This value will be removed in version 9.0.0.")] public float Width { get; set; }
+    [System.Obsolete(@"This constructor will be removed in version 9.0.0.")] public ISContainerParams() {}
 }
 
 public interface IUnityImpressionData
@@ -600,6 +603,7 @@ namespace com.unity3d.mediation
         public readonly string adNetwork;
         [JetBrains.Annotations.CanBeNull] public readonly LevelPlayAdSize adSize;
         public readonly string adUnitId;
+        public readonly string adUnitName;
         public readonly string auctionId;
         public readonly string country;
         public readonly string encryptedCPM;

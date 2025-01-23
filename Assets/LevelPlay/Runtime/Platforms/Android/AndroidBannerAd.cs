@@ -58,7 +58,7 @@ namespace com.unity3d.mediation
 
         public void onAdDisplayFailed(string adInfo, string error)
         {
-            OnAdDisplayFailed?.Invoke(this, new LevelPlayAdDisplayInfoError(new LevelPlayAdInfo(adInfo),new LevelPlayAdError(error)));
+            OnAdDisplayFailed?.Invoke(this, new LevelPlayAdDisplayInfoError(new LevelPlayAdInfo(adInfo), new LevelPlayAdError(error)));
         }
 
         public void onAdExpanded(string adInfo)
@@ -123,7 +123,7 @@ namespace com.unity3d.mediation
                     catch (Exception e)
                     {
                         Debug.LogException(e);
-                        OnAdLoadFailed?.Invoke(this, new LevelPlayAdError(AdUnitId,-1, k_ErrorFailedToLoad + e.Message));
+                        OnAdLoadFailed?.Invoke(this, new LevelPlayAdError(AdUnitId, -1, k_ErrorFailedToLoad + e.Message));
                     }
                 });
             }
@@ -142,7 +142,7 @@ namespace com.unity3d.mediation
                     catch (Exception e)
                     {
                         Debug.LogException(e);
-                        OnAdLoadFailed?.Invoke(this, new LevelPlayAdError(AdUnitId,-1, k_ErrorFailedToLoad + e.Message));
+                        OnAdLoadFailed?.Invoke(this, new LevelPlayAdError(AdUnitId, -1, k_ErrorFailedToLoad + e.Message));
                     }
                 });
             }
@@ -161,7 +161,7 @@ namespace com.unity3d.mediation
                     catch (Exception e)
                     {
                         Debug.LogException(e);
-                        OnAdLoadFailed?.Invoke(this, new LevelPlayAdError(AdUnitId,-1, k_ErrorFailedToLoad + e.Message));
+                        OnAdLoadFailed?.Invoke(this, new LevelPlayAdError(AdUnitId, -1, k_ErrorFailedToLoad + e.Message));
                     }
                 });
             }
@@ -199,7 +199,7 @@ namespace com.unity3d.mediation
 
         public void DestroyAd()
         {
-           Dispose();
+            Dispose();
         }
 
         public void Dispose()

@@ -3,27 +3,36 @@ using UnityEngine;
 
 namespace Unity.Services.LevelPlay.Editor.IntegrationManager.UIComponents
 {
-    class IntegrationManagerRecommendedBox: IDrawable
+    class IntegrationManagerRecommendedBox : IDrawable
     {
-        readonly GUIStyle style;
-        readonly Texture2D image;
+        readonly Texture2D m_Image;
+        readonly int m_Width;
+        readonly int m_Height;
+        readonly int m_RowHeight;
 
-        public IntegrationManagerRecommendedBox([CanBeNull] Texture2D recommendedIcon)
+        internal IntegrationManagerRecommendedBox([CanBeNull] Texture2D recommendedIcon, int width, int height, int rowHeight)
         {
-            style = new GUIStyle
-            {
-                alignment = TextAnchor.UpperLeft,
-                margin = new RectOffset(5, 0, 0, 0),
-                padding = new RectOffset(0,0,0,-20),
-                fixedWidth = 75
-            };
-
-            image = recommendedIcon;
+            m_Image = recommendedIcon;
+            m_Width = width;
+            m_Height = height;
+            m_RowHeight = rowHeight;
         }
 
         public void Draw()
         {
-            GUILayout.Label(image, style);
+            var style = new GUIStyle
+            {
+                margin = new RectOffset(0, 0, 0, 0),
+                padding = new RectOffset(0, 0, 0, 0),
+                fixedWidth = m_Width,
+                fixedHeight = m_Height,
+            };
+            GUILayout.Space(8);
+            GUILayout.BeginVertical(new GUIStyle { fixedHeight = m_RowHeight });
+            GUILayout.FlexibleSpace();
+            GUILayout.Label(m_Image, style);
+            GUILayout.FlexibleSpace();
+            GUILayout.EndVertical();
         }
     }
 }

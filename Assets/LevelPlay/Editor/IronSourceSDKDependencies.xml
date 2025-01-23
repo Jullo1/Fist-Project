@@ -1,14 +1,12 @@
 <dependencies>
-  <unityversion>8.3.0</unityversion>
-
+  <unityversion>8.4.0</unityversion>
   <androidPackages>
-    <androidPackage spec="com.ironsource.sdk:mediationsdk:8.3.0">
+    <androidPackage spec="com.ironsource.sdk:mediationsdk:8.4.0">
       <repositories>
         <repository>https://android-sdk.is.com/</repository>
       </repositories>
     </androidPackage>
   </androidPackages>
-
   <androidPackages>
     <androidPackage spec="com.google.android.gms:play-services-ads-identifier:18.0.1">
       <repositories>
@@ -16,17 +14,15 @@
       </repositories>
     </androidPackage>
   </androidPackages>
-
-     <androidPackages>
+  <androidPackages>
     <androidPackage spec="com.google.android.gms:play-services-basement:18.1.0">
       <repositories>
         <repository>https://maven.google.com/</repository>
       </repositories>
     </androidPackage>
   </androidPackages>
-
   <iosPods>
-    <iosPod name="IronSourceSDK" version="8.3.0.0">
+    <iosPod name="IronSourceSDK" version="8.4.0.0">
       <sources>
         <source>https://github.com/CocoaPods/Specs</source>
       </sources>

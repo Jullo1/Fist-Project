@@ -1,58 +1,28 @@
+using Unity.Services.LevelPlay.Editor;
+using UnityEngine;
 
-using Unity.Services.LevelPlay.Editor.AdapterData;
-
-namespace Unity.Services.LevelPlay.Editor.IntegrationManager
+namespace Unity.Services.LevelPlay.Editor
 {
     static class IntegrationManagerUIUtils
     {
-        const string k_LabelInstall = "Install";
-        const string k_LabelUpdate = "Update";
-        const string k_LabelUpdated = "Updated";
-        const string k_TooltipAndroidSdk = "Android SDK version:";
-        const string k_TooltipIosSdk = "iOS SDK version:";
-        const string k_TooltipLatestVersion = "Latest Version:";
-        const string k_TooltipAdapterVersion = "Adapter Version:";
-        const string k_Android = "Android";
-        const string k_Ios = "iOS";
-
-        internal static string GetButtonText(Adapter.Status status, string newVersion)
+        internal static Texture2D CreateTexture(int red, int green, int blue, float alpha)
         {
-            string text;
-            switch (status)
-            {
-                case Adapter.Status.NotInstalled:
-                    text = k_LabelInstall;
-                    break;
-                case Adapter.Status.UpdateAvailable:
-                    text = string.IsNullOrWhiteSpace(newVersion) ? k_LabelUpdate : $"{k_LabelUpdate} to {newVersion}";
-                    break;
-                case Adapter.Status.UpToDate:
-                default:
-                    text = k_LabelUpdated;
-                    break;
-            }
-
-            return text;
+            var color = new Color(red / 255f, green / 255f, blue / 255f, alpha);
+            return CreateTexture(color);
         }
 
-        internal static string GetToolTipText(Adapter adapter)
+        internal static Texture2D CreateTexture(Color color)
         {
-            var tooltipText = $"{k_TooltipLatestVersion} \n " +
-                              $"{adapter.AdapterName} " +
-                              $"{k_TooltipAdapterVersion} " +
-                              $"{adapter.LatestVersion}";
+            Color[] pix = new Color[1];
 
-            if (adapter.SDKVersions.TryGetValue(k_Android, out var androidVersion))
-            {
-                tooltipText = $"{tooltipText}\n {k_TooltipAndroidSdk} {androidVersion}";
-            }
+            for (int i = 0; i < pix.Length; i++)
+                pix[i] = color;
 
-            if (adapter.SDKVersions.TryGetValue(k_Ios, out var iosVersion))
-            {
-                tooltipText = $"{tooltipText}\n {k_TooltipIosSdk} {iosVersion}";
-            }
+            Texture2D texture = new Texture2D(1, 1);
+            texture.SetPixels(pix);
+            texture.Apply();
 
-            return tooltipText;
+            return texture;
         }
     }
 }

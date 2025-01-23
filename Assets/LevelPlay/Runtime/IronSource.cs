@@ -2,6 +2,8 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using System;
+using Unity.Services.LevelPlay;
+
 #pragma warning disable 0618
 
 /// <summary>
@@ -12,7 +14,7 @@ public class IronSource : IronSourceIAgent
     private IronSourceIAgent _platformAgent;
     private static IronSource _instance;
     [Obsolete("Please use the pluginVersion function", false)]
-    public static string UNITY_PLUGIN_VERSION = "8.3.0-r";
+    public static string UNITY_PLUGIN_VERSION = Constants.AnnotatedPackageVersion;
     private static bool isUnsupportedPlatform;
 
     private IronSource()
@@ -367,7 +369,7 @@ public class IronSource : IronSourceIAgent
     }
 
     //******************* Banner API *******************//
-
+    [Obsolete("This method will be removed in version 9.0.0. Please use the LevelPlayBannerAd.LoadAd() method instead.")]
     /// <summary>
     /// Load a banner.
     /// </summary>
@@ -378,6 +380,7 @@ public class IronSource : IronSourceIAgent
         _platformAgent.loadBanner(size, position);
     }
 
+    [Obsolete("This method will be removed in version 9.0.0. Please use the LevelPlayBannerAd.LoadAd() method instead.")]
     /// <summary>
     /// Load and show a banner for a specific placement.
     /// </summary>
@@ -389,6 +392,7 @@ public class IronSource : IronSourceIAgent
         _platformAgent.loadBanner(size, position, placementName);
     }
 
+    [Obsolete("This method will be removed in version 9.0.0. Please use the LevelPlayBannerAd.DestroyAd() method instead.")]
     /// <summary>
     /// Destroy a banner.
     /// </summary>
@@ -397,6 +401,7 @@ public class IronSource : IronSourceIAgent
         _platformAgent.destroyBanner();
     }
 
+    [Obsolete("This method will be removed in version 9.0.0. Please use the LevelPlayBannerAd.ShowAd() method instead.")]
     /// <summary>
     /// Show a banner.
     /// </summary>
@@ -405,6 +410,7 @@ public class IronSource : IronSourceIAgent
         _platformAgent.displayBanner();
     }
 
+    [Obsolete("This method will be removed in version 9.0.0. Please use the LevelPlayBannerAd.HideAd() method instead.")]
     /// <summary>
     /// Hide a banner.
     /// </summary>
@@ -413,6 +419,7 @@ public class IronSource : IronSourceIAgent
         _platformAgent.hideBanner();
     }
 
+    [Obsolete("This method will be removed in version 9.0.0.")]
     /// <summary>
     /// Determines if a banner placement is capped.
     /// </summary>
@@ -423,6 +430,7 @@ public class IronSource : IronSourceIAgent
         return _platformAgent.isBannerPlacementCapped(placementName);
     }
 
+    [Obsolete("This method will be removed in version 9.0.0.")]
     /// <summary>
     ///  Get maximal Adaptive Height.
     /// </summary>
@@ -432,6 +440,7 @@ public class IronSource : IronSourceIAgent
         return _platformAgent.getMaximalAdaptiveHeight(width);
     }
 
+    [Obsolete("This method will be removed in version 9.0.0.")]
     /// <summary>
     ///  Get Device Screen Width.
     /// </summary>

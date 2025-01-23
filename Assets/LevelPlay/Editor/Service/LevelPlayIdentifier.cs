@@ -8,7 +8,7 @@ namespace Unity.Services.LevelPlay.Editor
     /// </summary>
     public struct LevelPlayIdentifier : IEditorGameServiceIdentifier
     {
-        internal static string Key = "UnityLevelPlay";
+        internal static string Key = Constants.PackageAnalyticsIdentifier;
         /// <summary>
         /// Gets the key for the User Reporting package
         /// </summary>

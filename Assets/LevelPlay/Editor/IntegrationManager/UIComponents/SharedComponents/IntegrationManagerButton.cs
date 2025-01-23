@@ -1,22 +1,21 @@
 using System;
+using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Unity.Services.LevelPlay.Editor.IntegrationManager.UIComponents
 {
-    class IntegrationManagerButton : IDrawable
+    internal class IntegrationManagerButton : IDrawable
     {
-        readonly Action _onClick;
-        readonly GUIContent _guiContent;
-        readonly RectOffset _padding;
+        readonly Func<Task> m_OnClick;
+        readonly GUIContent m_GuiContent;
 
-        public IntegrationManagerButton(
+        internal IntegrationManagerButton(
             string buttonText,
             string tooltip,
-            Action onClick)
+            Func<Task> onClick)
         {
-            _onClick = onClick;
-            _padding = new RectOffset(11, 12, 1, 1);
-            _guiContent = new GUIContent
+            m_OnClick = onClick;
+            m_GuiContent = new GUIContent
             {
                 text = buttonText,
                 tooltip = tooltip
@@ -25,14 +24,21 @@ namespace Unity.Services.LevelPlay.Editor.IntegrationManager.UIComponents
 
         public void Draw()
         {
+            GUILayout.BeginVertical();
             var buttonStyle = GUI.skin.button;
-            buttonStyle.padding = _padding;
-            var btn = GUILayout.Button(_guiContent, buttonStyle,
-                GUILayout.ExpandWidth(true), GUILayout.MinWidth(80));
+            buttonStyle.fontSize = 12;
+            buttonStyle.margin = new RectOffset(0, 0, 0, 0);
+            buttonStyle.alignment = TextAnchor.MiddleCenter;
+
+            GUILayout.FlexibleSpace();
+            var btn = GUILayout.Button(m_GuiContent, buttonStyle,
+                GUILayout.ExpandWidth(true), GUILayout.MinWidth(72), GUILayout.Height(20));
+            GUILayout.FlexibleSpace();
+            GUILayout.EndVertical();
 
             if (btn)
             {
-                _onClick.Invoke();
+                m_OnClick.Invoke();
             }
         }
     }

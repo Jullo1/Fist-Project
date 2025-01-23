@@ -1,10 +1,10 @@
 <dependencies>
-  <unityversion>4.3.5.0</unityversion>
+  <unityversion>4.3.6.0</unityversion>
   <iosPods>
-      <iosPod name="IronSourceCSJAdapter" version="4.3.5.0">
-          <sources>
-              <source>https://github.com/CocoaPods/Specs</source>
-          </sources>
-      </iosPod>
+    <iosPod name="IronSourceCSJAdapter" version="4.3.6.0">
+      <sources>
+        <source>https://github.com/CocoaPods/Specs</source>
+      </sources>
+    </iosPod>
   </iosPods>
 </dependencies>

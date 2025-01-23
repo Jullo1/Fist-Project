@@ -6,7 +6,7 @@ namespace com.unity3d.mediation
     /// <summary>
     /// Implements ILevelPlayBannerAd to provide functionality for managing banner ads.
     /// </summary>
-    public sealed class LevelPlayBannerAd: ILevelPlayBannerAd
+    public sealed class LevelPlayBannerAd : ILevelPlayBannerAd
     {
         public event Action<LevelPlayAdInfo> OnAdLoaded;
         public event Action<LevelPlayAdError> OnAdLoadFailed;
@@ -29,11 +29,11 @@ namespace com.unity3d.mediation
         /// <param name="position">Position on the screen where the ad will be displayed.
         /// Defaults to <see cref="LevelPlayBannerPosition.BottomCenter"/> if not specified.</param>
         /// <param name="placementName">Optional name used for reporting and targeting. This parameter is optional and can be null.</param>
-        /// <param name="displayOnLoad">Determines whether the ad should be displayed immediately after loading.
-        /// <param name="respectSafeArea">Determines whether the ad should be displayed within the safe area of the screen, where no notch, status bar or camera is oresent..
+        /// <param name="displayOnLoad">Determines whether the ad should be displayed immediately after loading.</param>
+        /// <param name="respectSafeArea">Determines whether the ad should be displayed within the safe area of the screen, where no notch, status bar or camera is present..
         /// Defaults to true.</param>
         public LevelPlayBannerAd(string adUnitId, LevelPlayAdSize size = null, LevelPlayBannerPosition position = LevelPlayBannerPosition.BottomCenter,
-            string placementName = null, bool displayOnLoad = true, bool respectSafeArea = false)
+                                 string placementName = null, bool displayOnLoad = true, bool respectSafeArea = false)
         {
             size ??= LevelPlayAdSize.BANNER;
 #if UNITY_ANDROID && !UNITY_EDITOR
@@ -59,7 +59,7 @@ namespace com.unity3d.mediation
         /// </summary>
         public void DestroyAd()
         {
-           _bannerAd.DestroyAd();
+            _bannerAd.DestroyAd();
         }
 
         /// <summary>

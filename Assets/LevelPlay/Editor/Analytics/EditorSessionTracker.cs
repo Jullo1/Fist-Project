@@ -24,16 +24,16 @@ namespace Unity.Services.LevelPlay.Editor.Analytics
 
         static void SendNewSessionEvent(bool levelPlayIsUpm)
         {
-            LevelPlayEditorAnalytics.Instance.SendNewSession(levelPlayIsUpm
-                ? LevelPlayEditorAnalytics.LevelPlayComponent.UpmPackage
-                : LevelPlayEditorAnalytics.LevelPlayComponent.UnityPackage);
+            EditorServices.Instance.EditorAnalyticsService.SendNewSession(levelPlayIsUpm
+                ? EditorAnalyticsService.LevelPlayComponent.UpmPackage
+                : EditorAnalyticsService.LevelPlayComponent.UnityPackage);
         }
 
         static void SendInstallEventIfNeeded()
         {
             if (File.Exists(k_FootprintFilePath))
             {
-                LevelPlayEditorAnalytics.Instance.SendInstallPackage(LevelPlayEditorAnalytics.LevelPlayComponent.UnityPackage);
+                EditorServices.Instance.EditorAnalyticsService.SendInstallPackage(EditorAnalyticsService.LevelPlayComponent.UnityPackage);
                 File.Delete(k_FootprintFilePath);
             }
         }

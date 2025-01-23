@@ -1,116 +1,129 @@
 using System;
-using System.Reflection;
+using System.Collections.Generic;
+using UnityEditor;
 
-namespace Unity.Services.LevelPlay.Editor.Analytics
+namespace Unity.Services.LevelPlay.Editor
 {
-    class LevelPlayEditorAnalytics
+    class EditorAnalyticsService : IEditorAnalyticsService
     {
         const string k_EventName = "editorgameserviceeditor";
+        const int k_EventVersion = 1;
+        const string k_ServicesCorePackageName = "com.unity.services.core";
 
-        static LevelPlayEditorAnalytics s_Instance;
-        LevelPlayEditorAnalytics() {}
+        private readonly IEditorAnalyticsSender m_EditorAnalyticsSender;
+        private readonly string m_PackageVersion = Constants.AnnotatedPackageVersion;
+        private readonly Queue<QueuedEvent> m_EventsQueue = new Queue<QueuedEvent>();
+        private bool m_ServicesCoreIsReady;
 
-        public static LevelPlayEditorAnalytics Instance
+        [InitializeOnLoadMethod]
+        static void InitializeOnLoad()
         {
-            get
-            {
-                return s_Instance = s_Instance ?? new LevelPlayEditorAnalytics();
-            }
+            EditorServices.Instance.EditorAnalyticsService.Initialize();
         }
 
-        static IEditorAnalyticsSender _sEditorAnalyticsSender;
-
-        internal static IEditorAnalyticsSender EditorAnalyticsSender
+        public void Initialize()
         {
-            private get => _sEditorAnalyticsSender = _sEditorAnalyticsSender ?? new EditorAnalyticsSender();
-            set => _sEditorAnalyticsSender = value;
+            LevelPlayPackmanQuerier.instance.CheckIfPackageIsInstalledWithUpm(k_ServicesCorePackageName, coreIsInstalled =>
+            {
+                SetServicesCoreIsReady(coreIsInstalled);
+            });
         }
 
-        FieldInfo packageVersionField;
-
-        public string packageVersion
+        internal void SetServicesCoreIsReady(bool isReady)
         {
-            get
+            m_ServicesCoreIsReady = isReady;
+            if (m_ServicesCoreIsReady)
             {
-                PopulatePackageVersionFieldIfNeeded();
-                return (string)packageVersionField?.GetValue(null);
-            }
-        }
-
-        void PopulatePackageVersionFieldIfNeeded()
-        {
-            if (packageVersionField == null)
-            {
-                var loadedAssemblies = AppDomain.CurrentDomain.GetAssemblies();
-
-                foreach (var loadedAssembly in loadedAssemblies)
+                while (m_EventsQueue.Count > 0)
                 {
-                    if (loadedAssembly.GetName().Name == "Unity.LevelPlay")
-                    {
-                        packageVersionField = loadedAssembly.GetType("IronSource")
-                            ?.GetField("UNITY_PLUGIN_VERSION", BindingFlags.Static | BindingFlags.Public);
-
-                        break;
-                    }
+                    var eventEntry = m_EventsQueue.Dequeue();
+                    SendEventWithBody(eventEntry.Name, eventEntry.Body);
                 }
             }
         }
 
-        internal void SendEventEditorClick(string component, string action)
+        internal EditorAnalyticsService(IEditorAnalyticsSender editorAnalyticsSender)
         {
-#if UNITY_2019_1_OR_NEWER && UNITY_EDITOR && LEVELPLAY_DEPENDENCIES_INSTALLED
-            EditorAnalyticsSender.SendEvent(k_EventName,
+            m_EditorAnalyticsSender = editorAnalyticsSender;
+        }
+
+        public void SendEventEditorClick(string component, string action)
+        {
+            SendEvent(k_EventName,
                 new EventBody()
                 {
                     component = component,
                     action = action,
-                    package = LevelPlayIdentifier.Key,
-                    package_ver = packageVersion
+                    package = Constants.PackageAnalyticsIdentifier,
+                    package_ver = m_PackageVersion
                 });
-#endif
         }
 
-        internal void SendInstallAdapterEvent(string action, string adapterName,
-            string versionUpdated)
+        public void SendInstallAdapterEvent(string adapterName,
+            string newVersion, string currentVersion)
         {
-#if UNITY_2019_1_OR_NEWER && UNITY_EDITOR && LEVELPLAY_DEPENDENCIES_INSTALLED
-            EditorAnalyticsSender.SendEvent(k_EventName,
+            SendEvent(k_EventName,
                 new EventBody()
                 {
                     component = LevelPlayComponent.LevelPlayNetworkManager,
-                    action = action + "_" + adapterName.Replace("_", "-") + "_" + versionUpdated,
-                    package = LevelPlayIdentifier.Key,
-                    package_ver = packageVersion
+                    action = LevelPlayAction.Install + "_" + adapterName.Replace("_", "-") + "_" + newVersion,
+                    package = Constants.PackageAnalyticsIdentifier,
+                    package_ver = m_PackageVersion,
                 });
-#endif
         }
 
-        internal void SendNewSession(string packageType)
+        public void SendUpdateAdapterEvent(string adapterName,
+            string newVersion, string currentVersion)
         {
-#if UNITY_2019_1_OR_NEWER && UNITY_EDITOR && LEVELPLAY_DEPENDENCIES_INSTALLED
-            EditorAnalyticsSender.SendEvent(k_EventName,
+            SendEvent(k_EventName,
+                new EventBody()
+                {
+                    component = LevelPlayComponent.LevelPlayNetworkManager,
+                    action = LevelPlayAction.Update + "_" + adapterName.Replace("_", "-") + "_" + newVersion,
+                    package = Constants.PackageAnalyticsIdentifier,
+                    package_ver = m_PackageVersion,
+                });
+        }
+
+        public void SendNewSession(string packageType)
+        {
+            SendEvent(k_EventName,
                 new EventBody
                 {
                     component = packageType,
                     action = LevelPlayAction.NewSession,
-                    package = LevelPlayIdentifier.Key,
-                    package_ver = packageVersion
+                    package = Constants.PackageAnalyticsIdentifier,
+                    package_ver = m_PackageVersion
                 });
-#endif
         }
 
-        internal void SendInstallPackage(string component)
+        public void SendInstallPackage(string component)
         {
-#if UNITY_2019_1_OR_NEWER && UNITY_EDITOR && LEVELPLAY_DEPENDENCIES_INSTALLED
-            EditorAnalyticsSender.SendEvent(k_EventName,
+            SendEvent(k_EventName,
                 new EventBody
                 {
                     action = LevelPlayAction.Install,
                     component = component,
-                    package = LevelPlayIdentifier.Key,
-                    package_ver = packageVersion
+                    package = Constants.PackageAnalyticsIdentifier,
+                    package_ver = m_PackageVersion
                 });
-#endif
+        }
+
+        private void SendEvent(string eventName, EventBody body)
+        {
+            if (!m_ServicesCoreIsReady)
+            {
+                m_EventsQueue.Enqueue(new QueuedEvent { Name = eventName, Body = body, });
+            }
+            else
+            {
+                SendEventWithBody(eventName, body);
+            }
+        }
+
+        public void SendEventWithBody(string eventName, object body)
+        {
+            m_EditorAnalyticsSender.SendEventWithLimit(eventName, body, k_EventVersion);
         }
 
         internal static class LevelPlayComponent
@@ -140,12 +153,61 @@ namespace Unity.Services.LevelPlay.Editor.Analytics
         }
     }
 
+    internal class QueuedEvent
+    {
+        internal string Name;
+        internal object Body;
+    }
+
     [Serializable]
-    struct EventBody
+    internal class EventBody
     {
         public string action;
         public string component;
         public string package;
         public string package_ver;
+    }
+
+    internal class EventBodyComparer : IEqualityComparer<EventBody>
+    {
+        public bool Equals(EventBody one, EventBody two)
+        {
+            if (object.ReferenceEquals(one, two))
+            {
+                return true;
+            }
+
+            if (one == null || two == null)
+            {
+                return false;
+            }
+
+            if (!one.action.Equals(two.action))
+            {
+                return false;
+            }
+
+            if (!one.component.Equals(two.component))
+            {
+                return false;
+            }
+
+            if (!one.package.Equals(two.package))
+            {
+                return false;
+            }
+
+            if (!one.package_ver.Equals(two.package_ver))
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        public int GetHashCode(EventBody eventBody)
+        {
+            return eventBody.action.GetHashCode() ^ eventBody.component.GetHashCode() ^ eventBody.package.GetHashCode() ^ eventBody.package_ver.GetHashCode();
+        }
     }
 }

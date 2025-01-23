@@ -36,8 +36,6 @@ public class IronSourceManifestProcessor : IPreprocessBuild
     {
         if (File.Exists(IronSourceMediatedNetworkSettings.MEDIATION_SETTINGS_ASSET_PATH) || File.Exists(IronSourceMediationSettings.IRONSOURCE_SETTINGS_ASSET_PATH))
         {
-
-
             XElement elemManifest = ValidateAndroidManifest();
 
             XElement elemApplication = elemManifest.Element("application");
@@ -47,11 +45,10 @@ public class IronSourceManifestProcessor : IPreprocessBuild
                 string appId = IronSourceMediatedNetworkSettingsInspector.IronSourceMediatedNetworkSettings.AdmobAndroidAppId;
 
                 IEnumerable<XElement> metas = elemApplication.Descendants()
-            .Where(elem => elem.Name.LocalName.Equals(MANIFEST_META_DATA));
+                    .Where(elem => elem.Name.LocalName.Equals(MANIFEST_META_DATA));
 
                 if (IronSourceMediatedNetworkSettingsInspector.IronSourceMediatedNetworkSettings.EnableAdmob)
                 {
-
                     XElement elemAdMobEnabled = GetMetaElement(metas, META_APPLICATION_ID);
 
                     if (appId.Length == 0)
@@ -64,7 +61,6 @@ public class IronSourceManifestProcessor : IPreprocessBuild
                         StopBuildWithMessage(
                             "Android AdMob app ID is not valid. Please enter a valid app ID to run ads properly");
                     }
-
                     else if (elemAdMobEnabled == null)
                     {
                         elemApplication.Add(CreateMetaElement(META_APPLICATION_ID, appId));
@@ -73,7 +69,6 @@ public class IronSourceManifestProcessor : IPreprocessBuild
                     {
                         elemAdMobEnabled.SetAttributeValue(ns + "value", appId);
                     }
-
                 }
                 else if (GetPermissionElement(metas, META_APPLICATION_ID) != null)
                 {
@@ -88,10 +83,8 @@ public class IronSourceManifestProcessor : IPreprocessBuild
 
                 if (IronSourceMediationSettingsInspector.IronSourceMediationSettings.DeclareAD_IDPermission && GetPermissionElement(permissons, AD_ID_PERMISSION_ATTR) == null)
                 {
-
                     elemManifest.Add(CreatePermissionElement(AD_ID_PERMISSION_ATTR));
                 }
-
                 else if (GetPermissionElement(permissons, AD_ID_PERMISSION_ATTR) != null && !IronSourceMediationSettingsInspector.IronSourceMediationSettings.DeclareAD_IDPermission)
                 {
                     //remove the permission if flag is false
@@ -102,20 +95,19 @@ public class IronSourceManifestProcessor : IPreprocessBuild
             m_AndroidManifestPath ??= BuildManifest();
 
             elemManifest.Save(m_AndroidManifestPath);
-
         }
     }
 
     private XElement CreateMetaElement(string name, object value)
     {
         return new XElement(MANIFEST_META_DATA,
-                new XAttribute(ns + "name", name), new XAttribute(ns + "value", value));
+            new XAttribute(ns + "name", name), new XAttribute(ns + "value", value));
     }
 
     private XElement CreatePermissionElement(string name)
     {
         return new XElement(MANIFEST_PERMISSION,
-                new XAttribute(ns + "name", name));
+            new XAttribute(ns + "name", name));
     }
 
     private XElement GetMetaElement(IEnumerable<XElement> metas, string metaName)
@@ -126,7 +118,7 @@ public class IronSourceManifestProcessor : IPreprocessBuild
             foreach (XAttribute attr in attrs)
             {
                 if (attr.Name.Namespace.Equals(ns)
-                        && attr.Name.LocalName.Equals("name") && attr.Value.Equals(metaName))
+                    && attr.Name.LocalName.Equals("name") && attr.Value.Equals(metaName))
                 {
                     return elem;
                 }
@@ -137,14 +129,13 @@ public class IronSourceManifestProcessor : IPreprocessBuild
 
     private XElement GetPermissionElement(IEnumerable<XElement> manifest, string permissionName)
     {
-
         foreach (XElement elem in manifest)
         {
             IEnumerable<XAttribute> attrs = elem.Attributes();
             foreach (XAttribute attr in attrs)
             {
                 if (attr.Name.Namespace.Equals(ns)
-                        && attr.Name.LocalName.Equals("name") && attr.Value.Equals(permissionName))
+                    && attr.Name.LocalName.Equals("name") && attr.Value.Equals(permissionName))
                 {
                     return elem;
                 }
@@ -196,7 +187,7 @@ public class IronSourceManifestProcessor : IPreprocessBuild
 
         return elemManifest;
     }
-    
+
     // Fallback method for path
 
     string BuildManifest()

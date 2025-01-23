@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System;
 
 /// <summary>
 /// LevelPlay's API Access point
@@ -155,7 +156,7 @@ public interface IronSourceIAgent
     /// <summary>
     /// Retrieve a placement by name.
     /// </summary>
-    /// <param name="placementName">Placement's name</param>
+    /// <param name="name">Placement's name</param>
     /// <returns>An IronSourcePlacement containing the placement infos</returns>
     IronSourcePlacement getPlacementInfo(string name);
 
@@ -202,7 +203,7 @@ public interface IronSourceIAgent
     bool isInterstitialPlacementCapped(string placementName);
 
     //******************* Banner API *******************//
-
+    [Obsolete("This method will be removed in version 9.0.0. Please use the LevelPlayBannerAd.LoadAd() method instead.")]
     /// <summary>
     /// Load a banner.
     /// </summary>
@@ -210,6 +211,7 @@ public interface IronSourceIAgent
     /// <param name="position">Anchored position of the banner</param>
     void loadBanner(IronSourceBannerSize size, IronSourceBannerPosition position);
 
+    [Obsolete("This method will be removed in version 9.0.0. Please use the LevelPlayBannerAd.LoadAd() method instead.")]
     /// <summary>
     /// Load and show a banner for a specific placement.
     /// </summary>
@@ -218,21 +220,25 @@ public interface IronSourceIAgent
     /// <param name="placementName">Name of the placement</param>
     void loadBanner(IronSourceBannerSize size, IronSourceBannerPosition position, string placementName);
 
+    [Obsolete("This method will be removed in version 9.0.0. Please use the LevelPlayBannerAd.DestroyAd() method instead.")]
     /// <summary>
     /// Destroy a banner.
     /// </summary>
     void destroyBanner();
 
+    [Obsolete("This method will be removed in version 9.0.0. Please use the LevelPlayBannerAd.ShowAd() method instead.")]
     /// <summary>
     /// Show a banner.
     /// </summary>
     void displayBanner();
 
+    [Obsolete("This method will be removed in version 9.0.0. Please use the LevelPlayBannerAd.HideAd() method instead.")]
     /// <summary>
     /// Hide a banner.
     /// </summary>
     void hideBanner();
 
+    [Obsolete("This method will be removed in version 9.0.0.")]
     /// <summary>
     /// Determines if a banner placement is capped.
     /// </summary>
@@ -327,12 +333,14 @@ public static class IronSourceAdUnits
     /// </summary>
     public static string OFFERWALL { get { return "offerwall"; } }
 
+    [Obsolete("This value will be removed in version 9.0.0. Please use LevelPlayAdFormat.BANNER instead.")]
     /// <summary>
     /// Banner Ad Unit
     /// </summary>
     public static string BANNER { get { return "banner"; } }
 }
 
+[Obsolete("This class will be removed in version 9.0.0. Please use LevelPlayAdSize instead.")]
 /// <summary>
 /// Defines a banner's size informations
 /// </summary>
@@ -345,21 +353,25 @@ public class IronSourceBannerSize
     private ISContainerParams isContainerParams = new ISContainerParams();
     private bool respectAndroidCutouts;
 
+    [Obsolete("This value will be removed in version 9.0.0. Please use LevelPlayAdSize.BANNER instead.")]
     /// <summary>
     /// Standard banner size
     /// </summary>
     public static IronSourceBannerSize BANNER = new IronSourceBannerSize("BANNER");
 
+    [Obsolete("This value will be removed in version 9.0.0. Please use LevelPlayAdSize.LARGE instead.")]
     /// <summary>
     /// Standard large size
     /// </summary>
     public static IronSourceBannerSize LARGE = new IronSourceBannerSize("LARGE");
 
+    [Obsolete("This value will be removed in version 9.0.0. Please use LevelPlayAdSize.MEDIUM_RECTANGLE instead.")]
     /// <summary>
     /// Standard rectangle size
     /// </summary>
     public static IronSourceBannerSize RECTANGLE = new IronSourceBannerSize("RECTANGLE");
 
+    [Obsolete("This value will be removed in version 9.0.0.")]
     /// <summary>
     /// Standard rectangle size
     /// </summary>
@@ -369,6 +381,7 @@ public class IronSourceBannerSize
     {
     }
 
+    [Obsolete("This method will be removed in version 9.0.0. Please use LevelPlayAdSize.CreateCustomBannerSize() instead.")]
     /// <summary>
     /// Constructor for a custom banner size
     /// </summary>
@@ -381,6 +394,7 @@ public class IronSourceBannerSize
         this.description = "CUSTOM";
     }
 
+    [Obsolete("This method will be removed in version 9.0.0.")]
     /// <summary>
     /// Constructor for a custom banner size
     /// </summary>
@@ -392,6 +406,7 @@ public class IronSourceBannerSize
         this.height = 0;
     }
 
+    [Obsolete("This method will be removed in version 9.0.0. Please use LevelPlayBannerSize.CreateAdaptiveAdSize() instead.")]
     /// <summary>
     /// Set the banner to adaptive
     /// </summary>
@@ -405,6 +420,7 @@ public class IronSourceBannerSize
         this.setBannerContainerParams(containerParams);
     }
 
+    [Obsolete("This method will be removed in version 9.0.0.")]
     /// <summary>
     /// Determines if the banner is adaptive
     /// </summary>
@@ -414,15 +430,17 @@ public class IronSourceBannerSize
         return this.isAdaptive;
     }
 
+    [Obsolete("This method will be removed in version 9.0.0.")]
     /// <summary>
     ///  This API is optional and should only be called if you need to set a custom-sized container for Adaptive banner.
     /// </summary>
-    /// <param name="ISContainerParams">The Container params Width and Height.</param>
+    /// <param name="parameters">The Container params Width and Height.</param>
     public void setBannerContainerParams(ISContainerParams parameters)
     {
         this.isContainerParams = parameters;
     }
 
+    [Obsolete("This method will be removed in version 9.0.0.")]
     /// <summary>
     /// Get the ISContainerParams object.
     /// </summary>
@@ -432,50 +450,62 @@ public class IronSourceBannerSize
         return this.isContainerParams;
     }
 
+    [Obsolete("This method will be removed in version 9.0.0. Please refer to the LevelPlayBannerAd class documentation to handle Android display cutouts (Respect Safe Area).")]
     /// <summary>
     ///  Set Respect for Android Cutouts. https://developer.android.com/develop/ui/views/layout/display-cutout
     /// </summary>
-    /// <param name="SetRespectAndroidCutouts">Set if to respect the Android Cutouts or not.</param>
+    /// <param name="respectAndroidCutouts">Set if to respect the Android Cutouts or not.</param>
     public void SetRespectAndroidCutouts(bool respectAndroidCutouts)
     {
         this.respectAndroidCutouts = respectAndroidCutouts;
     }
 
+    [Obsolete("This method will be removed in version 9.0.0.")]
     public bool IsRespectAndroidCutoutsEnabled()
     {
         return this.respectAndroidCutouts;
     }
 
+    [Obsolete("This value will be removed in version 9.0.0. Please use LevelPlayAdSize.Description instead.")]
     /// <summary>
     /// Description for the banner
     /// </summary>
     public string Description { get { return description; } }
 
+    [Obsolete("This value will be removed in version 9.0.0. Please use LevelPlayAdSize.Width instead.")]
     /// <summary>
     /// Width of the banner
     /// </summary>
     public int Width { get { return width; } }
 
+    [Obsolete("This value will be removed in version 9.0.0. Please use LevelPlayAdSize.Height instead.")]
     /// <summary>
     /// Height of the banner
     /// </summary>
     public int Height { get { return height; } }
 }
 
+[Obsolete("This class will be removed in version 9.0.0., please use LevelPlayBannerPosition instead.")]
 /// <summary>
 /// Banner position anchor options
 /// </summary>
 public enum IronSourceBannerPosition
 {
+    [Obsolete("This value will be removed in version 9.0.0. Please use LevelPlayBannerPosition.TopCenter instead.")]
     TOP = 1,
+    [Obsolete("This value will be removed in version 9.0.0. Please use LevelPlayBannerPosition.BottomCenter instead.")]
     BOTTOM = 2
 };
 
+[Obsolete("This class will be removed in version 9.0.0.")]
 public class ISContainerParams
 {
+    [Obsolete("This value will be removed in version 9.0.0.")]
     public float Width { get; set; }
+    [Obsolete("This value will be removed in version 9.0.0.")]
     public float Height { get; set; }
 
+    [Obsolete("This constructor will be removed in version 9.0.0.")]
     public ISContainerParams()
     {
         Width = -1;

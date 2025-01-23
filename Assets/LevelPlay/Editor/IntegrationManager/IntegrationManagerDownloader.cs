@@ -9,6 +9,7 @@ using Newtonsoft.Json.Linq;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Networking;
+using Unity.Services.LevelPlay.Editor;
 
 namespace Unity.Services.LevelPlay.Editor.IntegrationManager
 {
@@ -172,7 +173,7 @@ namespace Unity.Services.LevelPlay.Editor.IntegrationManager
                         {
                             if (downloadWebClient.error != null)
                             {
-                                LevelPlayLogger.LogError(downloadWebClient.error);
+                                EditorServices.Instance.LevelPlayLogger.LogError(downloadWebClient.error);
                             }
 
                             requestCancelledOrFailed = true;
@@ -183,7 +184,7 @@ namespace Unity.Services.LevelPlay.Editor.IntegrationManager
                 else
                 {
                     requestCancelledOrFailed = true;
-                    LevelPlayLogger.LogError("Error Downloading " + downloadFileUrl + " : " + downloadWebClient.error);
+                    EditorServices.Instance.LevelPlayLogger.LogError("Error Downloading " + downloadFileUrl + " : " + downloadWebClient.error);
                 }
 
                 activeDownloads.Remove(downloadWebClient);

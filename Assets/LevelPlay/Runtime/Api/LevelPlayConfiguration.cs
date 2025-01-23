@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.Services.LevelPlay;
 
 namespace com.unity3d.mediation
 {
@@ -8,7 +9,7 @@ namespace com.unity3d.mediation
     /// </summary>
     public class LevelPlayConfiguration
     {
-
+        const string k_IsAdQualityEnabled = "isAdQualityEnabled";
         /// <summary>
         /// Indicates whether ad quality control is enabled.
         /// </summary>
@@ -20,18 +21,25 @@ namespace com.unity3d.mediation
             {
                 return;
             }
-
-            try {
-                object jsonObject = JsonUtility.FromJson<object>(json);
-                if (jsonObject is Dictionary<string, object> dictionary)
+            try
+            {
+                object obj;
+                var jsonDic = IronSourceJSON.Json.Deserialize(json) as Dictionary<string, object>;
+                if (jsonDic.TryGetValue(k_IsAdQualityEnabled, out obj) && obj != null)
                 {
-                    if (dictionary.ContainsKey("isAdQualityEnabled"))
+                    if (bool.TryParse(obj.ToString(), out var isAdQualityEnabled))
                     {
-                        IsAdQualityEnabled = (bool)dictionary["isAdQualityEnabled"];
+                        IsAdQualityEnabled = isAdQualityEnabled;
+                    }
+                    else
+                    {
+                        LevelPlayLogger.LogError("Failed to parse isAdQualityEnabled: " + obj);
                     }
                 }
-            } catch (System.Exception e) {
-                Debug.LogError("Failed to parse LevelPlayConfiguration: " + e.Message);
+            }
+            catch (System.Exception e)
+            {
+                LevelPlayLogger.LogError("Failed to parse LevelPlayConfiguration: " + e.Message);
             }
         }
     }

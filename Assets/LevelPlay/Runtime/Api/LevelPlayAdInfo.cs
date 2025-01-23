@@ -13,6 +13,7 @@ namespace com.unity3d.mediation
     {
         // Constants for JSON keys
         const string AdUnitIdKey = "adUnitId";
+        const string AdUnitNameKey = "adUnitName";
         const string AdSizeKey = "adSize";
         const string AdFormatKey = "adFormat";
         const string PlacementNameKey = "placementName";
@@ -33,6 +34,7 @@ namespace com.unity3d.mediation
 
         // Properties
         public readonly string adUnitId;
+        public readonly string adUnitName;
         [CanBeNull] public readonly LevelPlayAdSize adSize;
         public readonly string adFormat;
         public readonly string placementName;
@@ -64,6 +66,11 @@ namespace com.unity3d.mediation
                 if (jsonDic.TryGetValue(AdUnitIdKey, out obj) && obj != null)
                 {
                     adUnitId = obj.ToString();
+                }
+
+                if (jsonDic.TryGetValue(AdUnitNameKey, out obj) && obj != null)
+                {
+                    adUnitName = obj.ToString();
                 }
 
                 if (jsonDic.TryGetValue(AdSizeKey, out obj) && obj != null)
@@ -117,7 +124,7 @@ namespace com.unity3d.mediation
                 }
 
                 if (jsonDic.TryGetValue(RevenueKey, out obj) && obj != null && double.TryParse(
-                        string.Format(invCulture, "{0}", obj), NumberStyles.Any, invCulture, out parsedDouble))
+                    string.Format(invCulture, "{0}", obj), NumberStyles.Any, invCulture, out parsedDouble))
                 {
                     revenue = parsedDouble;
                 }
@@ -185,7 +192,7 @@ namespace com.unity3d.mediation
 
         public override string ToString()
         {
-            return $"adUnitId: {adUnitId}, adSize: {adSize.ToString()}, adFormat: {adFormat}, placementName: {placementName}, auctionId: {auctionId}, country: {country}, ab: {ab}, segmentName: {segmentName}, adNetwork: {adNetwork}, instanceName: {instanceName}, instanceId: {instanceId}, revenue: {revenue}, precision: {precision}, encryptedCPM: {encryptedCPM}";
+            return $"adUnitId: {adUnitId}, adUnitName: {adUnitName}, adSize: {adSize.ToString()}, adFormat: {adFormat}, placementName: {placementName}, auctionId: {auctionId}, country: {country}, ab: {ab}, segmentName: {segmentName}, adNetwork: {adNetwork}, instanceName: {instanceName}, instanceId: {instanceId}, revenue: {revenue}, precision: {precision}, encryptedCPM: {encryptedCPM}";
         }
     }
 }

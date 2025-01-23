@@ -1,49 +1,78 @@
+using System;
 using System.IO;
-using Unity.Services.LevelPlay.Editor.AdapterData;
-using Unity.Services.LevelPlay.Editor.IntegrationManager;
 using UnityEditor;
+using System.Linq;
+using UnityEngine;
+using System.Threading.Tasks;
 
 namespace Unity.Services.LevelPlay.Editor
 {
     class DependenciesXmlFileMigrator
     {
-        const string k_AssetsEditorPath = "Assets/LevelPlay/Editor";
-        const string k_IronSourceSdkFileName = "IronSourceSDKDependencies.xml";
-        const string k_MsgSdkDependenciesXmlUpdated = "The {0} file was updated to {1}.";
-        const string k_IronSourceDependenciesVersion = "8.3.0";
-        const string k_IronSourceDependenciesUrl = "https://s3.amazonaws.com/ssa.public/Dependencies-xmls/IronSource/{0}/IronSourceSDKDependencies.xml";
+        private readonly ILevelPlayLogger m_Logger;
+        private readonly ILevelPlayNetworkManager m_LevelPlayNetworkManager;
+        internal DependenciesXmlFileMigrator() : this(EditorServices.Instance.LevelPlayLogger, EditorServices.Instance.LevelPlayNetworkManager)
+        {
+        }
+
+        internal DependenciesXmlFileMigrator(ILevelPlayLogger logger, ILevelPlayNetworkManager levelPlayNetworkManager)
+        {
+            m_Logger = logger;
+            m_LevelPlayNetworkManager = levelPlayNetworkManager;
+        }
 
         [InitializeOnLoadMethod]
-        static void EnsureSdkDependenciesXmlFileExistsInAssetsFolder()
+        static async Task InstallIronSourceSdkIfNotInstalled()
         {
-            if (IsDownloadIronSourceDependenciesXmlRequired(
-                    Path.Combine(k_AssetsEditorPath, k_IronSourceSdkFileName),
-                    IntegrationManagerDataUtils.GetVersionFromXMLFile(k_IronSourceSdkFileName),
-                    k_IronSourceDependenciesVersion))
+            var migrator = new DependenciesXmlFileMigrator();
+            await migrator.InstallIronSourceSdkIfNotInstalledInternal();
+        }
+
+        internal async Task InstallIronSourceSdkIfNotInstalledInternal()
+        {
+            try
             {
-                DownloadIronSourceDependenciesXml();
+                m_LevelPlayNetworkManager.LoadVersionsFromJson();
             }
-        }
-
-        internal static bool IsDownloadIronSourceDependenciesXmlRequired(string ironSourceDependenciesXmlFilePath,
-            string currentVersion, string latestVersion)
-        {
-            return !File.Exists(ironSourceDependenciesXmlFilePath)
-                   || Adapter.IsLatestVersionNewerThanCurrentVersion(currentVersion, latestVersion);
-        }
-
-        static void DownloadIronSourceDependenciesXml()
-        {
-#if LEVELPLAY_DEPENDENCIES_INSTALLED
-            var integrationManagerDownloader = new IntegrationManagerDownloader();
-            integrationManagerDownloader.DownloadAdapterXML(
-                string.Format(k_IronSourceDependenciesUrl, k_IronSourceDependenciesVersion),
-                (version, file) =>
+            catch (Exception e)
+            {
+                m_Logger.LogError($"Failed to load versions json : {e.ToString()}");
+            }
+            try
+            {
+                await m_LevelPlayNetworkManager.GetVersionsWebRequest();
+            }
+            catch (Exception e)
+            {
+                m_Logger.LogError($"Failed to fetch versions json : {e.ToString()}");
+            }
+            try
+            {
+                m_LevelPlayNetworkManager.LoadVersionsFromJson();
+            }
+            catch (Exception e)
+            {
+                m_Logger.LogError($"Failed to load versions json after fetching from remote : {e.ToString()}");
+            }
+            try
+            {
+                var currentIronSourceSdkVersion = m_LevelPlayNetworkManager.InstalledSdkVersion();
+                // Install the latest compatible IronSource SDK if it is not installed
+                if (currentIronSourceSdkVersion == null)
                 {
-                    AssetDatabase.Refresh();
-                    LevelPlayLogger.Log(string.Format(k_MsgSdkDependenciesXmlUpdated, file, version));
-                });
-#endif
+                    var latestIronSourceSdkVersion = m_LevelPlayNetworkManager.CompatibleIronSourceSdkVersions().FirstOrDefault();
+                    if (latestIronSourceSdkVersion != null)
+                    {
+                        await m_LevelPlayNetworkManager.Install(latestIronSourceSdkVersion);
+                        AssetDatabase.Refresh();
+                        m_LevelPlayNetworkManager.UiUpdate();
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                m_Logger.LogError($"Failed to install IronSource SDK with exception : {e.ToString()}");
+            }
         }
     }
 }

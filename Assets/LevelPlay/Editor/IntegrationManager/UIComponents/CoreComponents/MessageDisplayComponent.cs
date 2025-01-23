@@ -3,32 +3,40 @@ using UnityEngine;
 
 namespace Unity.Services.LevelPlay.Editor.IntegrationManager.UIComponents
 {
-    class MessageDisplayComponent: IDrawable
+    class MessageDisplayComponent : IDrawable
     {
-        readonly string _messageData;
-        public MessageDisplayComponent(string message)
+        internal struct ViewModel
         {
-            _messageData = message;
+            internal string Message;
+        }
+
+        readonly ViewModel m_ViewModel;
+
+        internal MessageDisplayComponent(ViewModel viewModel)
+        {
+            m_ViewModel = viewModel;
         }
 
         public void Draw()
         {
-            GUI.enabled = true;
-            if (!string.IsNullOrWhiteSpace(_messageData))
+            var messageStyle = new GUIStyle(EditorStyles.textField)
+            {
+                stretchWidth = true,
+                stretchHeight = true,
+                wordWrap = true,
+                richText = true,
+                fontSize = 12,
+            };
+            if (!string.IsNullOrWhiteSpace(m_ViewModel.Message))
             {
                 using (new EditorGUILayout.VerticalScope(GUILayout.ExpandHeight(true)))
                 {
-                    GUILayout.Space(4);
-                    using (new EditorGUILayout.HorizontalScope(GUILayout.ExpandWidth(false)))
+                    using (new EditorGUILayout.HorizontalScope(GUILayout.ExpandWidth(true)))
                     {
-                        GUILayout.Space(12);
-                        EditorGUILayout.SelectableLabel(_messageData, EditorStyles.textField, GUILayout.ExpandWidth(true), GUILayout.ExpandHeight(true));
                         GUILayout.Space(10);
+                        EditorGUILayout.SelectableLabel(m_ViewModel.Message, messageStyle);
+                        GUILayout.Space(8);
                     }
-                }
-                using (new EditorGUILayout.VerticalScope(GUILayout.ExpandHeight(false)))
-                {
-                    GUILayout.Space(15);
                 }
             }
         }

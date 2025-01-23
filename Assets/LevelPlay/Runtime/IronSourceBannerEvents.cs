@@ -6,6 +6,7 @@ using System.Linq;
 
 #pragma warning disable 0618
 
+[Obsolete("This class will be removed in version 9.0.0. Please use ILevelPlayBannerAd instead.")]
 /// <summary>
 /// Listener that handles banner events.
 /// </summary>
@@ -138,6 +139,7 @@ public class IronSourceBannerEvents : MonoBehaviour
     // ******************************* Banner Events *******************************
     private static event Action<IronSourceAdInfo> _onAdLoadedEvent;
 
+    [Obsolete("This event will be removed in version 9.0.0. Please use ILevelPlayBannerAd.OnAdLoaded instead.")]
     /// <summary>
     /// Event triggered when a banner has been loaded.
     /// </summary>
@@ -178,6 +180,7 @@ public class IronSourceBannerEvents : MonoBehaviour
 
     private static event Action<IronSourceError> _onAdLoadFailedEvent;
 
+    [Obsolete("This event will be removed in version 9.0.0. Please use ILevelPlayBannerAd.OnAdLoadFailed instead.")]
     /// <summary>
     /// Event triggered when a banner has failed to load.
     /// </summary>
@@ -212,6 +215,7 @@ public class IronSourceBannerEvents : MonoBehaviour
 
     private static event Action<IronSourceAdInfo> _onAdClickedEvent;
 
+    [Obsolete("This event will be removed in version 9.0.0. Please use ILevelPlayBannerAd.OnAdClicked instead.")]
     /// <summary>
     /// Event triggered when a banner has been clicked.
     /// </summary>
@@ -246,6 +250,7 @@ public class IronSourceBannerEvents : MonoBehaviour
 
     private static event Action<IronSourceAdInfo> _onAdScreenPresentedEvent;
 
+    [Obsolete("This event will be removed in version 9.0.0. Please use ILevelPlayBannerAd.OnAdDisplayed instead.")]
     /// <summary>
     /// Event triggered when a banner has been presented.
     /// </summary>
@@ -280,6 +285,7 @@ public class IronSourceBannerEvents : MonoBehaviour
 
     private static event Action<IronSourceAdInfo> _onAdScreenDismissedEvent;
 
+    [Obsolete("This event will be removed in version 9.0.0.")]
     /// <summary>
     /// Event triggered when a banner has been dismissed.
     /// </summary>
@@ -314,6 +320,7 @@ public class IronSourceBannerEvents : MonoBehaviour
 
     private static event Action<IronSourceAdInfo> _onAdLeftApplicationEvent;
 
+    [Obsolete("This event will be removed in version 9.0.0. Please use ILevelPlayBannerAd.OnAdLeftApplication instead.")]
     /// <summary>
     /// Event triggered when a banner has left the application.
     /// </summary>

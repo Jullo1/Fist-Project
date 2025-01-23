@@ -42,8 +42,8 @@ namespace Unity.Services.LevelPlay.Editor
 
                 if (packageListRequest == null)
                 {
-                    packageListRequest = Client.List();
                     EditorApplication.update += PackageListRequestProgress;
+                    packageListRequest = Client.List();
                 }
             }
         }

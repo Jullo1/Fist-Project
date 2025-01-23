@@ -9,19 +9,20 @@
 + (NSString *)serializeAdInfoToJSON:(LPMAdInfo *)adInfo {
     NSDictionary *adInfoDict = @{
         @"adUnitId": adInfo.adUnitId ?: @"",
+        @"adUnitName": adInfo.adUnitName ?: @"",
         @"adSize": [self serializeAdSizeToJSON:adInfo.adSize],
         @"adFormat": adInfo.adFormat ?: @"",
         @"placementName": adInfo.placementName ?: @"",
-        @"auctionId": adInfo.auction_id ?: @"",
+        @"auctionId": adInfo.auctionId ?: @"",
         @"country": adInfo.country ?: @"",
         @"ab": adInfo.ab ?: @"",
-        @"segmentName": adInfo.segment_name ?: @"",
-        @"adNetwork": adInfo.ad_network ?: @"",
-        @"instanceName": adInfo.instance_name ?: @"",
-        @"instanceId": adInfo.instance_id ?: @"",
+        @"segmentName": adInfo.segmentName ?: @"",
+        @"adNetwork": adInfo.adNetwork ?: @"",
+        @"instanceName": adInfo.instanceName ?: @"",
+        @"instanceId": adInfo.instanceId ?: @"",
         @"revenue": adInfo.revenue ?: @"",
         @"precision": adInfo.precision ?: @"",
-        @"encryptedCPM": adInfo.encrypted_cpm ?: @""
+        @"encryptedCPM": adInfo.encryptedCPM ?: @""
     };
     NSError *error;
     NSData *jsonData = [NSJSONSerialization dataWithJSONObject:adInfoDict options:0 error:&error];

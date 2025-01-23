@@ -63,7 +63,8 @@ namespace Unity.Services.LevelPlay.Editor.IntegrationManager
             try
             {
                 dictionary = Json.Deserialize(json) as Dictionary<string, object>;
-                return true;
+
+                return dictionary != null;
             }
             catch (Exception)
             {
@@ -85,6 +86,7 @@ namespace Unity.Services.LevelPlay.Editor.IntegrationManager
 
             return downloadURL;
         }
+
 #if LEVELPLAY_DEPENDENCIES_INSTALLED
         internal static bool IsJsonValid(string json)
         {
@@ -103,6 +105,7 @@ namespace Unity.Services.LevelPlay.Editor.IntegrationManager
                 return false;
             }
         }
+
         #endif
     }
 }

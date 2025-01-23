@@ -1,7 +1,7 @@
-namespace Unity.Services.LevelPlay.Editor.Analytics
+namespace Unity.Services.LevelPlay.Editor
 {
-     interface IEditorAnalyticsSender
-     {
-         void SendEvent(string eventName, EventBody body);
-     }
+    internal interface IEditorAnalyticsSender
+    {
+        void SendEventWithLimit(string eventName, object body, int version);
+    }
 }

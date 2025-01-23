@@ -8,6 +8,7 @@ using UnityEngine;
 using UnityEditor.iOS.Xcode;
 using System.Text.RegularExpressions;
 using Unity.Services.LevelPlay;
+using Unity.Services.LevelPlay.Editor;
 
 /// <summary>
 /// PostProcessor script to automatically fill all required dependencies
@@ -45,7 +46,7 @@ public class IronSourcePlistProcessor
                         }
                         catch (Exception e)
                         {
-                            LevelPlayLogger.LogWarning(string.Format("Could not obtain SKAdNetworkItems PlistElementArray: {0}", e.Message));
+                            EditorServices.Instance.LevelPlayLogger.LogWarning(string.Format("Could not obtain SKAdNetworkItems PlistElementArray: {0}", e.Message));
                         }
                     }
 

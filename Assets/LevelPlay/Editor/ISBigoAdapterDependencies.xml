@@ -1,0 +1,21 @@
+<dependencies>
+  <unityversion>4.3.4.0</unityversion>
+  <androidPackages>
+    <androidPackage spec="com.ironsource.adapters:bigoadapter:4.3.3">
+      <repositories>
+        <repository>https://android-sdk.is.com/</repository>
+      </repositories>
+    </androidPackage>
+  </androidPackages>
+  <androidPackages>
+    <androidPackage spec="com.bigossp:bigo-ads:5.0.2">
+    </androidPackage>
+  </androidPackages>
+  <iosPods>
+    <iosPod name="IronSourceBigoAdapter" version="4.3.2.0">
+      <sources>
+        <source>https://github.com/CocoaPods/Specs</source>
+      </sources>
+    </iosPod>
+  </iosPods>
+</dependencies>

@@ -1,28 +1,34 @@
 <dependencies>
-<unityversion>4.3.13.6</unityversion>
+  <unityversion>4.3.15.1</unityversion>
   <androidPackages>
-    <androidPackage spec="com.smaato.android.sdk:smaato-sdk-banner:22.6.0">
+    <androidPackage spec="com.smaato.android.sdk:smaato-sdk-banner:22.7.1">
       <repositories>
         <repository>https://s3.amazonaws.com/smaato-sdk-releases/</repository>
       </repositories>
     </androidPackage>
-    <androidPackage spec="com.smaato.android.sdk:smaato-sdk-in-app-bidding:22.6.0">
-        <repositories>
-            <repository>https://s3.amazonaws.com/smaato-sdk-releases/</repository>
-        </repositories>
+    <androidPackage spec="com.smaato.android.sdk:smaato-sdk-interstitial:22.7.1">
+      <repositories>
+        <repository>https://s3.amazonaws.com/smaato-sdk-releases/</repository>
+      </repositories>
     </androidPackage>
-  </androidPackages>
-
-    <androidPackages>
-    <androidPackage spec="com.ironsource.adapters:smaatoadapter:4.3.10">
+    <androidPackage spec="com.smaato.android.sdk:smaato-sdk-rewarded-ads:22.7.1">
+      <repositories>
+        <repository>https://s3.amazonaws.com/smaato-sdk-releases/</repository>
+      </repositories>
+    </androidPackage>
+    <androidPackage spec="com.smaato.android.sdk:smaato-sdk-in-app-bidding:22.7.1">
+      <repositories>
+        <repository>https://s3.amazonaws.com/smaato-sdk-releases/</repository>
+      </repositories>
+    </androidPackage>
+    <androidPackage spec="com.ironsource.adapters:smaatoadapter:4.3.12">
       <repositories>
         <repository>https://android-sdk.is.com/</repository>
       </repositories>
     </androidPackage>
   </androidPackages>
-
   <iosPods>
-    <iosPod name="IronSourceSmaatoAdapter" version="4.3.13.6">
+    <iosPod name="IronSourceSmaatoAdapter" version="4.3.15.0">
       <sources>
         <source>https://github.com/CocoaPods/Specs</source>
       </sources>

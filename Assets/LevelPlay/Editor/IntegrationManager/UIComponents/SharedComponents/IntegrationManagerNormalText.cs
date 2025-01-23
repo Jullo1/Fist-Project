@@ -3,26 +3,32 @@ using UnityEngine;
 
 namespace Unity.Services.LevelPlay.Editor.IntegrationManager.UIComponents
 {
-    class IntegrationManagerNormalText : IDrawable
+    internal class IntegrationManagerNormalText : IDrawable
     {
-        readonly string text;
-        readonly GUIStyle style;
+        readonly string m_Text;
+        readonly int m_FontSize;
 
-        public IntegrationManagerNormalText(string text, int fontSize)
+        internal IntegrationManagerNormalText(string text, int fontSize)
         {
-            this.text = text;
-            style = new GUIStyle(EditorStyles.label)
-            {
-                fontStyle = FontStyle.Normal,
-                fontSize = fontSize,
-                alignment = TextAnchor.MiddleLeft,
-                margin = new RectOffset(0, 0, 0, 0)
-            };
+            m_Text = text;
+            m_FontSize = fontSize;
         }
 
         public void Draw()
         {
-            GUILayout.Label(text, style);
+            var style = new GUIStyle(EditorStyles.label)
+            {
+                fontStyle = FontStyle.Normal,
+                fontSize = m_FontSize,
+                alignment = TextAnchor.MiddleLeft,
+                margin = new RectOffset(0, 0, 0, 0),
+                padding = new RectOffset(0, 0, 0, 0),
+            };
+            GUILayout.BeginVertical();
+            GUILayout.FlexibleSpace();
+            GUILayout.Label(m_Text, style);
+            GUILayout.FlexibleSpace();
+            GUILayout.EndVertical();
         }
     }
 }

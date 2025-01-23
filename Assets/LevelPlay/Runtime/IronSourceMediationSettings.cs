@@ -10,7 +10,6 @@ public class IronSourceMediationSettings : ScriptableObject
 {
     public static readonly string IRONSOURCE_SETTINGS_ASSET_PATH = Path.Combine(IronSourceConstants.IRONSOURCE_RESOURCES_PATH, IronSourceConstants.IRONSOURCE_MEDIATION_SETTING_NAME + ".asset");
 
-    [Header("Ironsource AppKey")]
     [Tooltip("Add your application AppKeys, as provided in Ironsource Platform")]
     public string AndroidAppKey = string.Empty;
     [Tooltip("Add your application AppKeys, as provided in Ironsource Platform")]
