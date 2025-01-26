@@ -16,6 +16,12 @@ namespace Unity.Services.LevelPlay.Editor
         {
         }
 
+        // For Testing Only
+        internal EditorServices(IPackageTypeService packageTypeService)
+        {
+            m_PackageTypeService = packageTypeService;
+        }
+
         internal static EditorServices Instance
         {
             get
@@ -31,12 +37,28 @@ namespace Unity.Services.LevelPlay.Editor
         {
             get
             {
+                var directoryService = this.DirectoryService;
                 lock (m_PropertyLock) {
                     if (m_FileService == null)
                     {
-                        m_FileService = new FileService();
+                        m_FileService = new FileService(directoryService);
                     }
                     return m_FileService;
+                }
+            }
+        }
+
+        private IDirectoryService m_DirectoryService;
+        public IDirectoryService DirectoryService
+        {
+            get
+            {
+                lock (m_PropertyLock) {
+                    if (m_DirectoryService == null)
+                    {
+                        m_DirectoryService = new DirectoryService();
+                    }
+                    return m_DirectoryService;
                 }
             }
         }
@@ -121,7 +143,7 @@ namespace Unity.Services.LevelPlay.Editor
             }
         }
 
-        private LevelPlayLogger m_LevelPlayLogger;
+        private ILevelPlayLogger m_LevelPlayLogger;
         public ILevelPlayLogger LevelPlayLogger
         {
             get
@@ -132,6 +154,67 @@ namespace Unity.Services.LevelPlay.Editor
                         m_LevelPlayLogger = new LevelPlayLogger();
                     }
                     return m_LevelPlayLogger;
+                }
+            }
+        }
+
+        private IOnLoadService m_OnLoadService;
+        public IOnLoadService OnLoadService
+        {
+            get
+            {
+                var editorAnalyticsService = this.EditorAnalyticsService;
+                var ironSourceSdkInstaller = this.IronSourceSdkInstaller;
+                lock (m_PropertyLock) {
+                    if (m_OnLoadService == null)
+                    {
+                        m_OnLoadService = new OnLoadService(editorAnalyticsService, ironSourceSdkInstaller);
+                    }
+                    return m_OnLoadService;
+                }
+            }
+        }
+
+        private IIronSourceSdkInstaller m_IronSourceSdkInstaller;
+        public IIronSourceSdkInstaller IronSourceSdkInstaller
+        {
+            get
+            {
+                var packageTypeService = this.PackageTypeService;
+                var logger = this.LevelPlayLogger;
+                var levelPlayNetworkManager = this.LevelPlayNetworkManager;
+                var fileService = this.FileService;
+                var editorAnalyticsService = this.EditorAnalyticsService;
+                lock (m_PropertyLock) {
+                    if (m_IronSourceSdkInstaller == null)
+                    {
+                        switch (packageTypeService.PackageType)
+                        {
+                            case PackageType.Upm:
+                                m_IronSourceSdkInstaller = new UpmIronSourceSdkInstaller(logger, levelPlayNetworkManager);
+                                break;
+                            case PackageType.DotUnityPackage:
+                                m_IronSourceSdkInstaller = new DotUnityPackageIronSourceSdkInstaller(logger, levelPlayNetworkManager, fileService, editorAnalyticsService);
+                                break;
+                        }
+                    }
+                    return m_IronSourceSdkInstaller;
+                }
+            }
+        }
+
+        private IPackageTypeService m_PackageTypeService;
+        public IPackageTypeService PackageTypeService
+        {
+            get
+            {
+                var directoryService = this.DirectoryService;
+                lock (m_PropertyLock) {
+                    if (m_PackageTypeService == null)
+                    {
+                        m_PackageTypeService = new PackageTypeService(directoryService);
+                    }
+                    return m_PackageTypeService;
                 }
             }
         }

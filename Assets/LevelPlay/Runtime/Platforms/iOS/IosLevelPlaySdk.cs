@@ -5,6 +5,7 @@ using UnityEngine;
 
 namespace com.unity3d.mediation
 {
+    [Obsolete("This class will be deprecated in version 9.0.0. Please use LevelPlaySdk instead.")]
     public class IosLevelPlaySdk : MonoBehaviour
     {
         public static event Action<LevelPlayConfiguration> OnInitSuccess;
@@ -24,6 +25,11 @@ namespace com.unity3d.mediation
             setPluginData("Unity", IronSource.pluginVersion(), IronSource.unityVersion());
             new GameObject("IosLevelPlaySdk", typeof(IosLevelPlaySdk)).GetComponent<IosLevelPlaySdk>();
             LPMInitialize(appKey, userId, GetAdFormatArray(adFormats));
+        }
+
+        public static void SetPauseGame(bool pause)
+        {
+            LPMSetPauseGame(pause);
         }
 
         private static string[] GetAdFormatArray(LevelPlayAdFormat[] adFormats)
@@ -53,6 +59,9 @@ namespace com.unity3d.mediation
 
         [DllImport("__Internal")]
         private static extern void setPluginData(string pluginType, string pluginVersion, string pluginFrameworkVersion);
+
+        [DllImport("__Internal")]
+        private static extern void LPMSetPauseGame(bool pause);
 
         public void OnInitializationSuccess(string configuration)
         {

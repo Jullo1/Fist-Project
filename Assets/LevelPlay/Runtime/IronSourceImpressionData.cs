@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using Unity.Services.LevelPlay;
-using UnityEngine;
 
 /// <summary>
 /// Represents an impression event's data
@@ -10,6 +9,7 @@ using UnityEngine;
 public class IronSourceImpressionData
 {
     public readonly string auctionId;
+    public readonly string CreativeId;
     [Obsolete("This parameter will be removed in version 9.0.0. Please use the AdFormat parameter instead.")]
     public readonly string adUnit;
     public readonly string adFormat;
@@ -48,6 +48,10 @@ public class IronSourceImpressionData
                 if (jsonDic.TryGetValue(IronSourceConstants.IMPRESSION_DATA_KEY_AUCTION_ID, out obj) && obj != null)
                 {
                     auctionId = obj.ToString();
+                }
+                if (jsonDic.TryGetValue(IronSourceConstants.k_ImpressionDataKeyCreativeID, out obj) && obj != null)
+                {
+                    CreativeId = obj.ToString();
                 }
                 if (jsonDic.TryGetValue(IronSourceConstants.IMPRESSION_DATA_KEY_AD_UNIT, out obj) && obj != null)
                 {
@@ -128,6 +132,7 @@ public class IronSourceImpressionData
     {
         return "IronSourceImpressionData{" +
             "auctionId='" + auctionId + '\'' +
+            ", creativeId='" + CreativeId + '\'' +
             ", adUnit='" + adUnit + '\'' +
             ", adFormat='" + adFormat + '\'' +
             ", mediationAdUnitName='" + mediationAdUnitName + '\'' +

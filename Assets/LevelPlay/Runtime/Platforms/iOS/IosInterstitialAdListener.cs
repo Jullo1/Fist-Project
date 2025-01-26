@@ -34,7 +34,7 @@ namespace com.unity3d.mediation
 
         delegate void DidDisplayWithAdInfo(IntPtr interstitialAd, string adInfoJson);
 
-        delegate void DidFailToDisplayWithAdInfo(IntPtr interstitialAd, string adInfoJson, IntPtr errorPtr);
+        delegate void DidFailToDisplayWithAdInfo(IntPtr interstitialAd, string adInfoJson, string errorPtr);
 
         delegate void DidClickWithAdInfo(IntPtr interstitialAd, string adInfoJson);
 
@@ -71,10 +71,10 @@ namespace com.unity3d.mediation
         }
 
         [MonoPInvokeCallback(typeof(DidFailToDisplayWithAdInfo))]
-        static void DisplayFailed(IntPtr ptr, string adInfoJson, IntPtr errorPtr)
+        static void DisplayFailed(IntPtr ptr, string adInfoJson, string errorPtr)
         {
             var interstitialAd = Get<IosInterstitialAd>(ptr);
-            interstitialAd?.InvokeFailedDisplayEvent(adInfoJson, errorPtr.ToString());
+            interstitialAd?.InvokeFailedDisplayEvent(adInfoJson, errorPtr);
         }
 
         [MonoPInvokeCallback(typeof(DidCloseWithAdInfo))]

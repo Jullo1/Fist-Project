@@ -21,6 +21,7 @@ public static class IronSourceConstants
 
     //Impression Data
     public const string IMPRESSION_DATA_KEY_AUCTION_ID = "auctionId";
+    internal const string k_ImpressionDataKeyCreativeID = "creativeId";
     public const string IMPRESSION_DATA_KEY_AD_UNIT = "adUnit";
     internal const string IMPRESSION_DATA_KEY_AD_FORMAT = "adFormat";
     internal const string IMPRESSION_DATA_KEY_MEDIATION_AD_UNIT_NAME = "mediationAdUnitName";

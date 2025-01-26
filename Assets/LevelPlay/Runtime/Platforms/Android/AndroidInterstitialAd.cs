@@ -39,7 +39,10 @@ namespace com.unity3d.mediation
             {
                 try
                 {
-                    m_InterstitialListener ??= new UnityInterstitialAdListener(this);
+                    if (m_InterstitialListener == null)
+                   {
+                       m_InterstitialListener = new UnityInterstitialAdListener(this);
+                   }
                     m_InterstitialJavaObject =
                         new AndroidJavaObject(k_AndroidInterstitialClass, adUnitId, m_InterstitialListener);
                 }
@@ -110,8 +113,10 @@ namespace com.unity3d.mediation
             var isPlacementCapped = false;
             try
             {
-                using var interstitialJavaClass = new AndroidJavaClass(k_AndroidInterstitialClass);
-                isPlacementCapped = interstitialJavaClass.CallStatic<bool>(k_IsPlacementCappedStaticFunction, placementName);
+                using (var interstitialJavaClass = new AndroidJavaClass(k_AndroidInterstitialClass))
+                {
+                    isPlacementCapped = interstitialJavaClass.CallStatic<bool>(k_IsPlacementCappedStaticFunction, placementName);
+                }
             }
             catch (Exception e)
             {

@@ -418,6 +418,11 @@ namespace Unity.Services.LevelPlay.Editor
             return null;
         }
 
+        public SdkVersion LatestSdkVersion()
+        {
+            return GetVersionsOrderedLargestToSmallest(this.IronSourceSdk.Versions.Values.AsEnumerable()).First();
+        }
+
         public async Task Install(Adapter adapter, AdapterVersion adapterVersion)
         {
             if (adapterVersion != null)

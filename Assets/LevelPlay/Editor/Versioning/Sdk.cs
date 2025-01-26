@@ -14,14 +14,16 @@ namespace Unity.Services.LevelPlay.Editor
         internal string DisplayName { get; }
         internal string DependencyXmlURL { get; }
         internal string DependencyXmlFileName { get; }
+        internal string UpdateMessage { get; }
         internal Dictionary<string, SdkVersion> Versions { get; }
 
-        internal Sdk(string keyName, string displayName, string dependencyXmlURL, string dependencyXmlFileName, Dictionary<string, SdkVersion> versions)
+        internal Sdk(string keyName, string displayName, string dependencyXmlURL, string dependencyXmlFileName, string updateMessage, Dictionary<string, SdkVersion> versions)
         {
             KeyName = keyName;
             DisplayName = displayName;
             DependencyXmlURL = dependencyXmlURL;
             DependencyXmlFileName = dependencyXmlFileName;
+            UpdateMessage = updateMessage;
             Versions = versions;
         }
 
@@ -31,6 +33,14 @@ namespace Unity.Services.LevelPlay.Editor
             DisplayName = jsonDictionary["displayName"] as string;
             DependencyXmlURL = jsonDictionary["dependencyXmlURL"] as string;
             DependencyXmlFileName = jsonDictionary["dependencyXmlFileName"] as string;
+            if (jsonDictionary.ContainsKey("updateMessage"))
+            {
+                UpdateMessage = jsonDictionary["updateMessage"] as string;
+            }
+            else
+            {
+                UpdateMessage = null;
+            }
             Versions = new Dictionary<string, SdkVersion>();
             var versions = jsonDictionary["versions"] as Dictionary<string, object>;
             foreach (var version in versions)
@@ -67,6 +77,16 @@ namespace Unity.Services.LevelPlay.Editor
             }
 
             if (!DependencyXmlFileName.Equals(other.DependencyXmlFileName))
+            {
+                return false;
+            }
+
+            if (UpdateMessage == null && other.UpdateMessage != null)
+            {
+                return false;
+            }
+
+            if (UpdateMessage != null && !UpdateMessage.Equals(other.UpdateMessage))
             {
                 return false;
             }

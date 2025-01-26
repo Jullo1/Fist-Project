@@ -1,3 +1,5 @@
+using System;
+
 namespace com.unity3d.mediation
 {
     /// <summary>
@@ -8,6 +10,7 @@ namespace com.unity3d.mediation
         public LevelPlayAdInfo DisplayLevelPlayAdInfo { get; private set; }
         public LevelPlayAdError LevelPlayError { get; private set; }
 
+        [Obsolete("The constructor of LevelPlayAdDisplayInfoError will be removed in version 9.0.0.")]
         /// <summary>
         /// Initializes a new instance of the <see cref="LevelPlayAdDisplayInfoError"/> class with the specified advertisement information and error details.
         /// </summary>

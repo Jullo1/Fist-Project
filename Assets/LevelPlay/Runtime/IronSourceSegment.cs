@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,11 +10,13 @@ using System.Linq;
 /// </summary>
 public class IronSourceSegment
 {
+    [Obsolete("This method will be removed in version 9.0.0.")]
     /// <summary>
     /// Age of the segment
     /// </summary>
     public int age;
 
+    [Obsolete("This method will be removed in version 9.0.0.")]
     /// <summary>
     /// Gender of the segment
     /// </summary>

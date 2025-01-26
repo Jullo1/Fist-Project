@@ -23,7 +23,6 @@ namespace com.unity3d.mediation
         const string k_ErrorCreatingBanner     = "Error while creating Banner Ad. Banner Ad will not load. Please check your build settings, and make sure LevelPlay SDK is integrated properly.";
         const string k_ErrorDisposed           = "LevelPlay SDK: {0}: Instance of type {1} is disposed. Please create a new instance in order to call any method.";
 
-        //IPlatformBannerAd events
         public event EventHandler<LevelPlayAdInfo> OnAdLoaded;
         public event EventHandler<LevelPlayAdError> OnAdLoadFailed;
         public event EventHandler<LevelPlayAdInfo> OnAdClicked;
@@ -86,6 +85,7 @@ namespace com.unity3d.mediation
 
         volatile bool _mDisposed;
 
+        [Obsolete("This constructor will be removed in version 9.0.0. Please use ILevelPlayBannerAd instead.")]
         public AndroidBannerAd(string adUnitId, LevelPlayAdSize adSize, LevelPlayBannerPosition position, string placementName, bool displayOnLoad, bool respectSafeArea)
         {
             AdUnitId = adUnitId;
@@ -97,7 +97,10 @@ namespace com.unity3d.mediation
             {
                 try
                 {
-                    _mBannerAdListener ??= new UnityBannerAdListener(this);
+                    if (_mBannerAdListener == null)
+                    {
+                        _mBannerAdListener = new UnityBannerAdListener(this);
+                    }
                     _mBannerAd = new AndroidJavaObject(k_BannerAdClassName, adUnitId,
                         adSize.Description, adSize.Width, adSize.Height, adSize.CustomWidth,
                         (int)position, placementName, displayOnLoad, respectSafeArea, _mBannerAdListener);

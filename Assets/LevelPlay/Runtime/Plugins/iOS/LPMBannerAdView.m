@@ -94,64 +94,54 @@ extern "C" {
             UIView *rootView =
             [UIApplication sharedApplication].keyWindow.rootViewController.view;
             
-            if (bannerAdView.superview != rootView) {
-                [bannerAdView removeFromSuperview];
-                [rootView addSubview:bannerAdView];
-                bannerAdView.translatesAutoresizingMaskIntoConstraints = NO;
-            }
-            
-            // Remove previous constraints
-            [rootView.constraints
-             enumerateObjectsUsingBlock:^(NSLayoutConstraint *constraint,
-                                          NSUInteger idx, BOOL *stop) {
-                if (constraint.firstItem == bannerAdView ||
-                    constraint.secondItem == bannerAdView) {
-                    [rootView removeConstraint:constraint];
-                }
-            }];
-            
+            bannerAdView.translatesAutoresizingMaskIntoConstraints = NO;
+            [bannerAdView removeFromSuperview];
+            [rootView addSubview:bannerAdView];
+           
+            NSMutableArray<NSLayoutConstraint *> *constraints = [[NSMutableArray alloc] init];
             // Center horizontally
-            [rootView addConstraint:[NSLayoutConstraint
-                                     constraintWithItem:bannerAdView
-                                     attribute:NSLayoutAttributeCenterX
-                                     relatedBy:NSLayoutRelationEqual
-                                     toItem:rootView
-                                     attribute:NSLayoutAttributeCenterX
-                                     multiplier:1.0
-                                     constant:0]];
-            
+            [constraints addObject:
+                 [NSLayoutConstraint constraintWithItem:bannerAdView
+                                              attribute:NSLayoutAttributeCenterX
+                                              relatedBy:NSLayoutRelationEqual
+                                                 toItem:rootView
+                                              attribute:NSLayoutAttributeCenterX
+                                             multiplier:1.0
+                                               constant:0]
+            ];
             // Position vertically
             NSLayoutAttribute verticalAttribute =
             (position == 1) ? NSLayoutAttributeTop : NSLayoutAttributeBottom;
-            [rootView addConstraint:[NSLayoutConstraint
-                                     constraintWithItem:bannerAdView
-                                     attribute:verticalAttribute
-                                     relatedBy:NSLayoutRelationEqual
-                                     toItem:rootView.safeAreaLayoutGuide
-                                     attribute:verticalAttribute
-                                     multiplier:1.0
-                                     constant:(position == 1 ? 10 : -10)]];
-            
+            [constraints addObject:
+                [NSLayoutConstraint constraintWithItem:bannerAdView
+                                             attribute:verticalAttribute
+                                             relatedBy:NSLayoutRelationEqual
+                                                toItem:rootView.safeAreaLayoutGuide
+                                             attribute:verticalAttribute
+                                            multiplier:1.0
+                                              constant:0]
+            ];
             // Specify height and width
-            [rootView
-             addConstraint:[NSLayoutConstraint
-                            constraintWithItem:bannerAdView
-                            attribute:NSLayoutAttributeHeight
-                            relatedBy:NSLayoutRelationEqual
-                            toItem:nil
-                            attribute:NSLayoutAttributeNotAnAttribute
-                            multiplier:1.0
-                            constant:bannerAdView.frame.size.height]];
+            [constraints addObject:
+                 [NSLayoutConstraint constraintWithItem:bannerAdView
+                                              attribute:NSLayoutAttributeHeight
+                                              relatedBy:NSLayoutRelationEqual
+                                                 toItem:nil
+                                              attribute:NSLayoutAttributeNotAnAttribute
+                                             multiplier:1.0
+                                               constant:bannerAdView.frame.size.height]
+            ];
             
-            [rootView
-             addConstraint:[NSLayoutConstraint
-                            constraintWithItem:bannerAdView
-                            attribute:NSLayoutAttributeWidth
-                            relatedBy:NSLayoutRelationEqual
-                            toItem:nil
-                            attribute:NSLayoutAttributeNotAnAttribute
-                            multiplier:1.0
-                            constant:bannerAdView.frame.size.width]];
+            [constraints addObject:
+                 [NSLayoutConstraint constraintWithItem:bannerAdView
+                                              attribute:NSLayoutAttributeWidth
+                                              relatedBy:NSLayoutRelationEqual
+                                                 toItem:nil
+                                              attribute:NSLayoutAttributeNotAnAttribute
+                                             multiplier:1.0
+                                               constant:bannerAdView.frame.size.width]
+            ];
+            [NSLayoutConstraint activateConstraints:constraints];
         });
     }
     

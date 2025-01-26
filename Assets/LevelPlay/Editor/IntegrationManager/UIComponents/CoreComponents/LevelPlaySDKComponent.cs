@@ -96,7 +96,7 @@ namespace Unity.Services.LevelPlay.Editor.IntegrationManager.UIComponents
             GUILayout.Space(10);
             GUILayout.BeginVertical();
             GUILayout.BeginHorizontal(headerHorizontalStyle);
-            GUILayout.Label("ironSource SDK", titleStyle);
+            GUILayout.Label("LevelPlay SDK", titleStyle);
             var horizontalRect = GUILayoutUtility.GetLastRect();
             m_InstalledRect.y = horizontalRect.y;
             m_LatestRect.y = horizontalRect.y;

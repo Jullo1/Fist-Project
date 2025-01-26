@@ -4,6 +4,7 @@ using System.Runtime.InteropServices;
 
 namespace com.unity3d.mediation
 {
+    [Obsolete("This class will be deprecated in version 9.0.0. Please use ILevelPlayBannerAd instead.")]
     public class iOSBannerAd : IosNativeObject, IPlatformBannerAd
     {
         public event EventHandler<LevelPlayAdInfo> OnAdLoaded;

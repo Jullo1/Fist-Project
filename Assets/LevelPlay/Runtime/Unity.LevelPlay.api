@@ -15,7 +15,7 @@ public static class dataSource
 
 public class IronSource : IronSourceIAgent
 {
-    [System.Obsolete(@"Please use the pluginVersion function", false)] public static string UNITY_PLUGIN_VERSION = @"8.4.1-r";
+    [System.Obsolete(@"Please use the pluginVersion function", false)] public static string UNITY_PLUGIN_VERSION = @"8.6.0-r";
     public static IronSource Agent { get; }
     public void clearRewardedVideoServerParams();
     [System.Obsolete(@"This method will be removed in version 9.0.0. Please use the LevelPlayBannerAd.DestroyAd() method instead.")] public void destroyBanner();
@@ -29,15 +29,15 @@ public class IronSource : IronSourceIAgent
     public void init(string appKey);
     public void init(string appKey, params string[] adUnits);
     [System.Obsolete(@"This method will be removed in version 9.0.0.")] public bool isBannerPlacementCapped(string placementName);
-    public bool isInterstitialPlacementCapped(string placementName);
-    public bool isInterstitialReady();
+    [System.Obsolete(@"This method will be removed in version 9.0.0. Please use the LevelPlayInterstitialAd.IsPlacementCapped(string placementName) method instead.")] public bool isInterstitialPlacementCapped(string placementName);
+    [System.Obsolete(@"This method will be removed in version 9.0.0. Please use the LevelPlayInterstitialAd.IsAdReady() method instead.")] public bool isInterstitialReady();
     public bool isRewardedVideoAvailable();
     public bool isRewardedVideoPlacementCapped(string placementName);
     public void launchTestSuite();
     [System.Obsolete(@"This method will be removed in version 9.0.0. Please use the LevelPlayBannerAd.LoadAd() method instead.")] public void loadBanner(IronSourceBannerSize size, IronSourceBannerPosition position);
     [System.Obsolete(@"This method will be removed in version 9.0.0. Please use the LevelPlayBannerAd.LoadAd() method instead.")] public void loadBanner(IronSourceBannerSize size, IronSourceBannerPosition position, string placementName);
     public void loadConsentViewWithType(string consentViewType);
-    public void loadInterstitial();
+    [System.Obsolete(@"This method will be removed in version 9.0.0. Please use the LevelPlayInterstitialAd.LoadAd() method instead.")] public void loadInterstitial();
     public void loadRewardedVideo();
     public void onApplicationPause(bool pause);
     public static string pluginVersion();
@@ -57,8 +57,8 @@ public class IronSource : IronSourceIAgent
     public void SetWaterfallConfiguration(WaterfallConfiguration waterfallConfiguration, AdFormat adFormat);
     public void shouldTrackNetworkState(bool track);
     public void showConsentViewWithType(string consentViewType);
-    public void showInterstitial();
-    public void showInterstitial(string placementName);
+    [System.Obsolete(@"This method will be removed in version 9.0.0. Please use the LevelPlayInterstitialAd.ShowAd() method instead.")] public void showInterstitial();
+    [System.Obsolete(@"This method will be removed in version 9.0.0. Please use the LevelPlayInterstitialAd.ShowAd(string placementName) method instead.")] public void showInterstitial(string placementName);
     public void showRewardedVideo();
     public void showRewardedVideo(string placementName);
     public static string unityVersion();
@@ -72,6 +72,7 @@ public class IronSourceAdInfo
     public readonly string adUnit;
     public readonly string auctionId;
     public readonly string country;
+    public readonly string creativeId;
     public readonly string encryptedCPM;
     public readonly string instanceId;
     public readonly string instanceName;
@@ -278,6 +279,7 @@ public class IronSourceImpressionData
     public readonly string auctionId;
     public readonly System.Nullable<int> conversionValue;
     public readonly string country;
+    public readonly string CreativeId;
     public readonly string encryptedCPM;
     public readonly string instanceId;
     public readonly string instanceName;
@@ -297,7 +299,7 @@ public class IronSourceImpressionData
     public IronSourceInitilizer() {}
 }
 
-public class IronSourceInterstitialEvents : UnityEngine.MonoBehaviour
+[System.Obsolete(@"This event will be removed in version 9.0.0. Please use ILevelPlayInterstitialAd instead.")] public class IronSourceInterstitialEvents : UnityEngine.MonoBehaviour
 {
     public static event System.Action<IronSourceAdInfo> onAdClickedEvent;
     public static event System.Action<IronSourceAdInfo> onAdClosedEvent;
@@ -363,9 +365,9 @@ public class IronSourceRewardedVideoEvents : UnityEngine.MonoBehaviour
 
 public class IronSourceSegment
 {
-    public int age;
+    [System.Obsolete(@"This method will be removed in version 9.0.0.")] public int age;
     public System.Collections.Generic.Dictionary<string, string> customs;
-    public string gender;
+    [System.Obsolete(@"This method will be removed in version 9.0.0.")] public string gender;
     public double iapt = 0d;
     public int isPaying;
     public int level;
@@ -408,7 +410,7 @@ public interface IUnityInitialization
     public event System.Action OnSdkInitializationCompletedEvent;
 }
 
-public interface IUnityLevelPlayBanner
+[System.Obsolete(@"IUnityLevelPlayBanner will be deprecated.")] public interface IUnityLevelPlayBanner
 {
     public event System.Action<IronSourceAdInfo> OnAdClicked;
     public event System.Action<IronSourceAdInfo> OnAdLeftApplication;
@@ -418,7 +420,7 @@ public interface IUnityLevelPlayBanner
     public event System.Action<IronSourceAdInfo> OnAdScreenPresented;
 }
 
-public interface IUnityLevelPlayInterstitial
+[System.Obsolete(@"IUnityLevelPlayInterstitial will be deprecated.")] public interface IUnityLevelPlayInterstitial
 {
     public event System.Action<IronSourceAdInfo> OnAdClicked;
     public event System.Action<IronSourceAdInfo> OnAdClosed;
@@ -555,6 +557,23 @@ namespace com.unity3d.mediation
         public void ShowAd(string placementName = default(string));
     }
 
+    public interface ILevelPlayRewardedAd : System.IDisposable
+    {
+        public event System.Action<LevelPlayAdInfo> OnAdClicked;
+        public event System.Action<LevelPlayAdInfo> OnAdClosed;
+        public event System.Action<LevelPlayAdInfo> OnAdDisplayed;
+        public event System.Action<LevelPlayAdDisplayInfoError> OnAdDisplayFailed;
+        public event System.Action<LevelPlayAdInfo> OnAdInfoChanged;
+        public event System.Action<LevelPlayAdInfo> OnAdLoaded;
+        public event System.Action<LevelPlayAdError> OnAdLoadFailed;
+        public event System.Action<LevelPlayAdInfo, LevelPlayReward> OnAdRewarded;
+        public string AdUnitId { get; }
+        public void DestroyAd();
+        public bool IsAdReady();
+        public void LoadAd();
+        public void ShowAd(string placementName = default(string));
+    }
+
     public abstract class IosNativeObject : System.IDisposable
     {
         public System.IntPtr NativePtr { get; protected set; }
@@ -570,13 +589,14 @@ namespace com.unity3d.mediation
         public static event System.Action<LevelPlayConfiguration> OnInitSuccess;
         public LevelPlay() {}
         public static void Init(string appKey, string userId = default(string), LevelPlayAdFormat[] adFormats = default(LevelPlayAdFormat[]));
+        public static void SetPauseGame(bool pause);
     }
 
     public class LevelPlayAdDisplayInfoError
     {
         public LevelPlayAdInfo DisplayLevelPlayAdInfo { get; }
         public LevelPlayAdError LevelPlayError { get; }
-        public LevelPlayAdDisplayInfoError(LevelPlayAdInfo levelPlayAdInfo, LevelPlayAdError error) {}
+        [System.Obsolete(@"The constructor of LevelPlayAdDisplayInfoError will be removed in version 9.0.0.")] public LevelPlayAdDisplayInfoError(LevelPlayAdInfo levelPlayAdInfo, LevelPlayAdError error) {}
         public override string ToString();
     }
 
@@ -585,7 +605,7 @@ namespace com.unity3d.mediation
         public string AdUnitId { get; }
         public int ErrorCode { get; }
         public string ErrorMessage { get; }
-        public LevelPlayAdError(string adUnitId, int errorCode, string errorMessage) {}
+        [System.Obsolete(@"The constructor LevelPlayAdError will be removed in version 9.0.0.")] public LevelPlayAdError(string adUnitId, int errorCode, string errorMessage) {}
         public override string ToString();
     }
 
@@ -598,21 +618,37 @@ namespace com.unity3d.mediation
 
     public class LevelPlayAdInfo
     {
-        public readonly string ab;
-        public readonly string adFormat;
-        public readonly string adNetwork;
-        [JetBrains.Annotations.CanBeNull] public readonly LevelPlayAdSize adSize;
-        public readonly string adUnitId;
-        public readonly string adUnitName;
-        public readonly string auctionId;
-        public readonly string country;
-        public readonly string encryptedCPM;
-        public readonly string instanceId;
-        public readonly string instanceName;
-        public readonly string placementName;
-        public readonly string precision;
-        public readonly System.Nullable<double> revenue;
-        public readonly string segmentName;
+        [System.Obsolete(@"ab will be replaced by Ab in version 9.0.0.")] public readonly string ab;
+        public readonly string Ab;
+        [System.Obsolete(@"adFormat will be replaced by AdFormat in version 9.0.0.")] public readonly string adFormat;
+        public readonly string AdFormat;
+        [System.Obsolete(@"adNetwork will be replaced by AdNetwork in version 9.0.0.")] public readonly string adNetwork;
+        public readonly string AdNetwork;
+        [JetBrains.Annotations.CanBeNull] [System.Obsolete(@"adSize will be replaced by AdSize in version 9.0.0.")] public readonly LevelPlayAdSize adSize;
+        [JetBrains.Annotations.CanBeNull] public readonly LevelPlayAdSize AdSize;
+        [System.Obsolete(@"adUnitId will be replaced by AdUnitId in version 9.0.0.")] public readonly string adUnitId;
+        public readonly string AdUnitId;
+        [System.Obsolete(@"adUnitName will be replaced by AdUnitName in version 9.0.0.")] public readonly string adUnitName;
+        public readonly string AdUnitName;
+        [System.Obsolete(@"auctionId will be replaced by AuctionId in version 9.0.0.")] public readonly string auctionId;
+        public readonly string AuctionId;
+        [System.Obsolete(@"country will be replaced by Country in version 9.0.0.")] public readonly string country;
+        public readonly string Country;
+        public readonly string CreativeId;
+        [System.Obsolete(@"encryptedCPM will be replaced by EncryptedCPM in version 9.0.0.")] public readonly string encryptedCPM;
+        public readonly string EncryptedCPM;
+        [System.Obsolete(@"instanceId will be replaced by InstanceId in version 9.0.0.")] public readonly string instanceId;
+        public readonly string InstanceId;
+        [System.Obsolete(@"instanceName will be replaced by InstanceName in version 9.0.0.")] public readonly string instanceName;
+        public readonly string InstanceName;
+        [System.Obsolete(@"placementName will be replaced by PlacementName in version 9.0.0.")] public readonly string placementName;
+        public readonly string PlacementName;
+        [System.Obsolete(@"precision will be replaced by Precision in version 9.0.0.")] public readonly string precision;
+        public readonly string Precision;
+        [System.Obsolete(@"revenue will be replaced by Revenue in version 9.0.0.")] public readonly System.Nullable<double> revenue;
+        public readonly System.Nullable<double> Revenue;
+        [System.Obsolete(@"segmentName will be replaced by SegmentName in version 9.0.0.")] public readonly string segmentName;
+        public readonly string SegmentName;
         public override string ToString();
     }
 
@@ -684,6 +720,32 @@ namespace com.unity3d.mediation
         public event System.Action<LevelPlayAdError> OnAdLoadFailed;
         public string AdUnitId { get; }
         public LevelPlayInterstitialAd(string adUnitId) {}
+        public void DestroyAd();
+        public void Dispose();
+        public bool IsAdReady();
+        public static bool IsPlacementCapped(string placementName);
+        public void LoadAd();
+        public void ShowAd(string placementName = default(string));
+    }
+
+    public class LevelPlayReward
+    {
+        public int Amount { get; }
+        public string Name { get; }
+    }
+
+    public sealed class LevelPlayRewardedAd : ILevelPlayRewardedAd, System.IDisposable
+    {
+        public event System.Action<LevelPlayAdInfo> OnAdClicked;
+        public event System.Action<LevelPlayAdInfo> OnAdClosed;
+        public event System.Action<LevelPlayAdInfo> OnAdDisplayed;
+        public event System.Action<LevelPlayAdDisplayInfoError> OnAdDisplayFailed;
+        public event System.Action<LevelPlayAdInfo> OnAdInfoChanged;
+        public event System.Action<LevelPlayAdInfo> OnAdLoaded;
+        public event System.Action<LevelPlayAdError> OnAdLoadFailed;
+        public event System.Action<LevelPlayAdInfo, LevelPlayReward> OnAdRewarded;
+        public string AdUnitId { get; }
+        public LevelPlayRewardedAd(string adUnitId) {}
         public void DestroyAd();
         public void Dispose();
         public bool IsAdReady();

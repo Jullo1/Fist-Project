@@ -8,63 +8,59 @@
     <package>com.applovin:applovin-sdk:13.0.1</package>
     <package>com.appsflyer:af-android-sdk:6.14.2</package>
     <package>com.appsflyer:unity-wrapper:6.14.4</package>
-    <package>com.bigossp:bigo-ads:5.0.2</package>
-    <package>com.chartboost:chartboost-sdk:9.7.0</package>
+    <package>com.bigossp:bigo-ads:5.1.0</package>
+    <package>com.chartboost:chartboost-sdk:9.8.2</package>
     <package>com.facebook.android:audience-network-sdk:6.18.0</package>
-    <package>com.fyber:marketplace-sdk:8.3.1</package>
+    <package>com.fyber:marketplace-sdk:8.3.5</package>
     <package>com.google.android.exoplayer:exoplayer:2.19.1</package>
-    <package>com.google.android.gms:play-services-ads:23.5.0</package>
-    <package>com.google.android.gms:play-services-ads-identifier:18.0.1</package>
-    <package>com.google.android.gms:play-services-basement:18.1.0</package>
+    <package>com.google.android.gms:play-services-ads:23.6.0</package>
+    <package>com.google.android.gms:play-services-ads-identifier:18.1.0</package>
     <package>com.google.android.play:core-common:2.0.0</package>
     <package>com.google.android.play:review:2.0.0</package>
     <package>com.google.games:gpgs-plugin-support:0.11.01</package>
     <package>com.hyprmx.android:HyprMX-SDK:6.4.2</package>
-    <package>com.inmobi.monetization:inmobi-ads-kotlin:10.7.8</package>
-    <package>com.ironsource.adapters:admobadapter:4.3.47</package>
-    <package>com.ironsource.adapters:applovinadapter:4.3.48</package>
-    <package>com.ironsource.adapters:apsadapter:4.3.14</package>
-    <package>com.ironsource.adapters:bidmachineadapter:4.3.9</package>
-    <package>com.ironsource.adapters:bigoadapter:4.3.3</package>
-    <package>com.ironsource.adapters:chartboostadapter:4.3.17</package>
-    <package>com.ironsource.adapters:facebookadapter:4.3.48</package>
-    <package>com.ironsource.adapters:fyberadapter:4.3.33</package>
+    <package>com.inmobi.monetization:inmobi-ads-kotlin:10.8.0</package>
     <package>com.ironsource.adapters:hyprmxadapter:4.3.10</package>
-    <package>com.ironsource.adapters:inmobiadapter:4.3.27</package>
     <package>com.ironsource.adapters:maioadapter:4.1.11</package>
-    <package>com.ironsource.adapters:mintegraladapter:4.3.30</package>
-    <package>com.ironsource.adapters:mobilefuseadapter:4.3.2</package>
-    <package>com.ironsource.adapters:molocoadapter:4.3.7</package>
     <package>com.ironsource.adapters:mytargetadapter:4.1.20</package>
-    <package>com.ironsource.adapters:oguryadapter:4.3.0</package>
-    <package>com.ironsource.adapters:pangleadapter:4.3.30</package>
-    <package>com.ironsource.adapters:smaatoadapter:4.3.12</package>
     <package>com.ironsource.adapters:superawesomeadapter:4.1.10</package>
-    <package>com.ironsource.adapters:unityadsadapter:4.3.44</package>
-    <package>com.ironsource.adapters:verveadapter:4.3.3</package>
-    <package>com.ironsource.adapters:vungleadapter:4.3.26</package>
-    <package>com.ironsource.adapters:yandexadapter:4.3.4</package>
-    <package>com.ironsource.sdk:mediationsdk:8.4.0</package>
     <package>com.ironsource.unity:adqualitysdk:7.19.2</package>
     <package>com.ironsource:adqualitysdk:7.19.2</package>
     <package>com.maio:android-sdk:1.1.16@aar</package>
-    <package>com.mbridge.msdk.oversea:mbbanner:16.8.61</package>
-    <package>com.mbridge.msdk.oversea:mbbid:16.8.61</package>
-    <package>com.mbridge.msdk.oversea:newinterstitial:16.8.61</package>
-    <package>com.mbridge.msdk.oversea:reward:16.8.61</package>
-    <package>com.mobilefuse.sdk:mobilefuse-sdk-core:1.8.0</package>
-    <package>com.moloco.sdk:moloco-sdk:3.2.0</package>
+    <package>com.mbridge.msdk.oversea:mbridge_android_sdk:16.9.31</package>
+    <package>com.mobilefuse.sdk:mobilefuse-sdk-core:1.8.2</package>
+    <package>com.moloco.sdk:moloco-sdk:3.5.0</package>
     <package>com.my.target:mytarget-sdk:5.22.1</package>
-    <package>com.pangle.global:ads-sdk:6.2.0.7</package>
+    <package>com.pangle.global:ads-sdk:6.4.0.6</package>
     <package>com.smaato.android.sdk:smaato-sdk-banner:22.7.1</package>
     <package>com.smaato.android.sdk:smaato-sdk-in-app-bidding:22.7.1</package>
     <package>com.smaato.android.sdk:smaato-sdk-interstitial:22.7.1</package>
     <package>com.smaato.android.sdk:smaato-sdk-rewarded-ads:22.7.1</package>
-    <package>com.unity3d.ads:unity-ads:4.12.4</package>
-    <package>com.vungle:vungle-ads:7.4.1</package>
-    <package>com.yandex.android:mobileads:7.4.0</package>
-    <package>io.bidmachine:ads:3.0.1</package>
-    <package>net.pubnative:hybid.sdk:3.2.0</package>
+    <package>com.unity3d.ads:unity-ads:4.13.0</package>
+    <package>com.unity3d.ads-mediation:admob-adapter:4.3.48</package>
+    <package>com.unity3d.ads-mediation:applovin-adapter:4.3.49</package>
+    <package>com.unity3d.ads-mediation:aps-adapter:4.3.15</package>
+    <package>com.unity3d.ads-mediation:bidmachine-adapter:4.3.10</package>
+    <package>com.unity3d.ads-mediation:bigo-adapter:4.3.6</package>
+    <package>com.unity3d.ads-mediation:chartboost-adapter:4.3.18</package>
+    <package>com.unity3d.ads-mediation:facebook-adapter:4.3.48</package>
+    <package>com.unity3d.ads-mediation:fyber-adapter:4.3.36</package>
+    <package>com.unity3d.ads-mediation:inmobi-adapter:4.3.28</package>
+    <package>com.unity3d.ads-mediation:mediation-sdk:8.6.1</package>
+    <package>com.unity3d.ads-mediation:mintegral-adapter:4.3.35</package>
+    <package>com.unity3d.ads-mediation:mobilefuse-adapter:4.3.3</package>
+    <package>com.unity3d.ads-mediation:moloco-adapter:4.3.10</package>
+    <package>com.unity3d.ads-mediation:ogury-adapter:4.3.1</package>
+    <package>com.unity3d.ads-mediation:pangle-adapter:4.3.34</package>
+    <package>com.unity3d.ads-mediation:smaato-adapter:4.3.13</package>
+    <package>com.unity3d.ads-mediation:unityads-adapter:4.3.47</package>
+    <package>com.unity3d.ads-mediation:verve-adapter:4.3.4</package>
+    <package>com.unity3d.ads-mediation:vungle-adapter:4.3.28</package>
+    <package>com.unity3d.ads-mediation:yandex-adapter:4.3.8</package>
+    <package>com.vungle:vungle-ads:7.4.2</package>
+    <package>com.yandex.android:mobileads:7.8.1</package>
+    <package>io.bidmachine:ads:3.1.1</package>
+    <package>net.pubnative:hybid.sdk:3.2.1</package>
     <package>tv.superawesome.sdk.publisher:superawesome:9.4.0</package>
   </packages>
   <files>

@@ -8,8 +8,10 @@ namespace Unity.Services.LevelPlay.Editor
     internal class FileService : IFileService
     {
         private readonly string m_LevelPlayPackagePath;
-        internal FileService()
+        private IDirectoryService m_DirectoryService;
+        internal FileService(IDirectoryService directoryService)
         {
+            m_DirectoryService = directoryService;
             m_LevelPlayPackagePath = GetLevelPlayPackagePath();
         }
 
@@ -18,12 +20,12 @@ namespace Unity.Services.LevelPlay.Editor
             var upmPath = FilePaths.UpmPackageDirectoryPath;
             var unityPackagePath = FilePaths.UnityPackageDirectoryPath;
 
-            if (Directory.Exists(upmPath))
+            if (m_DirectoryService.Exists(upmPath))
             {
                 return upmPath;
             }
 
-            if (Directory.Exists(unityPackagePath))
+            if (m_DirectoryService.Exists(unityPackagePath))
             {
                 return unityPackagePath;
             }

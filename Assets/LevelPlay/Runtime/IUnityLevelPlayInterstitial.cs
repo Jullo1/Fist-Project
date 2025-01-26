@@ -3,6 +3,7 @@ using System;
 /// <summary>
 /// Interface representing LevelPlay's interstitial events
 /// </summary>
+[Obsolete("IUnityLevelPlayInterstitial will be deprecated.")]
 public interface IUnityLevelPlayInterstitial
 {
     /// <summary>

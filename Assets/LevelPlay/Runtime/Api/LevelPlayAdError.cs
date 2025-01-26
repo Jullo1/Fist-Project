@@ -23,7 +23,7 @@ namespace com.unity3d.mediation
             try
             {
                 Dictionary<string, object>
-                    jsonDic = IronSourceJSON.Json.Deserialize(json) as Dictionary<string, object>;
+                jsonDic = IronSourceJSON.Json.Deserialize(json) as Dictionary<string, object>;
                 if (jsonDic.TryGetValue("errorCode", out var obj) && obj != null)
                 {
                     ErrorCode = Int32.Parse(obj.ToString());
@@ -46,6 +46,7 @@ namespace com.unity3d.mediation
             }
         }
 
+        [Obsolete("The constructor LevelPlayAdError will be removed in version 9.0.0.")]
         /// <summary>
         /// Initializes a new instance of <see cref="LevelPlayAdError"/> class  with specified details.
         /// </summary>

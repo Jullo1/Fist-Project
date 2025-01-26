@@ -7,7 +7,7 @@
 #import <IronSource/IronSource.h>
 #import <IronSource/LPMAdInfo.h>
 #import <IronSource/LPMInterstitialAdDelegate.h>
-
+#import "iOSBridge.h"
 
 NS_ASSUME_NONNULL_BEGIN
 typedef void (*DidLoadAdWithAdInfo)(void *interstitialAd, const char* adinfo);

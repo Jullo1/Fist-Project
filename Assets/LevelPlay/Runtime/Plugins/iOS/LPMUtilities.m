@@ -54,6 +54,9 @@
 #pragma mark - private methods
 
 + (NSString *)serializeAdSizeToJSON:(LPMAdSize *)adSize {
+    if (adSize == nil) {
+        return @"";
+    }
     NSDictionary *adSizeDict = @{
         @"description": adSize.sizeDescription ?: @"",
         @"width": @(adSize.width) ?: @0,

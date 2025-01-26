@@ -1,18 +1,15 @@
 <dependencies>
-  <unityversion>4.3.5.1</unityversion>
+  <unityversion>4.3.9.0</unityversion>
   <androidPackages>
-    <androidPackage spec="com.yandex.android:mobileads:7.4.0">
+    <androidPackage spec="com.yandex.android:mobileads:7.8.1">
     </androidPackage>
   </androidPackages>
   <androidPackages>
-    <androidPackage spec="com.ironsource.adapters:yandexadapter:4.3.4">
-      <repositories>
-        <repository>https://android-sdk.is.com/</repository>
-      </repositories>
+    <androidPackage spec="com.unity3d.ads-mediation:yandex-adapter:4.3.8">
     </androidPackage>
   </androidPackages>
   <iosPods>
-    <iosPod name="IronSourceYandexAdapter" version="4.3.5.1">
+    <iosPod name="IronSourceYandexAdapter" version="4.3.8.0">
       <sources>
         <source>https://github.com/CocoaPods/Specs</source>
       </sources>

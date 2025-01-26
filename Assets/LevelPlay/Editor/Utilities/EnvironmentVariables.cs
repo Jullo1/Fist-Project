@@ -7,15 +7,14 @@ namespace Unity.Services.LevelPlay.Editor
 {
     public static class EnvironmentVariables
     {
-        const string k_LevelPlayPackageName = "com.unity.services.levelplay";
+        const string k_LevelPlayPackageName = Constants.PackageName;
         const string k_AndroidLibPath = "Runtime/Plugins/Android/IronSource.androidlib/AndroidManifest.xml";
         static readonly string k_DotUnityPackageManifestPath = Path.Combine(Constants.UnityPackageDirectoryName, k_AndroidLibPath);
         static readonly string k_UpmManifestPath = Path.Combine(FilePaths.UpmPackageDirectoryPath, k_AndroidLibPath);
 
         internal static string androidManifestPath { get; private set; }
 
-        [InitializeOnLoadMethod]
-        static void BuildManifestPath()
+        internal static void BuildManifestPath()
         {
             LevelPlayPackmanQuerier.instance.CheckIfPackageIsInstalledWithUpm(k_LevelPlayPackageName, isInstalled =>
             {

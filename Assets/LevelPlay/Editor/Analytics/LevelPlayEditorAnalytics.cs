@@ -15,12 +15,6 @@ namespace Unity.Services.LevelPlay.Editor
         private readonly Queue<QueuedEvent> m_EventsQueue = new Queue<QueuedEvent>();
         private bool m_ServicesCoreIsReady;
 
-        [InitializeOnLoadMethod]
-        static void InitializeOnLoad()
-        {
-            EditorServices.Instance.EditorAnalyticsService.Initialize();
-        }
-
         public void Initialize()
         {
             LevelPlayPackmanQuerier.instance.CheckIfPackageIsInstalledWithUpm(k_ServicesCorePackageName, coreIsInstalled =>

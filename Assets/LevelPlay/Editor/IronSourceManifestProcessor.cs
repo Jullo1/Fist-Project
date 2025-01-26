@@ -92,7 +92,10 @@ public class IronSourceManifestProcessor : IPreprocessBuild
                 }
             }
 
-            m_AndroidManifestPath ??= BuildManifest();
+            if (m_AndroidManifestPath == null)
+            {
+                m_AndroidManifestPath = BuildManifest();
+            }
 
             elemManifest.Save(m_AndroidManifestPath);
         }
@@ -162,7 +165,10 @@ public class IronSourceManifestProcessor : IPreprocessBuild
         XDocument manifest = null;
         try
         {
-            m_AndroidManifestPath ??= BuildManifest();
+            if (m_AndroidManifestPath == null)
+            {
+                m_AndroidManifestPath = BuildManifest();
+            }
 
             manifest = XDocument.Load(m_AndroidManifestPath);
         }

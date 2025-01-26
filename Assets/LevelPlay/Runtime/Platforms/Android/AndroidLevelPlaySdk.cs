@@ -5,6 +5,7 @@ using UnityEngine;
 
 namespace com.unity3d.mediation
 {
+    [Obsolete("This class will be deprecated in version 9.0.0. Please use LevelPlaySdk instead.")]
     public class AndroidLevelPlaySdk : IUnityLevelPlayInitListener
     {
         private static AndroidJavaObject _levelPlayBridge;
@@ -47,7 +48,10 @@ namespace com.unity3d.mediation
         public static void Initialize(string appKey, string userId, LevelPlayAdFormat[] adFormats)
         {
             GetBridge().Call("setPluginData", "Unity", IronSource.pluginVersion(), IronSource.unityVersion());
-            _listener ??= new UnityLevelPlayInitListener(new AndroidLevelPlaySdk());
+            if (_listener == null)
+            {
+                _listener = new UnityLevelPlayInitListener(new AndroidLevelPlaySdk());
+            }
             GetBridge().Call("initialize", appKey, userId, GetAdFormatArray(adFormats), _listener);
         }
 

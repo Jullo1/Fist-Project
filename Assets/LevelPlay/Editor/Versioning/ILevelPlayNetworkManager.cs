@@ -20,6 +20,7 @@ namespace Unity.Services.LevelPlay.Editor
         string InstalledAdapterVersionString(Adapter adapter);
         SdkVersion InstalledSdkVersion();
         string InstalledSdkVersionString();
+        SdkVersion LatestSdkVersion();
         Task Install(Adapter adapter, AdapterVersion adapterVersion);
         Task Install(UnityPackageVersion unityPackageVersion);
         Task Install(SdkVersion sdkVersion);

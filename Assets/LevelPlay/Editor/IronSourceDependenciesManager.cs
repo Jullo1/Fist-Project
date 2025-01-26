@@ -25,8 +25,8 @@ public class IronSourceDependenciesManager : EditorWindow, IObserver<bool>
     }
 
     const string k_IntegrationManagerWindowTitle = "LevelPlay Network Manager";
-    const string k_LevelPlayPackageInstall = "com.unity.services.levelplay@${VERSION}";
-    const string k_LevelPlayPackageName = "com.unity.services.levelplay";
+    const string k_LevelPlayPackageInstall = Constants.PackageName + "@${VERSION}";
+    const string k_LevelPlayPackageName = Constants.PackageName;
     const string k_HeaderUpm = "Unity Package (Ads Mediation UPM Package)";
     const string k_HeaderUnityPackage = "Unity Package (Unity Plugin)";
     const string k_HeaderUpmLocal = "Unity Package (Ads Mediation UPM Package) - Local";
@@ -192,8 +192,13 @@ public class IronSourceDependenciesManager : EditorWindow, IObserver<bool>
     MessageDisplayComponent.ViewModel GetMessageDisplayComponentViewModel()
     {
         var installedSdkVersion = m_LevelPlayNetworkManager.InstalledSdkVersion();
+        var latestSdkVersion = m_LevelPlayNetworkManager.LatestSdkVersion();
         var message = string.Empty;
-        if (installedSdkVersion != null)
+        if (latestSdkVersion != null && installedSdkVersion != null && installedSdkVersion.Version != latestSdkVersion.Version)
+        {
+            message = m_LevelPlayNetworkManager.IronSourceSdk.UpdateMessage;
+        }
+        else if (installedSdkVersion != null)
         {
             message = installedSdkVersion.Message;
         }

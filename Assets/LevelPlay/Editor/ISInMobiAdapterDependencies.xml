@@ -1,14 +1,11 @@
 <dependencies>
-  <unityversion>4.3.31.0</unityversion>
+  <unityversion>4.3.32.0</unityversion>
   <androidPackages>
-    <androidPackage spec="com.ironsource.adapters:inmobiadapter:4.3.27">
-      <repositories>
-        <repository>https://android-sdk.is.com/</repository>
-      </repositories>
+    <androidPackage spec="com.unity3d.ads-mediation:inmobi-adapter:4.3.28">
     </androidPackage>
   </androidPackages>
   <androidPackages>
-    <androidPackage spec="com.inmobi.monetization:inmobi-ads-kotlin:10.7.8">
+    <androidPackage spec="com.inmobi.monetization:inmobi-ads-kotlin:10.8.0">
       <repositories>
         <repository>https://repo.maven.apache.org/maven2/</repository>
       </repositories>
@@ -22,7 +19,7 @@
     </androidPackage>
   </androidPackages>
   <iosPods>
-    <iosPod name="IronSourceInMobiAdapter" version="4.3.25.0">
+    <iosPod name="IronSourceInMobiAdapter" version="4.3.26.0">
       <sources>
         <source>https://github.com/CocoaPods/Specs</source>
       </sources>

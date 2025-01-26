@@ -7,6 +7,7 @@
 
 #import "LPMInterstitialAdCallbacksWrapper.h"
 #import "LPMUtilities.h"
+#import "LPMInitializer.h"
 
 @implementation LPMInterstitialAdCallbacksWrapper
 
@@ -67,6 +68,9 @@ void LPMInterstitialAdDelegateDestroy(void *delegateRef) {
 }
 
 - (void)didDisplayAdWithAdInfo:(LPMAdInfo *)adInfo {
+    if ([LPMInitializer.sharedInstance isUnityPauseGame]) {
+        UnityPause(1);
+    }
     NSString *jsonString = [LPMUtilities serializeAdInfoToJSON:adInfo];
     const char *adInfoString = [jsonString UTF8String];
     if (self.displayed) {
@@ -94,6 +98,9 @@ void LPMInterstitialAdDelegateDestroy(void *delegateRef) {
 }
 
 - (void)didCloseAdWithAdInfo:(LPMAdInfo *)adInfo {
+    if ([LPMInitializer.sharedInstance isUnityPauseGame]) {
+        UnityPause(0);
+    }
     NSString *jsonString = [LPMUtilities serializeAdInfoToJSON:adInfo];
     const char *adInfoString = [jsonString UTF8String];
     if (self.closed) {

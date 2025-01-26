@@ -22,7 +22,7 @@ namespace com.unity3d.mediation
         public IosBannerAdListener(iOSBannerAd bannerAd) : base(true)
         {
             NativePtr = LPMBannerAdViewDelegateCreate(bannerAd.NativePtr, _kLoadSuccessCallback, _kFailedToLoad, _kClicked, _kDisplayed, _kDisplayFailed, _kExpanded, _kCollapsed, _kLeftApp);
-           _bannerAd = bannerAd;
+            _bannerAd = bannerAd;
         }
 
         public override void Dispose()
@@ -44,7 +44,7 @@ namespace com.unity3d.mediation
 
 
         // Events from native
-        delegate void DidLoadAdWithAdInfo(IntPtr bannerPtr ,string adInfoJson);
+        delegate void DidLoadAdWithAdInfo(IntPtr bannerPtr , string adInfoJson);
 
         delegate void DidFailToLoadAdWithAdUnitId(IntPtr bannerPtr, string errorPtr);
 
@@ -52,7 +52,7 @@ namespace com.unity3d.mediation
 
         delegate void DidDisplayWithAdInfo(IntPtr bannerPtr, string adInfoJson);
 
-        delegate void DidFailToDisplayWithAdInfo(IntPtr bannerPtr, string adInfoJson, IntPtr errorPtr);
+        delegate void DidFailToDisplayWithAdInfo(IntPtr bannerPtr, string adInfoJson, string errorPtr);
 
         delegate void DidExpandAdWithAdInfo(IntPtr bannerPtr, string adInfoJson);
 
@@ -61,7 +61,7 @@ namespace com.unity3d.mediation
         delegate void DidLeaveAppWithAdInfo(IntPtr bannerPtr, string adInfoJson);
 
         [MonoPInvokeCallback(typeof(DidLoadAdWithAdInfo))]
-        static void LoadSuccess(IntPtr ptr ,string adInfoJson)
+        static void LoadSuccess(IntPtr ptr , string adInfoJson)
         {
             var bannerAd = Get<iOSBannerAd>(ptr);
             var adInfo = new LevelPlayAdInfo(adInfoJson);
@@ -72,9 +72,8 @@ namespace com.unity3d.mediation
         static void LoadFailed(IntPtr ptr, string errorPtr)
         {
             var bannerAd = Get<iOSBannerAd>(ptr);
-            bannerAd?.InvokeFailedLoadEvent( new LevelPlayAdError(errorPtr));
+            bannerAd?.InvokeFailedLoadEvent(new LevelPlayAdError(errorPtr));
         }
-
 
         [MonoPInvokeCallback(typeof(DidClickWithAdInfo))]
         static void Clicked(IntPtr ptr, string adInfoJson)
@@ -91,10 +90,10 @@ namespace com.unity3d.mediation
         }
 
         [MonoPInvokeCallback(typeof(DidFailToDisplayWithAdInfo))]
-        static void DisplayFailed(IntPtr ptr, string adInfoJson, IntPtr errorPtr)
+        static void DisplayFailed(IntPtr ptr, string adInfoJson, string errorPtr)
         {
             var bannerAd = Get<iOSBannerAd>(ptr);
-            bannerAd?.InvokeFailedDisplayEvent(new LevelPlayAdInfo(adInfoJson), new LevelPlayAdError(errorPtr.ToString()));
+            bannerAd?.InvokeFailedDisplayEvent(new LevelPlayAdInfo(adInfoJson), new LevelPlayAdError(errorPtr));
         }
 
         [MonoPInvokeCallback(typeof(DidExpandAdWithAdInfo))]

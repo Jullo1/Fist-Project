@@ -6,6 +6,7 @@ using System.Linq;
 
 #pragma warning disable 0618
 
+[Obsolete("This event will be removed in version 9.0.0. Please use ILevelPlayInterstitialAd instead.")]
 /// <summary>
 /// Access point to LevelPlay's interstitial events
 /// </summary>
@@ -13,36 +14,44 @@ public class IronSourceInterstitialEvents : MonoBehaviour
 {
 #if UNITY_ANDROID
     #pragma warning disable CS0067
+
+    [Obsolete("This event will be removed in version 9.0.0. Please use ILevelPlayInterstitialAd.OnAdLoaded instead.")]
     /// <summary>
     /// Event triggered when an interstitial ad is ready
     /// </summary>
     public static event Action<IronSourceAdInfo> onAdReadyEvent;
 
+    [Obsolete("This event will be removed in version 9.0.0. Please use ILevelPlayInterstitialAd.OnAdLoadFailed instead.")]
     /// <summary>
     /// Event triggered when an interstitial ad fails to load
     /// </summary>
     public static event Action<IronSourceError> onAdLoadFailedEvent;
 
+    [Obsolete("This event will be removed in version 9.0.0. Please use ILevelPlayInterstitialAd.OnAdDisplayed instead.")]
     /// <summary>
     /// Event triggered when an interstitial ad is opened
     /// </summary>
     public static event Action<IronSourceAdInfo> onAdOpenedEvent;
 
+    [Obsolete("This event will be removed in version 9.0.0. Please use ILevelPlayInterstitialAd.OnAdClosed instead.")]
     /// <summary>
     /// Event triggered when an interstitial ad is closed
     /// </summary>
     public static event Action<IronSourceAdInfo> onAdClosedEvent;
 
+    [Obsolete("This event will be removed in version 9.0.0.")]
     /// <summary>
     /// Event triggered when an interstitial ad showed successfully
     /// </summary>
     public static event Action<IronSourceAdInfo> onAdShowSucceededEvent;
 
+    [Obsolete("This event will be removed in version 9.0.0. Please use ILevelPlayInterstitialAd.OnAdDisplayFailed instead.")]
     /// <summary>
     /// Event triggered when an interstitial ad failed to show
     /// </summary>
     public static event Action<IronSourceError, IronSourceAdInfo> onAdShowFailedEvent;
 
+    [Obsolete("This event will be removed in version 9.0.0. Please use ILevelPlayInterstitialAd.OnAdClicked instead.")]
     /// <summary>
     /// Event triggered when an interstitial ad is clicked
     /// </summary>

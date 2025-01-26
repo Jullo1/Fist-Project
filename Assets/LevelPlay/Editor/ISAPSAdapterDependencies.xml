@@ -1,10 +1,7 @@
 <dependencies>
-  <unityversion>4.3.15.0</unityversion>
+  <unityversion>4.3.16.0</unityversion>
   <androidPackages>
-    <androidPackage spec="com.ironsource.adapters:apsadapter:4.3.14">
-      <repositories>
-        <repository>https://android-sdk.is.com/</repository>
-      </repositories>
+    <androidPackage spec="com.unity3d.ads-mediation:aps-adapter:4.3.15">
     </androidPackage>
   </androidPackages>
   <androidPackages>

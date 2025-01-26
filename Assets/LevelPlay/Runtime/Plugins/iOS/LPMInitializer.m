@@ -11,7 +11,7 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-    
+    static bool isUnityPauseGame = false;
     void UnitySendMessage(const char* obj, const char* method, const char* msg);
     
     void LPMInitialize(const char *appKey, const char *userId, const char **adFormats) {
@@ -40,6 +40,9 @@ extern "C" {
         [[LPMInitializer sharedInstance] setPluginData:type pluginVersion:version pluginFrameworkVersion:frameworkVersion];
     }
     
+    void LPMSetPauseGame(BOOL pause) {
+        isUnityPauseGame = pause;
+    }
     
 #ifdef __cplusplus
 }
@@ -85,6 +88,14 @@ extern "C" {
         [ISConfigurations getConfigurations].pluginFrameworkVersion = pluginFrameworkVersion;
     }
     NSLog(@"PLUGIN IS: %@ %@ %@", [ISConfigurations getConfigurations].plugin, [ISConfigurations getConfigurations].pluginVersion, [ISConfigurations getConfigurations].pluginFrameworkVersion);
+}
+
+- (void)LPMSetPauseGame:(BOOL)pause {
+    isUnityPauseGame = pause;
+}
+
+- (BOOL)isUnityPauseGame {
+    return isUnityPauseGame;
 }
 
 - (NSString *)serializeConfigToJSON:(LPMConfiguration *)config {

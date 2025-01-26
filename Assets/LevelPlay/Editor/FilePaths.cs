@@ -13,5 +13,7 @@ namespace Unity.Services.LevelPlay.Editor
         internal static readonly string InfoIconPath = Path.Combine("Editor", "Icons", "Info", "Info.png");
         internal static readonly string RecommendedIconPath = Path.Combine("Editor", "Icons", "Recommended", "Recommended.png");
         internal static readonly string NewIconPath = Path.Combine("Editor", "Icons", "New", "New.png");
+        internal static readonly string DotUnityPackageFootprintFilePath = Path.Combine("Assets", "LevelPlay", "Editor", "LevelPlayFootprint.txt");
+        internal static readonly string DotUnityPackageFootprintMetaFilePath = Path.Combine("Assets", "LevelPlay", "Editor", "LevelPlayFootprint.txt.meta");
     }
 }

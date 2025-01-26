@@ -1,14 +1,11 @@
 <dependencies>
-  <unityversion>4.3.26.0</unityversion>
+  <unityversion>4.3.27.0</unityversion>
   <androidPackages>
-    <androidPackage spec="com.ironsource.adapters:chartboostadapter:4.3.17">
-      <repositories>
-        <repository>https://android-sdk.is.com/</repository>
-      </repositories>
+    <androidPackage spec="com.unity3d.ads-mediation:chartboost-adapter:4.3.18">
     </androidPackage>
   </androidPackages>
   <androidPackages>
-    <androidPackage spec="com.chartboost:chartboost-sdk:9.7.0">
+    <androidPackage spec="com.chartboost:chartboost-sdk:9.8.2">
       <repositories>
         <repository>https://cboost.jfrog.io/artifactory/chartboost-ads/</repository>
       </repositories>

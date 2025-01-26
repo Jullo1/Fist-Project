@@ -35,7 +35,9 @@ namespace com.unity3d.mediation
         public LevelPlayBannerAd(string adUnitId, LevelPlayAdSize size = null, LevelPlayBannerPosition position = LevelPlayBannerPosition.BottomCenter,
                                  string placementName = null, bool displayOnLoad = true, bool respectSafeArea = false)
         {
-            size ??= LevelPlayAdSize.BANNER;
+            if (size == null) {
+                size = LevelPlayAdSize.BANNER;
+            }
 #if UNITY_ANDROID && !UNITY_EDITOR
             _bannerAd = new AndroidBannerAd(adUnitId, size, position, placementName, displayOnLoad, respectSafeArea);
 #elif UNITY_IOS && !UNITY_EDITOR

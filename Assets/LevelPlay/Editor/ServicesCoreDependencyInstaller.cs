@@ -9,8 +9,7 @@ namespace Unity.Services.LevelPlay.Editor
     {
         const string k_CorePackageName = "com.unity.services.core";
 
-        [InitializeOnLoadMethod]
-        static void InstallServicesCoreIfNotFound()
+        internal static void InstallServicesCoreIfNotFound()
         {
             if (Application.isBatchMode)
             {
@@ -40,4 +39,3 @@ namespace Unity.Services.LevelPlay.Editor
     }
 }
 #endif
-

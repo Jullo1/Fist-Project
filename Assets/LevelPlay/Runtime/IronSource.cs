@@ -324,6 +324,7 @@ public class IronSource : IronSourceIAgent
 
     //******************* Interstitial API *******************//
 
+    [Obsolete("This method will be removed in version 9.0.0. Please use the LevelPlayInterstitialAd.LoadAd() method instead.")]
     /// <summary>
     /// Load an interstitial video
     /// </summary>
@@ -332,6 +333,7 @@ public class IronSource : IronSourceIAgent
         _platformAgent.loadInterstitial();
     }
 
+    [Obsolete("This method will be removed in version 9.0.0. Please use the LevelPlayInterstitialAd.ShowAd() method instead.")]
     /// <summary>
     /// Show an interstitial video
     /// </summary>
@@ -340,6 +342,7 @@ public class IronSource : IronSourceIAgent
         _platformAgent.showInterstitial();
     }
 
+    [Obsolete("This method will be removed in version 9.0.0. Please use the LevelPlayInterstitialAd.ShowAd(string placementName) method instead.")]
     /// <summary>
     /// Show an interstitial video for a specific placement.
     /// </summary>
@@ -349,6 +352,7 @@ public class IronSource : IronSourceIAgent
         _platformAgent.showInterstitial(placementName);
     }
 
+    [Obsolete("This method will be removed in version 9.0.0. Please use the LevelPlayInterstitialAd.IsAdReady() method instead.")]
     /// <summary>
     /// Determines if an interstitial video is ready.
     /// </summary>
@@ -358,6 +362,7 @@ public class IronSource : IronSourceIAgent
         return _platformAgent.isInterstitialReady();
     }
 
+    [Obsolete("This method will be removed in version 9.0.0. Please use the LevelPlayInterstitialAd.IsPlacementCapped(string placementName) method instead.")]
     /// <summary>
     /// Determines if an interstitial placement is capped.
     /// </summary>

@@ -20,16 +20,6 @@
 #define BANNER_POSITION_TOP 1
 #define BANNER_POSITION_BOTTOM 2
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-    void UnityPause(int pause);
-    extern void UnitySendMessage( const char *className, const char *methodName, const char *param );
-    
-#ifdef __cplusplus
-}
-#endif
-
 @interface iOSBridge ()
 {
     ISBannerView* _bannerView;
