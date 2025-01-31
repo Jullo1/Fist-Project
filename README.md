@@ -1,1 +1,1 @@
-Quick preview of the game here: https://julianlerej.com/fist
+Play it here: https://julianlerej.com/fist
