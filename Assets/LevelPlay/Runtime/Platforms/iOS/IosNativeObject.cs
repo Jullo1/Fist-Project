@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Concurrent;
-using System.Runtime.InteropServices;
 using UnityEngine;
 
 namespace com.unity3d.mediation
 {
+    [Obsolete("This class will be made private in version 9.0.0.")]
     public abstract class IosNativeObject : IDisposable
     {
         static ConcurrentDictionary<IntPtr, IosNativeObject> s_Objects = new ConcurrentDictionary<IntPtr, IosNativeObject>();
@@ -55,6 +55,5 @@ namespace com.unity3d.mediation
             Debug.LogErrorFormat("LevelPlay SDK: {0}: Instance of type {1} is disposed. Please create a new instance in order to call any method.", message, GetType().FullName);
             return true;
         }
-
     }
 }

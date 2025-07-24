@@ -1,0 +1,1 @@
+C:\Users\Julian\Documents\Projects\Unity\Fist-Project\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\cxx\RelWithDebInfo\552pj274\obj\arm64-v8a

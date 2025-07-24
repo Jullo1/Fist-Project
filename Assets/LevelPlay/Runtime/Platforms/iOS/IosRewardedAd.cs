@@ -1,20 +1,24 @@
 #if UNITY_IOS && !UNITY_EDITOR
 using System;
 using System.Runtime.InteropServices;
+using com.unity3d.mediation;
 
-namespace com.unity3d.mediation
+#pragma warning disable 0618
+namespace Unity.Services.LevelPlay
 {
     class IosRewardedAd : IosNativeObject, IPlatformRewardedAd
     {
-        public event Action<LevelPlayAdInfo> OnAdLoaded;
-        public event Action<LevelPlayAdError> OnAdLoadFailed;
-        public event Action<LevelPlayAdInfo> OnAdDisplayed;
-        public event Action<LevelPlayAdDisplayInfoError> OnAdDisplayFailed;
-        public event Action<LevelPlayAdInfo, LevelPlayReward> OnAdRewarded;
-        public event Action<LevelPlayAdInfo> OnAdClicked;
-        public event Action<LevelPlayAdInfo> OnAdClosed;
-        public event Action<LevelPlayAdInfo> OnAdInfoChanged;
+        public event Action<com.unity3d.mediation.LevelPlayAdInfo> OnAdLoaded;
+        public event Action<com.unity3d.mediation.LevelPlayAdError> OnAdLoadFailed;
+        public event Action<com.unity3d.mediation.LevelPlayAdInfo> OnAdDisplayed;
+        public event Action<com.unity3d.mediation.LevelPlayAdDisplayInfoError> OnAdDisplayFailed;
+        public event Action<com.unity3d.mediation.LevelPlayAdInfo, com.unity3d.mediation.LevelPlayReward> OnAdRewarded;
+        public event Action<com.unity3d.mediation.LevelPlayAdInfo> OnAdClicked;
+        public event Action<com.unity3d.mediation.LevelPlayAdInfo> OnAdClosed;
+        public event Action<com.unity3d.mediation.LevelPlayAdInfo> OnAdInfoChanged;
+
         public string AdUnitId { get; }
+        public string AdId => GetAdId();
 
         IosRewardedAdListener m_RewardedAdListener;
 
@@ -22,6 +26,14 @@ namespace com.unity3d.mediation
         {
             AdUnitId = adUnitId;
             NativePtr = RewardedAdCreate(adUnitId);
+            m_RewardedAdListener = new IosRewardedAdListener(this);
+            RewardedAdSetDelegate(NativePtr, m_RewardedAdListener.NativePtr);
+        }
+
+        public IosRewardedAd(string adUnitId, Config config) : base(true)
+        {
+            AdUnitId = adUnitId;
+            NativePtr = RewardedAdCreate(adUnitId, config.IosConfig);
             m_RewardedAdListener = new IosRewardedAdListener(this);
             RewardedAdSetDelegate(NativePtr, m_RewardedAdListener.NativePtr);
         }
@@ -58,43 +70,49 @@ namespace com.unity3d.mediation
 
         internal void InvokeLoadedEvent(string adInfo)
         {
-            ThreadUtil.Post(_ => OnAdLoaded?.Invoke(new LevelPlayAdInfo(adInfo)));
+            ThreadUtil.Post(_ => OnAdLoaded?.Invoke(new com.unity3d.mediation.LevelPlayAdInfo(adInfo)));
         }
 
         internal void InvokeFailedLoadEvent(string error)
         {
-            ThreadUtil.Post(_ => OnAdLoadFailed?.Invoke(new LevelPlayAdError(error)));
+            ThreadUtil.Post(_ => OnAdLoadFailed?.Invoke(new com.unity3d.mediation.LevelPlayAdError(error)));
         }
 
         internal void InvokeDisplayedEvent(string adInfo)
         {
-            ThreadUtil.Post(_ => OnAdDisplayed?.Invoke(new LevelPlayAdInfo(adInfo)));
+            ThreadUtil.Post(_ => OnAdDisplayed?.Invoke(new com.unity3d.mediation.LevelPlayAdInfo(adInfo)));
         }
 
         internal void InvokeFailedDisplayEvent(string adInfo, string error)
         {
-            var errorInfo = new LevelPlayAdDisplayInfoError(new LevelPlayAdInfo(adInfo), new LevelPlayAdError(error));
+            var errorInfo = new com.unity3d.mediation.LevelPlayAdDisplayInfoError(new LevelPlayAdInfo(adInfo), new LevelPlayAdError(error));
             ThreadUtil.Post(_ => OnAdDisplayFailed?.Invoke(errorInfo));
         }
 
         internal void InvokeRewardedEvent(string adInfo, string rewardName, int rewardAmount)
         {
-            ThreadUtil.Post(_ => OnAdRewarded?.Invoke(new LevelPlayAdInfo(adInfo), new LevelPlayReward(rewardName, rewardAmount)));
+            ThreadUtil.Post(_ => OnAdRewarded?.Invoke(new com.unity3d.mediation.LevelPlayAdInfo(adInfo), new com.unity3d.mediation.LevelPlayReward(rewardName, rewardAmount)));
         }
 
         internal void InvokeClickedEvent(string adInfo)
         {
-            ThreadUtil.Post(_ => OnAdClicked?.Invoke(new LevelPlayAdInfo(adInfo)));
+            ThreadUtil.Post(_ => OnAdClicked?.Invoke(new com.unity3d.mediation.LevelPlayAdInfo(adInfo)));
         }
 
         internal void InvokeClosedEvent(string adInfo)
         {
-            ThreadUtil.Post(_ => OnAdClosed?.Invoke(new LevelPlayAdInfo(adInfo)));
+            ThreadUtil.Post(_ => OnAdClosed?.Invoke(new com.unity3d.mediation.LevelPlayAdInfo(adInfo)));
         }
 
         internal void InvokeOnAdInfoChangedEvent(string adInfo)
         {
-            ThreadUtil.Post(_ => OnAdInfoChanged?.Invoke(new LevelPlayAdInfo(adInfo)));
+            ThreadUtil.Post(_ => OnAdInfoChanged?.Invoke(new com.unity3d.mediation.LevelPlayAdInfo(adInfo)));
+        }
+
+        private string GetAdId()
+        {
+            if (CheckDisposedAndLogError("Cannot get Rewarded ad Id")) return "";
+            return RewardedAdId(NativePtr);
         }
 
         ~IosRewardedAd()
@@ -104,6 +122,9 @@ namespace com.unity3d.mediation
 
         [DllImport("__Internal", EntryPoint = "LPMRewardedAdCreate")]
         static extern IntPtr RewardedAdCreate(string adUnitId);
+
+        [DllImport("__Internal", EntryPoint = "LPMRewardedAdCreateWithConfig")]
+        static extern IntPtr RewardedAdCreate(string adUnitId, IntPtr config);
 
         [DllImport("__Internal", EntryPoint = "LPMRewardedAdSetDelegate")]
         static extern void RewardedAdSetDelegate(IntPtr rewardedAd, IntPtr rewardedAdListener);
@@ -119,6 +140,45 @@ namespace com.unity3d.mediation
 
         [DllImport("__Internal", EntryPoint = "LPMRewardedAdIsPlacementCapped")]
         static extern bool RewardedAdIsPlacementCapped(string placementName);
+
+        [DllImport("__Internal", EntryPoint = "LPMRewardedAdAdId")]
+        static extern string RewardedAdId(IntPtr rewardedAd);
+
+        internal class Config : IPlatformRewardedAd.IConfig
+        {
+            internal IntPtr IosConfig { get; }
+
+            private Config(IntPtr iosConfig)
+            {
+                IosConfig = iosConfig;
+            }
+
+            internal class Builder : IPlatformRewardedAd.IConfigBuilder
+            {
+                private readonly IntPtr m_Builder = RewardedAdCreateConfigBuilder();
+
+                public void SetBidFloor(double bidFloor)
+                {
+                    RewardedConfigBuilderSetBidFloor(m_Builder, bidFloor);
+                }
+
+                public IPlatformRewardedAd.IConfig Build()
+                {
+                    var iosConfig = RewardedConfigBuilderBuild(m_Builder);
+                    return new Config(iosConfig);
+                }
+
+                [DllImport("__Internal", EntryPoint = "LPMRewardedAdCreateConfigBuilder")]
+                static extern IntPtr RewardedAdCreateConfigBuilder();
+
+                [DllImport("__Internal", EntryPoint = "LPMRewardedAdConfigBuilderSetBidFloor")]
+                static extern IntPtr RewardedConfigBuilderSetBidFloor(IntPtr builder, double bidFloor);
+
+                [DllImport("__Internal", EntryPoint = "LPMRewardedAdConfigBuilderBuild")]
+                static extern IntPtr RewardedConfigBuilderBuild(IntPtr builder);
+            }
+        }
     }
 }
+#pragma warning restore 0618
 #endif

@@ -3,8 +3,21 @@ using System.Collections.Generic;
 using System.Globalization;
 using JetBrains.Annotations;
 using UnityEngine;
+using com.unity3d.mediation;
 
 namespace com.unity3d.mediation
+{
+    /// <summary>
+    /// Contains detailed information about a LevelPlay advertisement, including its dimensions, placement, and performance metrics.
+    /// </summary>
+    [Obsolete("The namespace com.unity3d.mediation is deprecated. Use LevelPlayAdInfo under the new namespace Unity.Services.LevelPlay.")]
+    public class LevelPlayAdInfo : Unity.Services.LevelPlay.LevelPlayAdInfo
+    {
+        internal LevelPlayAdInfo(string json) : base(json) {}
+    }
+}
+
+namespace Unity.Services.LevelPlay
 {
     /// <summary>
     /// Contains detailed information about a LevelPlay advertisement, including its dimensions, placement, and performance metrics.
@@ -12,6 +25,7 @@ namespace com.unity3d.mediation
     public class LevelPlayAdInfo
     {
         // Constants for JSON keys
+        const string AdIdKey = "adId";
         const string AdUnitIdKey = "adUnitId";
         const string AdUnitNameKey = "adUnitName";
         const string AdSizeKey = "adSize";
@@ -63,6 +77,7 @@ namespace com.unity3d.mediation
         [Obsolete("encryptedCPM will be replaced by EncryptedCPM in version 9.0.0.")]
         public readonly string encryptedCPM;
 
+        public readonly string AdId;
         public readonly string AdUnitId;
         public readonly string AdUnitName;
         [CanBeNull] public readonly LevelPlayAdSize AdSize;
@@ -92,8 +107,14 @@ namespace com.unity3d.mediation
             try
             {
                 CultureInfo invCulture = CultureInfo.InvariantCulture;
+#pragma warning disable 0618
                 Dictionary<string, object> jsonDic =
                     IronSourceJSON.Json.Deserialize(json) as Dictionary<string, object>;
+                if (jsonDic.TryGetValue(AdIdKey, out obj) && obj != null)
+                {
+                    AdId = obj.ToString();
+                }
+
                 if (jsonDic.TryGetValue(AdUnitIdKey, out obj) && obj != null)
                 {
                     adUnitId = obj.ToString();
@@ -129,7 +150,7 @@ namespace com.unity3d.mediation
                     auctionId = obj.ToString();
                     AuctionId = obj.ToString();
                 }
-                
+
                 if (jsonDic.TryGetValue(IronSourceConstants.k_ImpressionDataKeyCreativeID, out obj) && obj != null)
                 {
                     CreativeId = obj.ToString();
@@ -228,7 +249,8 @@ namespace com.unity3d.mediation
                         height = Int32.Parse(obj.ToString());
                     }
 
-                    return new LevelPlayAdSize(description, width, height);
+                    LevelPlayAdSize adSize = GetAdSize(description, width, height);
+                    return adSize;
                 }
                 catch (Exception e)
                 {
@@ -239,9 +261,31 @@ namespace com.unity3d.mediation
             return null;
         }
 
+        static LevelPlayAdSize GetAdSize(string description, int width = 0, int height = 0)
+        {
+            switch (description)
+            {
+                case "BANNER":
+                    return LevelPlayAdSize.BANNER;
+                case "LARGE":
+                    return LevelPlayAdSize.LARGE;
+                case "MEDIUM_RECTANGLE":
+                    return LevelPlayAdSize.MEDIUM_RECTANGLE;
+                case "CUSTOM":
+                    return LevelPlayAdSize.CreateCustomBannerSize(width, height);
+                case "LEADERBOARD":
+                    return LevelPlayAdSize.LEADERBOARD;
+                case "ADAPTIVE":
+                    return LevelPlayAdSize.CreateAdaptiveAdSize(width);
+                default:
+                    return LevelPlayAdSize.BANNER;
+            }
+        }
+
         public override string ToString()
         {
-            return $"adUnitId: {adUnitId}, adUnitName: {adUnitName}, adSize: {adSize}, adFormat: {adFormat}, placementName: {placementName}, auctionId: {auctionId}, creativeId: {CreativeId}, country: {country}, ab: {ab}, segmentName: {segmentName}, adNetwork: {adNetwork}, instanceName: {instanceName}, instanceId: {instanceId}, revenue: {revenue}, precision: {precision}, encryptedCPM: {encryptedCPM}";
+            return $"adId: {AdId}, adUnitId: {adUnitId}, adUnitName: {adUnitName}, adSize: {adSize}, adFormat: {adFormat}, placementName: {placementName}, auctionId: {auctionId}, creativeId: {CreativeId}, country: {country}, ab: {ab}, segmentName: {segmentName}, adNetwork: {adNetwork}, instanceName: {instanceName}, instanceId: {instanceId}, revenue: {revenue}, precision: {precision}, encryptedCPM: {encryptedCPM}";
         }
+#pragma warning restore 0618
     }
 }

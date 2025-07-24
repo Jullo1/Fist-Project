@@ -3,9 +3,6 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Collections;
 using System;
-#if UNITY_ANDROID
-using Google.Play.Review;
-#endif
 using Unity.Services.Core;
 using Unity.Services.Analytics;
 
@@ -37,10 +34,6 @@ public class MainMenu : MonoBehaviour
     Text coinsOutput;
     EconomySystem economySystem;
     public GameObject lootGoldCoin;
-#if UNITY_ANDROID
-    ReviewManager reviewManager;
-    PlayReviewInfo playReviewInfo;
-#endif
     bool loadSceneSent;
     bool loadingRewardedAd;
 
@@ -125,7 +118,7 @@ public class MainMenu : MonoBehaviour
         {
             if (PlayerPrefs.GetInt("reviewCount") >= 5 && PlayerPrefs.GetInt("optedOutReview") < 5)
             {
-                StartCoroutine(ReviewTab());
+                //StartCoroutine(ReviewTab());
                 if (PlayerPrefs.GetInt("optedOutReview") < 3) PlayerPrefs.SetInt("reviewCount", 0);
                 else PlayerPrefs.SetInt("reviewCount", -30);  //after showing review tab 3 times, it will appear again after a long time
 
@@ -251,7 +244,7 @@ public class MainMenu : MonoBehaviour
 
     public void LaunchReviewTab()
     {
-        StartCoroutine(ReviewTab());
+        //StartCoroutine(ReviewTab());
     }
 #endif
 
@@ -275,7 +268,7 @@ public class MainMenu : MonoBehaviour
     }
 #endif
 
-#if UNITY_ANDROID
+/*#if UNITY_ANDROID
     IEnumerator ReviewTab()
     {
         yield return new WaitForSeconds(0.5f);
@@ -301,7 +294,7 @@ public class MainMenu : MonoBehaviour
         // reviewed or not, or even whether the review dialog was shown. Thus, no
         // matter the result, we continue our app flow.
 }
-#endif
+#endif*/
 
     void RebuildSaveData()
     {

@@ -16,7 +16,7 @@ public class ISAdQualityEditorScript : ScriptableObject
 
 #if UNITY_EDITOR
 
-	static string currentModuleVersion = "7.19.2";
+	static string currentModuleVersion = "7.26.0";
 
 #endif
 }

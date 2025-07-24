@@ -19,13 +19,7 @@ dependencyResolutionManagement {
 // Android Resolver Repos Start
         def unityProjectPath = $/file:///**DIR_UNITYPROJECT**/$.replace("\\", "/")
         maven {
-            url (unityProjectPath + "/Assets/GeneratedLocalRepo/GooglePlayGames/com.google.play.games/Editor/m2repository") // Assets/GooglePlayGames/com.google.play.games/Editor/GooglePlayGamesPluginDependencies.xml:11
-        }
-        maven {
-            url "https://android-sdk.is.com/" // Assets/IronSourceAdQuality/Editor/IronSourceAdQualityDependencies.xml:9, Assets/IronSourceAdQuality/Editor/IronSourceAdQualityDependencies.xml:17, Assets/LevelPlay/Editor/ISHyprMXAdapterDependencies.xml:15, Assets/LevelPlay/Editor/ISMaioAdapterDependencies.xml:8, Assets/LevelPlay/Editor/ISMyTargetAdapterDependencies.xml:8, Assets/LevelPlay/Editor/ISSuperAwesomeAdapterDependencies.xml:15
-        }
-        maven {
-            url "https://maven.google.com/" // Assets/LevelPlay/Editor/IronSourceSDKDependencies.xml:12, Assets/LevelPlay/Editor/ISAdMobAdapterDependencies.xml:8, Assets/LevelPlay/Editor/ISAppLovinAdapterDependencies.xml:12, Assets/LevelPlay/Editor/ISAPSAdapterDependencies.xml:12, Assets/LevelPlay/Editor/ISFacebookAdapterDependencies.xml:8, Assets/LevelPlay/Editor/ISInMobiAdapterDependencies.xml:19, Assets/LevelPlay/Editor/ISMintegralAdapterDependencies.xml:15, Assets/LevelPlay/Editor/ISMyTargetAdapterDependencies.xml:15, Assets/LevelPlay/Editor/ISMyTargetAdapterDependencies.xml:27, Assets/LevelPlay/Editor/ISUnityAdsAdapterDependencies.xml:12
+            url "https://maven.google.com/" // Assets/LevelPlay/Editor/IronSourceSDKDependencies.xml:12, Assets/LevelPlay/Editor/ISAdMobAdapterDependencies.xml:8, Assets/LevelPlay/Editor/ISAppLovinAdapterDependencies.xml:12, Assets/LevelPlay/Editor/ISInMobiAdapterDependencies.xml:16, Assets/LevelPlay/Editor/ISMintegralAdapterDependencies.xml:15, Assets/LevelPlay/Editor/ISUnityAdsAdapterDependencies.xml:12
         }
         maven {
             url "https://artifactory.bidmachine.io/bidmachine" // Assets/LevelPlay/Editor/ISBidMachineAdapterDependencies.xml:12
@@ -34,13 +28,7 @@ dependencyResolutionManagement {
             url "https://cboost.jfrog.io/artifactory/chartboost-ads/" // Assets/LevelPlay/Editor/ISChartboostAdapterDependencies.xml:12
         }
         maven {
-            url "https://repo.maven.apache.org/maven2/" // Assets/LevelPlay/Editor/ISFyberAdapterDependencies.xml:8, Assets/LevelPlay/Editor/ISInMobiAdapterDependencies.xml:12
-        }
-        maven {
-            url "https://repo1.maven.org/maven2/" // Assets/LevelPlay/Editor/ISHyprMXAdapterDependencies.xml:8
-        }
-        maven {
-            url "https://imobile-maio.github.io/maven" // Assets/LevelPlay/Editor/ISMaioAdapterDependencies.xml:15
+            url "https://imobile-maio.github.io/maven" // Assets/LevelPlay/Editor/ISMaioAdapterDependencies.xml:12
         }
         maven {
             url "https://dl-maven-android.mintegral.com/repository/mbridge_android_sdk_oversea/" // Assets/LevelPlay/Editor/ISMintegralAdapterDependencies.xml:8
@@ -59,9 +47,6 @@ dependencyResolutionManagement {
         }
         maven {
             url "https://verve.jfrog.io/artifactory/verve-gradle-release" // Assets/LevelPlay/Editor/ISVerveAdapterDependencies.xml:12
-        }
-        maven {
-            url "https://jitpack.io/" // Assets/LevelPlay/Editor/ISVungleAdapterDependencies.xml:8
         }
         mavenLocal()
 // Android Resolver Repos End

@@ -6,13 +6,14 @@ using Unity.Services.LevelPlay;
 /// <summary>
 /// Defines the information relative to an ad
 /// </summary>
+[Obsolete("Use LevelPlayAdInfo instead.")]
 public class IronSourceAdInfo
 {
     /// <summary>
     /// Auction ID.
     /// </summary>
     public readonly string auctionId;
-    
+
     /// <summary>
     /// Creative ID.
     /// </summary>
