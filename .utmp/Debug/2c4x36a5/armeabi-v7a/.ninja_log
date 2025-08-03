@@ -1,0 +1,23 @@
+# ninja log v5
+11	1067	7759490741203616	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	5b799621dc6e12ef
+101	244	7759490733017326	FramePacing/CMakeFiles/swappywrapper.dir/UnitySwappyWrapper.cpp.o	48e92634aef3cb66
+89	1009	7759490740651114	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	9ec041bd48f5ba8d
+59	968	7759490740223822	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	2a7fbcd205fac3d5
+245	497	7759490735439569	C:/Users/Julian/Documents/Projects/Unity/Fist-Project/Library/PramData/AndroidApplicationController/Cache/com.Jullo.FistProject/gradle-project/unityLibrary/build/intermediates/cxx/Debug/2c4x36a5/obj/armeabi-v7a/libswappywrapper.so	b5e33982505ca138
+68	1037	7759490740950278	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	95394d803266c676
+1	959	7759490740148213	GameActivity/CMakeFiles/game.dir/UGAConfiguration.cpp.o	817d3211bd1333
+34	965	7759490740193736	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	7ffe280d0e183b6
+78	966	7759490740208763	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	cff6d1de2df6ba65
+50	1062	7759490741173533	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	b03137386bab2341
+1068	1206	7759490742630526	C:/Users/Julian/Documents/Projects/Unity/Fist-Project/Library/PramData/AndroidApplicationController/Cache/com.Jullo.FistProject/gradle-project/unityLibrary/build/intermediates/cxx/Debug/2c4x36a5/obj/armeabi-v7a/libgame.so	59cc63ad07ec81a2
+90	221	7759492072974866	FramePacing/CMakeFiles/swappywrapper.dir/UnitySwappyWrapper.cpp.o	48e92634aef3cb66
+221	398	7759492074656322	C:/Users/Julian/Documents/Projects/Unity/Fist-Project/Library/PramData/AndroidApplicationController/Cache/com.Jullo.FistProject/gradle-project/unityLibrary/build/intermediates/cxx/Debug/2c4x36a5/obj/armeabi-v7a/libswappywrapper.so	b5e33982505ca138
+14	767	7759492078400484	GameActivity/CMakeFiles/game.dir/UGAConfiguration.cpp.o	817d3211bd1333
+24	792	7759492078663934	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	2a7fbcd205fac3d5
+46	801	7759492078771654	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	cff6d1de2df6ba65
+36	803	7759492078796761	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	7ffe280d0e183b6
+79	815	7759492078923896	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	9ec041bd48f5ba8d
+56	856	7759492079328040	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	b03137386bab2341
+68	868	7759492079454440	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	95394d803266c676
+6	885	7759492079586582	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	5b799621dc6e12ef
+885	1007	7759492080830280	C:/Users/Julian/Documents/Projects/Unity/Fist-Project/Library/PramData/AndroidApplicationController/Cache/com.Jullo.FistProject/gradle-project/unityLibrary/build/intermediates/cxx/Debug/2c4x36a5/obj/armeabi-v7a/libgame.so	59cc63ad07ec81a2

@@ -3,7 +3,7 @@
     "m_SelectedProcess": {
         "deviceId": "RFCY414TBTN",
         "name": "com.Jullo.FistProject",
-        "processId": 18394,
+        "processId": 21349,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -258,6 +258,18 @@
             "deviceId": "RFCY414TBTN",
             "name": "com.Jullo.FistProject",
             "processId": 18394,
+            "exited": false
+        },
+        {
+            "deviceId": "RFCY414TBTN",
+            "name": "com.Jullo.FistProject",
+            "processId": 18427,
+            "exited": false
+        },
+        {
+            "deviceId": "RFCY414TBTN",
+            "name": "com.Jullo.FistProject",
+            "processId": 21349,
             "exited": false
         }
     ],

@@ -41,6 +41,8 @@ public class MainMenu : MonoBehaviour
     bool lockedStage;
     Color oneOpacity = new Color(0, 0, 0, 1f);
 
+    [SerializeField] GameObject gameCloseButton;
+
     async void Start()
     {
         //ads
@@ -51,6 +53,8 @@ public class MainMenu : MonoBehaviour
 #else
         string appKey = "unexpected_platform";
 #endif
+
+        if (Application.platform == RuntimePlatform.WebGLPlayer || Application.platform == RuntimePlatform.WindowsEditor) gameCloseButton.SetActive(false);
 
         menuAudio = GetComponent<AudioSource>();
         coinsOutput = GameObject.FindGameObjectWithTag("CoinOutput").GetComponent<Text>();

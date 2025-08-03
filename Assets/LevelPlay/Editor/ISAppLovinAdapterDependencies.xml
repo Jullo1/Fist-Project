@@ -1,5 +1,5 @@
 <dependencies>
-  <unityversion>4.3.60.1</unityversion>
+  <unityversion>4.3.61.0</unityversion>
   <androidPackages>
     <androidPackage spec="com.unity3d.ads-mediation:applovin-adapter:4.3.54">
     </androidPackage>
@@ -12,7 +12,7 @@
     </androidPackage>
   </androidPackages>
   <iosPods>
-    <iosPod name="IronSourceAppLovinAdapter" version="4.3.55.1">
+    <iosPod name="IronSourceAppLovinAdapter" version="4.3.56.0">
       <sources>
         <source>https://github.com/CocoaPods/Specs</source>
       </sources>

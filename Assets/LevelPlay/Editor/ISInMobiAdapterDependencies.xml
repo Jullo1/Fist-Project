@@ -1,11 +1,11 @@
 <dependencies>
-  <unityversion>4.3.38.0</unityversion>
+  <unityversion>4.3.40.0</unityversion>
   <androidPackages>
-    <androidPackage spec="com.unity3d.ads-mediation:inmobi-adapter:4.3.30">
+    <androidPackage spec="com.unity3d.ads-mediation:inmobi-adapter:4.3.32">
     </androidPackage>
   </androidPackages>
   <androidPackages>
-    <androidPackage spec="com.inmobi.monetization:inmobi-ads-kotlin:10.8.3">
+    <androidPackage spec="com.inmobi.monetization:inmobi-ads-kotlin:10.8.7">
     </androidPackage>
   </androidPackages>
   <androidPackages>

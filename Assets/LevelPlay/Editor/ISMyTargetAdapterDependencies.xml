@@ -1,5 +1,5 @@
 <dependencies>
-  <unityversion>4.3.6.0</unityversion>
+  <unityversion>4.3.7.0</unityversion>
   <androidPackages>
     <androidPackage spec="com.unity3d.ads-mediation:mytarget-adapter:4.3.1">
     </androidPackage>
@@ -9,7 +9,7 @@
     </androidPackage>
   </androidPackages>
   <iosPods>
-    <iosPod name="IronSourceMyTargetAdapter" version="4.3.5.0">
+    <iosPod name="IronSourceMyTargetAdapter" version="4.3.6.0">
       <sources>
         <source>https://github.com/CocoaPods/Specs</source>
       </sources>

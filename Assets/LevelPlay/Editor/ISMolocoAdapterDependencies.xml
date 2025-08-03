@@ -1,15 +1,15 @@
 <dependencies>
-  <unityversion>4.3.27.0</unityversion>
+  <unityversion>4.3.28.0</unityversion>
   <androidPackages>
-    <androidPackage spec="com.unity3d.ads-mediation:moloco-adapter:4.3.19">
+    <androidPackage spec="com.unity3d.ads-mediation:moloco-adapter:4.3.20">
     </androidPackage>
   </androidPackages>
   <androidPackages>
-    <androidPackage spec="com.moloco.sdk:moloco-sdk:3.11.0">
+    <androidPackage spec="com.moloco.sdk:moloco-sdk:3.12.0">
     </androidPackage>
   </androidPackages>
   <iosPods>
-    <iosPod name="IronSourceMolocoAdapter" version="4.3.21.0">
+    <iosPod name="IronSourceMolocoAdapter" version="4.3.22.0">
       <sources>
         <source>https://github.com/CocoaPods/Specs</source>
       </sources>

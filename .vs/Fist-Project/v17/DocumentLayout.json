@@ -1,12 +1,85 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\Julian\\Documents\\Projects\\Unity\\Fist-Project\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{42B1596A-B2AA-AD5F-44FC-5D1F3E6EE2B9}|Assembly-CSharp.csproj|c:\\users\\julian\\documents\\projects\\unity\\fist-project\\assets\\scripts\\mainmenu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{42B1596A-B2AA-AD5F-44FC-5D1F3E6EE2B9}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\mainmenu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{42B1596A-B2AA-AD5F-44FC-5D1F3E6EE2B9}|Assembly-CSharp.csproj|C:\\Users\\Julian\\Documents\\Projects\\Unity\\Fist-Project\\assets\\scripts\\economy\\economysystem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{42B1596A-B2AA-AD5F-44FC-5D1F3E6EE2B9}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\economy\\economysystem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{42B1596A-B2AA-AD5F-44FC-5D1F3E6EE2B9}|Assembly-CSharp.csproj|C:\\Users\\Julian\\Documents\\Projects\\Unity\\Fist-Project\\assets\\scripts\\adsmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{42B1596A-B2AA-AD5F-44FC-5D1F3E6EE2B9}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\adsmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{42B1596A-B2AA-AD5F-44FC-5D1F3E6EE2B9}|Assembly-CSharp.csproj|C:\\Users\\Julian\\Documents\\Projects\\Unity\\Fist-Project\\assets\\scripts\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{42B1596A-B2AA-AD5F-44FC-5D1F3E6EE2B9}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": []
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 3,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "GameManager.cs",
+              "DocumentMoniker": "C:\\Users\\Julian\\Documents\\Projects\\Unity\\Fist-Project\\Assets\\Scripts\\GameManager.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\GameManager.cs",
+              "ToolTip": "C:\\Users\\Julian\\Documents\\Projects\\Unity\\Fist-Project\\Assets\\Scripts\\GameManager.cs",
+              "RelativeToolTip": "Assets\\Scripts\\GameManager.cs",
+              "ViewState": "AgIAAFgAAAAAAAAAAAAvwG8AAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-25T19:34:20.815Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "AdsManager.cs",
+              "DocumentMoniker": "C:\\Users\\Julian\\Documents\\Projects\\Unity\\Fist-Project\\Assets\\Scripts\\AdsManager.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\AdsManager.cs",
+              "ToolTip": "C:\\Users\\Julian\\Documents\\Projects\\Unity\\Fist-Project\\Assets\\Scripts\\AdsManager.cs",
+              "RelativeToolTip": "Assets\\Scripts\\AdsManager.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-25T19:33:37.712Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "EconomySystem.cs",
+              "DocumentMoniker": "C:\\Users\\Julian\\Documents\\Projects\\Unity\\Fist-Project\\Assets\\Scripts\\Economy\\EconomySystem.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Economy\\EconomySystem.cs",
+              "ToolTip": "C:\\Users\\Julian\\Documents\\Projects\\Unity\\Fist-Project\\Assets\\Scripts\\Economy\\EconomySystem.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Economy\\EconomySystem.cs",
+              "ViewState": "AgIAAAQAAAAAAAAAAABBwFYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-25T19:32:14.155Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "MainMenu.cs",
+              "DocumentMoniker": "C:\\Users\\Julian\\Documents\\Projects\\Unity\\Fist-Project\\Assets\\Scripts\\MainMenu.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\MainMenu.cs",
+              "ToolTip": "C:\\Users\\Julian\\Documents\\Projects\\Unity\\Fist-Project\\Assets\\Scripts\\MainMenu.cs",
+              "RelativeToolTip": "Assets\\Scripts\\MainMenu.cs",
+              "ViewState": "AgIAACQAAAAAAAAAAAAAADgAAACbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-25T17:10:52.611Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
     }
   ]
 }
