@@ -11,20 +11,20 @@ dependencies {
     implementation 'com.amazon.android:aps-sdk:11.0.0+' // Assets/LevelPlay/Editor/ISAPSAdapterDependencies.xml:7
     implementation 'com.applovin:applovin-sdk:13.3.1' // Assets/LevelPlay/Editor/ISAppLovinAdapterDependencies.xml:12
     implementation 'com.bigossp:bigo-ads:5.4.0' // Assets/LevelPlay/Editor/ISBigoAdapterDependencies.xml:9
-    implementation 'com.chartboost:chartboost-sdk:9.9.1' // Assets/LevelPlay/Editor/ISChartboostAdapterDependencies.xml:12
+    implementation 'com.chartboost:chartboost-sdk:9.9.2' // Assets/LevelPlay/Editor/ISChartboostAdapterDependencies.xml:12
     implementation 'com.facebook.android:audience-network-sdk:6.20.0' // Assets/LevelPlay/Editor/ISFacebookAdapterDependencies.xml:5
-    implementation 'com.fyber:marketplace-sdk:8.3.7' // Assets/LevelPlay/Editor/ISFyberAdapterDependencies.xml:5
+    implementation 'com.fyber:marketplace-sdk:8.3.8' // Assets/LevelPlay/Editor/ISFyberAdapterDependencies.xml:5
     implementation 'com.google.android.gms:play-services-ads:24.4.0' // Assets/LevelPlay/Editor/ISAdMobAdapterDependencies.xml:8
     implementation 'com.google.android.gms:play-services-ads-identifier:18.1.0' // Assets/LevelPlay/Editor/IronSourceSDKDependencies.xml:12
     implementation 'com.hyprmx.android:HyprMX-SDK:6.4.3' // Assets/LevelPlay/Editor/ISHyprMXAdapterDependencies.xml:5
     implementation 'com.iabtcf:iabtcf-decoder:2.0.10' // Assets/LevelPlay/Editor/ISAPSAdapterDependencies.xml:9
-    implementation 'com.inmobi.monetization:inmobi-ads-kotlin:10.8.3' // Assets/LevelPlay/Editor/ISInMobiAdapterDependencies.xml:9
+    implementation 'com.inmobi.monetization:inmobi-ads-kotlin:10.8.7' // Assets/LevelPlay/Editor/ISInMobiAdapterDependencies.xml:9
     implementation 'com.maio:android-sdk:1.1.16@aar' // Assets/LevelPlay/Editor/ISMaioAdapterDependencies.xml:12
-    implementation 'com.mbridge.msdk.oversea:mbridge_android_sdk:16.9.81' // Assets/LevelPlay/Editor/ISMintegralAdapterDependencies.xml:8
+    implementation 'com.mbridge.msdk.oversea:mbridge_android_sdk:16.9.91' // Assets/LevelPlay/Editor/ISMintegralAdapterDependencies.xml:8
     implementation 'com.mobilefuse.sdk:mobilefuse-sdk-core:1.9.2' // Assets/LevelPlay/Editor/ISMobileFuseAdapterDependencies.xml:9
-    implementation 'com.moloco.sdk:moloco-sdk:3.11.0' // Assets/LevelPlay/Editor/ISMolocoAdapterDependencies.xml:9
+    implementation 'com.moloco.sdk:moloco-sdk:3.12.0' // Assets/LevelPlay/Editor/ISMolocoAdapterDependencies.xml:9
     implementation 'com.my.target:mytarget-sdk:5.27.2' // Assets/LevelPlay/Editor/ISMyTargetAdapterDependencies.xml:9
-    implementation 'com.pangle.global:pag-sdk:7.3.0.4' // Assets/LevelPlay/Editor/ISPangleAdapterDependencies.xml:12
+    implementation 'com.pangle.global:pag-sdk:7.3.0.5' // Assets/LevelPlay/Editor/ISPangleAdapterDependencies.xml:12
     implementation 'com.smaato.android.sdk:smaato-sdk-banner:22.7.2' // Assets/LevelPlay/Editor/ISSmaatoAdapterDependencies.xml:8
     implementation 'com.smaato.android.sdk:smaato-sdk-in-app-bidding:22.7.2' // Assets/LevelPlay/Editor/ISSmaatoAdapterDependencies.xml:23
     implementation 'com.smaato.android.sdk:smaato-sdk-interstitial:22.7.2' // Assets/LevelPlay/Editor/ISSmaatoAdapterDependencies.xml:13
@@ -35,31 +35,31 @@ dependencies {
     implementation 'com.unity3d.ads-mediation:adquality-unity-sdk-bridge:7.26.0' // Assets/IronSourceAdQuality/Editor/IronSourceAdQualityDependencies.xml:10
     implementation 'com.unity3d.ads-mediation:applovin-adapter:4.3.54' // Assets/LevelPlay/Editor/ISAppLovinAdapterDependencies.xml:5
     implementation 'com.unity3d.ads-mediation:aps-adapter:4.3.17' // Assets/LevelPlay/Editor/ISAPSAdapterDependencies.xml:5
-    implementation 'com.unity3d.ads-mediation:bidmachine-adapter:4.3.14' // Assets/LevelPlay/Editor/ISBidMachineAdapterDependencies.xml:5
+    implementation 'com.unity3d.ads-mediation:bidmachine-adapter:4.3.15' // Assets/LevelPlay/Editor/ISBidMachineAdapterDependencies.xml:5
     implementation 'com.unity3d.ads-mediation:bigo-adapter:4.3.10' // Assets/LevelPlay/Editor/ISBigoAdapterDependencies.xml:5
-    implementation 'com.unity3d.ads-mediation:chartboost-adapter:4.3.21' // Assets/LevelPlay/Editor/ISChartboostAdapterDependencies.xml:5
+    implementation 'com.unity3d.ads-mediation:chartboost-adapter:4.3.22' // Assets/LevelPlay/Editor/ISChartboostAdapterDependencies.xml:5
     implementation 'com.unity3d.ads-mediation:facebook-adapter:4.3.50' // Assets/LevelPlay/Editor/ISFacebookAdapterDependencies.xml:9
-    implementation 'com.unity3d.ads-mediation:fyber-adapter:4.3.38' // Assets/LevelPlay/Editor/ISFyberAdapterDependencies.xml:9
+    implementation 'com.unity3d.ads-mediation:fyber-adapter:4.3.39' // Assets/LevelPlay/Editor/ISFyberAdapterDependencies.xml:9
     implementation 'com.unity3d.ads-mediation:hyprmx-adapter:4.3.15' // Assets/LevelPlay/Editor/ISHyprMXAdapterDependencies.xml:9
-    implementation 'com.unity3d.ads-mediation:inmobi-adapter:4.3.30' // Assets/LevelPlay/Editor/ISInMobiAdapterDependencies.xml:5
+    implementation 'com.unity3d.ads-mediation:inmobi-adapter:4.3.32' // Assets/LevelPlay/Editor/ISInMobiAdapterDependencies.xml:5
     implementation 'com.unity3d.ads-mediation:maio-adapter:4.1.11' // Assets/LevelPlay/Editor/ISMaioAdapterDependencies.xml:5
     implementation 'com.unity3d.ads-mediation:mediation-sdk:8.10.0' // Assets/LevelPlay/Editor/IronSourceSDKDependencies.xml:5
-    implementation 'com.unity3d.ads-mediation:mintegral-adapter:4.3.44' // Assets/LevelPlay/Editor/ISMintegralAdapterDependencies.xml:19
+    implementation 'com.unity3d.ads-mediation:mintegral-adapter:4.3.45' // Assets/LevelPlay/Editor/ISMintegralAdapterDependencies.xml:19
     implementation 'com.unity3d.ads-mediation:mobilefuse-adapter:4.3.7' // Assets/LevelPlay/Editor/ISMobileFuseAdapterDependencies.xml:5
-    implementation 'com.unity3d.ads-mediation:moloco-adapter:4.3.19' // Assets/LevelPlay/Editor/ISMolocoAdapterDependencies.xml:5
+    implementation 'com.unity3d.ads-mediation:moloco-adapter:4.3.20' // Assets/LevelPlay/Editor/ISMolocoAdapterDependencies.xml:5
     implementation 'com.unity3d.ads-mediation:mytarget-adapter:4.3.1' // Assets/LevelPlay/Editor/ISMyTargetAdapterDependencies.xml:5
     implementation 'com.unity3d.ads-mediation:ogury-adapter:4.3.3' // Assets/LevelPlay/Editor/ISOguryAdapterDependencies.xml:5
-    implementation 'com.unity3d.ads-mediation:pangle-adapter:4.3.47' // Assets/LevelPlay/Editor/ISPangleAdapterDependencies.xml:5
+    implementation 'com.unity3d.ads-mediation:pangle-adapter:4.3.48' // Assets/LevelPlay/Editor/ISPangleAdapterDependencies.xml:5
     implementation 'com.unity3d.ads-mediation:smaato-adapter:4.3.14' // Assets/LevelPlay/Editor/ISSmaatoAdapterDependencies.xml:25
     implementation 'com.unity3d.ads-mediation:superawesome-adapter:4.1.10' // Assets/LevelPlay/Editor/ISSuperAwesomeAdapterDependencies.xml:12
     implementation 'com.unity3d.ads-mediation:unityads-adapter:4.3.58' // Assets/LevelPlay/Editor/ISUnityAdsAdapterDependencies.xml:5
-    implementation 'com.unity3d.ads-mediation:verve-adapter:4.3.6' // Assets/LevelPlay/Editor/ISVerveAdapterDependencies.xml:5
+    implementation 'com.unity3d.ads-mediation:verve-adapter:4.3.7' // Assets/LevelPlay/Editor/ISVerveAdapterDependencies.xml:5
     implementation 'com.unity3d.ads-mediation:vungle-adapter:4.3.30' // Assets/LevelPlay/Editor/ISVungleAdapterDependencies.xml:9
-    implementation 'com.unity3d.ads-mediation:yandex-adapter:4.3.13' // Assets/LevelPlay/Editor/ISYandexAdapterDependencies.xml:9
+    implementation 'com.unity3d.ads-mediation:yandex-adapter:4.3.14' // Assets/LevelPlay/Editor/ISYandexAdapterDependencies.xml:9
     implementation 'com.vungle:vungle-ads:7.5.0' // Assets/LevelPlay/Editor/ISVungleAdapterDependencies.xml:5
-    implementation 'com.yandex.android:mobileads:7.14.1' // Assets/LevelPlay/Editor/ISYandexAdapterDependencies.xml:5
+    implementation 'com.yandex.android:mobileads:7.15.0' // Assets/LevelPlay/Editor/ISYandexAdapterDependencies.xml:5
     implementation 'io.bidmachine:ads:3.3.0' // Assets/LevelPlay/Editor/ISBidMachineAdapterDependencies.xml:12
-    implementation 'net.pubnative:hybid.sdk:3.6.0' // Assets/LevelPlay/Editor/ISVerveAdapterDependencies.xml:12
+    implementation 'net.pubnative:hybid.sdk:3.6.1' // Assets/LevelPlay/Editor/ISVerveAdapterDependencies.xml:12
     implementation 'tv.superawesome.sdk.publisher:superawesome:9.4.0' // Assets/LevelPlay/Editor/ISSuperAwesomeAdapterDependencies.xml:8
 // Android Resolver Dependencies End
 **DEPS**}
